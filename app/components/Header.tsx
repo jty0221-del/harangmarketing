@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, MessageCircle } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "회사소개", href: "/about" },
@@ -15,9 +15,13 @@ const NAV_ITEMS = [
       { label: "플레이스 SEO", href: "/services#place" },
       { label: "SNS 마케팅", href: "/services#sns" },
       { label: "체험단·리뷰", href: "/services#review" },
+      { label: "마케팅 인사이트", href: "/blog" },
+      { label: "패키지 견적 계산기", href: "/estimate" },
+      { label: "진행 과정", href: "/process" },
     ],
   },
   { label: "진행사례", href: "/cases" },
+  { label: "FAQ", href: "/faq" },
   { label: "상담신청", href: "/contact" },
 ];
 
@@ -125,11 +129,26 @@ export default function Header() {
             )}
             <a
               href="tel:010-9054-3788"
-              className="ml-2 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md"
+              className={`hidden xl:flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
             >
-              <Phone size={13} strokeWidth={2.5} />
-              <span>010-9054-3788</span>
+              <Phone size={13} strokeWidth={2} />
+              <span className="font-semibold text-xs">010-9054-3788</span>
             </a>
+            <a
+              href="https://pf.kakao.com/_MuUkG/chat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`ml-2 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-bold transition-colors ${scrolled || !isHome ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300" : "bg-yellow-400/90 text-gray-900 hover:bg-yellow-300"}`}
+            >
+              <MessageCircle size={13} strokeWidth={2.5} />
+              <span className="hidden lg:inline">카카오 상담</span>
+            </a>
+            <Link
+              href="/contact"
+              className="ml-1 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors shadow-sm"
+            >
+              무료 진단
+            </Link>
           </nav>
 
           {/* Mobile button */}
@@ -149,8 +168,13 @@ export default function Header() {
 
       {/* Mobile drawer */}
       {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
-          <div className="px-4 py-4 space-y-1">
+        <div className="md:hidden bg-white border-t border-gray-100 shadow-xl">
+          {/* 브랜드 미니 헤더 */}
+          <div className="px-4 pt-4 pb-3 border-b border-gray-100">
+            <div className="text-xs font-black text-gray-900">하랑마케팅</div>
+            <div className="text-[11px] text-gray-400">10년 경력 · 소상공인 전문 · 대표 직접 담당</div>
+          </div>
+          <div className="px-4 py-3 space-y-0.5">
             {NAV_ITEMS.map((item) => (
               <div key={item.href}>
                 <Link
@@ -164,37 +188,45 @@ export default function Header() {
                   {item.label}
                 </Link>
                 {item.sub && (
-                  <div className="ml-4 mt-1 space-y-0.5">
+                  <div className="ml-4 mt-0.5 space-y-0.5 mb-1">
                     {item.sub.map((s) => (
                       <Link
                         key={s.href}
                         href={s.href}
                         className="block px-4 py-2 rounded-lg text-xs text-gray-400 hover:text-gray-700 hover:bg-gray-50 transition-colors"
                       >
-                        {s.label}
+                        · {s.label}
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
             ))}
-            <div className="pt-2 grid grid-cols-2 gap-2">
+          </div>
+          <div className="px-4 pb-4 pt-2 border-t border-gray-100 space-y-2">
+            <Link
+              href="/contact"
+              className="flex items-center justify-center gap-1.5 w-full py-3.5 rounded-xl bg-blue-600 text-white font-black text-sm"
+            >
+              무료 진단 신청 (0원)
+            </Link>
+            <div className="grid grid-cols-2 gap-2">
               <a
                 href="https://pf.kakao.com/_MuUkG/chat"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm"
               >
-                카카오 상담
+                <MessageCircle size={13} strokeWidth={2.5} />카카오 상담
               </a>
               <a
                 href="tel:010-9054-3788"
-                className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-blue-600 text-white font-bold text-sm"
+                className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm"
               >
-                <Phone size={13} strokeWidth={2.5} />
-                전화 상담
+                <Phone size={13} strokeWidth={2.5} />전화 상담
               </a>
             </div>
+            <p className="text-center text-[10px] text-gray-400">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
           </div>
         </div>
       )}

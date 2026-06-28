@@ -1,0 +1,265 @@
+"use client";
+
+import { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Link from "next/link";
+import { ArrowRight, ExternalLink, BookOpen, TrendingUp, MapPin, Star, MessageCircle, Filter } from "lucide-react";
+import PhotoPlaceholder from "../components/PhotoPlaceholder";
+
+const BLOG_POSTS = [
+  {
+    tag: "플레이스 SEO",
+    tagColor: "bg-blue-50 text-blue-600 border-blue-100",
+    accentColor: "border-l-blue-500",
+    title: "2024 네이버 플레이스 상위 노출 알고리즘 완전 분석",
+    preview: "리뷰 수, 답글률, 사진 개수, 저장 수 — 플레이스 순위를 결정하는 7가지 요소를 실제 데이터로 분석했습니다. 경쟁사 대비 어디에 집중해야 하는지 명확하게 알 수 있습니다.",
+    readTime: "8분",
+    result: "적용 후 플레이스 Top 5 평균 4주",
+    href: "/blog/naver-place-algorithm",
+    internal: true,
+  },
+  {
+    tag: "블로그 마케팅",
+    tagColor: "bg-green-50 text-green-700 border-green-100",
+    accentColor: "border-l-green-500",
+    title: "카페 사장님이 꼭 써야 하는 블로그 키워드 30선",
+    preview: "지역명+카페, 분위기 카페, 데이트 카페 등 실제 검색량 높은 키워드 목록과 글쓰기 공식을 공개합니다. 이 키워드 하나로 월 방문객이 달라집니다.",
+    readTime: "6분",
+    result: "카페 블로그 적용 후 월 신규 방문 +43%",
+    href: "/blog/cafe-blog-keywords",
+    internal: true,
+  },
+  {
+    tag: "체험단·리뷰",
+    tagColor: "bg-amber-50 text-amber-700 border-amber-100",
+    accentColor: "border-l-amber-500",
+    title: "체험단 vs 일반 리뷰 — 뭐가 더 효과적인가?",
+    preview: "체험단은 빠르고 리뷰는 신뢰도가 높습니다. 업종별로 어느 방식이 더 ROI가 높은지 실제 A/B 테스트 결과를 공개합니다.",
+    readTime: "5분",
+    result: "리뷰 전략 최적화 후 전환율 2.1배",
+    href: "/blog/review-vs-experience",
+    internal: true,
+  },
+  {
+    tag: "SNS 마케팅",
+    tagColor: "bg-pink-50 text-pink-700 border-pink-100",
+    accentColor: "border-l-pink-500",
+    title: "인스타그램 릴스로 예약 폭발 — 미용실 성공 케이스",
+    preview: "수원 네일샵이 릴스 3개로 2주 만에 예약을 마감한 실제 사례입니다. 어떤 내용을, 어떻게 촬영하고, 무슨 해시태그를 달았는지 공개합니다.",
+    readTime: "7분",
+    result: "예약률 0% → 완전 마감, 2주",
+    href: "/blog/instagram-reels-beauty",
+    internal: true,
+  },
+  {
+    tag: "업종별 전략",
+    tagColor: "bg-purple-50 text-purple-700 border-purple-100",
+    accentColor: "border-l-purple-500",
+    title: "음식점 배달 매출 2배 만든 리뷰 마케팅 공식",
+    preview: "배달앱에서 순위를 올리는 방법은 광고비가 아닙니다. 리뷰 수와 평점, 그리고 사장님 댓글이 핵심입니다. 서울 마포 음식점의 4개월 과정을 공개합니다.",
+    readTime: "9분",
+    result: "배달 매출 480만 → 1,022만원",
+    href: "/blog/delivery-review-formula",
+    internal: true,
+  },
+  {
+    tag: "마케팅 비용",
+    tagColor: "bg-gray-50 text-gray-700 border-gray-200",
+    accentColor: "border-l-gray-400",
+    title: "마케팅 예산 30만원으로 플레이스 1위 가능한가?",
+    preview: "작은 예산으로 가장 효과적인 조합을 찾는 방법. 10년간 500개 프로젝트 데이터를 바탕으로 예산별 최적 전략을 제시합니다.",
+    readTime: "6분",
+    result: "소규모 예산 사례 3개 플레이스 Top 5 달성",
+    href: "/blog/small-budget-place-top",
+    internal: true,
+  },
+];
+
+const CATEGORIES = ["전체", "플레이스 SEO", "블로그 마케팅", "체험단·리뷰", "SNS 마케팅", "업종별 전략", "마케팅 비용"];
+
+export default function BlogPage() {
+  const [activeTab, setActiveTab] = useState("전체");
+  const filtered = activeTab === "전체" ? BLOG_POSTS : BLOG_POSTS.filter((p) => p.tag === activeTab);
+
+  return (
+    <>
+      <Header />
+      <main className="pt-16">
+        {/* Hero */}
+        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
+          <div className="absolute top-0 right-1/3 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Blog</p>
+            <h1 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
+              마케팅 인사이트,<br /><span className="text-blue-400">무료로 공유합니다</span>
+            </h1>
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
+              10년 경력 대표가 직접 쓰는 소상공인 마케팅 노하우.
+              이론이 아닌 실제 성과로 검증된 방법만 담습니다.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://blog.naver.com/harangmarketing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-green-600 text-white font-bold text-sm hover:bg-green-500 transition-colors shadow-sm"
+              >
+                <span className="w-5 h-5 rounded bg-white/20 flex items-center justify-center font-black text-xs">N</span>
+                네이버 블로그 전체 보기
+                <ExternalLink size={13} />
+              </a>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white font-semibold text-sm hover:bg-white/15 transition-colors"
+              >
+                맞춤 전략 무료 상담 <ArrowRight size={13} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Trust mini strip */}
+        <section className="py-4 bg-white border-b border-gray-100">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              {[
+                { icon: BookOpen, text: "대표 직접 집필" },
+                { icon: TrendingUp, text: "실제 성과 기반" },
+                { icon: Star, text: "500+ 프로젝트 경험" },
+                { icon: MapPin, text: "소상공인 전문" },
+              ].map(({ icon: Icon, text }) => (
+                <span key={text} className="flex items-center gap-1.5 text-xs text-gray-500">
+                  <Icon size={12} className="text-blue-500" strokeWidth={2.5} />
+                  {text}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Blog Posts */}
+        <section className="py-12 md:py-20 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            {/* Category scrollable tabs */}
+            <div className="flex items-center gap-2 mb-6">
+              <Filter size={13} className="text-gray-400 shrink-0" strokeWidth={2.5} />
+              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveTab(cat)}
+                    className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap border shrink-0 transition-colors ${
+                      cat === activeTab
+                        ? "bg-blue-600 text-white border-blue-600"
+                        : "bg-white text-gray-500 border-gray-200 hover:border-blue-200 hover:text-blue-600"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {filtered.length === 0 && (
+              <div className="text-center py-16 text-gray-400 text-sm">
+                해당 카테고리의 글이 없습니다.
+              </div>
+            )}
+
+            <div className="space-y-4">
+              {filtered.map((post, i) => {
+                const inner = (
+                  <div className="flex items-start gap-4">
+                    {/* Thumbnail placeholder */}
+                    <PhotoPlaceholder
+                      label="썸네일"
+                      width="w-24 md:w-32"
+                      height="h-24 md:h-28"
+                      className="shrink-0 rounded-xl"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <span className={`inline-block px-2.5 py-0.5 rounded-lg border text-[11px] font-black ${post.tagColor}`}>
+                          {post.tag}
+                        </span>
+                        <span className="text-[11px] text-gray-400">{post.readTime} 읽기</span>
+                        {(post as { internal?: boolean }).internal && (
+                          <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-1.5 py-0.5 rounded">전문 읽기</span>
+                        )}
+                      </div>
+                      <h2 className="font-black text-gray-900 text-sm md:text-base leading-snug mb-1.5 group-hover:text-blue-600 transition-colors line-clamp-2">
+                        {post.title}
+                      </h2>
+                      <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-2 hidden sm:block">
+                        {post.preview}
+                      </p>
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-blue-600">
+                        <TrendingUp size={11} strokeWidth={2.5} />
+                        {post.result}
+                      </div>
+                    </div>
+                    <div className="shrink-0 flex flex-col items-center justify-center w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-blue-600 transition-colors self-start mt-1">
+                      <ExternalLink size={13} className="text-gray-400 group-hover:text-white transition-colors" />
+                    </div>
+                  </div>
+                );
+                const cls = `block bg-white rounded-2xl border-l-4 ${post.accentColor} border border-gray-100 p-5 md:p-6 hover:shadow-md transition-all group`;
+                return (post as { internal?: boolean }).internal ? (
+                  <Link key={i} href={post.href} className={cls}>{inner}</Link>
+                ) : (
+                  <a key={i} href={post.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+                );
+              })}
+            </div>
+
+            {/* Load more — links to Naver blog */}
+            <div className="text-center mt-8">
+              <a
+                href="https://blog.naver.com/harangmarketing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-700 font-bold text-sm hover:border-blue-300 hover:text-blue-600 transition-colors shadow-sm"
+              >
+                <span className="w-5 h-5 rounded bg-green-600 text-white text-[10px] font-black flex items-center justify-center">N</span>
+                네이버 블로그에서 더 보기
+                <ExternalLink size={13} />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-14 md:py-20 bg-white border-t border-gray-100">
+          <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
+              글을 읽었는데 직접 적용이 어려우신가요?
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-md mx-auto">
+              무료 상담에서 업종·상황에 맞는 전략을 직접 제안해드립니다.<br />
+              이론이 아닌 실행 계획으로 안내해드립니다.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 text-white font-black text-sm hover:bg-blue-700 transition-colors shadow-sm"
+              >
+                무료 전략 진단 신청 <ArrowRight size={14} />
+              </Link>
+              <a
+                href="https://pf.kakao.com/_MuUkG/chat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-yellow-400 text-gray-900 font-black text-sm hover:bg-yellow-300 transition-colors"
+              >
+                <MessageCircle size={14} />
+                카카오 바로 문의
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}

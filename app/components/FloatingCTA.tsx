@@ -1,0 +1,203 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Phone, MessageCircle, X, ChevronUp, ArrowRight, Clock, Star, Zap } from "lucide-react";
+
+function useBusinessHours() {
+  const [status, setStatus] = useState<"open" | "closing" | "closed">("open");
+  useEffect(() => {
+    const check = () => {
+      const h = new Date().getHours();
+      // 09:00~18:00 평일 기준
+      const day = new Date().getDay();
+      const isWeekend = day === 0 || day === 6;
+      if (isWeekend || h < 9 || h >= 18) setStatus("closed");
+      else if (h >= 17) setStatus("closing");
+      else setStatus("open");
+    };
+    check();
+    const id = setInterval(check, 60000);
+    return () => clearInterval(id);
+  }, []);
+  return status;
+}
+
+export default function FloatingCTA() {
+  const [visible, setVisible] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const bizStatus = useBusinessHours();
+
+  useEffect(() => {
+    const onScroll = () => {
+      setVisible(window.scrollY > 300);
+      setShowScrollTop(window.scrollY > 600);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  if (!visible) return null;
+
+  const statusConfig = {
+    open: { dot: "bg-green-400", text: "지금 상담 가능", sub: "카카오 평균 10분 내 응답" },
+    closing: { dot: "bg-amber-400", text: "오늘 마감 임박", sub: "18시 이후 다음 영업일 연락" },
+    closed: { dot: "bg-gray-400", text: "영업시간 외", sub: "문의 접수 후 내일 9시 이후 연락" },
+  }[bizStatus];
+
+  return (
+    <>
+      {/* Desktop: 우측 플로팅 */}
+      <div className="hidden md:flex fixed right-6 bottom-8 z-40 flex-col items-end gap-3">
+        {showScrollTop && (
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="w-10 h-10 rounded-xl bg-white border border-gray-200 shadow-md flex items-center justify-center text-gray-400 hover:text-gray-700 hover:shadow-lg transition-all"
+            aria-label="맨 위로"
+          >
+            <ChevronUp size={18} />
+          </button>
+        )}
+
+        {expanded && (
+          <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-5 w-64 animate-fade-in">
+            {/* Header */}
+            <div className="mb-3">
+              <div className="flex items-center justify-between mb-1.5">
+                <p className="text-sm font-black text-gray-900">하랑마케팅 빠른 상담</p>
+                <button onClick={() => setExpanded(false)} className="p-0.5 rounded hover:bg-gray-100 text-gray-400">
+                  <X size={14} />
+                </button>
+              </div>
+              <div className="flex gap-0.5 mb-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={9} className="text-amber-400 fill-amber-400" />
+                ))}
+                <span className="text-[10px] text-gray-400 ml-1">4.9/5.0 · 500+ 프로젝트</span>
+              </div>
+              {/* Business hours status */}
+              <div className="flex items-center gap-1.5 mt-1.5">
+                <span className={`w-2 h-2 rounded-full ${statusConfig.dot} ${bizStatus === "open" ? "animate-pulse" : ""}`} />
+                <span className="text-[11px] font-bold text-gray-700">{statusConfig.text}</span>
+              </div>
+              <p className="text-[10px] text-gray-400 ml-3.5">{statusConfig.sub}</p>
+            </div>
+
+            {/* Urgency */}
+            <div className="bg-red-50 border border-red-100 rounded-xl px-3 py-2 mb-3 flex items-center gap-2">
+              <Clock size={11} className="text-red-500 shrink-0" strokeWidth={2.5} />
+              <div>
+                <p className="text-[10px] font-black text-red-600">이번 달 신규 상담 잔여 2자리</p>
+                <div className="flex gap-1 mt-0.5">
+                  {[1, 2, 3].map((n) => (
+                    <div key={n} className={`w-4 h-1.5 rounded-full ${n <= 1 ? "bg-red-300" : n <= 2 ? "bg-red-400" : "bg-red-500"}`} />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="space-y-2">
+              <a
+                href="https://pf.kakao.com/_MuUkG/chat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors"
+              >
+                <MessageCircle size={14} strokeWidth={2.5} />
+                <span className="flex-1">카카오톡 바로 상담</span>
+                <span className="text-[10px] text-gray-600">10분 내</span>
+              </a>
+              <a
+                href="tel:010-9054-3788"
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-colors"
+              >
+                <Phone size={14} strokeWidth={2.5} />
+                <span className="flex-1">010-9054-3788</span>
+              </a>
+              <Link
+                href="/free-check"
+                onClick={() => setExpanded(false)}
+                className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-colors shadow-sm"
+              >
+                무료 플레이스 진단
+                <ArrowRight size={13} />
+              </Link>
+              <Link
+                href="/estimate"
+                onClick={() => setExpanded(false)}
+                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-gray-100 text-gray-600 font-semibold text-xs hover:bg-gray-200 transition-colors"
+              >
+                <Zap size={11} strokeWidth={2.5} />
+                3분 견적 계산기
+              </Link>
+            </div>
+          </div>
+        )}
+
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className={`relative w-14 h-14 rounded-2xl shadow-xl flex items-center justify-center transition-all font-bold text-white ${
+            expanded
+              ? "bg-gray-700 hover:bg-gray-800"
+              : "bg-blue-600 hover:bg-blue-700 hover:shadow-blue-600/30 hover:shadow-2xl hover:-translate-y-0.5"
+          }`}
+          aria-label="상담 메뉴"
+        >
+          {expanded ? <X size={20} /> : <MessageCircle size={22} />}
+          {!expanded && (
+            <>
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-500 border-2 border-white text-white text-[8px] font-black flex items-center justify-center">
+                2
+              </span>
+              {bizStatus === "open" && (
+                <span className="absolute -bottom-1 -left-1 w-3 h-3 rounded-full bg-green-400 border-2 border-white" />
+              )}
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Mobile: 하단 고정 바 */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-100 shadow-2xl">
+        <div className={`px-3 py-1.5 border-b text-center flex items-center justify-center gap-2 ${
+          bizStatus === "open" ? "bg-green-50 border-green-100" : "bg-red-50 border-red-100"
+        }`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${statusConfig.dot} ${bizStatus === "open" ? "animate-pulse" : ""}`} />
+          <p className={`text-[10px] font-black ${bizStatus === "open" ? "text-green-700" : "text-red-500"}`}>
+            {bizStatus === "open" ? "지금 상담 가능 · 평균 10분 내 응답" : "이번 달 신규 상담 잔여 2자리 — 선착순 마감"}
+          </p>
+        </div>
+        <div className="px-3 py-2.5 flex gap-2">
+          <a
+            href="https://pf.kakao.com/_MuUkG/chat"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-black text-sm"
+          >
+            <MessageCircle size={15} />
+            카카오
+          </a>
+          <a
+            href="tel:010-9054-3788"
+            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl bg-gray-900 text-white font-black text-sm"
+          >
+            <Phone size={15} />
+            전화
+          </a>
+          <Link
+            href="/free-check"
+            className="flex-[1.4] flex items-center justify-center gap-1 py-3 rounded-xl bg-blue-600 text-white font-black text-sm"
+          >
+            무료 진단
+            <ArrowRight size={13} />
+          </Link>
+        </div>
+      </div>
+
+      {/* Mobile 하단 바 공간 확보 */}
+      <div className="md:hidden h-[88px]" />
+    </>
+  );
+}

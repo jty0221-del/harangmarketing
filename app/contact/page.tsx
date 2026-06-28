@@ -1,21 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Phone, Mail, MapPin, MessageCircle, Send, CheckCircle2, Clock, Star, ArrowRight } from "lucide-react";
+import {
+  Phone, Mail, MapPin, MessageCircle, Send, CheckCircle2,
+  Clock, Star, ArrowRight, ChevronRight,
+  Coffee, UtensilsCrossed, Scissors, Stethoscope, GraduationCap, ShoppingBag, HelpCircle,
+} from "lucide-react";
 
-const BUSINESS_TYPES = [
-  "카페·베이커리", "음식점·배달", "미용실·네일샵", "피부과·의원·한의원",
-  "학원·교육기관", "온라인 쇼핑몰", "인테리어·공사", "부동산·법무",
-  "헬스·필라테스·요가", "의류·패션", "기타 소상공인", "마케팅 대행사",
-];
-
-const SERVICES_LIST = [
-  "블로그 배포(기자단)", "홈페이지형 블로그 제작", "카카오맵 마케팅",
-  "체험단 모집 대행", "리뷰 마케팅", "플레이스 SEO 최적화",
-  "플레이스 순위상승", "블로그 관리 대행", "맘카페 바이럴",
-  "인스타그램 마케팅", "아직 잘 모르겠어요 (추천 받고 싶어요)",
+const INDUSTRY_ICONS = [
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "+167% 방문객", case: "경기 일산 카페 · 3개월", color: "from-amber-500 to-orange-500" },
+  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "+113% 배달 매출", case: "서울 마포 음식점 · 4개월", color: "from-red-500 to-rose-600" },
+  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "예약 완전 마감", case: "수원 네일샵 · 3개월", color: "from-pink-500 to-rose-500" },
+  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "체험단 모집", "플레이스 SEO"], result: "+300% 신규 예약", case: "경기 분당 피부과 · 6개월", color: "from-blue-500 to-blue-700" },
+  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "+55% 수강생", case: "경기 고양 학원 · 3개월", color: "from-indigo-500 to-violet-600" },
+  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "+64% 월 매출", case: "전국 온라인 쇼핑몰 · 5개월", color: "from-green-500 to-emerald-600" },
+  { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-gray-500 to-gray-700" },
 ];
 
 const BUDGETS = [
@@ -23,26 +25,52 @@ const BUDGETS = [
   "월 100~200만원", "월 200만원 이상", "아직 미정",
 ];
 
-const PROCESS_STEPS = [
-  { step: "01", title: "상담 신청", desc: "양식 작성 또는 카카오·전화 문의" },
-  { step: "02", title: "현황 분석", desc: "업종·경쟁사·현재 상황 무료 분석" },
-  { step: "03", title: "전략 제안", desc: "맞춤 마케팅 전략 + 견적 제안" },
-  { step: "04", title: "계약·시작", desc: "계약 후 바로 작업 시작" },
+const GOALS = [
+  "네이버 플레이스 순위 올리기", "리뷰·후기 늘리기",
+  "SNS 팔로워·인지도 올리기", "블로그 검색 노출 늘리기",
+  "매장 방문객 늘리기", "온라인 매출 올리기",
+  "브랜드 신뢰도 높이기", "아직 잘 모르겠어요",
 ];
 
-export default function ContactPage() {
-  const [form, setForm] = useState({
-    name: "", phone: "", businessType: "", service: "", budget: "", message: "",
-  });
+const PROCESS_STEPS = [
+  { step: "01", title: "상담 신청", desc: "24시간 내 연락" },
+  { step: "02", title: "현황 무료 분석", desc: "업종·경쟁사 분석" },
+  { step: "03", title: "전략 제안", desc: "맞춤 견적 제안" },
+  { step: "04", title: "즉시 시작", desc: "계약 당일 착수" },
+];
+
+function ContactPageInner() {
+  const searchParams = useSearchParams();
+  const checklistCount = Number(searchParams.get("checklist") ?? 0);
+  const estimatePlan = searchParams.get("estimate") ?? "";
+
+  const [step, setStep] = useState<"industry" | "form" | "done">("industry");
+  const [selectedIndustry, setSelectedIndustry] = useState("");
+  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
+  const [form, setForm] = useState({ name: "", phone: "", budget: "", message: "" });
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (estimatePlan && form.message === "") {
+      setForm((prev) => ({ ...prev, message: `견적 계산기에서 추천받은 "${estimatePlan}"에 대해 상담을 원합니다.` }));
+    } else if (checklistCount > 0 && form.message === "") {
+      setForm((prev) => ({ ...prev, message: `홈페이지 자가진단에서 ${checklistCount}가지 문제를 확인했습니다.` }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checklistCount, estimatePlan]);
+
+  const toggleGoal = (g: string) => {
+    setSelectedGoals((prev) => prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g]);
+  };
+
+  const selectedInd = INDUSTRY_ICONS.find((i) => i.id === selectedIndustry);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
+    await new Promise((r) => setTimeout(r, 900));
     setLoading(false);
-    setSubmitted(true);
+    setStep("done");
   };
 
   return (
@@ -50,162 +78,186 @@ export default function ContactPage() {
       <Header />
       <main className="pt-16">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-16 md:py-24 relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl" />
-          </div>
+        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
+          <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            {estimatePlan && (
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/20 border border-blue-500/30 mb-5">
+                <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                <span className="text-blue-200 text-sm font-bold">견적 계산기 추천: <span className="text-white">{estimatePlan}</span>으로 상담 신청하셨습니다.</span>
+              </div>
+            )}
+            {!estimatePlan && checklistCount >= 3 && (
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/20 border border-amber-500/30 mb-5">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <span className="text-amber-300 text-sm font-bold">자가진단에서 {checklistCount}가지 문제를 확인하셨군요. 지금 바로 해결해드립니다.</span>
+              </div>
+            )}
             <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Contact</p>
             <h1 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
               무료 전략 진단 신청
             </h1>
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl">
-              업종과 현재 상황을 알려주시면 맞춤 마케팅 전략을 무료로 분석해드립니다.
-              부담 없이 연락해주세요.
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
+              업종과 목표를 알려주시면 맞춤 마케팅 전략을 무료로 분석해드립니다.
             </p>
-            <div className="flex flex-wrap gap-4 mt-6 text-sm">
-              {[
-                { icon: CheckCircle2, text: "상담 비용 0원" },
-                { icon: CheckCircle2, text: "계약 강요 없음" },
-                { icon: Clock, text: "24시간 내 연락" },
-              ].map(({ icon: Icon, text }) => (
-                <span key={text} className="flex items-center gap-1.5 text-green-400">
-                  <Icon size={14} strokeWidth={2.5} />
-                  <span className="text-gray-300">{text}</span>
+            <div className="flex flex-wrap gap-4 text-sm">
+              {[{ icon: CheckCircle2, text: "상담 비용 0원" }, { icon: CheckCircle2, text: "계약 강요 없음" }, { icon: Clock, text: "24시간 내 연락" }].map(({ icon: Icon, text }) => (
+                <span key={text} className="flex items-center gap-1.5 text-gray-300">
+                  <Icon size={14} className="text-blue-400" strokeWidth={2.5} /> {text}
                 </span>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Process */}
-        <section className="py-10 bg-white border-b border-gray-100">
+        {/* Process bar */}
+        <section className="py-6 bg-white border-b border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {PROCESS_STEPS.map((step, i) => (
-                <div key={step.step} className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black text-xs shrink-0 shadow-sm">
-                    {step.step}
+            <div className="flex items-center justify-between md:justify-start md:gap-8">
+              {PROCESS_STEPS.map((s, i) => (
+                <div key={s.step} className="flex items-center gap-2 md:gap-3">
+                  <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0 transition-colors ${
+                    (step === "form" && i <= 1) || step === "done" ? "bg-blue-600 text-white" : i === 0 ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-400"
+                  }`}>
+                    {s.step}
                   </div>
-                  <div>
-                    <div className="font-bold text-gray-900 text-sm">{step.title}</div>
-                    <div className="text-xs text-gray-400 mt-0.5 leading-relaxed">{step.desc}</div>
+                  <div className="hidden sm:block">
+                    <div className="text-xs font-bold text-gray-700">{s.title}</div>
+                    <div className="text-[10px] text-gray-400">{s.desc}</div>
                   </div>
+                  {i < PROCESS_STEPS.length - 1 && <ChevronRight size={12} className="text-gray-200 hidden md:block" />}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-12 md:py-16 bg-gray-50">
+        <section className="py-10 md:py-14 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 md:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 md:gap-8">
 
-              {/* Form */}
-              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
-                {submitted ? (
-                  <div className="text-center py-10">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mx-auto mb-5 shadow-md">
-                      <CheckCircle2 size={28} className="text-white" strokeWidth={2} />
+              {/* Main form area */}
+              <div>
+                {/* Step 1: 업종 선택 */}
+                {step === "industry" && (
+                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+                    <h2 className="text-lg font-black text-gray-900 mb-1">어떤 업종을 운영하고 계신가요?</h2>
+                    <p className="text-xs text-gray-400 mb-6">업종에 맞는 전략을 추천해드립니다</p>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
+                      {INDUSTRY_ICONS.map((ind) => {
+                        const Icon = ind.icon;
+                        return (
+                          <button
+                            key={ind.id}
+                            onClick={() => setSelectedIndustry(ind.id)}
+                            className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all text-center ${
+                              selectedIndustry === ind.id
+                                ? "border-blue-500 bg-blue-50"
+                                : "border-gray-100 bg-gray-50 hover:border-blue-200"
+                            }`}
+                          >
+                            <Icon size={22} className={selectedIndustry === ind.id ? "text-blue-600" : "text-gray-400"} strokeWidth={1.5} />
+                            <span className={`text-xs font-bold leading-tight ${selectedIndustry === ind.id ? "text-blue-700" : "text-gray-600"}`}>
+                              {ind.label}
+                            </span>
+                          </button>
+                        );
+                      })}
                     </div>
-                    <h2 className="text-xl font-black text-gray-900 mb-2">신청 완료!</h2>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-8">
-                      소중한 상담 신청 감사합니다.<br />
-                      <span className="font-semibold text-gray-700">24시간 이내</span>에 연락드리겠습니다.<br />
-                      급하신 경우 카카오톡이나 전화를 이용해주세요.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                      <a
-                        href="https://pf.kakao.com/_MuUkG/chat"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors"
-                      >
-                        <MessageCircle size={15} />
-                        카카오톡 바로 상담
-                      </a>
-                      <a
-                        href="tel:010-9054-3788"
-                        className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-colors"
-                      >
-                        <Phone size={15} />
-                        전화 상담
-                      </a>
+
+                    {selectedInd && (
+                      <div className="rounded-xl border border-blue-100 overflow-hidden mb-6">
+                        <div className={`bg-gradient-to-r ${selectedInd.color} px-4 py-3 flex items-center justify-between`}>
+                          <div>
+                            <p className="text-[10px] font-black text-white/70 uppercase tracking-wider">유사 사례 실적</p>
+                            <p className="text-white font-black text-base">{selectedInd.result}</p>
+                          </div>
+                          <p className="text-white/70 text-[10px] text-right">{selectedInd.case}</p>
+                        </div>
+                        <div className="bg-blue-50 px-4 py-3">
+                          <p className="text-[10px] font-black text-blue-600 uppercase tracking-wider mb-2">추천 서비스</p>
+                          <div className="flex flex-wrap gap-1.5">
+                            {selectedInd.rec.map((r) => (
+                              <span key={r} className="px-2.5 py-1 rounded-full bg-blue-600 text-white text-xs font-semibold">{r}</span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="mb-6">
+                      <h3 className="text-sm font-black text-gray-700 mb-3">마케팅 목표를 선택해주세요 (복수 선택 가능)</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {GOALS.map((g) => (
+                          <button
+                            key={g}
+                            onClick={() => toggleGoal(g)}
+                            className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-xl border text-xs font-medium transition-all ${
+                              selectedGoals.includes(g)
+                                ? "border-blue-500 bg-blue-50 text-blue-700 font-bold"
+                                : "border-gray-200 text-gray-500 hover:border-blue-200"
+                            }`}
+                          >
+                            {selectedGoals.includes(g) && <CheckCircle2 size={11} className="text-blue-500 shrink-0" strokeWidth={2.5} />}{g}
+                          </button>
+                        ))}
+                      </div>
                     </div>
+
+                    <button
+                      onClick={() => setStep("form")}
+                      disabled={!selectedIndustry}
+                      className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-gray-200 disabled:text-gray-400 text-white font-bold text-base transition-colors"
+                    >
+                      다음 단계: 연락처 입력
+                      <ArrowRight size={16} />
+                    </button>
+                    {!selectedIndustry && <p className="text-xs text-gray-400 text-center mt-2">업종을 먼저 선택해주세요</p>}
                   </div>
-                ) : (
-                  <>
-                    <h2 className="text-lg font-black text-gray-900 mb-1">상담 신청서 작성</h2>
-                    <p className="text-xs text-gray-400 mb-6">모든 항목은 선택 사항이지만, 많이 적어주실수록 더 정확한 제안이 가능합니다.</p>
+                )}
+
+                {/* Step 2: 연락처 */}
+                {step === "form" && (
+                  <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+                    <div className="flex items-center gap-3 mb-5">
+                      <button onClick={() => setStep("industry")} className="text-xs text-blue-600 font-bold hover:underline">
+                        ← 업종 다시 선택
+                      </button>
+                      {selectedInd && (
+                        <span className="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold">
+                          {selectedInd.label}
+                        </span>
+                      )}
+                    </div>
+
+                    <h2 className="text-lg font-black text-gray-900 mb-1">어디로 연락드릴까요?</h2>
+                    <p className="text-xs text-gray-400 mb-6">대표가 직접 24시간 이내에 연락드립니다 · 상담 비용 0원</p>
+
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                            이름 / 업체명 <span className="text-blue-500">*</span>
-                          </label>
-                          <input
-                            type="text"
-                            required
-                            value={form.name}
+                          <label className="block text-xs font-bold text-gray-700 mb-1.5">이름 / 업체명 <span className="text-blue-500">*</span></label>
+                          <input type="text" required value={form.name}
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
                             placeholder="홍길동 / 하랑카페"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300"
-                          />
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
                         </div>
                         <div>
-                          <label className="block text-xs font-bold text-gray-700 mb-1.5">
-                            연락처 <span className="text-blue-500">*</span>
-                          </label>
-                          <input
-                            type="tel"
-                            required
-                            value={form.phone}
+                          <label className="block text-xs font-bold text-gray-700 mb-1.5">연락처 <span className="text-blue-500">*</span></label>
+                          <input type="tel" required value={form.phone}
                             onChange={(e) => setForm({ ...form, phone: e.target.value })}
                             placeholder="010-0000-0000"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-bold text-gray-700 mb-1.5">업종</label>
-                          <select
-                            value={form.businessType}
-                            onChange={(e) => setForm({ ...form, businessType: e.target.value })}
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white text-gray-700"
-                          >
-                            <option value="">업종 선택</option>
-                            {BUSINESS_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
-                          </select>
-                        </div>
-                        <div>
-                          <label className="block text-xs font-bold text-gray-700 mb-1.5">관심 서비스</label>
-                          <select
-                            value={form.service}
-                            onChange={(e) => setForm({ ...form, service: e.target.value })}
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white text-gray-700"
-                          >
-                            <option value="">서비스 선택</option>
-                            {SERVICES_LIST.map((s) => <option key={s} value={s}>{s}</option>)}
-                          </select>
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition placeholder:text-gray-300" />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-gray-700 mb-1.5">예상 월 예산</label>
+                        <label className="block text-xs font-bold text-gray-700 mb-2">예상 월 예산</label>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {BUDGETS.map((b) => (
-                            <button
-                              key={b}
-                              type="button"
-                              onClick={() => setForm({ ...form, budget: b })}
-                              className={`px-3 py-2 rounded-xl border text-xs font-medium transition-all ${
-                                form.budget === b
-                                  ? "border-blue-500 bg-blue-50 text-blue-700 font-bold"
-                                  : "border-gray-200 text-gray-500 hover:border-gray-300"
-                              }`}
-                            >
+                            <button key={b} type="button" onClick={() => setForm({ ...form, budget: b })}
+                              className={`px-3 py-2 rounded-xl border text-xs font-medium transition-all ${form.budget === b ? "border-blue-500 bg-blue-50 text-blue-700 font-bold" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
                               {b}
                             </button>
                           ))}
@@ -213,86 +265,120 @@ export default function ContactPage() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-gray-700 mb-1.5">문의 내용</label>
-                        <textarea
-                          rows={4}
-                          value={form.message}
+                        <label className="block text-xs font-bold text-gray-700 mb-1.5">추가 문의 사항</label>
+                        <textarea rows={3} value={form.message}
                           onChange={(e) => setForm({ ...form, message: e.target.value })}
-                          placeholder="현재 상황, 목표, 고민 등을 자유롭게 적어주세요&#10;예: '카페 개업 3개월차인데 플레이스 순위가 낮아요. 경쟁이 심한 지역입니다.'"
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none placeholder:text-gray-300"
-                        />
+                          placeholder="현재 상황, 가장 큰 고민, 기대하는 결과 등을 자유롭게 적어주세요"
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none placeholder:text-gray-300" />
                       </div>
 
-                      <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-base transition-colors shadow-sm"
-                      >
+                      {selectedGoals.length > 0 && (
+                        <div className="bg-gray-50 rounded-xl p-3 text-xs text-gray-500">
+                          <span className="font-bold text-gray-700">선택한 목표: </span>
+                          {selectedGoals.join(", ")}
+                        </div>
+                      )}
+
+                      {/* 제출 전 보증 */}
+                      <div className="bg-blue-50 border border-blue-100 rounded-xl px-4 py-3 flex items-start gap-3">
+                        <CheckCircle2 size={14} className="text-blue-500 shrink-0 mt-0.5" strokeWidth={2.5} />
+                        <div>
+                          <p className="text-xs font-bold text-blue-800">제출하셔도 아무런 계약 의무가 없습니다</p>
+                          <p className="text-[11px] text-blue-600 mt-0.5">분석 리포트와 전략을 먼저 확인하신 후 진행 여부를 결정하세요</p>
+                        </div>
+                      </div>
+
+                      <button type="submit" disabled={loading}
+                        className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-base transition-colors shadow-sm">
                         {loading ? (
-                          <span className="flex items-center gap-2">
-                            <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                            처리 중...
-                          </span>
+                          <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />처리 중...</>
                         ) : (
-                          <>
-                            <Send size={15} />
-                            무료 전략 진단 신청하기
-                          </>
+                          <><Send size={15} />무료 전략 진단 신청하기</>
                         )}
                       </button>
 
-                      <p className="text-xs text-gray-400 text-center">
-                        평일 기준 24시간 이내 연락드립니다 · 상담 비용 없음 · 계약 강요 없음
-                      </p>
+                      <p className="text-xs text-gray-400 text-center">상담 비용 없음 · 계약 강요 없음 · 대표 직접 연락</p>
                     </form>
-                  </>
+                  </div>
+                )}
+
+                {/* Done */}
+                {step === "done" && (
+                  <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center mx-auto mb-5 shadow-md">
+                      <CheckCircle2 size={28} className="text-white" strokeWidth={2} />
+                    </div>
+                    <h2 className="text-xl font-black text-gray-900 mb-2">신청이 완료됐습니다</h2>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-4">
+                      <span className="font-black text-gray-800">{form.name || "사장님"}</span>, 소중한 신청 감사합니다.<br />
+                      대표가 직접 <span className="font-semibold text-blue-600">24시간 이내</span>에 연락드립니다.
+                    </p>
+
+                    {/* 다음 단계 안내 */}
+                    <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-left">
+                      <p className="text-xs font-bold text-blue-600 mb-2 uppercase tracking-wider">앞으로의 과정</p>
+                      <ol className="space-y-1.5">
+                        {["대표가 신청 내용 확인 후 연락드립니다", "20~30분 무료 전략 상담 진행", "업종·경쟁사 분석 리포트 전달", "맞춤 서비스 제안 (비용 0원)"].map((s, i) => (
+                          <li key={i} className="flex items-center gap-2.5 text-xs text-gray-600">
+                            <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[9px] font-black flex items-center justify-center shrink-0">{i + 1}</span>
+                            {s}
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+
+                    <p className="text-xs text-gray-400 mb-4">급하신 경우 아래로 바로 연락주세요</p>
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center mb-5">
+                      <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors">
+                        <MessageCircle size={15} />카카오톡 바로 상담
+                      </a>
+                      <a href="tel:010-9054-3788" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-colors">
+                        <Phone size={15} />010-9054-3788
+                      </a>
+                    </div>
+                    <div className="flex justify-center gap-0.5 mb-1">
+                      {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={13} className="text-amber-400 fill-amber-400" />)}
+                    </div>
+                    <p className="text-xs text-gray-400">고객 만족도 4.9/5.0 · 재계약률 95%</p>
+                  </div>
                 )}
               </div>
 
-              {/* Side info */}
+              {/* Sidebar */}
               <div className="space-y-4">
                 {/* Direct contact */}
                 <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                  <h3 className="font-bold text-gray-900 text-sm mb-4">바로 연락하기</h3>
-                  <div className="space-y-3">
-                    <a
-                      href="https://pf.kakao.com/_MuUkG/chat"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3.5 rounded-xl bg-yellow-50 hover:bg-yellow-100 transition-colors group"
-                    >
+                  <h3 className="font-bold text-gray-900 text-sm mb-4">지금 바로 연락하기</h3>
+                  <div className="space-y-2.5">
+                    <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-3.5 rounded-xl bg-yellow-50 hover:bg-yellow-100 transition-colors group">
                       <div className="w-9 h-9 rounded-xl bg-yellow-400 flex items-center justify-center shadow-sm shrink-0">
                         <MessageCircle size={16} className="text-gray-900" strokeWidth={2.5} />
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1">
                         <div className="font-bold text-gray-900 text-sm">카카오톡 채널</div>
-                        <div className="text-xs text-gray-400">지금 바로 채팅 상담</div>
+                        <div className="text-xs text-gray-400">평균 응답 10분 이내</div>
                       </div>
                       <ArrowRight size={13} className="text-gray-300 group-hover:text-yellow-500 transition-colors" />
                     </a>
-
-                    <a
-                      href="tel:010-9054-3788"
-                      className="flex items-center gap-3 p-3.5 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group"
-                    >
+                    <a href="tel:010-9054-3788"
+                      className="flex items-center gap-3 p-3.5 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group">
                       <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-sm shrink-0">
                         <Phone size={16} className="text-white" strokeWidth={2.5} />
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1">
                         <div className="font-bold text-gray-900 text-sm">010-9054-3788</div>
                         <div className="text-xs text-gray-400">평일 09:00~18:00</div>
                       </div>
                       <ArrowRight size={13} className="text-gray-300 group-hover:text-blue-500 transition-colors" />
                     </a>
-
-                    <a
-                      href="mailto:jty0221@naver.com"
-                      className="flex items-center gap-3 p-3.5 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group"
-                    >
+                    <a href="mailto:jty0221@naver.com"
+                      className="flex items-center gap-3 p-3.5 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
                       <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center shadow-sm shrink-0">
                         <Mail size={16} className="text-white" strokeWidth={2.5} />
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1">
                         <div className="font-bold text-gray-900 text-sm">이메일 문의</div>
                         <div className="text-xs text-gray-400 truncate">jty0221@naver.com</div>
                       </div>
@@ -310,10 +396,32 @@ export default function ContactPage() {
                     <div>
                       <div className="font-bold text-gray-900 text-sm mb-1">주소</div>
                       <p className="text-xs text-gray-500 leading-relaxed">
-                        경기 고양시 일산동구 장백로19<br />
-                        더루벤투스카운티 501호
+                        경기 고양시 일산동구 장백로19<br />더루벤투스카운티 501호
                       </p>
                     </div>
+                  </div>
+                </div>
+
+                {/* Industry results mini */}
+                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                  <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 실제 성과</h4>
+                  <div className="space-y-2.5">
+                    {[
+                      { ind: "카페·베이커리", location: "경기 일산", result: "+167%", label: "방문객", color: "text-amber-600 bg-amber-50 border-amber-100" },
+                      { ind: "음식점·배달", location: "서울 성수", result: "+113%", label: "매출", color: "text-green-600 bg-green-50 border-green-100" },
+                      { ind: "미용·뷰티", location: "인천 부평", result: "완전 마감", label: "예약", color: "text-pink-600 bg-pink-50 border-pink-100" },
+                      { ind: "의원·한의원", location: "경기 분당", result: "+300%", label: "신규예약", color: "text-blue-600 bg-blue-50 border-blue-100" },
+                    ].map((r) => (
+                      <div key={r.ind} className="flex items-center gap-2">
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs font-bold text-gray-800 truncate">{r.ind}</div>
+                          <div className="text-[10px] text-gray-400">{r.location}</div>
+                        </div>
+                        <div className={`shrink-0 px-2.5 py-1 rounded-lg border text-[11px] font-black ${r.color}`}>
+                          {r.label} {r.result}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
@@ -321,13 +429,7 @@ export default function ContactPage() {
                 <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-5">
                   <h4 className="font-bold text-white text-sm mb-3">무료 진단에서 받는 것</h4>
                   <ul className="space-y-2">
-                    {[
-                      "업종·경쟁사 현황 분석",
-                      "최적 마케팅 채널 추천",
-                      "예상 성과 및 기간 안내",
-                      "맞춤 서비스 패키지 제안",
-                      "예산별 우선순위 가이드",
-                    ].map((item) => (
+                    {["업종·경쟁사 현황 분석", "최적 마케팅 채널 추천", "예상 성과 및 기간 안내", "맞춤 서비스 패키지 제안", "예산별 우선순위 가이드"].map((item) => (
                       <li key={item} className="flex items-center gap-2 text-xs text-blue-100">
                         <CheckCircle2 size={12} className="text-blue-300 shrink-0" strokeWidth={2.5} />
                         {item}
@@ -336,15 +438,22 @@ export default function ContactPage() {
                   </ul>
                   <div className="mt-4 pt-4 border-t border-blue-500/50">
                     <div className="flex gap-0.5 mb-1">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} size={11} className="text-yellow-300 fill-yellow-300" />
-                      ))}
+                      {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={11} className="text-yellow-300 fill-yellow-300" />)}
                     </div>
-                    <p className="text-xs text-blue-200 italic">
-                      "상담만 받았는데도 뭘 해야 할지 명확해졌어요"
-                    </p>
+                    <p className="text-xs text-blue-200 italic">"상담만 받았는데도 뭘 해야 할지 명확해졌어요"</p>
                     <p className="text-[11px] text-blue-300 mt-1">— 일산 카페 사장님</p>
                   </div>
+                </div>
+
+                {/* Social proof mini */}
+                <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100">
+                  <div className="flex gap-0.5 mb-2">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} size={12} className="text-amber-400 fill-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-xs text-gray-500 italic leading-relaxed mb-2">"이전 대행사에서 6개월 해도 변화가 없었는데, 여기서 한 달 만에 순위가 올라오기 시작했어요."</p>
+                  <p className="text-[11px] text-gray-400 font-medium">— 수원 네일샵 원장님</p>
                 </div>
               </div>
             </div>
@@ -353,5 +462,13 @@ export default function ContactPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={null}>
+      <ContactPageInner />
+    </Suspense>
   );
 }

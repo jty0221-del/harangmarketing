@@ -1,84 +1,88 @@
 import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Link from "next/link";
+import { ArrowLeft, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "이용약관 — 하랑마케팅",
+  description: "하랑마케팅 이용약관입니다.",
+  robots: { index: false, follow: false },
 };
+
+const SECTIONS = [
+  {
+    title: "제1조 (목적)",
+    content: `본 약관은 하랑마케팅(이하 "회사")이 제공하는 마케팅 대행 서비스의 이용 조건 및 절차, 회사와 이용자의 권리·의무 등 기본적인 사항을 규정함을 목적으로 합니다.`,
+  },
+  {
+    title: "제2조 (서비스 내용)",
+    content: `회사는 다음의 서비스를 제공합니다.\n· 네이버 플레이스 SEO 최적화\n· 블로그 마케팅 및 콘텐츠 제작\n· SNS(인스타그램 등) 마케팅\n· 체험단·리뷰 마케팅\n· 맘카페 바이럴 마케팅\n· 기타 합의된 마케팅 서비스`,
+  },
+  {
+    title: "제3조 (계약 성립)",
+    content: `서비스 이용 계약은 이용자의 계약 동의 및 대금 납부 후 회사의 승낙으로 성립합니다. 회사는 계약 시 서비스 범위, 기간, 금액을 명시한 계약서를 제공합니다.`,
+  },
+  {
+    title: "제4조 (이용자의 의무)",
+    content: `이용자는 다음 사항을 준수해야 합니다.\n· 허위 정보 제공 금지\n· 서비스 이용에 필요한 정보·자료의 적시 제공\n· 저작권·초상권 등 제3자 권리 침해 행위 금지\n· 서비스 대금의 기한 내 납부`,
+  },
+  {
+    title: "제5조 (회사의 의무)",
+    content: `회사는 다음 의무를 이행합니다.\n· 계약된 서비스의 성실한 수행\n· 월별 성과 리포트 제공\n· 이용자 개인정보의 안전한 관리\n· 서비스 관련 문의에 24시간 내 응답`,
+  },
+  {
+    title: "제6조 (계약 해지 및 위약금)",
+    content: `· 이용자 귀책으로 인한 중도 해지: 잔여 계약 기간의 30%에 해당하는 위약금 발생\n· 회사 귀책으로 인한 해지: 위약금 없이 환불\n· 양 당사자 합의 해지: 협의 후 진행`,
+  },
+  {
+    title: "제7조 (면책)",
+    content: `회사는 다음의 경우 책임을 지지 않습니다.\n· 포털·플랫폼 알고리즘 변경으로 인한 순위 변동\n· 이용자 귀책에 의한 서비스 지연\n· 천재지변, 불가항력적 사유로 인한 서비스 중단`,
+  },
+  {
+    title: "제8조 (준거법)",
+    content: `본 약관은 대한민국 법률에 따라 해석되며, 분쟁 발생 시 회사 소재지 관할 법원을 전속 관할로 합니다.`,
+  },
+  {
+    title: "부칙",
+    content: `본 약관은 2024년 1월 1일부터 시행됩니다.`,
+  },
+];
 
 export default function TermsPage() {
   return (
     <>
       <Header />
-      <main className="pt-16">
-        <section className="bg-gray-950 py-12 md:py-16">
-          <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
-            <h1 className="text-2xl md:text-3xl font-black text-white">이용약관</h1>
-            <p className="text-gray-400 text-sm mt-2">최종 수정일: 2024년 1월 1일</p>
-          </div>
-        </section>
-        <section className="py-12 md:py-16 bg-white">
-          <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8 prose prose-sm prose-gray max-w-none">
-            <div className="space-y-8 text-gray-600 text-sm leading-relaxed">
-              <div>
-                <h2 className="text-base font-black text-gray-900 mb-3">제1조 (목적)</h2>
-                <p>이 약관은 하랑마케팅(이하 "회사")이 제공하는 마케팅 대행 서비스(이하 "서비스")의 이용 조건 및 절차, 회사와 이용자의 권리·의무 및 책임 사항을 규정함을 목적으로 합니다.</p>
-              </div>
-              <div>
-                <h2 className="text-base font-black text-gray-900 mb-3">제2조 (서비스 내용)</h2>
-                <p>회사는 다음과 같은 마케팅 대행 서비스를 제공합니다.</p>
-                <ul className="list-disc pl-5 mt-2 space-y-1">
-                  <li>네이버 플레이스 SEO 최적화 및 순위상승 서비스</li>
-                  <li>블로그 배포(기자단) 및 블로그 관리 대행 서비스</li>
-                  <li>체험단 모집 대행 및 리뷰 마케팅 서비스</li>
-                  <li>SNS(인스타그램) 마케팅 서비스</li>
-                  <li>맘카페·커뮤니티 바이럴 서비스</li>
-                  <li>카카오맵 마케팅 서비스</li>
-                  <li>기타 디지털 마케팅 관련 서비스</li>
-                </ul>
-              </div>
-              <div>
-                <h2 className="text-base font-black text-gray-900 mb-3">제3조 (계약 체결)</h2>
-                <p>서비스 이용 계약은 이용자가 서비스 이용 신청에 동의하고 회사가 이를 승낙함으로써 성립됩니다. 계약 체결 전 회사는 서비스 내용, 요금, 기간 등에 대해 충분히 안내합니다.</p>
-              </div>
-              <div>
-                <h2 className="text-base font-black text-gray-900 mb-3">제4조 (요금 및 결제)</h2>
-                <p>서비스 요금은 계약 체결 시 양 당사자가 합의한 금액으로 하며, 결제 방식은 계좌이체, 카드결제 등 협의된 방법에 따릅니다. 월 정기 서비스의 경우 계약 시작 전 선결제를 원칙으로 합니다.</p>
-              </div>
-              <div>
-                <h2 className="text-base font-black text-gray-900 mb-3">제5조 (서비스 중단)</h2>
-                <p>회사는 다음의 경우 서비스 제공을 일시 중단할 수 있습니다.</p>
-                <ul className="list-disc pl-5 mt-2 space-y-1">
-                  <li>시스템 점검 및 업그레이드</li>
-                  <li>천재지변, 불가항력적 사유 발생</li>
-                  <li>관련 법령에 의한 제한</li>
-                </ul>
-              </div>
-              <div>
-                <h2 className="text-base font-black text-gray-900 mb-3">제6조 (이용자 의무)</h2>
-                <p>이용자는 다음 행위를 해서는 안 됩니다.</p>
-                <ul className="list-disc pl-5 mt-2 space-y-1">
-                  <li>허위 정보 제공 및 타인 명의 도용</li>
-                  <li>서비스를 통해 얻은 정보의 무단 복제·배포</li>
-                  <li>기타 법령 위반 행위</li>
-                </ul>
-              </div>
-              <div>
-                <h2 className="text-base font-black text-gray-900 mb-3">제7조 (분쟁 해결)</h2>
-                <p>서비스 이용과 관련하여 발생한 분쟁은 상호 협의를 통해 해결하며, 협의가 이루어지지 않을 경우 관련 법령에 따릅니다.</p>
-              </div>
-              <div>
-                <h2 className="text-base font-black text-gray-900 mb-3">제8조 (문의)</h2>
-                <p>이 약관에 대한 문의는 아래 연락처로 해주세요.</p>
-                <ul className="list-none mt-2 space-y-1">
-                  <li>· 대표: 전태영</li>
-                  <li>· 전화: 010-9054-3788</li>
-                  <li>· 이메일: jty0221@naver.com</li>
-                </ul>
-              </div>
+      <main className="pt-16 min-h-screen bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 md:px-6 py-10 md:py-16">
+          <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 transition-colors mb-6">
+            <ArrowLeft size={14} /> 홈으로
+          </Link>
+
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center shadow-sm">
+              <FileText size={18} className="text-white" strokeWidth={2} />
+            </div>
+            <div>
+              <h1 className="text-xl font-black text-gray-900">이용약관</h1>
+              <p className="text-xs text-gray-400">하랑마케팅 · 최종 수정: 2024년 1월 1일</p>
             </div>
           </div>
-        </section>
+
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm divide-y divide-gray-100">
+            {SECTIONS.map((sec) => (
+              <div key={sec.title} className="p-6">
+                <h2 className="text-sm font-black text-gray-900 mb-3">{sec.title}</h2>
+                <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">{sec.content}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 flex gap-3 flex-wrap">
+            <Link href="/privacy" className="text-xs text-gray-500 hover:text-gray-800 underline">개인정보처리방침</Link>
+            <Link href="/refund" className="text-xs text-gray-500 hover:text-gray-800 underline">환불·취소 정책</Link>
+          </div>
+        </div>
       </main>
       <Footer />
     </>

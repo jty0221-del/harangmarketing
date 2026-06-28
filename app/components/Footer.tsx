@@ -1,9 +1,41 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
+import { Phone, Mail, MapPin, ExternalLink, MessageCircle, ArrowRight, Star } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-gray-950 text-gray-400">
+      {/* Pre-footer CTA strip */}
+      <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-10">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div>
+              <div className="flex gap-0.5 mb-2">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={12} className="text-yellow-300 fill-yellow-300" />
+                ))}
+                <span className="text-blue-200 text-xs ml-2">고객 만족도 4.9/5.0</span>
+              </div>
+              <h3 className="text-lg md:text-xl font-black text-white mb-1">
+                지금 바로 무료 전략 진단을 받아보세요
+              </h3>
+              <p className="text-blue-200 text-sm">
+                상담 비용 없음 · 계약 강요 없음 · 24시간 내 연락 보장
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">
+              <Link href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-blue-700 font-bold text-sm hover:bg-blue-50 transition-colors shadow-sm">
+                무료 진단 신청 <ArrowRight size={14} />
+              </Link>
+              <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors">
+                <MessageCircle size={14} />카카오 상담
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Top band */}
       <div className="border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-12">
@@ -45,11 +77,13 @@ export default function Footer() {
               <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">서비스</h4>
               <ul className="space-y-2.5 text-sm">
                 {[
-                  ["블로그 배포", "/services"],
-                  ["플레이스 SEO", "/services"],
-                  ["체험단·리뷰", "/services"],
-                  ["인스타그램", "/services"],
+                  ["블로그 마케팅", "/services#blog"],
+                  ["플레이스 SEO", "/services#place"],
+                  ["체험단·리뷰", "/services#review"],
+                  ["인스타그램", "/services#sns"],
                   ["맘카페 바이럴", "/services"],
+                  ["무료 플레이스 진단", "/free-check"],
+                  ["패키지 견적 계산기", "/estimate"],
                 ].map(([label, href]) => (
                   <li key={label}>
                     <Link href={href} className="hover:text-gray-200 transition-colors text-gray-500">
@@ -67,6 +101,10 @@ export default function Footer() {
                   ["회사소개", "/about"],
                   ["마케팅상품", "/services"],
                   ["진행사례", "/cases"],
+                  ["FAQ", "/faq"],
+                  ["블로그", "/blog"],
+                  ["진행과정", "/process"],
+                  ["견적 계산기", "/estimate"],
                   ["상담신청", "/contact"],
                 ].map(([label, href]) => (
                   <li key={label}>
@@ -92,34 +130,44 @@ export default function Footer() {
             {/* Contact */}
             <div>
               <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">연락처</h4>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <a href="tel:010-9054-3788" className="flex items-center gap-2.5 group">
-                    <div className="w-7 h-7 rounded-lg bg-blue-600/20 flex items-center justify-center shrink-0">
-                      <Phone size={12} className="text-blue-400" />
-                    </div>
-                    <span className="text-gray-400 group-hover:text-gray-200 transition-colors">010-9054-3788</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="mailto:jty0221@naver.com" className="flex items-center gap-2.5 group">
-                    <div className="w-7 h-7 rounded-lg bg-blue-600/20 flex items-center justify-center shrink-0">
-                      <Mail size={12} className="text-blue-400" />
-                    </div>
-                    <span className="text-gray-400 group-hover:text-gray-200 transition-colors">jty0221@naver.com</span>
-                  </a>
-                </li>
-                <li>
-                  <div className="flex items-start gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-blue-600/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <MapPin size={12} className="text-blue-400" />
-                    </div>
-                    <span className="text-gray-500 leading-relaxed text-xs">
-                      경기 고양시 일산동구 장백로19<br />더루벤투스카운티 501호
-                    </span>
+              <div className="space-y-2 mb-4">
+                <a href="tel:010-9054-3788"
+                  className="flex items-center gap-2.5 group bg-white/5 hover:bg-white/10 border border-white/8 rounded-xl px-3 py-2.5 transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
+                    <Phone size={12} className="text-white" />
                   </div>
-                </li>
-              </ul>
+                  <div>
+                    <div className="text-white text-sm font-bold group-hover:text-blue-300 transition-colors">010-9054-3788</div>
+                    <div className="text-[10px] text-gray-600">전화 상담</div>
+                  </div>
+                </a>
+                <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 group bg-yellow-500/10 hover:bg-yellow-500/15 border border-yellow-500/20 rounded-xl px-3 py-2.5 transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-yellow-400 flex items-center justify-center shrink-0">
+                    <MessageCircle size={12} className="text-gray-900" />
+                  </div>
+                  <div>
+                    <div className="text-yellow-300 text-sm font-bold">카카오톡 상담</div>
+                    <div className="text-[10px] text-gray-600">빠른 답변</div>
+                  </div>
+                </a>
+                <a href="mailto:jty0221@naver.com"
+                  className="flex items-center gap-2.5 group bg-white/5 hover:bg-white/10 border border-white/8 rounded-xl px-3 py-2.5 transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-blue-600/30 flex items-center justify-center shrink-0">
+                    <Mail size={12} className="text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="text-gray-300 text-xs group-hover:text-gray-100 transition-colors">jty0221@naver.com</div>
+                    <div className="text-[10px] text-gray-600">이메일 문의</div>
+                  </div>
+                </a>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin size={11} className="text-gray-600 shrink-0 mt-0.5" />
+                <span className="text-gray-600 text-[11px] leading-relaxed">
+                  경기 고양시 일산동구 장백로19<br />더루벤투스카운티 501호
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -138,7 +186,21 @@ export default function Footer() {
             <Link href="/refund" className="hover:text-gray-400 transition-colors">환불/취소 정책</Link>
           </div>
         </div>
-        <p className="text-xs text-gray-700 mt-4">© 2024 하랑마케팅. All rights reserved.</p>
+        <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap gap-x-6 gap-y-1 text-[11px] text-gray-700">
+          {[
+            ["재계약률 95%", "10년간 유지"],
+            ["상담 비용 0원", "계약 강요 없음"],
+            ["500+ 프로젝트", "2014~현재"],
+            ["24시간 내 연락", "대표 직접 응답"],
+          ].map(([val, sub]) => (
+            <div key={val} className="flex items-center gap-1">
+              <span className="text-blue-500 font-black">{val}</span>
+              <span className="text-gray-700">·</span>
+              <span>{sub}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-[11px] text-gray-700 mt-3">© 2026 하랑마케팅. All rights reserved.</p>
       </div>
     </footer>
   );
