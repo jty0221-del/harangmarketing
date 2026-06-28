@@ -33,7 +33,7 @@ const SECTIONS = [
   },
   {
     title: "6. 정보주체의 권리",
-    content: `정보주체는 언제든지 다음의 권리를 행사할 수 있습니다.\n· 개인정보 조회·수정·삭제 요청\n· 처리 정지 요청\n· 요청 연락처: jty0221@naver.com`,
+    content: `정보주체는 언제든지 다음의 권리를 행사할 수 있습니다.\n· 개인정보 조회·수정·삭제 요청\n· 처리 정지 요청\n· 요청 연락처: harangmarketing@naver.com`,
   },
   {
     title: "7. 쿠키 사용",
@@ -41,7 +41,7 @@ const SECTIONS = [
   },
   {
     title: "8. 개인정보 보호책임자",
-    content: `· 책임자: 전태영 (대표)\n· 이메일: jty0221@naver.com\n· 전화: 010-7541-9054`,
+    content: `· 책임자: 전태영 (대표)\n· 이메일: harangmarketing@naver.com\n· 전화: 010-7541-9054`,
   },
   {
     title: "9. 시행일",

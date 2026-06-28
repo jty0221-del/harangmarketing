@@ -149,13 +149,13 @@ export default function Footer() {
                     <div className="text-[10px] text-gray-600">빠른 답변</div>
                   </div>
                 </a>
-                <a href="mailto:jty0221@naver.com"
+                <a href="mailto:harangmarketing@naver.com"
                   className="flex items-center gap-2.5 group bg-white/5 hover:bg-white/10 border border-white/8 rounded-xl px-3 py-2.5 transition-colors">
                   <div className="w-7 h-7 rounded-lg bg-blue-600/30 flex items-center justify-center shrink-0">
                     <Mail size={12} className="text-blue-400" />
                   </div>
                   <div>
-                    <div className="text-gray-300 text-xs group-hover:text-gray-100 transition-colors">jty0221@naver.com</div>
+                    <div className="text-gray-300 text-xs group-hover:text-gray-100 transition-colors">harangmarketing@naver.com</div>
                     <div className="text-[10px] text-gray-600">이메일 문의</div>
                   </div>
                 </a>

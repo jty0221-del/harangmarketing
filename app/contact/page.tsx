@@ -379,14 +379,14 @@ function ContactPageInner() {
                       </div>
                       <ArrowRight size={13} className="text-gray-300 group-hover:text-blue-500 transition-colors" />
                     </a>
-                    <a href="mailto:jty0221@naver.com"
+                    <a href="mailto:harangmarketing@naver.com"
                       className="flex items-center gap-3 p-3.5 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group">
                       <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center shadow-sm shrink-0">
                         <Mail size={16} className="text-white" strokeWidth={2.5} />
                       </div>
                       <div className="flex-1">
                         <div className="font-bold text-gray-900 text-sm">이메일 문의</div>
-                        <div className="text-xs text-gray-400 truncate">jty0221@naver.com</div>
+                        <div className="text-xs text-gray-400 truncate">harangmarketing@naver.com</div>
                       </div>
                       <ArrowRight size={13} className="text-gray-300 group-hover:text-gray-500 transition-colors" />
                     </a>

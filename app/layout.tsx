@@ -131,7 +131,7 @@ export default function RootLayout({
               "description": "10년 경력 대표가 직접 담당하는 소상공인 전문 마케팅 대행사. 네이버 플레이스 SEO, 블로그 마케팅, 체험단, 인스타그램 마케팅.",
               "url": "https://harangmarketing.com",
               "telephone": "010-7541-9054",
-              "email": "jty0221@naver.com",
+              "email": "harangmarketing@naver.com",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "장백로19 더루벤투스카운티 501호",
