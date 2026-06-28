@@ -31,11 +31,11 @@ const STEPS = [
     icon: Search,
     title: "무료 경쟁사 분석",
     duration: "D+1~2",
-    color: "from-indigo-500 to-purple-600",
-    ring: "ring-indigo-200",
-    bg: "bg-indigo-50",
-    border: "border-indigo-100",
-    text: "text-indigo-700",
+    color: "from-blue-500 to-blue-700",
+    ring: "ring-blue-200",
+    bg: "bg-blue-50",
+    border: "border-blue-100",
+    text: "text-blue-700",
     desc: "네이버 플레이스·블로그·SNS 현황과 경쟁사를 비교 분석한 리포트를 무료로 제공합니다.",
     details: [
       "내 매장 현재 순위·리뷰·콘텐츠 현황 진단",
@@ -118,6 +118,8 @@ const FAQS = [
   { q: "계약 기간은 얼마인가요?", a: "기본 3개월 단위이며, 성과에 따라 월 단위 연장도 가능합니다. 장기 계약 강요는 없습니다." },
   { q: "중간에 서비스를 변경할 수 있나요?", a: "가능합니다. 월 리포트 협의 시 서비스 항목을 추가·변경·교체할 수 있습니다." },
   { q: "결과가 나오는 데 얼마나 걸리나요?", a: "업종과 경쟁 강도에 따라 다르나 보통 1개월 차부터 순위 변화가 시작되고, 3개월 차에 가시적 성과가 납니다." },
+  { q: "담당자가 자주 바뀌지 않나요?", a: "대표가 직접 전략을 수립하고 담당합니다. 일반 대행사처럼 신입 직원에게 맡기지 않으며, 10년+ 경력의 대표가 계약 기간 내내 1:1로 담당합니다." },
+  { q: "작업 내용을 어떻게 확인할 수 있나요?", a: "매월 말 플랫폼별 순위·리뷰 수·방문자 수 등 수치가 담긴 상세 리포트를 제공합니다. 언제든지 카카오톡으로 진행 상황을 문의하실 수 있습니다." },
 ];
 
 export default function ProcessPage() {
@@ -274,6 +276,36 @@ export default function ProcessPage() {
                     {faq.a}
                   </div>
                 </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Mini testimonials */}
+        <section className="py-10 md:py-14 bg-white">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            <p className="text-xs font-bold text-blue-600 uppercase tracking-widest text-center mb-6">이 과정을 거친 사장님들의 이야기</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { name: "A 카페 대표", loc: "경기 일산", quote: "상담부터 리포트까지 전부 대표님이 직접 챙겨주셨어요. 3개월 만에 플레이스 1위가 됐습니다.", period: "3개월" },
+                { name: "B 네일샵 대표", loc: "경기 수원", quote: "처음에 반신반의했는데, 2주 지나니까 예약이 들어오기 시작하더라고요. 지금은 2주 치가 꽉 찼어요.", period: "2개월" },
+                { name: "C 음식점 대표", loc: "서울 마포", quote: "리뷰가 10개도 안 됐는데, 4개월 후엔 180개가 됐어요. 배달 매출도 두 배 이상 올랐습니다.", period: "4개월" },
+              ].map((t) => (
+                <div key={t.name} className="bg-blue-50 border border-blue-100 rounded-2xl p-5">
+                  <div className="flex gap-0.5 mb-3">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="#F59E0B" className="shrink-0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    ))}
+                  </div>
+                  <p className="text-sm text-gray-600 leading-relaxed italic mb-4">"{t.quote}"</p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-black text-gray-800">{t.name}</p>
+                      <p className="text-[10px] text-gray-400">{t.loc}</p>
+                    </div>
+                    <span className="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-700 text-[10px] font-bold">{t.period} 진행</span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { X, Clock, ArrowRight, Gift, TrendingUp, Star, Calculator } from "lucide-react";
+import { X, Clock, ArrowRight, Gift, TrendingUp, Star, Calculator, Shield } from "lucide-react";
 
 const MESSAGES = [
   {
@@ -26,14 +26,14 @@ const MESSAGES = [
     ctaHref: "/contact",
   },
   {
-    badge: "검증",
-    badgeColor: "text-amber-400",
-    dot: "bg-amber-400",
-    icon: Star,
-    iconColor: "text-amber-400",
-    text: <>10년 경력 대표 직접 담당 · <span className="text-white font-black">500+ 프로젝트 완료</span> · <span className="text-blue-300 font-bold">상담 비용 0원</span></>,
-    ctaLabel: "무료 상담",
-    ctaHref: "/contact",
+    badge: "신뢰",
+    badgeColor: "text-blue-400",
+    dot: "bg-blue-400",
+    icon: Shield,
+    iconColor: "text-blue-400",
+    text: <>고의 작업 누락 시 <span className="text-white font-black">결제금액 10배 보상</span> · 해병대 장교 출신 대표 직접 담당 · <span className="text-blue-300 font-bold">상담 0원</span></>,
+    ctaLabel: "자세히 보기",
+    ctaHref: "/about",
   },
   {
     badge: "신규",

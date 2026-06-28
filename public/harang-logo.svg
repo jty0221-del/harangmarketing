@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 320" width="300" height="320">
+  <!-- Left figure (taller) -->
+  <!-- Head -->
+  <circle cx="88" cy="42" r="22" fill="#1A6EF5"/>
+  <!-- Body left -->
+  <rect x="74" y="68" width="28" height="90" rx="14" fill="#1A6EF5"/>
+  <!-- Left leg -->
+  <rect x="74" y="148" width="13" height="55" rx="6.5" fill="#1A6EF5"/>
+  <!-- Right leg -->
+  <rect x="89" y="148" width="13" height="55" rx="6.5" fill="#1A6EF5"/>
+
+  <!-- Right figure (slightly shorter, shifted right) -->
+  <!-- Head -->
+  <circle cx="212" cy="55" r="19" fill="#1A6EF5"/>
+  <!-- Body right -->
+  <rect x="199" y="78" width="26" height="80" rx="13" fill="#1A6EF5"/>
+  <!-- Left leg -->
+  <rect x="199" y="150" width="12" height="48" rx="6" fill="#1A6EF5"/>
+  <!-- Right leg -->
+  <rect x="213" y="150" width="12" height="48" rx="6" fill="#1A6EF5"/>
+
+  <!-- Connecting arm bridge (the "H" crossbar) — light blue arc -->
+  <path d="M102 115 Q150 88 198 108" stroke="#7CB9FA" stroke-width="22" fill="none" stroke-linecap="round"/>
+
+  <!-- "Harang" text -->
+  <text x="150" y="240" font-family="'Arial Black', Arial, sans-serif" font-weight="900" font-size="44" fill="#1A6EF5" text-anchor="middle" letter-spacing="1">Harang</text>
+
+  <!-- Tagline -->
+  <text x="150" y="278" font-family="'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" font-size="18" fill="#888" text-anchor="middle" letter-spacing="0.5">하랑, 함께 더 높이</text>
+</svg>

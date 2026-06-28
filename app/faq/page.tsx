@@ -24,7 +24,7 @@ const FAQ_CATEGORIES = [
     id: "cost",
     icon: DollarSign,
     label: "비용·가격",
-    color: "from-green-500 to-emerald-600",
+    color: "from-blue-500 to-blue-700",
     questions: [
       {
         q: "마케팅 상담 비용이 있나요?",
@@ -72,7 +72,7 @@ const FAQ_CATEGORIES = [
     id: "result",
     icon: TrendingUp,
     label: "효과·성과",
-    color: "from-purple-500 to-violet-600",
+    color: "from-blue-600 to-indigo-700",
     questions: [
       {
         q: "효과가 언제 나오나요?",
@@ -96,7 +96,7 @@ const FAQ_CATEGORIES = [
     id: "industry",
     icon: Users,
     label: "업종·규모",
-    color: "from-amber-500 to-orange-500",
+    color: "from-blue-500 to-blue-700",
     questions: [
       {
         q: "작은 매장도 효과가 있나요?",
@@ -120,7 +120,7 @@ const FAQ_CATEGORIES = [
     id: "process",
     icon: Clock,
     label: "상담·진행 방식",
-    color: "from-rose-500 to-pink-600",
+    color: "from-blue-700 to-indigo-800",
     questions: [
       {
         q: "상담은 어디서 어떻게 진행되나요?",
@@ -144,7 +144,7 @@ const FAQ_CATEGORIES = [
     id: "platform",
     icon: MapPin,
     label: "플랫폼·채널",
-    color: "from-cyan-500 to-blue-600",
+    color: "from-blue-500 to-indigo-600",
     questions: [
       {
         q: "네이버 플레이스 순위는 얼마나 올릴 수 있나요?",
@@ -168,7 +168,7 @@ const FAQ_CATEGORIES = [
     id: "estimate",
     icon: Calculator,
     label: "견적·패키지",
-    color: "from-indigo-500 to-violet-600",
+    color: "from-blue-700 to-blue-900",
     questions: [
       {
         q: "견적 계산기로 나온 패키지가 실제 견적과 동일한가요?",

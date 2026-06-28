@@ -11,25 +11,25 @@ import {
 } from "lucide-react";
 
 const INDUSTRIES = [
-  { id: "cafe", icon: Coffee, label: "카페·베이커리", color: "from-amber-500 to-orange-500",
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", color: "from-blue-500 to-blue-700",
     topServices: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"],
     avgResult: "방문객 +167%", caseLabel: "경기 일산 카페 3개월" },
-  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", color: "from-red-500 to-rose-600",
+  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", color: "from-blue-600 to-indigo-700",
     topServices: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"],
     avgResult: "매출 +113%", caseLabel: "서울 마포 음식점 4개월" },
-  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", color: "from-pink-500 to-rose-500",
+  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", color: "from-blue-500 to-blue-700",
     topServices: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"],
     avgResult: "예약 완전 마감", caseLabel: "수원 네일샵 3개월" },
-  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", color: "from-blue-500 to-cyan-600",
+  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", color: "from-blue-600 to-blue-800",
     topServices: ["블로그 관리", "체험단 모집", "플레이스 SEO"],
     avgResult: "신규예약 +300%", caseLabel: "경기 분당 피부과 6개월" },
-  { id: "edu", icon: GraduationCap, label: "학원·교육", color: "from-indigo-500 to-purple-600",
+  { id: "edu", icon: GraduationCap, label: "학원·교육", color: "from-blue-700 to-indigo-800",
     topServices: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"],
     avgResult: "수강생 +55%", caseLabel: "경기 고양 학원 3개월" },
-  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", color: "from-green-500 to-emerald-600",
+  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", color: "from-blue-500 to-indigo-600",
     topServices: ["블로그 SEO", "체험단 모집", "블로그 배포"],
     avgResult: "매출 +64%", caseLabel: "전국 온라인 5개월" },
-  { id: "other", icon: HelpCircle, label: "기타 업종", color: "from-gray-500 to-gray-700",
+  { id: "other", icon: HelpCircle, label: "기타 업종", color: "from-blue-700 to-blue-900",
     topServices: ["무료 상담 후 맞춤 추천"],
     avgResult: "업종별 맞춤 분석", caseLabel: "상담 후 전략 수립" },
 ];
@@ -58,7 +58,7 @@ type Tier = "lite" | "starter" | "growth" | "pro" | "full" | "consult";
 
 const TIER_PACKAGES: Record<Tier, { name: string; priceLabel: string; color: string; services: string[]; roi: string; timeline: string }> = {
   lite: {
-    name: "라이트 플랜", priceLabel: "월 20~29만원", color: "from-gray-500 to-gray-700",
+    name: "라이트 플랜", priceLabel: "월 20~29만원", color: "from-blue-400 to-blue-600",
     services: ["플레이스 SEO 기초 최적화", "블로그 키워드 분석"],
     roi: "ROI 1.5배 예상", timeline: "성과 기대 3~4개월",
   },

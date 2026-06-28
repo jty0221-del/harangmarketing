@@ -56,9 +56,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-[68px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-              <span className="text-white font-black text-[13px] tracking-tight">H</span>
-            </div>
+            <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
             <div>
               <span
                 className={`font-black text-[17px] tracking-tight transition-colors ${
@@ -67,6 +65,11 @@ export default function Header() {
               >
                 하랑<span className="text-blue-500">마케팅</span>
               </span>
+              {(scrolled || !isHome) && (
+                <div className="text-[10px] font-bold text-blue-500 leading-none mt-0.5 tracking-tight">
+                  10년 경력 · 대표 직접 담당
+                </div>
+              )}
             </div>
           </Link>
 

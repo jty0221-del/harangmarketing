@@ -21,9 +21,9 @@ const INDUSTRIES = [
   {
     icon: Coffee,
     name: "카페·베이커리",
-    color: "from-amber-500 to-orange-500",
-    bgLight: "bg-amber-50",
-    borderLight: "border-amber-100",
+    color: "from-blue-500 to-blue-700",
+    bgLight: "bg-blue-50",
+    borderLight: "border-blue-100",
     points: ["플레이스 상위 노출", "포토리뷰 전략", "인스타 비주얼"],
     result: "+167%",
     resultLabel: "월 방문객",
@@ -35,9 +35,9 @@ const INDUSTRIES = [
   {
     icon: UtensilsCrossed,
     name: "음식점·배달",
-    color: "from-red-500 to-rose-600",
-    bgLight: "bg-red-50",
-    borderLight: "border-red-100",
+    color: "from-blue-600 to-indigo-700",
+    bgLight: "bg-blue-50",
+    borderLight: "border-blue-100",
     points: ["배달앱 리뷰 쌓기", "맘카페 바이럴", "블로그 맛집 등록"],
     result: "+113%",
     resultLabel: "월 매출",
@@ -49,9 +49,9 @@ const INDUSTRIES = [
   {
     icon: Scissors,
     name: "미용·네일·뷰티",
-    color: "from-pink-500 to-rose-500",
-    bgLight: "bg-pink-50",
-    borderLight: "border-pink-100",
+    color: "from-blue-500 to-blue-700",
+    bgLight: "bg-blue-50",
+    borderLight: "border-blue-100",
     points: ["인스타 포트폴리오", "체험단 모집", "예약 전환 최적화"],
     result: "예약 완전 마감",
     resultLabel: "진행 2주 후",
@@ -63,7 +63,7 @@ const INDUSTRIES = [
   {
     icon: Stethoscope,
     name: "의원·한의원·피부과",
-    color: "from-blue-500 to-cyan-600",
+    color: "from-blue-600 to-blue-800",
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["블로그 신뢰도 강화", "체험단 후기", "플레이스 SEO"],
@@ -77,9 +77,9 @@ const INDUSTRIES = [
   {
     icon: GraduationCap,
     name: "학원·교육",
-    color: "from-indigo-500 to-purple-600",
-    bgLight: "bg-indigo-50",
-    borderLight: "border-indigo-100",
+    color: "from-blue-700 to-indigo-800",
+    bgLight: "bg-blue-50",
+    borderLight: "border-blue-100",
     points: ["맘카페 입소문", "홈페이지형 블로그", "블로그 관리"],
     result: "+55%",
     resultLabel: "수강생",
@@ -91,9 +91,9 @@ const INDUSTRIES = [
   {
     icon: ShoppingBag,
     name: "온라인 쇼핑몰",
-    color: "from-green-500 to-emerald-600",
-    bgLight: "bg-green-50",
-    borderLight: "border-green-100",
+    color: "from-blue-500 to-indigo-600",
+    bgLight: "bg-blue-50",
+    borderLight: "border-blue-100",
     points: ["블로그 SEO", "체험단 후기", "콘텐츠 마케팅"],
     result: "+64%",
     resultLabel: "월 매출",
@@ -270,9 +270,9 @@ function ChecklistSection() {
               <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">하랑마케팅 추천 솔루션</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 {[
-                  { label: "플레이스 SEO", desc: "검색·지도 노출 상위 진입", color: "bg-green-500/20 border-green-500/30 text-green-300" },
-                  { label: "블로그 마케팅", desc: "키워드 검색 유입 증대", color: "bg-blue-500/20 border-blue-500/30 text-blue-300" },
-                  { label: "리뷰 마케팅", desc: "신뢰도·재방문율 상승", color: "bg-amber-500/20 border-amber-500/30 text-amber-300" },
+                  { label: "플레이스 SEO", desc: "검색·지도 노출 상위 진입", color: "bg-blue-500/20 border-blue-500/30 text-blue-300" },
+                  { label: "블로그 마케팅", desc: "키워드 검색 유입 증대", color: "bg-blue-400/20 border-blue-400/30 text-blue-200" },
+                  { label: "리뷰 마케팅", desc: "신뢰도·재방문율 상승", color: "bg-indigo-500/20 border-indigo-500/30 text-indigo-300" },
                 ].map((s) => (
                   <div key={s.label} className={`rounded-xl border px-3 py-2.5 ${s.color}`}>
                     <div className="font-black text-sm mb-0.5">{s.label}</div>
@@ -303,13 +303,13 @@ function PromoSection() {
   const { d, h, m, s } = useMonthEndCountdown();
   const pad = (n: number | null) => n === null ? "--" : String(n).padStart(2, "0");
   return (
-    <section className="py-10 md:py-12 bg-gradient-to-r from-amber-50 to-orange-50 border-y border-amber-100">
+    <section className="py-10 md:py-12 bg-gradient-to-r from-blue-50 to-indigo-50 border-y border-blue-100">
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-8">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-              <span className="text-xs font-black text-amber-600 uppercase tracking-widest">이번 달 한정</span>
+              <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              <span className="text-xs font-black text-blue-600 uppercase tracking-widest">이번 달 한정</span>
             </div>
             <h3 className="text-lg md:text-xl font-black text-gray-900 mb-1">
               신규 상담 3팀에게 무료 경쟁사 분석 리포트 제공
@@ -318,11 +318,11 @@ function PromoSection() {
               내 업종 상위 경쟁 매장 분석 · 키워드 격차 리포트 · 맞춤 전략 제안 — 비용 없이 받아보세요.
             </p>
             {/* Countdown */}
-            <div className="inline-flex items-center gap-1.5 bg-white border border-amber-200 rounded-xl px-3 py-2 shadow-sm">
+            <div className="inline-flex items-center gap-1.5 bg-white border border-blue-200 rounded-xl px-3 py-2 shadow-sm">
               <span className="text-[10px] text-gray-400 font-semibold mr-1">마감까지</span>
               {[{ val: pad(d), label: "일" }, { val: pad(h), label: "시간" }, { val: pad(m), label: "분" }, { val: pad(s), label: "초" }].map(({ val, label }, i) => (
                 <React.Fragment key={label}>
-                  {i > 0 && <span className="text-amber-400 font-black text-sm">:</span>}
+                  {i > 0 && <span className="text-blue-400 font-black text-sm">:</span>}
                   <div className="flex flex-col items-center">
                     <span className="text-base font-black text-gray-900 tabular-nums leading-none">{val}</span>
                     <span className="text-[8px] text-gray-400">{label}</span>
@@ -335,14 +335,14 @@ function PromoSection() {
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
                 {[1, 2, 3].map((n) => (
-                  <div key={n} className={`w-6 h-6 rounded-lg border text-[10px] font-black flex items-center justify-center ${n <= 1 ? "bg-red-100 border-red-200 text-red-500 line-through" : n <= 2 ? "bg-amber-100 border-amber-200 text-amber-600" : "bg-gray-100 border-gray-200 text-gray-300"}`}>
+                  <div key={n} className={`w-6 h-6 rounded-lg border text-[10px] font-black flex items-center justify-center ${n <= 1 ? "bg-blue-100 border-blue-200 text-blue-400 line-through" : n <= 2 ? "bg-blue-100 border-blue-200 text-blue-600" : "bg-gray-100 border-gray-200 text-gray-300"}`}>
                     {n}
                   </div>
                 ))}
               </div>
               <span className="text-xs text-gray-400">3팀 중 1팀 남음</span>
             </div>
-            <Link href="/contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm transition-colors shadow-sm">
+            <Link href="/contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors shadow-sm">
               지금 신청하기 <ArrowRight size={14} />
             </Link>
           </div>
@@ -379,26 +379,25 @@ export default function HomePage() {
                   재계약률 95%
                 </div>
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-500/25 text-indigo-300 text-xs font-semibold">
-                  500+ 프로젝트
+                  500+ 함께한 대표님
                 </div>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-400/15 border border-blue-400/25 text-blue-200 text-xs font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-pulse" />
-                  이번 달 상담 신청 12팀
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-500/25 text-blue-300 text-xs font-semibold">
+                  고의 누락 시 10배 보상
                 </div>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-[56px] font-black text-white leading-[1.15] tracking-tight mb-6">
-                마케팅비를 쓰는데<br />
-                <span className="text-blue-400">매출이 안 오르나요?</span>
+                마케팅 대행사,<br />
+                <span className="text-blue-400">아직도 속고 계신가요?</span>
               </h1>
 
               <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-3 max-w-lg">
-                카페·병원·학원·쇼핑몰 — 업종마다 전략이 다릅니다.
-                <span className="text-white font-semibold"> 10년 데이터</span>로 설계한 맞춤 전략으로
-                <span className="text-white font-semibold"> 실제 방문객과 매출</span>을 올려드립니다.
+                카페 창업 실패를 경험한 대표가 직접 운영합니다.
+                <span className="text-white font-semibold"> 대표님의 돈을 제 돈처럼 </span>무겁게 생각하며,
+                <span className="text-white font-semibold"> 업종별 맞춤 전략</span>으로 실제 매출을 올려드립니다.
               </p>
               <p className="text-sm text-gray-500 mb-10">
-                대표 직접 담당 · 평균 3개월 플레이스 Top 5 진입 · 재계약률 95%
+                대표 직접 담당 · 속이면 10배 보상 · 24시간 소통 · 패키지 팔이 없음
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -464,9 +463,9 @@ export default function HomePage() {
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-16 md:mt-20">
               {[
-                { value: "500+", label: "완료 프로젝트", sub: "10년간 6개 업종", proof: "누적 고객사 수", icon: Users, color: "from-blue-500 to-blue-700" },
+                { value: "500+", label: "완료 프로젝트", sub: "10년간 8개 업종", proof: "누적 고객사 수", icon: Users, color: "from-blue-500 to-blue-700" },
                 { value: "95%", label: "재계약률", sub: "업계 평균 65% 대비", proof: "2024년 기준", icon: Handshake, color: "from-blue-600 to-blue-800" },
-                { value: "+167%", label: "방문객 최대 증가", sub: "경기 일산 카페 3개월", proof: "실측 방문자 기준", icon: TrendingUp, color: "from-blue-600 to-indigo-700" },
+                { value: "+300%", label: "신규 예약 최대 증가", sub: "피부과·한의원 사례", proof: "실측 예약 기준", icon: TrendingUp, color: "from-blue-600 to-indigo-700" },
                 { value: "24h", label: "상담 연락 보장", sub: "신청 후 24시간 이내", proof: "대표 직접 응답", icon: ShieldCheck, color: "from-blue-700 to-indigo-800" },
               ].map((s) => {
                 const Icon = s.icon;
@@ -504,6 +503,9 @@ export default function HomePage() {
               { text: "이번 달 신규 상담 잔여 2자리", dot: "bg-blue-200" },
               { text: "ROI 평균 2.4배 · 3개월 실측치", dot: "bg-white/60" },
               { text: "블로그 지역 키워드 3주 만에 상위권", dot: "bg-blue-200" },
+              { text: "한의원 초진 예약 +200% · 경기 안양", dot: "bg-white/60" },
+              { text: "카카오맵 리뷰 0 → 95개 · 2개월", dot: "bg-blue-200" },
+              { text: "리뷰 127개 달성 · 3개월 로드맵", dot: "bg-white/60" },
             ] as { text: string; dot: string }[])
               .concat(([
                 { text: "플레이스 Top 5 진입 · 평균 4주 만에", dot: "bg-white/60" },
@@ -520,6 +522,9 @@ export default function HomePage() {
                 { text: "이번 달 신규 상담 잔여 2자리", dot: "bg-blue-200" },
                 { text: "ROI 평균 2.4배 · 3개월 실측치", dot: "bg-white/60" },
                 { text: "블로그 지역 키워드 3주 만에 상위권", dot: "bg-blue-200" },
+                { text: "한의원 초진 예약 +200% · 경기 안양", dot: "bg-white/60" },
+                { text: "카카오맵 리뷰 0 → 95개 · 2개월", dot: "bg-blue-200" },
+                { text: "리뷰 127개 달성 · 3개월 로드맵", dot: "bg-white/60" },
               ] as { text: string; dot: string }[]))
               .map((item, i) => (
                 <span key={i} className="flex items-center gap-3 px-6 text-xs text-white font-semibold">
@@ -749,25 +754,25 @@ export default function HomePage() {
               <div>
                 <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">About CEO</p>
                 <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4 leading-snug">
-                  10년 동안 500개 매장의<br />매출 올리는 일만 했습니다
+                  실패해 본 대표가<br />성공하는 길을 가장 잘 압니다
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-5">
-                  2014년부터 카페, 음식점, 미용실, 병원까지 — 다양한 업종의 소상공인 사장님들과 함께 일해왔습니다.
-                  마케팅 대행사를 쓰고도 효과를 못 보신 분들이 많다는 걸 누구보다 잘 알기 때문에,
-                  하랑은 대표가 직접 처음부터 끝까지 맡습니다. 보고서를 대신 읽어드리고, 실행도 직접 합니다.
+                  해병대 장교로 전역 후 전 재산을 털어 카페를 창업했다가 실패했습니다. 그때 마케팅 대행사에게 사기도 당했습니다.
+                  그 절박함을 직접 겪었기 때문에 <strong className="text-gray-700">대표님의 돈을 제 돈처럼 무겁게 생각합니다.</strong>
+                  이후 10년간 현장을 직접 뛰어 500곳 이상의 매장과 함께 성장해왔습니다.
                 </p>
                 <blockquote className="border-l-4 border-blue-500 pl-4 py-1 mb-6">
                   <p className="text-sm italic text-gray-600 leading-relaxed">
-                    "마케팅이 어렵지 않아야 한다고 생각합니다. 사장님은 장사에만 집중하시고, 마케팅은 저한테 맡겨두세요."
+                    "대표님은 사업의 본질에만 집중하십시오. 골치 아픈 홍보와 전략은 하랑이 대신 고민하고 실행하겠습니다."
                   </p>
                 </blockquote>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {[
+                    "해병대 장교 출신",
+                    "카페 창업 실패 경험",
                     "10년+ 마케팅 경력",
-                    "500+ 프로젝트",
-                    "재계약률 95%",
-                    "대표 직접 담당",
-                    "6개 업종 특화",
+                    "500+ 대표님과 함께",
+                    "속이면 10배 보상",
                   ].map((badge) => (
                     <span key={badge} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-100 text-xs font-bold text-blue-700">
                       <CheckCircle2 size={11} className="text-blue-500" strokeWidth={2.5} />
@@ -1404,7 +1409,7 @@ export default function HomePage() {
                   after: { label: "플레이스 순위", value: "2위" },
                   period: "6주",
                   highlight: "월 매출 +47%",
-                  color: "from-amber-500 to-orange-500",
+                  color: "from-blue-500 to-blue-700",
                   icon: Coffee,
                 },
                 {
@@ -1415,7 +1420,7 @@ export default function HomePage() {
                   after: { label: "월 신규 고객", value: "31명" },
                   period: "3개월",
                   highlight: "신규 유입 3.9배",
-                  color: "from-purple-500 to-violet-600",
+                  color: "from-blue-600 to-indigo-700",
                   icon: Scissors,
                 },
                 {
@@ -1426,7 +1431,7 @@ export default function HomePage() {
                   after: { label: "리뷰 개수", value: "86개" },
                   period: "4개월",
                   highlight: "예약 문의 4배 증가",
-                  color: "from-red-500 to-rose-600",
+                  color: "from-blue-700 to-blue-900",
                   icon: UtensilsCrossed,
                 },
               ].map((c) => {
@@ -1515,21 +1520,21 @@ export default function HomePage() {
               <div className="space-y-4">
                 {[
                   {
-                    name: "카페 사장님", location: "경기 일산", service: "플레이스 SEO",
+                    name: "카페 사장님", location: "경기 일산", service: "플레이스 SEO", initial: "카",
                     metric: "+167%", metricLabel: "방문객 증가", period: "3개월",
-                    color: "from-blue-500 to-blue-700",
+                    avatarColor: "from-blue-500 to-blue-700",
                     text: "3개월 만에 '일산 카페' 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다. 솔직히 처음엔 반신반의했는데 정말 효과가 있을 줄 몰랐어요.",
                   },
                   {
-                    name: "피부과 원장님", location: "서울 강서", service: "인스타그램 마케팅",
+                    name: "피부과 원장님", location: "서울 강서", service: "인스타그램 마케팅", initial: "피",
                     metric: "+300%", metricLabel: "신규 예약 증가", period: "6개월",
-                    color: "from-blue-600 to-indigo-700",
+                    avatarColor: "from-blue-600 to-indigo-700",
                     text: "인스타그램 신규 예약이 6개월 만에 3배가 됐습니다. 보고서도 이해하기 쉬웠고, 대표님이 항상 직접 연락 주시는 게 신뢰가 갔어요.",
                   },
                   {
-                    name: "학원 원장님", location: "경기 고양", service: "맘카페 바이럴",
+                    name: "학원 원장님", location: "경기 고양", service: "맘카페 바이럴", initial: "학",
                     metric: "+55%", metricLabel: "수강생 증가", period: "2개월",
-                    color: "from-blue-500 to-indigo-600",
+                    avatarColor: "from-blue-500 to-indigo-600",
                     text: "맘카페 바이럴 하나로 수강생이 50% 늘었습니다. 지역 엄마들 사이에서 입소문이 났어요. 이전 대행사랑 비교가 안 될 정도예요.",
                   },
                 ].map((t) => (
@@ -1552,22 +1557,94 @@ export default function HomePage() {
                     <div className="p-5">
                       <p className="text-sm text-gray-600 leading-relaxed mb-5 border-l-2 border-gray-200 pl-3 italic">"{t.text}"</p>
                       <div className="flex items-center gap-3">
-                        {/* 프로필 사진 자리 — 실제 사진으로 교체 예정 */}
-                        <div className="w-11 h-11 rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 flex items-center justify-center shrink-0 relative overflow-hidden">
-                          <div className="text-center">
-                            <div className="text-[8px] text-gray-300 font-bold leading-tight">사진</div>
-                          </div>
+                        <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${t.avatarColor} flex items-center justify-center shrink-0`}>
+                          <span className="text-white font-black text-base">{t.initial}</span>
                         </div>
                         <div>
                           <div className="font-black text-gray-900 text-sm">{t.name}</div>
-                          <div className="text-xs text-gray-400">{t.location}</div>
-                          <div className="text-[10px] text-gray-300 mt-0.5">매장 or 프로필 사진 교체 예정</div>
+                          <div className="text-xs text-gray-400">{t.location} · 익명 처리</div>
                         </div>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══ 기간별 성과 타임라인 ══ */}
+        <section className="py-14 md:py-20 bg-gray-950">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">성과 타임라인</p>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
+                언제부터 효과가 나타날까요?
+              </h2>
+              <p className="text-gray-400 text-sm max-w-md mx-auto">500+ 프로젝트 데이터 기반 평균 타임라인입니다. 업종·경쟁 강도에 따라 달라질 수 있습니다.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                {
+                  period: "1개월차",
+                  color: "from-blue-500 to-blue-700",
+                  borderColor: "border-blue-500/30",
+                  items: [
+                    "플레이스 정보 최적화 완료",
+                    "블로그 키워드 3~5건 게시",
+                    "초기 순위 변화 시작",
+                    "체험단 리뷰 10개+ 확보",
+                  ],
+                  highlight: "순위 변화 감지",
+                },
+                {
+                  period: "3개월차",
+                  color: "from-blue-600 to-indigo-700",
+                  borderColor: "border-blue-600/30",
+                  items: [
+                    "플레이스 Top 5~10 진입",
+                    "블로그 월 방문자 100명+",
+                    "리뷰 30개 이상 축적",
+                    "SNS 팔로워 300~500명",
+                  ],
+                  highlight: "대부분 성과 체감",
+                },
+                {
+                  period: "6개월차",
+                  color: "from-blue-700 to-indigo-800",
+                  borderColor: "border-indigo-500/30",
+                  items: [
+                    "주요 키워드 1~3위 목표",
+                    "브랜드 인지도 지역 내 정착",
+                    "리뷰 100개+ 자생 구조",
+                    "신규 고객 월 30명+ 유입",
+                  ],
+                  highlight: "매출 지속 우상향",
+                },
+              ].map((phase) => (
+                <div key={phase.period} className={`bg-white/5 border ${phase.borderColor} rounded-2xl overflow-hidden`}>
+                  <div className={`bg-gradient-to-br ${phase.color} px-5 py-4`}>
+                    <div className="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">목표</div>
+                    <div className="text-white font-black text-xl">{phase.period}</div>
+                    <div className="text-blue-100 text-xs font-semibold mt-1">{phase.highlight}</div>
+                  </div>
+                  <div className="p-5 space-y-2.5">
+                    {phase.items.map((item) => (
+                      <div key={item} className="flex items-start gap-2.5">
+                        <CheckCircle2 size={13} className="text-blue-400 shrink-0 mt-0.5" strokeWidth={2.5} />
+                        <span className="text-sm text-gray-300 leading-snug">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 text-center">
+              <p className="text-gray-500 text-xs mb-4">* 위 수치는 평균값이며 업종·예산·경쟁 강도에 따라 달라집니다.</p>
+              <Link href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm transition-colors shadow-sm">
+                내 업종 예상 성과 상담받기 <ArrowRight size={14} />
+              </Link>
             </div>
           </div>
         </section>
@@ -1586,36 +1663,48 @@ export default function HomePage() {
                 인사이트 전체 보기 <ArrowRight size={13} />
               </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
               {[
                 {
                   tag: "플레이스 SEO",
                   tagColor: "bg-blue-50 text-blue-600 border-blue-100",
-                  title: "네이버 플레이스 순위가 떨어지는 3가지 이유",
-                  preview: "리뷰 수가 많아도 순위가 낮은 이유가 있습니다. 저장 수·방문자 수·블로그 리뷰 비율이 복합적으로 작용하며, 사진 업로드 주기도 순위에 영향을 미칩니다.",
-                  readTime: "3분 읽기",
+                  title: "2024 네이버 플레이스 상위 노출 알고리즘 완전 분석",
+                  preview: "리뷰 수, 답글률, 저장 수 — 순위를 결정하는 7가지 요소를 실제 데이터로 분석했습니다.",
+                  readTime: "8분",
                   accent: "border-l-blue-500",
+                  href: "/blog/naver-place-algorithm",
                 },
                 {
                   tag: "리뷰 마케팅",
-                  tagColor: "bg-amber-50 text-amber-600 border-amber-100",
-                  title: "체험단 리뷰, 플레이스 순위에 얼마나 도움 될까?",
-                  preview: "체험단 블로그 리뷰는 네이버 알고리즘에서 '방문 리뷰'와 다르게 처리됩니다. 단순 개수보다 리뷰 품질과 키워드 노출이 핵심입니다.",
-                  readTime: "4분 읽기",
-                  accent: "border-l-amber-500",
+                  tagColor: "bg-blue-50 text-blue-600 border-blue-100",
+                  title: "네이버 플레이스 리뷰 100개 만들기 — 실전 로드맵",
+                  preview: "리뷰 요청 문자 템플릿, 사장님 답글 공식, 3개월 단계별 로드맵을 공개합니다.",
+                  readTime: "8분",
+                  accent: "border-l-blue-500",
+                  href: "/blog/naver-place-review-100",
+                },
+                {
+                  tag: "업종별 전략",
+                  tagColor: "bg-indigo-50 text-indigo-600 border-indigo-100",
+                  title: "맘카페 바이럴 마케팅 완전 가이드 — 수강생 55% 늘린 전략",
+                  preview: "광고처럼 보이지 않으면서 효과를 내는 침투 전략, 업종별 콘텐츠 포인트를 공개합니다.",
+                  readTime: "7분",
+                  accent: "border-l-indigo-500",
+                  href: "/blog/momcafe-viral-guide",
                 },
                 {
                   tag: "SNS 마케팅",
-                  tagColor: "bg-purple-50 text-purple-600 border-purple-100",
-                  title: "팔로워 1,000명 vs 500명 — 어느 쪽이 매출에 도움 되나?",
-                  preview: "팔로워 숫자보다 전환율이 중요합니다. 지역 타겟 500명이 전국 팔로워 1,000명보다 예약·방문 전환율이 3배 높은 이유를 설명합니다.",
-                  readTime: "3분 읽기",
-                  accent: "border-l-purple-500",
+                  tagColor: "bg-blue-50 text-blue-700 border-blue-100",
+                  title: "인스타그램 릴스로 예약 폭발 — 미용실 성공 케이스",
+                  preview: "수원 네일샵이 릴스 3개로 2주 만에 예약을 마감한 실제 사례와 해시태그 전략.",
+                  readTime: "7분",
+                  accent: "border-l-blue-600",
+                  href: "/blog/instagram-reels-beauty",
                 },
               ].map((post) => (
                 <Link
                   key={post.title}
-                  href="/blog"
+                  href={post.href}
                   className={`group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden border-l-4 ${post.accent}`}
                 >
                   <div className="p-5">
@@ -1623,10 +1712,10 @@ export default function HomePage() {
                       <span className={`px-2.5 py-1 rounded-full border text-[10px] font-black ${post.tagColor}`}>{post.tag}</span>
                       <span className="text-[10px] text-gray-300">{post.readTime}</span>
                     </div>
-                    <h3 className="font-black text-gray-900 text-sm leading-snug mb-2.5 group-hover:text-blue-600 transition-colors">{post.title}</h3>
+                    <h3 className="font-black text-gray-900 text-sm leading-snug mb-2.5 group-hover:text-blue-600 transition-colors line-clamp-2">{post.title}</h3>
                     <p className="text-xs text-gray-400 leading-relaxed line-clamp-3">{post.preview}</p>
                     <div className="flex items-center gap-1 mt-4 text-xs font-bold text-gray-400 group-hover:text-blue-600 transition-colors">
-                      인사이트 읽기 <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
+                      읽기 <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>
                 </Link>
@@ -1858,6 +1947,72 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ══ 상담 신청 시 받게 되는 것 ══ */}
+        <section className="py-14 md:py-20 bg-white border-t border-gray-100">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">무료 상담 혜택</p>
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900">지금 상담 신청하면 받게 되는 것</h2>
+              <p className="text-gray-400 text-sm mt-2">비용 0원 · 계약 강요 없음 · 1영업일 내 전달</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {[
+                {
+                  icon: Search,
+                  title: "플레이스 현황 진단",
+                  desc: "내 매장의 네이버 플레이스 순위·리뷰·정보 완성도를 체크합니다.",
+                  badge: "무료",
+                },
+                {
+                  icon: Users,
+                  title: "경쟁사 3곳 비교",
+                  desc: "상위 노출 중인 경쟁 매장의 전략을 분석해 차이점을 찾아드립니다.",
+                  badge: "무료",
+                },
+                {
+                  icon: TrendingUp,
+                  title: "3개월 성과 예측",
+                  desc: "업종·예산·현재 순위를 기반으로 달성 가능한 목표 수치를 제시합니다.",
+                  badge: "무료",
+                },
+                {
+                  icon: FileText,
+                  title: "맞춤 전략 제안서",
+                  desc: "예산에 맞는 최적 서비스 조합과 실행 우선순위를 정리해 드립니다.",
+                  badge: "무료",
+                },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className="bg-gray-50 rounded-2xl p-5 border border-gray-100 hover:bg-white hover:shadow-md transition-all group">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-sm">
+                        <Icon size={17} className="text-white" strokeWidth={2} />
+                      </div>
+                      <span className="text-[10px] font-black text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">{item.badge}</span>
+                    </div>
+                    <h3 className="font-black text-gray-900 text-sm mb-1.5">{item.title}</h3>
+                    <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-sm shrink-0 mx-auto sm:mx-0">
+                <Clock size={17} className="text-white" strokeWidth={2} />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-black text-blue-900 mb-0.5">1영업일 내 대표가 직접 연락드립니다</p>
+                <p className="text-xs text-blue-700">상담 내용은 철저히 비밀이 유지되며, 계약 강요는 일절 없습니다.</p>
+              </div>
+              <Link href="/contact"
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors whitespace-nowrap shrink-0">
+                지금 신청 <ArrowRight size={13} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ══ 최종 CTA ══ */}
         <section className="py-16 md:py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
@@ -1882,6 +2037,13 @@ export default function HomePage() {
             <p className="text-blue-100 text-base md:text-lg mb-3 leading-relaxed">
               업종·경쟁사·현재 순위를 분석해 무엇을 먼저 해야 할지 정확히 알려드립니다. 비용 0원.
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
+              {["해병대 장교 출신 대표", "카페 실패 경험자", "10년 현장 전문가", "고의 누락 10배 보상"].map((badge) => (
+                <span key={badge} className="text-[11px] text-blue-200 bg-white/10 border border-white/15 px-3 py-1 rounded-full font-medium">
+                  {badge}
+                </span>
+              ))}
+            </div>
             <div className="flex items-center justify-center gap-1.5 mb-8">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} size={14} className="text-amber-300 fill-amber-300" />

@@ -11,13 +11,13 @@ import {
 } from "lucide-react";
 
 const INDUSTRY_ICONS = [
-  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "+167% 방문객", case: "경기 일산 카페 · 3개월", color: "from-amber-500 to-orange-500" },
-  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "+113% 배달 매출", case: "서울 마포 음식점 · 4개월", color: "from-red-500 to-rose-600" },
-  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "예약 완전 마감", case: "수원 네일샵 · 3개월", color: "from-pink-500 to-rose-500" },
-  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "체험단 모집", "플레이스 SEO"], result: "+300% 신규 예약", case: "경기 분당 피부과 · 6개월", color: "from-blue-500 to-blue-700" },
-  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "+55% 수강생", case: "경기 고양 학원 · 3개월", color: "from-indigo-500 to-violet-600" },
-  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "+64% 월 매출", case: "전국 온라인 쇼핑몰 · 5개월", color: "from-green-500 to-emerald-600" },
-  { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-gray-500 to-gray-700" },
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "+167% 방문객", case: "경기 일산 카페 · 3개월", color: "from-blue-500 to-blue-700" },
+  { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "+113% 배달 매출", case: "서울 마포 음식점 · 4개월", color: "from-blue-600 to-indigo-700" },
+  { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "예약 완전 마감", case: "수원 네일샵 · 3개월", color: "from-blue-500 to-blue-700" },
+  { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "체험단 모집", "플레이스 SEO"], result: "+300% 신규 예약", case: "경기 분당 피부과 · 6개월", color: "from-blue-600 to-blue-800" },
+  { id: "edu", icon: GraduationCap, label: "학원·교육", rec: ["맘카페 바이럴", "홈페이지형 블로그", "블로그 관리"], result: "+55% 수강생", case: "경기 고양 학원 · 3개월", color: "from-blue-700 to-indigo-800" },
+  { id: "shop", icon: ShoppingBag, label: "온라인 쇼핑몰", rec: ["블로그 SEO", "체험단 모집", "블로그 배포"], result: "+64% 월 매출", case: "전국 온라인 쇼핑몰 · 5개월", color: "from-blue-500 to-indigo-600" },
+  { id: "other", icon: HelpCircle, label: "기타 업종", rec: ["무료 상담 후 맞춤 추천"], result: "맞춤 분석 제공", case: "상담 후 업종별 전략 수립", color: "from-blue-700 to-blue-900" },
 ];
 
 const BUDGETS = [
@@ -88,9 +88,9 @@ function ContactPageInner() {
               </div>
             )}
             {!estimatePlan && checklistCount >= 3 && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/20 border border-amber-500/30 mb-5">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                <span className="text-amber-300 text-sm font-bold">자가진단에서 {checklistCount}가지 문제를 확인하셨군요. 지금 바로 해결해드립니다.</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/20 border border-blue-500/30 mb-5">
+                <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                <span className="text-blue-200 text-sm font-bold">자가진단에서 {checklistCount}가지 문제를 확인하셨군요. 지금 바로 해결해드립니다.</span>
               </div>
             )}
             <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Contact</p>
@@ -98,10 +98,16 @@ function ContactPageInner() {
               무료 전략 진단 신청
             </h1>
             <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl mb-6">
-              업종과 목표를 알려주시면 맞춤 마케팅 전략을 무료로 분석해드립니다.
+              업종과 목표를 알려주시면 맞춤 마케팅 전략을 무료로 분석해드립니다.<br />
+              <span className="text-blue-300 font-semibold">실패를 경험한 대표가 직접 대표님의 매장을 분석합니다.</span>
             </p>
-            <div className="flex flex-wrap gap-4 text-sm">
-              {[{ icon: CheckCircle2, text: "상담 비용 0원" }, { icon: CheckCircle2, text: "계약 강요 없음" }, { icon: Clock, text: "24시간 내 연락" }].map(({ icon: Icon, text }) => (
+            <div className="flex flex-wrap gap-3 text-sm">
+              {[
+                { icon: CheckCircle2, text: "상담 비용 0원" },
+                { icon: CheckCircle2, text: "계약 강요 없음" },
+                { icon: Clock, text: "24시간 내 대표 직접 연락" },
+                { icon: CheckCircle2, text: "고의 누락 시 10배 보상" },
+              ].map(({ icon: Icon, text }) => (
                 <span key={text} className="flex items-center gap-1.5 text-gray-300">
                   <Icon size={14} className="text-blue-400" strokeWidth={2.5} /> {text}
                 </span>

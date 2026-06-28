@@ -20,7 +20,7 @@ const ALL_CASES = [
     after: { "플레이스 순위": "1위 달성", "리뷰 수": "120개+", "하루 방문객": "평균 80명" },
     metric: "+167%", metricLabel: "방문객 증가",
     story: "개업 6개월차였지만 근처 카페에 치여 검색에서 전혀 보이지 않았어요. 하랑과 함께 3개월 만에 '일산 카페' 1위가 됐고, 주말엔 대기줄이 생겼습니다.",
-    color: "from-amber-500 to-orange-500",
+    color: "from-blue-500 to-blue-700",
   },
   {
     category: "병원·의원",
@@ -32,7 +32,7 @@ const ALL_CASES = [
     after: { "팔로워": "3,800명", "체험단 후기": "60개+", "월 신규 예약": "80건" },
     metric: "+300%", metricLabel: "신규 예약 증가",
     story: "SNS를 어떻게 해야 할지 막막했어요. 6개월 후엔 예약이 밀릴 정도가 됐고, 원장님이 직접 운영하지 않아도 돌아가는 채널이 생겼습니다.",
-    color: "from-rose-500 to-pink-600",
+    color: "from-blue-600 to-indigo-700",
   },
   {
     category: "음식점",
@@ -44,7 +44,7 @@ const ALL_CASES = [
     after: { "배달앱 노출": "상위 노출", "리뷰 수": "180개+", "월 배달 매출": "320만원" },
     metric: "+113%", metricLabel: "배달 매출 증가",
     story: "맛은 자신 있었는데 리뷰가 없으니 주문이 없더라고요. 4개월 만에 매출이 두 배가 됐어요. 이제 리뷰가 리뷰를 부릅니다.",
-    color: "from-green-500 to-emerald-600",
+    color: "from-blue-500 to-blue-700",
   },
   {
     category: "뷰티·네일",
@@ -56,7 +56,19 @@ const ALL_CASES = [
     after: { "수원 네일 검색": "상위 노출", "인스타 팔로워": "1,200명", "예약": "2주 치 마감" },
     metric: "예약 마감", metricLabel: "3개월 만에 달성",
     story: "개업하고 손님이 없어 너무 막막했어요. 인스타그램 비포애프터와 체험단을 모집했더니 3개월 만에 예약이 꽉 찼습니다.",
-    color: "from-purple-500 to-violet-600",
+    color: "from-blue-700 to-indigo-800",
+  },
+  {
+    category: "카카오맵",
+    location: "경기 부천",
+    title: "카카오맵 리뷰 0개 → 95개, 지도 순위 급상승",
+    period: "2개월",
+    services: ["카카오맵 매장 등록", "리뷰 마케팅", "트렌드 랭킹 관리"],
+    before: { "카카오맵 리뷰": "0개", "지도 노출": "거의 없음", "신규 고객": "월 5명 내외" },
+    after: { "카카오맵 리뷰": "95개", "지역 검색 순위": "상위 3위", "신규 고객": "월 40명+" },
+    metric: "+700%", metricLabel: "카카오 신규 유입",
+    story: "네이버만 신경 썼는데 카카오맵으로 오는 손님이 의외로 많더라고요. 2달 만에 카카오에서도 우리 매장이 보이기 시작했어요.",
+    color: "from-blue-500 to-indigo-600",
   },
   {
     category: "학원·교육",
@@ -68,7 +80,7 @@ const ALL_CASES = [
     after: { "맘카페 추천": "1위", "블로그 월 방문": "500+", "수강생": "62명" },
     metric: "+55%", metricLabel: "수강생 증가",
     story: "학원 앞에 현수막만 걸었었는데 한계가 있더라고요. 맘카페 바이럴 하나로 3개월 만에 수강생이 절반 이상 늘었어요.",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-blue-600 to-blue-800",
   },
   {
     category: "온라인 쇼핑몰",
@@ -80,11 +92,23 @@ const ALL_CASES = [
     after: { "블로그 월 방문": "900명", "체험단 후기": "40개+", "월 매출": "820만원" },
     metric: "+64%", metricLabel: "매출 증가",
     story: "제품은 좋은데 알아주는 사람이 없었어요. 5개월 만에 검색 유입이 생기기 시작하더니 매출이 60% 이상 올랐습니다.",
-    color: "from-cyan-500 to-blue-600",
+    color: "from-blue-700 to-blue-900",
+  },
+  {
+    category: "한의원·한방",
+    location: "경기 안양",
+    title: "플레이스 신뢰도 강화로 초진 예약 3배 증가",
+    period: "4개월",
+    services: ["플레이스 SEO", "블로그 관리", "리뷰 마케팅"],
+    before: { "플레이스 리뷰": "12개", "블로그 노출": "거의 없음", "초진 예약": "월 15건" },
+    after: { "플레이스 리뷰": "89개", "블로그 월 방문": "750명+", "'안양 한의원' 검색": "Top 3" },
+    metric: "+200%", metricLabel: "초진 예약 증가",
+    story: "한의원은 신뢰가 전부인데 온라인이 너무 취약했어요. 원장님 전문성을 블로그에 담고 리뷰를 쌓았더니 4개월 만에 초진 예약이 3배가 됐습니다.",
+    color: "from-blue-600 to-indigo-700",
   },
 ];
 
-const CATEGORIES = ["전체", "카페", "음식점", "병원·의원", "뷰티·네일", "학원·교육", "온라인 쇼핑몰"];
+const CATEGORIES = ["전체", "카페", "음식점", "병원·의원", "뷰티·네일", "카카오맵", "학원·교육", "온라인 쇼핑몰", "한의원·한방"];
 
 const CasesPage: FC = () => {
   const [active, setActive] = useState("전체");

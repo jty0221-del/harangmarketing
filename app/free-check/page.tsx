@@ -50,9 +50,7 @@ export default function FreeCheckPage() {
       {/* Top bar */}
       <div className="bg-gray-950 border-b border-white/5 py-3 px-4 flex items-center justify-between max-w-5xl mx-auto">
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-sm">
-            <span className="text-white font-black text-[11px]">H</span>
-          </div>
+          <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-7 h-7" />
           <span className="text-white font-black text-[15px]">하랑<span className="text-blue-400">마케팅</span></span>
         </Link>
         <a
@@ -113,6 +111,25 @@ export default function FreeCheckPage() {
                   <div key={s.n} className="flex items-center gap-3">
                     <span className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-xs shrink-0">{s.n}</span>
                     <p className="text-sm text-gray-300">{s.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* What you get */}
+            <div className="mb-8">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">진단 후 받게 되는 것</p>
+              <div className="space-y-2">
+                {[
+                  "플레이스 키워드별 현재 순위 PDF 리포트",
+                  "경쟁 상위 3곳과 내 매장 비교 분석표",
+                  "리뷰·콘텐츠 부족분 및 우선순위 정리",
+                  "3개월 후 예상 성과 수치 (업종별)",
+                  "업종 맞춤 마케팅 전략 요약 1페이지",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-2.5">
+                    <CheckCircle2 size={14} className="text-blue-400 shrink-0 mt-0.5" strokeWidth={2.5} />
+                    <p className="text-sm text-gray-300">{item}</p>
                   </div>
                 ))}
               </div>

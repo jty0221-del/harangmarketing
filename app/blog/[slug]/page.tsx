@@ -60,7 +60,7 @@ const POSTS: Record<string, {
   "cafe-blog-keywords": {
     title: "카페 사장님이 꼭 써야 하는 블로그 키워드 30선",
     tag: "블로그 마케팅",
-    tagColor: "bg-green-50 text-green-700",
+    tagColor: "bg-blue-50 text-blue-700",
     readTime: "6분",
     result: "카페 블로그 적용 후 월 신규 방문 +43%",
     summary: "지역명+카페, 분위기 카페, 데이트 카페 등 실제 검색량 높은 키워드 목록과 글쓰기 공식을 공개합니다.",
@@ -103,7 +103,7 @@ const POSTS: Record<string, {
   "review-vs-experience": {
     title: "체험단 vs 일반 리뷰 — 뭐가 더 효과적인가?",
     tag: "체험단·리뷰",
-    tagColor: "bg-amber-50 text-amber-700",
+    tagColor: "bg-blue-50 text-blue-600",
     readTime: "5분",
     result: "리뷰 전략 최적화 후 전환율 2.1배",
     summary: "체험단은 빠르고 리뷰는 신뢰도가 높습니다. 업종별로 어느 방식이 더 ROI가 높은지 실제 A/B 테스트 결과를 공개합니다.",
@@ -142,7 +142,7 @@ const POSTS: Record<string, {
   "instagram-reels-beauty": {
     title: "인스타그램 릴스로 예약 폭발 — 미용실 성공 케이스",
     tag: "SNS 마케팅",
-    tagColor: "bg-pink-50 text-pink-700",
+    tagColor: "bg-blue-50 text-blue-700",
     readTime: "7분",
     result: "예약률 0% → 완전 마감, 2주",
     summary: "수원 네일샵이 릴스 3개로 2주 만에 예약을 마감한 실제 사례. 어떤 내용을, 어떻게 촬영하고, 무슨 해시태그를 달았는지 공개합니다.",
@@ -192,7 +192,7 @@ const POSTS: Record<string, {
   "delivery-review-formula": {
     title: "음식점 배달 매출 2배 만든 리뷰 마케팅 공식",
     tag: "업종별 전략",
-    tagColor: "bg-purple-50 text-purple-700",
+    tagColor: "bg-indigo-50 text-indigo-700",
     readTime: "9분",
     result: "배달 매출 480만 → 1,022만원",
     summary: "배달앱에서 순위를 올리는 방법은 광고비가 아닙니다. 리뷰 수와 평점, 사장님 댓글이 핵심입니다. 서울 마포 음식점의 4개월 과정을 공개합니다.",
@@ -242,7 +242,7 @@ const POSTS: Record<string, {
   "small-budget-place-top": {
     title: "마케팅 예산 30만원으로 플레이스 1위 가능한가?",
     tag: "마케팅 비용",
-    tagColor: "bg-gray-50 text-gray-700",
+    tagColor: "bg-blue-50 text-blue-600",
     readTime: "6분",
     result: "소규모 예산 사례 3개 플레이스 Top 5 달성",
     summary: "작은 예산으로 가장 효과적인 조합을 찾는 방법. 10년간 500개 프로젝트 데이터를 바탕으로 예산별 최적 전략을 제시합니다.",
@@ -287,6 +287,127 @@ const POSTS: Record<string, {
       },
     ],
     cta: "예산별 마케팅 전략 상담하기",
+  },
+  "momcafe-viral-guide": {
+    title: "맘카페 바이럴 마케팅 완전 가이드 — 수강생 55% 늘린 실전 전략",
+    tag: "업종별 전략",
+    tagColor: "bg-indigo-50 text-indigo-700",
+    readTime: "7분",
+    result: "학원 수강생 3개월 +55%, 카페 방문객 +40%",
+    summary: "맘카페는 '구매 결정권을 가진 주부'가 모이는 최고의 로컬 마케팅 채널입니다. 광고처럼 보이지 않으면서 효과를 내는 침투 전략을 공개합니다.",
+    sections: [
+      {
+        heading: "왜 맘카페인가요?",
+        body: "맘카페는 네이버 카페 중에서도 지역 기반 주부 커뮤니티입니다. '동네 맛집 어디가 좋아요?', '어린이집 어디가 좋아요?'처럼 실생활 구매 결정을 하는 곳입니다. 이 채널의 가장 큰 장점은 신뢰도입니다. 광고가 아닌 '이웃의 추천'으로 받아들여지기 때문에 전환율이 일반 블로그 대비 2~3배 높습니다.",
+        tips: [
+          "카페·음식점·학원·키즈 관련 업종에 특히 효과적",
+          "주부 타겟 고객이 많은 뷰티·네일·피부과도 높은 전환율",
+          "게시글 1건이 100~500명에게 노출되는 고밀도 채널",
+        ],
+      },
+      {
+        heading: "맘카페 바이럴의 핵심 원칙",
+        body: "맘카페 마케팅이 실패하는 가장 큰 이유는 '광고처럼 보이는 것'입니다. 맘카페 회원들은 광고 게시물을 귀신같이 감지합니다. 성공하는 맘카페 바이럴의 3가지 원칙은 다음과 같습니다.",
+        tips: [
+          "실사용자 후기처럼 작성 — '사장님 사주셔서' 느낌이 나면 역효과",
+          "구체적인 경험 서술 — '맛있었어요'가 아닌 '2시에 갔더니 대기 20분이었고 떡볶이가...'",
+          "자연스러운 질문글 활용 — '이 근처 카페 어디 좋아요?' 답변으로 삽입",
+          "1회성이 아닌 2~3주에 걸친 분산 게시 (집중하면 어뷰징으로 신고됨)",
+        ],
+      },
+      {
+        heading: "업종별 맘카페 콘텐츠 전략",
+        body: "업종마다 맘카페에서 어필해야 하는 포인트가 다릅니다. 하랑마케팅이 실제 프로젝트에서 검증한 업종별 전략입니다.",
+        tips: [
+          "학원 — '아이가 다니고 있는데 선생님이...' 형태의 후기가 가장 효과적. 결과보다 분위기·선생님 친절도 강조",
+          "카페 — '아이 데리고 가기 좋아요' + 키즈 공간 사진. 주차 정보 필수 포함",
+          "음식점 — '가족 외식으로 갔는데' 스토리 + 아이 메뉴 언급. 반찬 넉넉함·위생 강조",
+          "네일·뷰티 — '빠른 예약 가능', '아이 맡기고 다녀올 수 있는 시간' 등 엄마 입장의 편의성 강조",
+          "피부과·한의원 — 의학 정보+경험 후기 조합. 원장 친절도가 핵심",
+        ],
+      },
+      {
+        heading: "실제 결과 — 고양 학원 3개월 사례",
+        body: "경기 고양의 초등학생 대상 영어 학원은 수강생 확보에 어려움을 겪고 있었습니다. 플레이스 SEO는 이미 진행 중이었지만 신규 유입이 정체되었습니다. 하랑마케팅은 고양 맘카페 3곳에 3주에 걸쳐 총 9건의 자연스러운 후기 게시물을 배포했습니다.",
+        tips: [
+          "1주차: '선생님 추천 받아요' 형태의 질문글 + 답변 댓글로 자연 삽입",
+          "2주차: '아이가 다니는데 영어 실력이...' 형태 후기글 게시",
+          "3주차: '체험수업 신청했어요' 후기 + 결과 공유",
+          "3개월 결과: 수강생 22명 → 34명 (+55%), 문의 전화 월 3건 → 12건",
+        ],
+      },
+      {
+        heading: "주의해야 할 것들",
+        body: "맘카페 바이럴은 잘못하면 역효과가 납니다. 특히 다음 세 가지는 절대 하지 마세요.",
+        tips: [
+          "가입 후 바로 홍보글 올리기 — 신규 계정은 광고로 인식됨. 최소 2주 이상 활동 후 진행",
+          "같은 내용 여러 카페에 동시 게시 — 카페 간 교류로 바로 발각됨",
+          "가격 직접 언급 — '가성비 대박' 등 상업적 표현은 삭제되거나 신뢰도 하락",
+          "하루에 집중해서 올리기 — 주 2~3건 이내로 분산",
+        ],
+      },
+    ],
+    cta: "맘카페 바이럴 전략 상담하기",
+  },
+  "naver-place-review-100": {
+    title: "네이버 플레이스 리뷰 100개 만들기 — 실전 로드맵",
+    tag: "리뷰 마케팅",
+    tagColor: "bg-blue-50 text-blue-700",
+    readTime: "8분",
+    result: "리뷰 0개 → 3개월 만에 127개 달성 사례",
+    summary: "리뷰가 없으면 순위가 없고, 순위가 없으면 방문객이 없습니다. 실제로 리뷰 0개에서 3개월 만에 127개를 만든 로드맵을 공개합니다.",
+    sections: [
+      {
+        heading: "왜 리뷰 100개가 기준선인가요?",
+        body: "네이버 플레이스 알고리즘에서 리뷰 수는 가장 직관적인 신뢰 지표입니다. 하랑마케팅이 분석한 500개 프로젝트 데이터에 따르면, 경쟁이 보통 수준인 지역에서 리뷰 100개 이상이면 Top 10 진입 가능성이 73%입니다. 100개가 '마법의 숫자'는 아니지만, 대부분의 업종에서 심리적 신뢰 임계점이 되는 기준입니다.",
+        tips: [
+          "리뷰 50개 미만 — 검색 상위 노출 불리, 신규 방문객 전환율 낮음",
+          "리뷰 50~100개 — 경쟁사 대비 기본 신뢰 확보, Top 10~20 가능",
+          "리뷰 100개 이상 — 신규 고객의 '여기 믿어도 되겠다' 심리 자동 형성",
+          "리뷰 200개+ — 지역 대표 매장 포지션, 광고 없이도 꾸준한 유입",
+        ],
+      },
+      {
+        heading: "리뷰 100개 로드맵 — 3개월 플랜",
+        body: "리뷰는 단기 집중이 아닌 꾸준한 누적이 핵심입니다. 급격히 늘어나면 플랫폼 필터링에 걸릴 수 있습니다. 월별 목표를 나눠 안전하게 쌓는 로드맵입니다.",
+        tips: [
+          "1개월차 목표: 20~30개 — 기존 단골 고객에게 직접 요청 (문자·카카오 안내문)",
+          "2개월차 목표: 40~50개 추가 — 네이버 예약·주문 연동 후 자동 리뷰 요청 기능 활용",
+          "3개월차 목표: 30~40개 추가 — 체험단 소규모 진행 (업종에 따라 5~10명)",
+          "매달 말 답글률 100% 유지 — 답글이 없으면 리뷰 작성 동기 떨어짐",
+        ],
+      },
+      {
+        heading: "리뷰 요청 문자 템플릿",
+        body: "손님에게 직접 부탁하는 것이 가장 효과적이지만, 어색하게 느껴질 수 있습니다. 자연스럽게 요청하는 문자 템플릿을 공개합니다.",
+        tips: [
+          "기본형: '[매장명]을 이용해주셔서 감사합니다. 다음 방문 시 할인쿠폰 드릴게요! 네이버 리뷰 한 줄만 남겨주시면 큰 도움이 됩니다 → (플레이스 링크)'",
+          "구체형: '오늘 [메뉴명] 드셨는데 맛있으셨나요? 솔직한 후기를 남겨주시면 다음에 음료 한 잔 드리겠습니다 :)'",
+          "부담 줄이는 멘트: '별점만 눌러주셔도 됩니다. 글 없어도 괜찮아요!'",
+          "시기: 방문 직후~12시간 이내가 응답률 가장 높음",
+        ],
+      },
+      {
+        heading: "사장님 답글 — 리뷰 유도의 숨겨진 공식",
+        body: "리뷰를 쓴 고객에게 정성스러운 답글을 달면 주변 지인도 리뷰를 씁니다. 답글이 새로운 리뷰를 만드는 선순환 구조입니다. 답글 작성 시 핵심 포인트를 정리했습니다.",
+        tips: [
+          "고객 이름 또는 리뷰 내용을 언급 — '오늘 아메리카노 주문하셨군요, 감사합니다!'",
+          "재방문 유도 멘트 포함 — '다음에 또 오시면 신메뉴 꼭 드셔보세요'",
+          "키워드 자연 삽입 — '수원 카페' '주차 편한 카페' 등 SEO 키워드 1~2개",
+          "답글 길이: 2~4줄이 가장 자연스럽고 플레이스 알고리즘에도 유리",
+        ],
+      },
+      {
+        heading: "피해야 할 실수 3가지",
+        body: "리뷰를 빠르게 늘리다 보면 역효과가 나는 실수를 범하기 쉽습니다. 10년간 클라이언트가 겪은 실패 패턴을 정리했습니다.",
+        tips: [
+          "가족·지인 리뷰 집중 — IP·패턴 감지로 삭제될 수 있음, 실제 고객 위주로 진행",
+          "단기 집중 (일주일 안에 50개) — 비정상 패턴으로 분류, 분산이 안전",
+          "답글 복붙 — 모든 리뷰에 같은 답글은 성의 없어 보이고 SEO에도 불리",
+        ],
+      },
+    ],
+    cta: "리뷰 마케팅 전략 상담하기",
   },
 };
 
@@ -413,13 +534,31 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         {/* More posts */}
         <section className="py-12 bg-gray-50 border-t border-gray-100">
           <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-sm font-bold text-gray-500 mb-4">다른 인사이트도 읽어보세요</p>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:underline"
-            >
-              <BookOpen size={14} /> 전체 블로그 보기 <ArrowRight size={13} />
-            </Link>
+            <div className="flex items-center justify-between mb-6">
+              <p className="text-base font-black text-gray-900">다른 인사이트도 읽어보세요</p>
+              <Link href="/blog" className="inline-flex items-center gap-1 text-blue-600 font-bold text-xs hover:underline">
+                전체 보기 <ArrowRight size={11} />
+              </Link>
+            </div>
+            <div className="space-y-3">
+              {Object.entries(POSTS)
+                .filter(([s]) => s !== slug)
+                .slice(0, 3)
+                .map(([s, p]) => (
+                  <Link key={s} href={`/blog/${s}`}
+                    className="flex items-start gap-3 bg-white border border-gray-100 rounded-xl p-4 hover:border-blue-200 hover:shadow-sm transition-all group">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0 shadow-sm">
+                      <BookOpen size={13} className="text-white" strokeWidth={2.5} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span className={`inline-block text-[10px] font-bold px-2 py-0.5 rounded-full border mb-1 ${p.tagColor}`}>{p.tag}</span>
+                      <p className="text-sm font-black text-gray-900 group-hover:text-blue-600 transition-colors leading-snug line-clamp-2">{p.title}</p>
+                      <p className="text-[11px] text-blue-500 font-semibold mt-1">{p.result}</p>
+                    </div>
+                    <ArrowRight size={13} className="text-gray-300 group-hover:text-blue-500 transition-colors shrink-0 mt-1" />
+                  </Link>
+                ))}
+            </div>
           </div>
         </section>
       </main>

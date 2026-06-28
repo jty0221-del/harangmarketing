@@ -2,18 +2,16 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, X, ChevronUp, ArrowRight, Clock, Star, Zap } from "lucide-react";
+import { Phone, MessageCircle, X, ChevronUp, ArrowRight, Clock, Star, Zap, Shield } from "lucide-react";
 
 function useBusinessHours() {
   const [status, setStatus] = useState<"open" | "closing" | "closed">("open");
   useEffect(() => {
     const check = () => {
+      // 24시간 소통 가능 (블로그 기준: 주말 포함 언제든지 연락 가능)
       const h = new Date().getHours();
-      // 09:00~18:00 평일 기준
-      const day = new Date().getDay();
-      const isWeekend = day === 0 || day === 6;
-      if (isWeekend || h < 9 || h >= 18) setStatus("closed");
-      else if (h >= 17) setStatus("closing");
+      if (h >= 23 || h < 7) setStatus("closed");
+      else if (h >= 21) setStatus("closing");
       else setStatus("open");
     };
     check();
@@ -41,9 +39,9 @@ export default function FloatingCTA() {
   if (!visible) return null;
 
   const statusConfig = {
-    open: { dot: "bg-green-400", text: "지금 상담 가능", sub: "카카오 평균 10분 내 응답" },
-    closing: { dot: "bg-amber-400", text: "오늘 마감 임박", sub: "18시 이후 다음 영업일 연락" },
-    closed: { dot: "bg-gray-400", text: "영업시간 외", sub: "문의 접수 후 내일 9시 이후 연락" },
+    open: { dot: "bg-green-400", text: "지금 상담 가능", sub: "24시간 · 주말 포함 소통 가능" },
+    closing: { dot: "bg-amber-400", text: "야간 상담 가능", sub: "늦은 시간도 카카오로 문의 주세요" },
+    closed: { dot: "bg-gray-400", text: "새벽 시간대", sub: "문의 접수 후 오전 7시 이후 연락" },
   }[bizStatus];
 
   return (
@@ -84,6 +82,11 @@ export default function FloatingCTA() {
               <p className="text-[10px] text-gray-400 ml-3.5">{statusConfig.sub}</p>
             </div>
 
+            {/* Trust badge */}
+            <div className="bg-blue-50 border border-blue-100 rounded-xl px-3 py-2 mb-2 flex items-center gap-2">
+              <Shield size={11} className="text-blue-500 shrink-0" strokeWidth={2.5} />
+              <p className="text-[10px] font-bold text-blue-700">고의 누락 시 결제금액 10배 보상 정책 운용 중</p>
+            </div>
             {/* Urgency */}
             <div className="bg-red-50 border border-red-100 rounded-xl px-3 py-2 mb-3 flex items-center gap-2">
               <Clock size={11} className="text-red-500 shrink-0" strokeWidth={2.5} />

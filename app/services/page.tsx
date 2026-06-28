@@ -6,7 +6,9 @@ import {
   BookOpen, MapPin, Star, AtSign,
   CheckCircle2, ArrowRight, Clock, Package, TrendingUp,
   ChevronDown, Users, BarChart3, MessageSquare, Quote,
+  Navigation, Palette,
 } from "lucide-react";
+import PhotoPlaceholder from "../components/PhotoPlaceholder";
 
 export const metadata: Metadata = {
   title: "마케팅 서비스 — 하랑마케팅 | 플레이스 SEO · 블로그 · 체험단 · SNS",
@@ -99,22 +101,70 @@ const SERVICES = [
     tag: "SNS",
     title: "SNS · 인스타그램 마케팅",
     subtitle: "팔로워 증가 → 예약·방문 연결",
-    desc: "인스타그램·맘카페 바이럴로 온라인 인지도를 높이고 실제 방문·예약으로 전환합니다.",
+    desc: "인스타그램 계정 육성부터 맘카페 침투 바이럴까지. 온라인 인지도를 높여 실제 방문·예약으로 전환합니다.",
     timeline: "팔로워 증가 1개월 · 바이럴 효과 2~3개월",
     deliverables: [
       { label: "콘텐츠 제작", value: "월 12~16건", note: "피드·스토리·릴스" },
-      { label: "해시태그 전략", value: "매 포스팅", note: "지역·업종 최적화" },
-      { label: "맘카페 바이럴", value: "월 4~8건", note: "타겟 카페 선정" },
+      { label: "맘카페 바이럴", value: "월 4~8건", note: "침투 전략 기반" },
+      { label: "인기 게시물 노출", value: "해시태그 최적화", note: "지역·업종 태그" },
     ],
     features: [
-      "인스타그램 피드·스토리·릴스 제작",
-      "해시태그 최적화 전략",
-      "맘카페·지역 커뮤니티 바이럴",
-      "DM 문의 응대 가이드",
-      "팔로워·도달·예약 전환 리포트",
+      "인스타그램 계정 육성 및 세팅",
+      "피드·스토리·릴스 콘텐츠 제작",
+      "인기 게시물 상위 노출 전략",
+      "맘카페·지역 커뮤니티 침투 바이럴",
+      "리그램·하이라이트 세팅",
     ],
     rec: "비주얼 중심 업종(카페·미용·음식점)이나 주부 고객 타겟 매장",
     result: "3개월 내 팔로워 500~1,000명 목표",
+  },
+  {
+    id: "kakaomap",
+    icon: Navigation,
+    color: "from-blue-500 to-blue-700",
+    tag: "카카오맵",
+    title: "카카오맵 매장 관리",
+    subtitle: "카카오 검색 노출 → 지도 상단 진입",
+    desc: "국내 최다 사용 지도 앱 카카오맵에서 매장을 발견하는 고객을 잡습니다. 매장 관리 등록부터 트렌드 랭킹 상위 노출까지.",
+    timeline: "등록·최적화 1~2주 · 상위 노출 1개월",
+    deliverables: [
+      { label: "매장 관리 등록", value: "대행 처리", note: "빠른 처리 보장" },
+      { label: "카카오맵 리뷰", value: "실유저 기반", note: "100% 실사용자" },
+      { label: "트렌드 랭킹", value: "상위 노출", note: "카카오맵 알고리즘 최적화" },
+    ],
+    features: [
+      "카카오맵 매장 관리 등록 대행",
+      "매장 정보 완성도 최적화",
+      "실유저 기반 리뷰 확보",
+      "트렌드 랭킹 상위 노출 전략",
+      "카카오 플레이스 통합 관리",
+    ],
+    rec: "카카오맵으로 유입되는 고객을 놓치고 싶지 않은 매장",
+    result: "한 달 내 카카오맵 트렌드 랭킹 Top 10 진입",
+  },
+  {
+    id: "startup",
+    icon: Palette,
+    color: "from-blue-700 to-indigo-800",
+    tag: "창업지원",
+    title: "창업 지원 · 브랜딩",
+    subtitle: "개업 전 온라인 세팅 → 오픈 첫날부터 효과",
+    desc: "개업 준비부터 브랜딩까지. 홈페이지형 블로그 제작, 로고·명함 디자인, 메뉴판 제작을 원스텝으로 해결합니다.",
+    timeline: "제작 기간 1~2주 · 오픈 전 완성 가능",
+    deliverables: [
+      { label: "홈페이지형 블로그", value: "전문 디자인", note: "네이버 블로그 기반" },
+      { label: "로고·명함 디자인", value: "맞춤 제작", note: "브랜드 아이덴티티" },
+      { label: "메뉴판 제작", value: "인쇄 가능 파일", note: "PDF·인쇄본" },
+    ],
+    features: [
+      "홈페이지형 블로그 디자인 제작",
+      "로고·명함·간판 디자인 지원",
+      "메뉴판·전단지 제작",
+      "플레이스·카카오맵 초기 세팅",
+      "개업 전 온라인 인지도 빌드업",
+    ],
+    rec: "개업 예정이거나 브랜드를 새로 만들고 싶은 사장님",
+    result: "개업 첫날부터 온라인에서 발견되는 매장 세팅",
   },
 ];
 
@@ -215,6 +265,13 @@ export default function ServicesPage() {
               return (
                 <div key={s.id} id={s.id}
                   className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden scroll-mt-20">
+                  {/* Cover photo */}
+                  <PhotoPlaceholder
+                    label={`${s.title} 작업 예시`}
+                    hint="실제 성과 화면·작업물 캡처로 교체 예정"
+                    height="h-44"
+                    className="rounded-none border-0 border-b-2"
+                  />
                   {/* Card header */}
                   <div className="p-6 md:p-8 border-b border-gray-50">
                     <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
@@ -302,12 +359,12 @@ export default function ServicesPage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
-                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "+167% 방문객", color: "from-amber-500 to-orange-500" },
-                { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "+113% 배달 매출", color: "from-green-500 to-emerald-600" },
-                { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "예약 2주 마감", color: "from-pink-500 to-rose-500" },
-                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "+300% 신규예약", color: "from-blue-500 to-blue-700" },
-                { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "+55% 수강생", color: "from-indigo-500 to-violet-600" },
-                { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "+64% 매출", color: "from-cyan-500 to-blue-600" },
+                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "+167% 방문객", color: "from-blue-500 to-blue-700" },
+                { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "+113% 배달 매출", color: "from-blue-600 to-indigo-700" },
+                { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "예약 2주 마감", color: "from-blue-500 to-blue-700" },
+                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "+300% 신규예약", color: "from-blue-600 to-blue-800" },
+                { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "+55% 수강생", color: "from-blue-700 to-indigo-800" },
+                { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "+64% 매출", color: "from-blue-500 to-indigo-600" },
               ].map((ind) => (
                 <div key={ind.industry} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
                   <div className={`bg-gradient-to-br ${ind.color} px-4 py-3`}>
@@ -350,7 +407,7 @@ export default function ServicesPage() {
                   name: "카페 사장님",
                   location: "경기 고양",
                   service: "플레이스 SEO",
-                  color: "from-green-500 to-emerald-600",
+                  color: "from-blue-500 to-blue-700",
                   text: "3주 만에 '고양 카페 추천' 1위가 됐어요. 주말 웨이팅이 생겼고 하루 매출이 2배 됐습니다.",
                   metric: "매출 +210%",
                 },
@@ -358,7 +415,7 @@ export default function ServicesPage() {
                   name: "미용실 원장님",
                   location: "서울 마포",
                   service: "체험단·리뷰",
-                  color: "from-pink-500 to-rose-500",
+                  color: "from-blue-600 to-indigo-700",
                   text: "예약이 항상 2주 이상 밀려요. 인스타 포트폴리오도 같이 해주셔서 신규 고객 비율이 확 늘었어요.",
                   metric: "예약 100% 마감",
                 },
@@ -406,15 +463,15 @@ export default function ServicesPage() {
             </div>
 
             {/* 이달 혜택 배너 */}
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl px-5 py-4 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <div className="flex items-center gap-2 shrink-0">
-                <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                <span className="text-xs font-black text-amber-700 uppercase tracking-wider">이달 한정</span>
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                <span className="text-xs font-black text-blue-700 uppercase tracking-wider">이달 한정</span>
               </div>
-              <p className="text-sm text-amber-800 font-medium">
+              <p className="text-sm text-blue-800 font-medium">
                 이번 달 신규 계약 3팀에게 <span className="font-black">경쟁사 분석 리포트 무료 제공</span> — 내 업종 상위 매장 전략을 한눈에 확인하세요.
               </p>
-              <Link href="/contact" className="shrink-0 px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-colors">
+              <Link href="/contact" className="shrink-0 px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors">
                 혜택 받기
               </Link>
             </div>
@@ -423,7 +480,7 @@ export default function ServicesPage() {
               {[
                 {
                   name: "스타터", price: "월 30~50만원대", badge: null,
-                  color: "from-gray-700 to-gray-900",
+                  color: "from-blue-500 to-blue-700",
                   desc: "마케팅을 처음 시작하는 매장",
                   roi: "월 30만 투자 → 평균 +60만 매출",
                   includes: ["블로그 포스팅 4건", "플레이스 기본 최적화", "월 리포트 1회"],
@@ -437,7 +494,7 @@ export default function ServicesPage() {
                 },
                 {
                   name: "풀패키지", price: "월 150~250만원대", badge: "최고 효율",
-                  color: "from-purple-600 to-violet-700",
+                  color: "from-blue-700 to-indigo-800",
                   desc: "전방위 마케팅으로 빠른 성장을 원하는 매장",
                   roi: "월 150만 투자 → 평균 +400만+ 매출",
                   includes: ["전 서비스 풀운영", "체험단 월 30명", "맘카페 바이럴 포함", "전담 전략 미팅"],
@@ -466,7 +523,7 @@ export default function ServicesPage() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="/contact" className={`block text-center py-3 rounded-xl text-sm font-black transition-colors ${p.badge === "인기" ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm" : "bg-gray-100 hover:bg-gray-200 text-gray-700"}`}>
+                    <Link href="/contact" className={`block text-center py-3 rounded-xl text-sm font-black transition-colors ${p.badge === "인기" ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm" : "bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200"}`}>
                       이 패키지로 상담하기
                     </Link>
                     <p className="text-[10px] text-gray-400 text-center mt-2">업종·규모에 따라 조정됩니다</p>
@@ -507,7 +564,7 @@ export default function ServicesPage() {
                   icon: "03",
                   title: "계약 강요 없는 상담",
                   desc: "상담 후 진행이 어렵다고 판단되면 직접 말씀드립니다. 계약을 위한 과장된 약속은 드리지 않습니다.",
-                  color: "from-amber-500 to-orange-500",
+                  color: "from-blue-500 to-blue-700",
                 },
               ].map((item) => (
                 <div key={item.icon} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
@@ -608,7 +665,7 @@ export default function ServicesPage() {
                   price: "30~50만원",
                   period: "/ 월",
                   desc: "소규모 매장 · 처음 시작하는 분",
-                  color: "from-gray-700 to-gray-900",
+                  color: "from-blue-500 to-blue-700",
                   highlight: false,
                   services: ["네이버 플레이스 SEO", "블로그 월 4편", "월 성과 리포트"],
                   result: "플레이스 Top 10 진입 목표",
@@ -628,7 +685,7 @@ export default function ServicesPage() {
                   price: "150~250만원",
                   period: "/ 월",
                   desc: "경쟁 업종 · 빠른 1등 목표",
-                  color: "from-purple-600 to-violet-700",
+                  color: "from-blue-700 to-indigo-800",
                   highlight: false,
                   services: ["전 채널 통합 운영", "블로그 월 12편+", "SNS + 체험단", "맘카페 바이럴", "광고 운영 (매체비 별도)", "주간 성과 리포트"],
                   result: "업종 1위 + 매출 극대화 목표",

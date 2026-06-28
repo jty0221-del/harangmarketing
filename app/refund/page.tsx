@@ -61,8 +61,8 @@ export default function RefundPage() {
             </div>
           </div>
 
-          <div className="bg-amber-50 border border-amber-100 rounded-xl px-5 py-4 mb-6">
-            <p className="text-sm text-amber-700 font-semibold">
+          <div className="bg-blue-50 border border-blue-100 rounded-xl px-5 py-4 mb-6">
+            <p className="text-sm text-blue-700 font-semibold">
               환불·취소 관련 궁금한 점은 언제든지 카카오톡 또는 전화로 문의하시면 친절하게 안내해드립니다.
             </p>
           </div>

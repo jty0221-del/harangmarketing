@@ -21,8 +21,8 @@ const BLOG_POSTS = [
   },
   {
     tag: "블로그 마케팅",
-    tagColor: "bg-green-50 text-green-700 border-green-100",
-    accentColor: "border-l-green-500",
+    tagColor: "bg-blue-50 text-blue-700 border-blue-100",
+    accentColor: "border-l-blue-600",
     title: "카페 사장님이 꼭 써야 하는 블로그 키워드 30선",
     preview: "지역명+카페, 분위기 카페, 데이트 카페 등 실제 검색량 높은 키워드 목록과 글쓰기 공식을 공개합니다. 이 키워드 하나로 월 방문객이 달라집니다.",
     readTime: "6분",
@@ -32,8 +32,8 @@ const BLOG_POSTS = [
   },
   {
     tag: "체험단·리뷰",
-    tagColor: "bg-amber-50 text-amber-700 border-amber-100",
-    accentColor: "border-l-amber-500",
+    tagColor: "bg-blue-50 text-blue-600 border-blue-100",
+    accentColor: "border-l-blue-500",
     title: "체험단 vs 일반 리뷰 — 뭐가 더 효과적인가?",
     preview: "체험단은 빠르고 리뷰는 신뢰도가 높습니다. 업종별로 어느 방식이 더 ROI가 높은지 실제 A/B 테스트 결과를 공개합니다.",
     readTime: "5분",
@@ -43,8 +43,8 @@ const BLOG_POSTS = [
   },
   {
     tag: "SNS 마케팅",
-    tagColor: "bg-pink-50 text-pink-700 border-pink-100",
-    accentColor: "border-l-pink-500",
+    tagColor: "bg-blue-50 text-blue-700 border-blue-100",
+    accentColor: "border-l-blue-700",
     title: "인스타그램 릴스로 예약 폭발 — 미용실 성공 케이스",
     preview: "수원 네일샵이 릴스 3개로 2주 만에 예약을 마감한 실제 사례입니다. 어떤 내용을, 어떻게 촬영하고, 무슨 해시태그를 달았는지 공개합니다.",
     readTime: "7분",
@@ -54,8 +54,8 @@ const BLOG_POSTS = [
   },
   {
     tag: "업종별 전략",
-    tagColor: "bg-purple-50 text-purple-700 border-purple-100",
-    accentColor: "border-l-purple-500",
+    tagColor: "bg-indigo-50 text-indigo-700 border-indigo-100",
+    accentColor: "border-l-indigo-600",
     title: "음식점 배달 매출 2배 만든 리뷰 마케팅 공식",
     preview: "배달앱에서 순위를 올리는 방법은 광고비가 아닙니다. 리뷰 수와 평점, 그리고 사장님 댓글이 핵심입니다. 서울 마포 음식점의 4개월 과정을 공개합니다.",
     readTime: "9분",
@@ -65,8 +65,8 @@ const BLOG_POSTS = [
   },
   {
     tag: "마케팅 비용",
-    tagColor: "bg-gray-50 text-gray-700 border-gray-200",
-    accentColor: "border-l-gray-400",
+    tagColor: "bg-blue-50 text-blue-600 border-blue-100",
+    accentColor: "border-l-blue-400",
     title: "마케팅 예산 30만원으로 플레이스 1위 가능한가?",
     preview: "작은 예산으로 가장 효과적인 조합을 찾는 방법. 10년간 500개 프로젝트 데이터를 바탕으로 예산별 최적 전략을 제시합니다.",
     readTime: "6분",
@@ -74,9 +74,31 @@ const BLOG_POSTS = [
     href: "/blog/small-budget-place-top",
     internal: true,
   },
+  {
+    tag: "업종별 전략",
+    tagColor: "bg-indigo-50 text-indigo-700 border-indigo-100",
+    accentColor: "border-l-indigo-600",
+    title: "맘카페 바이럴 마케팅 완전 가이드 — 수강생 55% 늘린 실전 전략",
+    preview: "맘카페는 구매 결정권을 가진 주부가 모이는 최고의 로컬 채널입니다. 광고처럼 보이지 않으면서 효과를 내는 침투 전략, 업종별 콘텐츠 포인트, 실패 사례까지 공개합니다.",
+    readTime: "7분",
+    result: "학원 수강생 3개월 +55%, 카페 방문객 +40%",
+    href: "/blog/momcafe-viral-guide",
+    internal: true,
+  },
+  {
+    tag: "리뷰 마케팅",
+    tagColor: "bg-blue-50 text-blue-700 border-blue-100",
+    accentColor: "border-l-blue-600",
+    title: "네이버 플레이스 리뷰 100개 만들기 — 실전 로드맵",
+    preview: "리뷰가 없으면 순위가 없고, 순위가 없으면 방문객이 없습니다. 리뷰 요청 문자 템플릿, 사장님 답글 공식, 3개월 단계별 로드맵을 공개합니다.",
+    readTime: "8분",
+    result: "리뷰 0개 → 3개월 만에 127개 달성 사례",
+    href: "/blog/naver-place-review-100",
+    internal: true,
+  },
 ];
 
-const CATEGORIES = ["전체", "플레이스 SEO", "블로그 마케팅", "체험단·리뷰", "SNS 마케팅", "업종별 전략", "마케팅 비용"];
+const CATEGORIES = ["전체", "플레이스 SEO", "블로그 마케팅", "체험단·리뷰", "SNS 마케팅", "업종별 전략", "마케팅 비용", "리뷰 마케팅"];
 
 export default function BlogPage() {
   const [activeTab, setActiveTab] = useState("전체");
@@ -226,6 +248,27 @@ export default function BlogPage() {
                 <ExternalLink size={13} />
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* 매주 팁 받기 */}
+        <section className="py-10 bg-gradient-to-r from-blue-600 to-indigo-700">
+          <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-5 md:gap-10">
+            <div className="flex-1 text-center md:text-left">
+              <p className="text-blue-200 text-xs font-bold uppercase tracking-widest mb-1">무료 마케팅 팁</p>
+              <h3 className="text-white font-black text-lg md:text-xl mb-1">매주 소상공인 마케팅 인사이트를 카카오로 받아보세요</h3>
+              <p className="text-blue-100 text-sm">매주 1회 · 10년 경력 대표 직접 작성 · 비용 없음</p>
+            </div>
+            <a
+              href="https://pf.kakao.com/_MuUkG/chat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-yellow-400 text-gray-900 font-black text-sm hover:bg-yellow-300 transition-colors whitespace-nowrap"
+            >
+              <MessageCircle size={15} />
+              카카오 채널 구독
+              <ArrowRight size={13} />
+            </a>
           </div>
         </section>
 
