@@ -359,7 +359,7 @@ export default function HomePage() {
       <main>
 
         {/* ══ Hero ══ */}
-        <section className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 overflow-hidden pt-16">
+        <section className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 overflow-hidden pt-[104px] md:pt-[108px]">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-blue-600/6 rounded-full blur-3xl" />
             <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-indigo-600/6 rounded-full blur-3xl" />
@@ -1399,7 +1399,7 @@ export default function HomePage() {
                 전체 사례 보기 <ArrowRight size={13} />
               </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
               {[
                 {
                   industry: "카페",
@@ -1430,47 +1430,56 @@ export default function HomePage() {
                   before: { label: "리뷰 개수", value: "12개" },
                   after: { label: "리뷰 개수", value: "86개" },
                   period: "4개월",
-                  highlight: "예약 문의 4배 증가",
+                  highlight: "예약 문의 4배",
                   color: "from-blue-700 to-blue-900",
                   icon: UtensilsCrossed,
+                },
+                {
+                  industry: "한의원",
+                  location: "경기 안양",
+                  service: "블로그 + 플레이스 SEO",
+                  before: { label: "초진 예약", value: "월 15건" },
+                  after: { label: "초진 예약", value: "월 45건" },
+                  period: "4개월",
+                  highlight: "초진 예약 +200%",
+                  color: "from-blue-600 to-indigo-700",
+                  icon: Stethoscope,
                 },
               ].map((c) => {
                 const Icon = c.icon;
                 return (
                   <div key={c.industry} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <PhotoPlaceholder
-                      label={`${c.industry} 매장 외관 or 결과 스크린샷`}
-                      hint="플레이스 순위 화면 캡처 / 매장 외관 / 리뷰 화면"
-                      height="h-36"
-                    />
-                    <div className={`bg-gradient-to-r ${c.color} px-5 py-4 flex items-center justify-between`}>
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
-                          <Icon size={15} className="text-white" strokeWidth={2.5} />
+                    {/* 그라데이션 비주얼 헤더 (사진 대체) */}
+                    <div className={`bg-gradient-to-br ${c.color} px-5 py-6 relative overflow-hidden`}>
+                      <div className="absolute -right-4 -top-4 w-20 h-20 bg-white/10 rounded-full" />
+                      <div className="absolute -right-2 -bottom-6 w-14 h-14 bg-white/8 rounded-full" />
+                      <div className="relative">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-3 shadow-sm">
+                          <Icon size={18} className="text-white" strokeWidth={2} />
                         </div>
-                        <div>
-                          <div className="text-white font-black text-sm">{c.industry}</div>
-                          <div className="text-white/70 text-[10px]">{c.location}</div>
+                        <div className="text-white font-black text-base leading-tight">{c.industry}</div>
+                        <div className="text-white/70 text-[11px] mt-0.5">{c.location}</div>
+                        <div className="mt-3 inline-flex items-center gap-1 bg-white/15 border border-white/20 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                          {c.service}
                         </div>
                       </div>
-                      <span className="text-white/80 text-[10px] font-bold bg-white/15 px-2.5 py-1 rounded-full">{c.service}</span>
                     </div>
-                    <div className="p-5">
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        <div className="bg-red-50 border border-red-100 rounded-xl p-3 text-center">
-                          <div className="text-[10px] font-black text-red-400 mb-0.5 uppercase">Before</div>
-                          <div className="text-[10px] text-gray-400 mb-1">{c.before.label}</div>
-                          <div className="text-lg font-black text-red-500">{c.before.value}</div>
+                    <div className="p-4">
+                      <div className="grid grid-cols-2 gap-2 mb-3">
+                        <div className="bg-red-50 border border-red-100 rounded-xl p-2.5 text-center">
+                          <div className="text-[9px] font-black text-red-400 mb-0.5 uppercase">Before</div>
+                          <div className="text-[10px] text-gray-400 mb-1 leading-tight">{c.before.label}</div>
+                          <div className="text-sm font-black text-red-500">{c.before.value}</div>
                         </div>
-                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-3 text-center">
-                          <div className="text-[10px] font-black text-blue-600 mb-0.5 uppercase">After</div>
-                          <div className="text-[10px] text-gray-400 mb-1">{c.after.label}</div>
-                          <div className="text-lg font-black text-blue-700">{c.after.value}</div>
+                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-2.5 text-center">
+                          <div className="text-[9px] font-black text-blue-600 mb-0.5 uppercase">After</div>
+                          <div className="text-[10px] text-gray-400 mb-1 leading-tight">{c.after.label}</div>
+                          <div className="text-sm font-black text-blue-700">{c.after.value}</div>
                         </div>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-400">진행 기간 · {c.period}</span>
-                        <span className="text-xs font-black text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full">{c.highlight}</span>
+                        <span className="text-[10px] text-gray-400">{c.period}</span>
+                        <span className="text-[10px] font-black text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">{c.highlight}</span>
                       </div>
                     </div>
                   </div>
@@ -2058,9 +2067,9 @@ export default function HomePage() {
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/10 border border-white/25 text-white font-bold text-base hover:bg-white/18 transition-colors">
                 <MessageCircle size={16} /> 카카오톡 상담
               </a>
-              <a href="tel:010-9054-3788"
+              <a href="tel:010-7541-9054"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/10 border border-white/25 text-white font-bold text-base hover:bg-white/18 transition-colors">
-                <Phone size={16} /> 010-9054-3788
+                <Phone size={16} /> 010-7541-9054
               </a>
             </div>
             <p className="text-blue-300/60 text-xs mt-5">24시간 내 대표 직접 연락 보장</p>

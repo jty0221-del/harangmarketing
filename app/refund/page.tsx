@@ -37,7 +37,7 @@ const SECTIONS = [
   },
   {
     title: "7. 환불 신청 방법",
-    content: `환불 요청은 아래 연락처로 접수해 주세요.\n· 카카오톡: @하랑마케팅\n· 이메일: jty0221@naver.com\n· 전화: 010-9054-3788\n\n접수 후 3영업일 이내에 검토 결과를 안내드립니다.`,
+    content: `환불 요청은 아래 연락처로 접수해 주세요.\n· 카카오톡: @하랑마케팅\n· 이메일: jty0221@naver.com\n· 전화: 010-7541-9054\n\n접수 후 3영업일 이내에 검토 결과를 안내드립니다.`,
   },
 ];
 
@@ -45,7 +45,7 @@ export default function RefundPage() {
   return (
     <>
       <Header />
-      <main className="pt-16 min-h-screen bg-gray-50">
+      <main className="pt-[104px] md:pt-[108px] min-h-screen bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 md:px-6 py-10 md:py-16">
           <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 transition-colors mb-6">
             <ArrowLeft size={14} /> 홈으로

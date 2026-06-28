@@ -126,7 +126,7 @@ export default function ProcessPage() {
   return (
     <>
       <Header />
-      <main className="pt-16">
+      <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
         <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-16 md:py-24 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">

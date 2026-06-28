@@ -129,13 +129,13 @@ export default function Footer() {
             <div>
               <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">연락처</h4>
               <div className="space-y-2 mb-4">
-                <a href="tel:010-9054-3788"
+                <a href="tel:010-7541-9054"
                   className="flex items-center gap-2.5 group bg-white/5 hover:bg-white/10 border border-white/8 rounded-xl px-3 py-2.5 transition-colors">
                   <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
                     <Phone size={12} className="text-white" />
                   </div>
                   <div>
-                    <div className="text-white text-sm font-bold group-hover:text-blue-300 transition-colors">010-9054-3788</div>
+                    <div className="text-white text-sm font-bold group-hover:text-blue-300 transition-colors">010-7541-9054</div>
                     <div className="text-[10px] text-gray-600">전화 상담</div>
                   </div>
                 </a>

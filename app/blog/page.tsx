@@ -107,7 +107,7 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <main className="pt-16">
+      <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
         <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
           <div className="absolute top-0 right-1/3 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />

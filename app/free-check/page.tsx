@@ -54,11 +54,11 @@ export default function FreeCheckPage() {
           <span className="text-white font-black text-[15px]">하랑<span className="text-blue-400">마케팅</span></span>
         </Link>
         <a
-          href="tel:010-9054-3788"
+          href="tel:010-7541-9054"
           className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors"
         >
           <Phone size={12} strokeWidth={2.5} />
-          010-9054-3788
+          010-7541-9054
         </a>
       </div>
 

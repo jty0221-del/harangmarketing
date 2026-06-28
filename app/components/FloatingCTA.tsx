@@ -113,11 +113,11 @@ export default function FloatingCTA() {
                 <span className="text-[10px] text-gray-600">10분 내</span>
               </a>
               <a
-                href="tel:010-9054-3788"
+                href="tel:010-7541-9054"
                 className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-colors"
               >
                 <Phone size={14} strokeWidth={2.5} />
-                <span className="flex-1">010-9054-3788</span>
+                <span className="flex-1">010-7541-9054</span>
               </a>
               <Link
                 href="/free-check"
@@ -183,7 +183,7 @@ export default function FloatingCTA() {
             카카오
           </a>
           <a
-            href="tel:010-9054-3788"
+            href="tel:010-7541-9054"
             className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl bg-gray-900 text-white font-black text-sm"
           >
             <Phone size={15} />

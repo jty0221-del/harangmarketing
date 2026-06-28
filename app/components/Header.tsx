@@ -1,9 +1,46 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown, MessageCircle } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, MessageCircle, ArrowRight, Clock, Gift, TrendingUp, Shield, Calculator } from "lucide-react";
+
+const ANN_KEY = "harang_ann_v1";
+
+const ANN_MESSAGES = [
+  {
+    badge: "이달 한정",
+    badgeColor: "text-red-400",
+    dot: "bg-red-400",
+    text: <>신규 계약 3팀에게 <span className="text-white font-black">경쟁사 분석 리포트 무료 제공</span> · <span className="text-amber-400 font-bold">잔여 2자리</span></>,
+    ctaLabel: "무료 신청",
+    ctaHref: "/contact",
+  },
+  {
+    badge: "실시간",
+    badgeColor: "text-green-400",
+    dot: "bg-green-400",
+    text: <>이번 달 <span className="text-white font-black">12팀</span>이 무료 진단 신청 완료 · <span className="text-blue-300 font-bold">재계약률 95%</span></>,
+    ctaLabel: "진단 신청",
+    ctaHref: "/contact",
+  },
+  {
+    badge: "신뢰",
+    badgeColor: "text-blue-400",
+    dot: "bg-blue-400",
+    text: <>고의 작업 누락 시 <span className="text-white font-black">결제금액 10배 보상</span> · 대표 직접 담당 · <span className="text-blue-300 font-bold">상담 0원</span></>,
+    ctaLabel: "자세히 보기",
+    ctaHref: "/about",
+  },
+  {
+    badge: "신규",
+    badgeColor: "text-blue-400",
+    dot: "bg-blue-400",
+    text: <>3분 만에 내 업종 맞춤 패키지 확인 · <span className="text-white font-black">견적 계산기 무료 오픈</span></>,
+    ctaLabel: "계산기",
+    ctaHref: "/estimate",
+  },
+];
 
 const NAV_ITEMS = [
   { label: "회사소개", href: "/about" },
@@ -29,7 +66,25 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [annClosed, setAnnClosed] = useState(true); // start true to avoid SSR flash
+  const [annIdx, setAnnIdx] = useState(0);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const saved = localStorage.getItem(ANN_KEY);
+    if (saved !== "closed") setAnnClosed(false);
+  }, []);
+
+  useEffect(() => {
+    if (annClosed) return;
+    const t = setInterval(() => setAnnIdx((p) => (p + 1) % ANN_MESSAGES.length), 4000);
+    return () => clearInterval(t);
+  }, [annClosed]);
+
+  const closeAnn = useCallback(() => {
+    setAnnClosed(true);
+    localStorage.setItem(ANN_KEY, "closed");
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -43,196 +98,228 @@ export default function Header() {
   }, [pathname]);
 
   const isHome = pathname === "/";
+  const msg = ANN_MESSAGES[annIdx];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Announcement Bar */}
+      {!annClosed && (
+        <div className="relative bg-gray-950 border-b border-white/5">
+          <div className="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-center gap-2 md:gap-4">
+            <div className="hidden sm:flex items-center gap-1.5 shrink-0">
+              <span className={`w-1.5 h-1.5 rounded-full ${msg.dot} animate-pulse`} />
+              <span className={`${msg.badgeColor} font-black text-[11px] uppercase tracking-wider`}>{msg.badge}</span>
+            </div>
+            <div className="hidden sm:block w-px h-3 bg-white/10" />
+            <div className="flex items-center gap-2 text-xs min-w-0">
+              <span className="text-gray-400 truncate">{msg.text}</span>
+            </div>
+            <Link
+              href={msg.ctaHref}
+              className="shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-black text-[11px] transition-colors"
+            >
+              <Clock size={10} strokeWidth={2.5} />
+              {msg.ctaLabel}
+              <ArrowRight size={10} strokeWidth={2.5} />
+            </Link>
+          </div>
+          <button
+            onClick={closeAnn}
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded hover:bg-white/10 transition-colors text-gray-600 hover:text-gray-300"
+            aria-label="닫기"
+          >
+            <X size={12} />
+          </button>
+        </div>
+      )}
+
+      {/* Nav Bar */}
+      <div className={`transition-all duration-300 ${
         scrolled || !isHome
           ? "bg-white/96 backdrop-blur-md shadow-sm border-b border-gray-100"
           : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-[68px]">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-            <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
-            <div>
-              <span
-                className={`font-black text-[17px] tracking-tight transition-colors ${
-                  scrolled || !isHome ? "text-gray-900" : "text-white"
-                }`}
-              >
-                하랑<span className="text-blue-500">마케팅</span>
-              </span>
-              {(scrolled || !isHome) && (
-                <div className="text-[10px] font-bold text-blue-500 leading-none mt-0.5 tracking-tight">
-                  10년 경력 · 대표 직접 담당
-                </div>
-              )}
-            </div>
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {NAV_ITEMS.map((item) =>
-              item.sub ? (
-                <div
-                  key={item.href}
-                  className="relative"
-                  onMouseEnter={() => setDropdownOpen(true)}
-                  onMouseLeave={() => setDropdownOpen(false)}
+      }`}>
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-[68px]">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+              <img src="/harang-icon.svg" alt="하랑마케팅 로고" className="w-8 h-8" />
+              <div>
+                <span
+                  className={`font-black text-[17px] tracking-tight transition-colors ${
+                    scrolled || !isHome ? "text-gray-900" : "text-white"
+                  }`}
                 >
+                  하랑<span className="text-blue-500">마케팅</span>
+                </span>
+                {(scrolled || !isHome) && (
+                  <div className="text-[10px] font-bold text-blue-500 leading-none mt-0.5 tracking-tight">
+                    10년 경력 · 대표 직접 담당
+                  </div>
+                )}
+              </div>
+            </Link>
+
+            {/* Desktop nav */}
+            <nav className="hidden md:flex items-center gap-1">
+              {NAV_ITEMS.map((item) =>
+                item.sub ? (
+                  <div
+                    key={item.href}
+                    className="relative"
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                        pathname.startsWith(item.href)
+                          ? scrolled || !isHome
+                            ? "text-blue-600"
+                            : "text-blue-300"
+                          : scrolled || !isHome
+                          ? "text-gray-600 hover:text-gray-900"
+                          : "text-gray-300 hover:text-white"
+                      }`}
+                    >
+                      {item.label}
+                      <ChevronDown size={13} className={`transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
+                    </Link>
+                    {dropdownOpen && (
+                      <div className="absolute top-full left-0 mt-1 w-44 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden py-1">
+                        {item.sub.map((s) => (
+                          <Link
+                            key={s.href}
+                            href={s.href}
+                            className="block px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+                          >
+                            {s.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
                   <Link
+                    key={item.href}
                     href={item.href}
-                    className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                      pathname.startsWith(item.href)
+                    className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                      pathname === item.href
                         ? scrolled || !isHome
-                          ? "text-blue-600"
-                          : "text-blue-300"
+                          ? "bg-blue-50 text-blue-600"
+                          : "bg-white/10 text-white"
                         : scrolled || !isHome
-                        ? "text-gray-600 hover:text-gray-900"
-                        : "text-gray-300 hover:text-white"
+                        ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                        : "text-gray-300 hover:text-white hover:bg-white/8"
                     }`}
                   >
                     {item.label}
-                    <ChevronDown size={13} className={`transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
                   </Link>
-                  {dropdownOpen && (
-                    <div className="absolute top-full left-0 mt-1 w-44 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden py-1">
+                )
+              )}
+              <a
+                href="tel:010-7541-9054"
+                className={`hidden xl:flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
+              >
+                <Phone size={13} strokeWidth={2} />
+                <span className="font-semibold text-xs">010-7541-9054</span>
+              </a>
+              <a
+                href="https://pf.kakao.com/_MuUkG/chat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`ml-2 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-bold transition-colors ${scrolled || !isHome ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300" : "bg-yellow-400/90 text-gray-900 hover:bg-yellow-300"}`}
+              >
+                <MessageCircle size={13} strokeWidth={2.5} />
+                <span className="hidden lg:inline">카카오 상담</span>
+              </a>
+              <Link
+                href="/contact"
+                className="ml-1 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors shadow-sm"
+              >
+                무료 진단
+              </Link>
+            </nav>
+
+            {/* Mobile button */}
+            <button
+              onClick={() => setOpen(!open)}
+              className={`md:hidden p-2 rounded-lg transition-colors ${
+                scrolled || !isHome
+                  ? "text-gray-700 hover:bg-gray-100"
+                  : "text-white hover:bg-white/10"
+              }`}
+              aria-label="메뉴 열기"
+            >
+              {open ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile drawer */}
+        {open && (
+          <div className="md:hidden bg-white border-t border-gray-100 shadow-xl">
+            <div className="px-4 pt-4 pb-3 border-b border-gray-100">
+              <div className="text-xs font-black text-gray-900">하랑마케팅</div>
+              <div className="text-[11px] text-gray-400">10년 경력 · 소상공인 전문 · 대표 직접 담당</div>
+            </div>
+            <div className="px-4 py-3 space-y-0.5">
+              {NAV_ITEMS.map((item) => (
+                <div key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
+                      pathname === item.href || pathname.startsWith(item.href)
+                        ? "bg-blue-50 text-blue-600"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                  {item.sub && (
+                    <div className="ml-4 mt-0.5 space-y-0.5 mb-1">
                       {item.sub.map((s) => (
                         <Link
                           key={s.href}
                           href={s.href}
-                          className="block px-4 py-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+                          className="block px-4 py-2 rounded-lg text-xs text-gray-400 hover:text-gray-700 hover:bg-gray-50 transition-colors"
                         >
-                          {s.label}
+                          · {s.label}
                         </Link>
                       ))}
                     </div>
                   )}
                 </div>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
-                    pathname === item.href
-                      ? scrolled || !isHome
-                        ? "bg-blue-50 text-blue-600"
-                        : "bg-white/10 text-white"
-                      : scrolled || !isHome
-                      ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                      : "text-gray-300 hover:text-white hover:bg-white/8"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
-            <a
-              href="tel:010-9054-3788"
-              className={`hidden xl:flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm transition-colors ${scrolled || !isHome ? "text-gray-500 hover:text-gray-900" : "text-gray-400 hover:text-white"}`}
-            >
-              <Phone size={13} strokeWidth={2} />
-              <span className="font-semibold text-xs">010-9054-3788</span>
-            </a>
-            <a
-              href="https://pf.kakao.com/_MuUkG/chat"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`ml-2 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-bold transition-colors ${scrolled || !isHome ? "bg-yellow-400 text-gray-900 hover:bg-yellow-300" : "bg-yellow-400/90 text-gray-900 hover:bg-yellow-300"}`}
-            >
-              <MessageCircle size={13} strokeWidth={2.5} />
-              <span className="hidden lg:inline">카카오 상담</span>
-            </a>
-            <Link
-              href="/contact"
-              className="ml-1 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors shadow-sm"
-            >
-              무료 진단
-            </Link>
-          </nav>
-
-          {/* Mobile button */}
-          <button
-            onClick={() => setOpen(!open)}
-            className={`md:hidden p-2 rounded-lg transition-colors ${
-              scrolled || !isHome
-                ? "text-gray-700 hover:bg-gray-100"
-                : "text-white hover:bg-white/10"
-            }`}
-            aria-label="메뉴 열기"
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile drawer */}
-      {open && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-xl">
-          {/* 브랜드 미니 헤더 */}
-          <div className="px-4 pt-4 pb-3 border-b border-gray-100">
-            <div className="text-xs font-black text-gray-900">하랑마케팅</div>
-            <div className="text-[11px] text-gray-400">10년 경력 · 소상공인 전문 · 대표 직접 담당</div>
-          </div>
-          <div className="px-4 py-3 space-y-0.5">
-            {NAV_ITEMS.map((item) => (
-              <div key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
-                    pathname === item.href || pathname.startsWith(item.href)
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-                {item.sub && (
-                  <div className="ml-4 mt-0.5 space-y-0.5 mb-1">
-                    {item.sub.map((s) => (
-                      <Link
-                        key={s.href}
-                        href={s.href}
-                        className="block px-4 py-2 rounded-lg text-xs text-gray-400 hover:text-gray-700 hover:bg-gray-50 transition-colors"
-                      >
-                        · {s.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="px-4 pb-4 pt-2 border-t border-gray-100 space-y-2">
-            <Link
-              href="/contact"
-              className="flex items-center justify-center gap-1.5 w-full py-3.5 rounded-xl bg-blue-600 text-white font-black text-sm"
-            >
-              무료 진단 신청 (0원)
-            </Link>
-            <div className="grid grid-cols-2 gap-2">
-              <a
-                href="https://pf.kakao.com/_MuUkG/chat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm"
-              >
-                <MessageCircle size={13} strokeWidth={2.5} />카카오 상담
-              </a>
-              <a
-                href="tel:010-9054-3788"
-                className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm"
-              >
-                <Phone size={13} strokeWidth={2.5} />전화 상담
-              </a>
+              ))}
             </div>
-            <p className="text-center text-[10px] text-gray-400">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
+            <div className="px-4 pb-4 pt-2 border-t border-gray-100 space-y-2">
+              <Link
+                href="/contact"
+                className="flex items-center justify-center gap-1.5 w-full py-3.5 rounded-xl bg-blue-600 text-white font-black text-sm"
+              >
+                무료 진단 신청 (0원)
+              </Link>
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href="https://pf.kakao.com/_MuUkG/chat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm"
+                >
+                  <MessageCircle size={13} strokeWidth={2.5} />카카오 상담
+                </a>
+                <a
+                  href="tel:010-7541-9054"
+                  className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm"
+                >
+                  <Phone size={13} strokeWidth={2.5} />전화 상담
+                </a>
+              </div>
+              <p className="text-center text-[10px] text-gray-400">상담 비용 0원 · 계약 강요 없음 · 24시간 내 연락</p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 }

@@ -207,7 +207,7 @@ export default function ServicesPage() {
   return (
     <>
       <Header />
-      <main className="pt-16">
+      <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
         <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
           <div className="absolute top-0 right-1/3 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
@@ -357,14 +357,16 @@ export default function ServicesPage() {
               <h2 className="text-xl md:text-2xl font-black text-gray-900">내 업종엔 어떤 서비스가 맞나요?</h2>
               <p className="text-gray-400 text-sm mt-2">업종별로 성과가 가장 빠른 서비스를 먼저 추천합니다</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "+167% 방문객", color: "from-blue-500 to-blue-700" },
-                { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "+113% 배달 매출", color: "from-blue-600 to-indigo-700" },
-                { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "예약 2주 마감", color: "from-blue-500 to-blue-700" },
-                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "+300% 신규예약", color: "from-blue-600 to-blue-800" },
-                { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "+55% 수강생", color: "from-blue-700 to-indigo-800" },
-                { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "+64% 매출", color: "from-blue-500 to-indigo-600" },
+                { industry: "카페·베이커리", firstRec: "플레이스 SEO", recs: ["체험단·리뷰", "인스타그램"], result: "+167% 방문객 · 3개월", color: "from-blue-500 to-blue-700" },
+                { industry: "음식점·배달", firstRec: "리뷰 마케팅", recs: ["맘카페 바이럴", "플레이스 SEO"], result: "+113% 배달 매출 · 4개월", color: "from-blue-600 to-indigo-700" },
+                { industry: "미용·뷰티·네일", firstRec: "인스타그램", recs: ["체험단·리뷰", "카카오맵"], result: "예약 2주 완전 마감", color: "from-blue-500 to-blue-700" },
+                { industry: "의원·한의원·피부과", firstRec: "블로그 마케팅", recs: ["체험단·리뷰", "플레이스 SEO"], result: "+300% 신규예약 · 6개월", color: "from-blue-600 to-blue-800" },
+                { industry: "학원·교육", firstRec: "맘카페 바이럴", recs: ["블로그 마케팅", "홈페이지형 블로그"], result: "+55% 수강생 · 3개월", color: "from-blue-700 to-indigo-800" },
+                { industry: "온라인 쇼핑몰", firstRec: "블로그 SEO", recs: ["체험단·리뷰", "블로그 배포"], result: "+64% 매출 · 5개월", color: "from-blue-500 to-indigo-600" },
+                { industry: "한의원·한방", firstRec: "블로그 마케팅", recs: ["플레이스 SEO", "리뷰 마케팅"], result: "+200% 초진 예약 · 4개월", color: "from-blue-600 to-indigo-700" },
+                { industry: "개업·창업 준비", firstRec: "창업 지원·브랜딩", recs: ["플레이스 세팅", "블로그 마케팅"], result: "오픈 첫날부터 노출", color: "from-blue-700 to-blue-900" },
               ].map((ind) => (
                 <div key={ind.industry} className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all">
                   <div className={`bg-gradient-to-br ${ind.color} px-4 py-3`}>

@@ -100,7 +100,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="pt-16">
+      <main className="pt-[104px] md:pt-[108px]">
 
         {/* Hero */}
         <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-16 md:py-24 relative overflow-hidden">
@@ -437,9 +437,9 @@ export default function AboutPage() {
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-sm transition-colors">
                   <MessageCircle size={14} /> 카카오톡 문의
                 </a>
-                <a href="tel:010-9054-3788"
+                <a href="tel:010-7541-9054"
                   className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors">
-                  <Phone size={14} /> 010-9054-3788
+                  <Phone size={14} /> 010-7541-9054
                 </a>
               </div>
             </div>

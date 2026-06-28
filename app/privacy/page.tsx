@@ -41,7 +41,7 @@ const SECTIONS = [
   },
   {
     title: "8. 개인정보 보호책임자",
-    content: `· 책임자: 전태영 (대표)\n· 이메일: jty0221@naver.com\n· 전화: 010-9054-3788`,
+    content: `· 책임자: 전태영 (대표)\n· 이메일: jty0221@naver.com\n· 전화: 010-7541-9054`,
   },
   {
     title: "9. 시행일",
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
   return (
     <>
       <Header />
-      <main className="pt-16 min-h-screen bg-gray-50">
+      <main className="pt-[104px] md:pt-[108px] min-h-screen bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 md:px-6 py-10 md:py-16">
           <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 transition-colors mb-6">
             <ArrowLeft size={14} /> 홈으로

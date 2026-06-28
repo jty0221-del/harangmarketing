@@ -76,7 +76,7 @@ function ContactPageInner() {
   return (
     <>
       <Header />
-      <main className="pt-16">
+      <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
         <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
           <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
@@ -339,8 +339,8 @@ function ContactPageInner() {
                         className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-yellow-400 text-gray-900 font-bold text-sm hover:bg-yellow-300 transition-colors">
                         <MessageCircle size={15} />카카오톡 바로 상담
                       </a>
-                      <a href="tel:010-9054-3788" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-colors">
-                        <Phone size={15} />010-9054-3788
+                      <a href="tel:010-7541-9054" className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-colors">
+                        <Phone size={15} />010-7541-9054
                       </a>
                     </div>
                     <div className="flex justify-center gap-0.5 mb-1">
@@ -368,13 +368,13 @@ function ContactPageInner() {
                       </div>
                       <ArrowRight size={13} className="text-gray-300 group-hover:text-yellow-500 transition-colors" />
                     </a>
-                    <a href="tel:010-9054-3788"
+                    <a href="tel:010-7541-9054"
                       className="flex items-center gap-3 p-3.5 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors group">
                       <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-sm shrink-0">
                         <Phone size={16} className="text-white" strokeWidth={2.5} />
                       </div>
                       <div className="flex-1">
-                        <div className="font-bold text-gray-900 text-sm">010-9054-3788</div>
+                        <div className="font-bold text-gray-900 text-sm">010-7541-9054</div>
                         <div className="text-xs text-gray-400">평일 09:00~18:00</div>
                       </div>
                       <ArrowRight size={13} className="text-gray-300 group-hover:text-blue-500 transition-colors" />

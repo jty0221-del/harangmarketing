@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main className="pt-16 min-h-screen bg-gray-50 flex flex-col">
+      <main className="pt-[104px] md:pt-[108px] min-h-screen bg-gray-50 flex flex-col">
         <div className="flex-1 flex items-center justify-center py-20 px-4">
           <div className="max-w-2xl w-full text-center">
             {/* 404 graphic */}
@@ -78,7 +78,7 @@ export default function NotFound() {
             <div className="inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400">
               <span className="flex items-center gap-1.5">
                 <Phone size={11} className="text-blue-500" strokeWidth={2.5} />
-                010-9054-3788
+                010-7541-9054
               </span>
               <span>상담 비용 0원</span>
               <span>24시간 내 연락</span>

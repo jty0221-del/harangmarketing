@@ -209,7 +209,7 @@ export default function FAQPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_FAQ) }}
       />
       <Header />
-      <main className="pt-16">
+      <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
         <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-14 md:py-20 relative overflow-hidden">
           <div className="absolute top-0 right-1/3 w-72 h-72 bg-blue-600/8 rounded-full blur-3xl pointer-events-none" />
@@ -320,11 +320,11 @@ export default function FAQPage() {
                 카카오톡으로 바로 질문하기
               </a>
               <a
-                href="tel:010-9054-3788"
+                href="tel:010-7541-9054"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-white font-bold text-sm transition-colors"
               >
                 <Phone size={15} strokeWidth={2.5} />
-                010-9054-3788
+                010-7541-9054
               </a>
               <Link
                 href="/contact"

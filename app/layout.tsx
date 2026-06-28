@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import FloatingCTA from "./components/FloatingCTA";
-import AnnouncementBar from "./components/AnnouncementBar";
 import SocialProofToast from "./components/SocialProofToast";
 
 export const metadata: Metadata = {
@@ -131,7 +130,7 @@ export default function RootLayout({
               "name": "하랑마케팅",
               "description": "10년 경력 대표가 직접 담당하는 소상공인 전문 마케팅 대행사. 네이버 플레이스 SEO, 블로그 마케팅, 체험단, 인스타그램 마케팅.",
               "url": "https://harangmarketing.com",
-              "telephone": "010-9054-3788",
+              "telephone": "010-7541-9054",
               "email": "jty0221@naver.com",
               "address": {
                 "@type": "PostalAddress",
@@ -156,7 +155,6 @@ export default function RootLayout({
             }),
           }}
         />
-        <AnnouncementBar />
         {children}
         <FloatingCTA />
         <SocialProofToast />
