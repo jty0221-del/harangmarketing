@@ -134,18 +134,19 @@ export default function AboutPage() {
         </section>
 
         {/* Pain Points */}
-        <section className="py-10 bg-white border-b border-gray-100">
+        <section className="py-14 md:py-20 bg-white border-b border-gray-100">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-5 text-center">혹시 이런 고민 중이신가요?</p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <p className="text-xs font-bold text-red-500 uppercase tracking-widest mb-6 text-center">혹시 이런 고민 중이신가요?</p>
+            <div className="space-y-5">
               {[
                 "마케팅, 해야 하는 건 아는데 막상 하려니 너무 어렵고 귀찮습니다.",
                 "광고비는 썼는데 효과는 없고, 돈만 날린 기분이에요.",
                 "내 가게처럼 책임지고 관리해 주는 곳, 정말 없을까요?",
-              ].map((text) => (
-                <div key={text} className="bg-gray-50 border border-gray-100 rounded-2xl p-4 flex items-start gap-3">
-                  <AlertTriangle size={14} className="text-blue-400 mt-0.5 shrink-0" strokeWidth={2.5} />
-                  <p className="text-sm text-gray-600 leading-relaxed">{text}</p>
+              ].map((text, i) => (
+                <div key={i} className="relative pl-6 border-l-4 border-red-500">
+                  <div className="absolute -top-2 -left-1 text-red-500 text-5xl font-black leading-none select-none opacity-20">"</div>
+                  <p className="text-lg md:text-xl font-black text-gray-900 leading-snug">{text}</p>
+                  <div className="absolute -bottom-1 left-0 w-1 h-3 bg-red-400 rounded-full opacity-50" />
                 </div>
               ))}
             </div>
