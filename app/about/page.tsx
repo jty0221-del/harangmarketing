@@ -103,32 +103,32 @@ export default function AboutPage() {
       <main className="pt-[104px] md:pt-[108px]">
 
         {/* Hero */}
-        <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-16 md:py-24 relative overflow-hidden">
+        <section className="bg-gray-950 py-20 md:py-32 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/8 rounded-full blur-3xl" />
+            <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-blue-600/7 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-indigo-600/7 rounded-full blur-3xl" />
+            <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
           </div>
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">About</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-5 leading-tight">
-              마케팅 대행사,<br /><span className="text-blue-400">아직도 속고 계신가요?</span>
+            <p className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-6">About Us</p>
+            <h1 className="text-[40px] md:text-[56px] lg:text-[64px] font-black text-white mb-6 leading-[1.05] tracking-tight">
+              결과가 없으면<br />솔직히 말씀드립니다
             </h1>
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mb-6">
+            <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-2xl mb-8">
               수많은 대행사에 실망하셨던 그 마음, 누구보다 잘 알고 있습니다.
-              500곳 이상의 대표님들이 돌고 돌아 다시 하랑마케팅을 선택하신 이유를 솔직하게 이야기합니다.
+              500곳 이상의 대표님들이 돌고 돌아 하랑마케팅을 선택하신 이유를 솔직하게 이야기합니다.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <div className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5">
-                <Shield size={12} className="text-blue-300" />
-                <span className="text-blue-200 text-xs font-bold">속이면 10배 보상</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5">
-                <CheckCircle2 size={12} className="text-blue-300" />
-                <span className="text-blue-200 text-xs font-bold">500곳+ 대표님과 함께</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-3 py-1.5">
-                <Clock size={12} className="text-blue-300" />
-                <span className="text-blue-200 text-xs font-bold">10년+ 실무 경력</span>
-              </div>
+            <div className="grid grid-cols-3 gap-4 max-w-md">
+              {[
+                { val: "500+", label: "클라이언트" },
+                { val: "95%", label: "재계약률" },
+                { val: "10년+", label: "경력" },
+              ].map(s => (
+                <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
+                  <div className="text-2xl font-black text-white mb-0.5">{s.val}</div>
+                  <div className="text-xs text-gray-500">{s.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

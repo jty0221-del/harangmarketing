@@ -369,35 +369,31 @@ export default function HomePage() {
           <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-24 md:py-32 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-center">
             <div className="max-w-2xl lg:max-w-none">
-              <div className="flex flex-wrap items-center gap-2 mb-8">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-500/25 text-blue-300 text-xs font-semibold tracking-wide">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                  2014년 설립 · 10년 경력
+              <div className="flex items-center gap-3 mb-8">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/8 border border-white/12 text-gray-300 text-xs font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  지금 상담 가능
                 </div>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-500/25 text-blue-300 text-xs font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                  재계약률 95%
-                </div>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-500/25 text-indigo-300 text-xs font-semibold">
-                  500+ 함께한 대표님
-                </div>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-500/25 text-blue-300 text-xs font-semibold">
-                  고의 누락 시 10배 보상
-                </div>
+                <div className="h-3 w-px bg-white/10" />
+                <span className="text-xs text-gray-500 font-medium">2014년 설립 · 10년 경력 · 500+ 대표님</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-[56px] font-black text-white leading-[1.15] tracking-tight mb-6">
-                마케팅 대행사,<br />
-                <span className="text-blue-400">아직도 속고 계신가요?</span>
+              <h1 className="text-[42px] md:text-[54px] lg:text-[62px] font-black text-white leading-[1.1] tracking-tight mb-6">
+                매출이 오르는<br />
+                마케팅만 합니다
               </h1>
 
-              <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-3 max-w-lg">
+              <p className="text-base md:text-[17px] text-gray-400 leading-relaxed mb-3 max-w-lg">
                 카페 창업 실패를 경험한 대표가 직접 운영합니다.
                 <span className="text-white font-semibold"> 대표님의 돈을 제 돈처럼 </span>무겁게 생각하며,
                 <span className="text-white font-semibold"> 업종별 맞춤 전략</span>으로 실제 매출을 올려드립니다.
               </p>
-              <p className="text-sm text-gray-500 mb-10">
-                대표 직접 담당 · 속이면 10배 보상 · 24시간 소통 · 패키지 팔이 없음
+              <p className="text-sm text-gray-600 mb-10 flex flex-wrap gap-x-4 gap-y-1">
+                {["대표 직접 담당", "외주 없음", "속이면 10배 보상", "24시간 소통"].map(t => (
+                  <span key={t} className="flex items-center gap-1.5">
+                    <span className="w-1 h-1 rounded-full bg-blue-500" />{t}
+                  </span>
+                ))}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -534,6 +530,33 @@ export default function HomePage() {
               ))}
           </div>
         </div>
+
+        {/* ══ 플랫폼 신뢰 스트립 ══ */}
+        <section className="py-8 bg-white border-b border-gray-100">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest shrink-0">운영 플랫폼</p>
+              <div className="h-px flex-1 bg-gray-100 hidden sm:block" />
+              <div className="flex flex-wrap justify-center sm:justify-start items-center gap-4 md:gap-6">
+                {[
+                  { name: "네이버 플레이스", color: "text-green-600", bg: "bg-green-50", border: "border-green-100", letter: "N" },
+                  { name: "카카오맵", color: "text-yellow-700", bg: "bg-yellow-50", border: "border-yellow-100", letter: "K" },
+                  { name: "배달의민족", color: "text-blue-700", bg: "bg-blue-50", border: "border-blue-100", letter: "B" },
+                  { name: "쿠팡이츠", color: "text-orange-700", bg: "bg-orange-50", border: "border-orange-100", letter: "C" },
+                  { name: "인스타그램", color: "text-purple-700", bg: "bg-purple-50", border: "border-purple-100", letter: "I" },
+                  { name: "구글 리뷰", color: "text-red-600", bg: "bg-red-50", border: "border-red-100", letter: "G" },
+                ].map((p) => (
+                  <div key={p.name} className="flex items-center gap-2">
+                    <div className={`w-6 h-6 rounded-lg ${p.bg} border ${p.border} flex items-center justify-center text-[11px] font-black ${p.color}`}>
+                      {p.letter}
+                    </div>
+                    <span className="text-xs font-semibold text-gray-500 whitespace-nowrap">{p.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* ══ 견적 계산기 배너 ══ */}
         <section className="py-8 bg-gradient-to-r from-indigo-50 via-blue-50 to-indigo-50 border-b border-blue-100">
@@ -732,60 +755,77 @@ export default function HomePage() {
         </section>
 
         {/* ══ 대표 소개 ══ */}
-        <section className="py-14 md:py-20 bg-white border-t border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-start">
-              {/* Photo */}
-              <div className="flex flex-col items-center md:items-start gap-3">
-                <PhotoPlaceholder
-                  label="대표 프로필 사진"
-                  hint="실제 사진으로 교체 예정"
-                  width="w-48 md:w-full"
-                  height="h-52"
-                  className="rounded-2xl"
-                />
-                <div className="flex flex-col items-center md:items-start gap-1 text-center md:text-left">
-                  <p className="text-sm font-black text-gray-900">하랑마케팅 대표</p>
-                  <p className="text-xs text-gray-400">소상공인 마케팅 전문가</p>
-                </div>
-              </div>
-
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-center">
               {/* Content */}
               <div>
-                <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">About CEO</p>
-                <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4 leading-snug">
-                  실패해 본 대표가<br />성공하는 길을 가장 잘 압니다
+                <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-5">About CEO</p>
+                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
+                  실패해 본 대표가<br />성공하는 길을<br />가장 잘 압니다
                 </h2>
-                <p className="text-gray-500 text-sm leading-relaxed mb-5">
+
+                {/* Quote highlight */}
+                <div className="relative bg-gray-950 rounded-2xl p-6 mb-7">
+                  <div className="absolute top-4 left-5 text-5xl font-black text-blue-600/20 leading-none select-none">"</div>
+                  <p className="relative text-gray-300 text-base md:text-[17px] leading-relaxed pl-4">
+                    대표님은 사업의 본질에만 집중하십시오.<br />
+                    골치 아픈 홍보와 전략은 하랑이<br className="hidden sm:block" /> 대신 고민하고 실행하겠습니다.
+                  </p>
+                  <p className="text-xs text-gray-600 mt-4 pl-4">— 하랑마케팅 대표</p>
+                </div>
+
+                <p className="text-gray-500 text-sm leading-relaxed mb-6">
                   해병대 장교로 전역 후 전 재산을 털어 카페를 창업했다가 실패했습니다. 그때 마케팅 대행사에게 사기도 당했습니다.
-                  그 절박함을 직접 겪었기 때문에 <strong className="text-gray-700">대표님의 돈을 제 돈처럼 무겁게 생각합니다.</strong>
+                  그 절박함을 직접 겪었기 때문에 <strong className="text-gray-800">대표님의 돈을 제 돈처럼 무겁게 생각합니다.</strong>
                   이후 10년간 현장을 직접 뛰어 500곳 이상의 매장과 함께 성장해왔습니다.
                 </p>
-                <blockquote className="border-l-4 border-blue-500 pl-4 py-1 mb-6">
-                  <p className="text-sm italic text-gray-600 leading-relaxed">
-                    "대표님은 사업의 본질에만 집중하십시오. 골치 아픈 홍보와 전략은 하랑이 대신 고민하고 실행하겠습니다."
-                  </p>
-                </blockquote>
-                <div className="flex flex-wrap gap-2 mb-6">
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-7">
                   {[
-                    "해병대 장교 출신",
-                    "카페 창업 실패 경험",
-                    "10년+ 마케팅 경력",
-                    "500+ 대표님과 함께",
-                    "속이면 10배 보상",
-                  ].map((badge) => (
-                    <span key={badge} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-100 text-xs font-bold text-blue-700">
-                      <CheckCircle2 size={11} className="text-blue-500" strokeWidth={2.5} />
-                      {badge}
-                    </span>
+                    { label: "해병대 장교 출신", sub: "리더십·책임감" },
+                    { label: "카페 창업 실패", sub: "현장 공감" },
+                    { label: "10년+ 경력", sub: "직접 담당" },
+                    { label: "500+ 클라이언트", sub: "검증된 성과" },
+                    { label: "속이면 10배 보상", sub: "신뢰 보장" },
+                    { label: "외주 없음", sub: "대표가 전담" },
+                  ].map((b) => (
+                    <div key={b.label} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-2.5">
+                      <div className="text-xs font-black text-gray-900 mb-0.5">{b.label}</div>
+                      <div className="text-[10px] text-gray-400">{b.sub}</div>
+                    </div>
                   ))}
                 </div>
+
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm transition-colors shadow-sm"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gray-950 hover:bg-gray-800 text-white font-bold text-sm transition-colors"
                 >
                   대표와 직접 상담하기 <ArrowRight size={14} />
                 </Link>
+              </div>
+
+              {/* Photo */}
+              <div>
+                <PhotoPlaceholder
+                  label="대표 프로필 사진"
+                  hint="실제 사진으로 교체 예정 · 세로 비율 (3:4) 권장"
+                  width="w-full"
+                  height="h-[440px]"
+                  className="rounded-2xl shadow-lg"
+                />
+                <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+                  {[
+                    { val: "10년+", label: "마케팅 경력" },
+                    { val: "95%", label: "재계약률" },
+                    { val: "500+", label: "완료 프로젝트" },
+                  ].map(s => (
+                    <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl py-3">
+                      <div className="text-base font-black text-gray-900">{s.val}</div>
+                      <div className="text-[10px] text-gray-400 mt-0.5">{s.label}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -1496,88 +1536,99 @@ export default function HomePage() {
         </section>
 
         {/* ══ 후기 ══ */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 lg:gap-12 items-start">
-              {/* Left: header + trust numbers */}
-              <div className="lg:sticky lg:top-24">
-                <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">후기</p>
-                <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4 leading-snug">
+        <section className="py-16 md:py-28 bg-gray-950 relative overflow-hidden">
+          {/* subtle grid bg */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
+          <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+              <div>
+                <p className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-4">Client Testimonials</p>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
                   실제 사장님들의<br />성장 이야기
                 </h2>
-                <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                  가공하지 않은 실제 클라이언트 후기입니다. 매장명은 요청에 따라 익명 처리했습니다.
-                </p>
-                <div className="space-y-3 mb-6">
-                  {[
-                    { val: "4.9/5.0", label: "평균 만족도" },
-                    { val: "95%", label: "재계약률" },
-                    { val: "500+", label: "누적 고객사" },
-                  ].map((s) => (
-                    <div key={s.label} className="flex items-center gap-3 bg-white rounded-xl p-3.5 border border-gray-100 shadow-sm">
-                      <div className="text-xl font-black text-blue-600 w-16 shrink-0">{s.val}</div>
-                      <div className="text-xs text-gray-500">{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <Link href="/cases" className="inline-flex items-center gap-1.5 text-blue-600 font-bold text-sm hover:underline">
-                  전체 사례 보기 <ArrowRight size={13} />
-                </Link>
               </div>
-
-              {/* Right: testimonial cards */}
-              <div className="space-y-4">
+              <div className="flex items-center gap-8 shrink-0">
                 {[
-                  {
-                    name: "카페 사장님", location: "경기 일산", service: "플레이스 SEO", initial: "카",
-                    metric: "+167%", metricLabel: "방문객 증가", period: "3개월",
-                    avatarColor: "from-blue-500 to-blue-700",
-                    text: "3개월 만에 '일산 카페' 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다. 솔직히 처음엔 반신반의했는데 정말 효과가 있을 줄 몰랐어요.",
-                  },
-                  {
-                    name: "피부과 원장님", location: "서울 강서", service: "인스타그램 마케팅", initial: "피",
-                    metric: "+300%", metricLabel: "신규 예약 증가", period: "6개월",
-                    avatarColor: "from-blue-600 to-indigo-700",
-                    text: "인스타그램 신규 예약이 6개월 만에 3배가 됐습니다. 보고서도 이해하기 쉬웠고, 대표님이 항상 직접 연락 주시는 게 신뢰가 갔어요.",
-                  },
-                  {
-                    name: "학원 원장님", location: "경기 고양", service: "맘카페 바이럴", initial: "학",
-                    metric: "+55%", metricLabel: "수강생 증가", period: "2개월",
-                    avatarColor: "from-blue-500 to-indigo-600",
-                    text: "맘카페 바이럴 하나로 수강생이 50% 늘었습니다. 지역 엄마들 사이에서 입소문이 났어요. 이전 대행사랑 비교가 안 될 정도예요.",
-                  },
-                ].map((t) => (
-                  <div key={t.name} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
-                    {/* Top: result number */}
-                    <div className="bg-gray-950 px-5 py-5 flex items-center justify-between">
-                      <div>
-                        <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">{t.period} 만에 달성</div>
-                        <div className="text-4xl font-black text-white">{t.metric}</div>
-                        <div className="text-xs text-gray-400 mt-0.5">{t.metricLabel}</div>
-                      </div>
-                      <div className="text-right">
-                        <div className="flex gap-0.5 justify-end mb-1.5">
-                          {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={12} className="text-amber-400 fill-amber-400" />)}
-                        </div>
-                        <div className="text-[10px] text-gray-500">실제 클라이언트</div>
-                        <div className="text-[10px] text-gray-600 mt-0.5 font-bold">{t.service}</div>
-                      </div>
+                  { val: "4.9", unit: "/5", label: "평균 만족도" },
+                  { val: "95", unit: "%", label: "재계약률" },
+                  { val: "500", unit: "+", label: "누적 고객사" },
+                ].map((s) => (
+                  <div key={s.label} className="text-center">
+                    <div className="text-2xl md:text-3xl font-black text-white">
+                      {s.val}<span className="text-blue-400 text-lg">{s.unit}</span>
                     </div>
-                    <div className="p-5">
-                      <p className="text-sm text-gray-600 leading-relaxed mb-5 border-l-2 border-gray-200 pl-3 italic">"{t.text}"</p>
-                      <div className="flex items-center gap-3">
-                        <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${t.avatarColor} flex items-center justify-center shrink-0`}>
-                          <span className="text-white font-black text-base">{t.initial}</span>
-                        </div>
-                        <div>
-                          <div className="font-black text-gray-900 text-sm">{t.name}</div>
-                          <div className="text-xs text-gray-400">{t.location} · 익명 처리</div>
-                        </div>
-                      </div>
-                    </div>
+                    <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+              {[
+                {
+                  name: "카페 사장님", location: "경기 일산", service: "플레이스 SEO", initial: "카",
+                  metric: "+167%", metricLabel: "방문객 증가", period: "3개월",
+                  accentColor: "from-blue-500 to-blue-700",
+                  text: "3개월 만에 '일산 카페' 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다. 처음엔 반신반의했는데 정말 효과가 있을 줄 몰랐어요.",
+                },
+                {
+                  name: "피부과 원장님", location: "서울 강서", service: "인스타그램 마케팅", initial: "피",
+                  metric: "+300%", metricLabel: "신규 예약 증가", period: "6개월",
+                  accentColor: "from-indigo-500 to-purple-600",
+                  text: "인스타그램 신규 예약이 6개월 만에 3배가 됐습니다. 보고서도 이해하기 쉬웠고, 대표님이 항상 직접 연락 주시는 게 신뢰가 갔어요.",
+                },
+                {
+                  name: "학원 원장님", location: "경기 고양", service: "맘카페 바이럴", initial: "학",
+                  metric: "+55%", metricLabel: "수강생 증가", period: "2개월",
+                  accentColor: "from-blue-600 to-indigo-700",
+                  text: "맘카페 바이럴 하나로 수강생이 50% 늘었습니다. 지역 엄마들 사이에서 입소문이 났어요. 이전 대행사랑 비교가 안 될 정도예요.",
+                },
+              ].map((t) => (
+                <div key={t.name} className="group relative bg-white/5 border border-white/8 rounded-3xl overflow-hidden hover:bg-white/8 hover:border-white/15 transition-all duration-300 flex flex-col">
+                  {/* Large quote mark */}
+                  <div className="absolute top-5 right-6 text-[80px] font-black text-white/[0.04] leading-none select-none pointer-events-none">"</div>
+
+                  {/* Accent top bar */}
+                  <div className={`h-1 bg-gradient-to-r ${t.accentColor}`} />
+
+                  <div className="p-7 flex flex-col flex-1">
+                    {/* Stars */}
+                    <div className="flex gap-0.5 mb-5">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} size={13} className="text-amber-400 fill-amber-400" />
+                      ))}
+                    </div>
+
+                    {/* Quote text */}
+                    <p className="text-gray-300 text-[15px] leading-relaxed flex-1 mb-7">
+                      "{t.text}"
+                    </p>
+
+                    {/* Bottom */}
+                    <div className="flex items-end justify-between pt-5 border-t border-white/8">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${t.accentColor} flex items-center justify-center shrink-0`}>
+                          <span className="text-white font-black text-sm">{t.initial}</span>
+                        </div>
+                        <div>
+                          <div className="font-bold text-white text-sm">{t.name}</div>
+                          <div className="text-xs text-gray-500">{t.location} · {t.service}</div>
+                        </div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <div className={`text-2xl font-black bg-gradient-to-r ${t.accentColor} bg-clip-text text-transparent`}>{t.metric}</div>
+                        <div className="text-[10px] text-gray-500">{t.metricLabel} · {t.period}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <Link href="/cases" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/15 text-gray-400 hover:text-white hover:border-white/30 font-semibold text-sm transition-all">
+                전체 사례 보기 <ArrowRight size={13} />
+              </Link>
             </div>
           </div>
         </section>
@@ -2023,56 +2074,59 @@ export default function HomePage() {
         </section>
 
         {/* ══ 최종 CTA ══ */}
-        <section className="py-16 md:py-24 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 relative overflow-hidden">
+        <section className="py-20 md:py-32 bg-gray-950 relative overflow-hidden">
+          {/* Background elements */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl" />
+            <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-blue-600/8 blur-3xl rounded-full" />
+            <div className="absolute bottom-0 right-1/4 w-[400px] h-[250px] bg-indigo-600/8 blur-3xl rounded-full" />
+            <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
           </div>
+
           <div className="relative max-w-3xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-            {/* Social proof mini strip */}
-            <div className="inline-flex items-center gap-3 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6">
-              <div className="flex -space-x-1.5">
-                <div className="w-6 h-6 rounded-full bg-blue-400 border-2 border-blue-700 flex items-center justify-center text-white text-[10px] font-black">C</div>
-                <div className="w-6 h-6 rounded-full bg-indigo-400 border-2 border-blue-700 flex items-center justify-center text-white text-[10px] font-black">K</div>
-                <div className="w-6 h-6 rounded-full bg-blue-300 border-2 border-blue-700 flex items-center justify-center text-white text-[10px] font-black">P</div>
-              </div>
-              <span className="text-blue-100 text-xs font-semibold">오늘 3명이 상담을 신청했습니다</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-pulse" />
+            <div className="inline-flex items-center gap-2 border border-white/10 rounded-full px-4 py-1.5 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-gray-400 text-xs font-medium">지금 상담 가능 · 오늘 3명 신청</span>
             </div>
 
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-4 leading-tight">
-              오늘 상담하면, 내일 바로<br className="hidden md:block" /> 전략 리포트가 옵니다
+            <h2 className="text-[36px] md:text-[52px] font-black text-white leading-tight mb-5">
+              오늘 상담하면,<br />
+              <span className="text-blue-400">내일 전략 리포트</span>가 옵니다
             </h2>
-            <p className="text-blue-100 text-base md:text-lg mb-3 leading-relaxed">
-              업종·경쟁사·현재 순위를 분석해 무엇을 먼저 해야 할지 정확히 알려드립니다. 비용 0원.
+
+            <p className="text-gray-400 text-base md:text-lg mb-10 leading-relaxed max-w-xl mx-auto">
+              업종·경쟁사·현재 순위를 분석해<br className="hidden md:block" />
+              무엇을 먼저 해야 할지 정확히 알려드립니다. 비용 0원.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
-              {["해병대 장교 출신 대표", "카페 실패 경험자", "10년 현장 전문가", "고의 누락 10배 보상"].map((badge) => (
-                <span key={badge} className="text-[11px] text-blue-200 bg-white/10 border border-white/15 px-3 py-1 rounded-full font-medium">
-                  {badge}
-                </span>
-              ))}
-            </div>
-            <div className="flex items-center justify-center gap-1.5 mb-8">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={14} className="text-amber-300 fill-amber-300" />
-              ))}
-              <span className="text-blue-200/80 text-sm ml-1">4.9 · 상담 비용 0원 · 계약 강요 없음</span>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white text-blue-700 font-black text-base hover:bg-blue-50 transition-colors shadow-xl shadow-blue-900/30">
-                <FileText size={16} /> 무료 상담 신청
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+              <Link href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-8 py-[18px] rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-base transition-all shadow-2xl shadow-blue-600/30 hover:-translate-y-0.5">
+                <FileText size={16} /> 무료 상담 신청 (0원)
               </Link>
               <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/10 border border-white/25 text-white font-bold text-base hover:bg-white/18 transition-colors">
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold text-base transition-all">
                 <MessageCircle size={16} /> 카카오톡 상담
               </a>
               <a href="tel:010-7541-9054"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/10 border border-white/25 text-white font-bold text-base hover:bg-white/18 transition-colors">
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl border border-white/15 hover:border-white/30 text-white font-medium text-base transition-all">
                 <Phone size={16} /> 010-7541-9054
               </a>
             </div>
-            <p className="text-blue-300/60 text-xs mt-5">24시간 내 대표 직접 연락 보장</p>
+
+            {/* Trust row */}
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              {[
+                { icon: ShieldCheck, text: "상담 비용 0원" },
+                { icon: Handshake, text: "계약 강요 없음" },
+                { icon: Clock, text: "24시간 내 대표 직접 연락" },
+                { icon: Star, text: "4.9 / 5.0 만족도" },
+              ].map(({ icon: Icon, text }) => (
+                <span key={text} className="flex items-center gap-1.5 text-xs text-gray-600">
+                  <Icon size={12} className="text-blue-500" strokeWidth={2} />
+                  {text}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
 
