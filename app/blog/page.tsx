@@ -96,9 +96,31 @@ const BLOG_POSTS = [
     href: "/blog/naver-place-review-100",
     internal: true,
   },
+  {
+    tag: "카카오맵",
+    tagColor: "bg-yellow-50 text-yellow-700 border-yellow-100",
+    accentColor: "border-l-yellow-500",
+    title: "카카오맵 마케팅 완전 가이드 — 신규 고객 유입 +700% 달성 전략",
+    preview: "네이버만 보다가 카카오맵을 놓치면 절반의 고객을 잃습니다. 트렌드 순위 올리는 법, 2개월 로드맵, 리뷰 요청 스크립트까지 실전 전략을 모두 공개합니다.",
+    readTime: "7분",
+    result: "카카오맵 신규 고객 유입 +700% · 2개월",
+    href: "/blog/kakaomap-marketing-guide",
+    internal: true,
+  },
+  {
+    tag: "업종별 전략",
+    tagColor: "bg-indigo-50 text-indigo-700 border-indigo-100",
+    accentColor: "border-l-indigo-600",
+    title: "의원·한의원 마케팅 완전 가이드 — 초진 예약 3배 만든 6개월 전략",
+    preview: "병원·한의원은 신뢰가 전부입니다. 블로그로 원장님 전문성을 쌓고, 체험단으로 후기를 늘리고, 플레이스 SEO로 상위 노출까지 — 실제 경기 분당 피부과 6개월 성과를 공개합니다.",
+    readTime: "8분",
+    result: "초진 예약 +300% · 6개월 · 경기 분당 피부과",
+    href: "/blog/clinic-marketing-guide",
+    internal: true,
+  },
 ];
 
-const CATEGORIES = ["전체", "플레이스 SEO", "블로그 마케팅", "체험단·리뷰", "SNS 마케팅", "업종별 전략", "마케팅 비용", "리뷰 마케팅"];
+const CATEGORIES = ["전체", "플레이스 SEO", "블로그 마케팅", "체험단·리뷰", "SNS 마케팅", "업종별 전략", "마케팅 비용", "리뷰 마케팅", "카카오맵"];
 
 export default function BlogPage() {
   const [activeTab, setActiveTab] = useState("전체");
