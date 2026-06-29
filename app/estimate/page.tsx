@@ -346,7 +346,11 @@ export default function EstimatePage() {
                       className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 text-white font-black text-sm hover:bg-blue-700 transition-colors shadow-sm">
                       이 플랜으로 무료 상담 신청 <ArrowRight size={14} />
                     </Link>
-                    <a href="https://pf.kakao.com/_MuUkG/chat" target="_blank" rel="noopener noreferrer"
+                    <a
+                      href={`https://pf.kakao.com/_MuUkG/chat?text=${encodeURIComponent(
+                        `안녕하세요, 견적 계산기에서 추천받은 [${rec.pkg.name}] 플랜에 대해 상담 받고 싶습니다.\n예산: ${BUDGETS.find(b => b.id === selectedBudget)?.label ?? ""}\n업종: ${INDUSTRIES.find(i => i.id === selectedIndustry)?.label ?? ""}`
+                      )}`}
+                      target="_blank" rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-yellow-400 text-gray-900 font-black text-sm hover:bg-yellow-300 transition-colors">
                       <MessageCircle size={14} />
                       카카오로 바로 문의

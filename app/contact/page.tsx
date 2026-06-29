@@ -9,6 +9,7 @@ import {
   Clock, Star, ArrowRight, ChevronRight,
   Coffee, UtensilsCrossed, Scissors, Stethoscope, GraduationCap, ShoppingBag, HelpCircle,
 } from "lucide-react";
+import { GA_EVENTS } from "../components/Analytics";
 
 const INDUSTRY_ICONS = [
   { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "+167% 방문객", case: "경기 일산 카페 · 3개월", color: "from-blue-500 to-blue-700" },
@@ -68,7 +69,38 @@ function ContactPageInner() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 900));
+
+    const indLabel = INDUSTRY_ICONS.find((i) => i.id === selectedIndustry)?.label ?? selectedIndustry;
+    const goalsText = selectedGoals.length > 0 ? `\n목표: ${selectedGoals.join(", ")}` : "";
+    const budgetText = form.budget ? `\n예산: ${form.budget}` : "";
+    const msgText = form.message ? `\n메모: ${form.message}` : "";
+
+    const kakaoMsg = encodeURIComponent(
+      `[하랑마케팅 상담 신청]\n이름/업체명: ${form.name}\n연락처: ${form.phone}\n업종: ${indLabel}${budgetText}${goalsText}${msgText}`
+    );
+
+    GA_EVENTS.contactFormSubmit(indLabel);
+    // 카카오톡 채널에 문의 내용 전달
+    window.open(`https://pf.kakao.com/_MuUkG/chat?text=${kakaoMsg}`, "_blank");
+
+    // 이메일 알림 (API route)
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          industry: indLabel,
+          budget: form.budget,
+          goals: selectedGoals,
+          message: form.message,
+        }),
+      });
+    } catch {
+      // 이메일 실패해도 카카오로 전달됐으므로 무시
+    }
+
     setLoading(false);
     setStep("done");
   };

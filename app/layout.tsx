@@ -83,6 +83,18 @@ export default function RootLayout({
     <html lang="ko" className="h-full">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        {/* Google Analytics GA4 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX', { page_path: window.location.pathname });
+            `,
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col">
         <script

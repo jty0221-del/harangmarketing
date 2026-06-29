@@ -73,7 +73,7 @@ export default function SocialProofToast() {
   if (visible.length === 0) return null;
 
   return (
-    <div className="fixed bottom-24 left-3 md:bottom-10 md:left-5 z-30 flex flex-col gap-2 max-w-[260px] md:max-w-[290px] pointer-events-none">
+    <div className="fixed bottom-28 left-3 md:bottom-10 md:left-5 z-30 flex flex-col gap-2 max-w-[260px] md:max-w-[290px] pointer-events-none">
       {visible.map((toast) => {
         const Icon = ICON_MAP[toast.type];
         const color = COLOR_MAP[toast.type];

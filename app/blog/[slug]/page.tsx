@@ -556,6 +556,8 @@ export async function generateMetadata(
       title: post.title,
       description: post.summary,
       url: `https://harangmarketing.com/blog/${slug}`,
+      type: "article",
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: post.title }],
     },
   };
 }
@@ -565,8 +567,36 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = POSTS[slug];
   if (!post) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.summary,
+    author: {
+      "@type": "Person",
+      name: "하랑마케팅 대표",
+      url: "https://harangmarketing.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "하랑마케팅",
+      url: "https://harangmarketing.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://harangmarketing.com/og-image.png",
+      },
+    },
+    url: `https://harangmarketing.com/blog/${slug}`,
+    mainEntityOfPage: `https://harangmarketing.com/blog/${slug}`,
+    image: "https://harangmarketing.com/og-image.png",
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}
