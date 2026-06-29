@@ -2138,6 +2138,34 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ══ 지역 커버리지 ══ */}
+        <section className="py-12 md:py-16 bg-gray-950 border-t border-white/5">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div>
+                <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">전국 서비스</p>
+                <h2 className="text-xl md:text-2xl font-black text-white mb-1">어디든 달려갑니다</h2>
+                <p className="text-gray-500 text-sm">온라인 진행 기본, 수도권 현장 방문 가능</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { name: "서울", href: "/location/seoul" },
+                  { name: "경기도", href: "/location/gyeonggi" },
+                  { name: "인천", href: "/location/incheon" },
+                  { name: "부산", href: "/contact?region=부산" },
+                  { name: "대구", href: "/contact?region=대구" },
+                  { name: "전국", href: "/contact" },
+                ].map(r => (
+                  <Link key={r.name} href={r.href}
+                    className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-xs font-bold hover:bg-white/10 hover:text-white transition-colors">
+                    {r.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ══ FAQ 섹션 ══ */}
         <HomeFAQ />
 
