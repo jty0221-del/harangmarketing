@@ -430,6 +430,35 @@ export default function AboutPage() {
               ))}
             </div>
 
+            {/* 연혁 타임라인 */}
+            <div className="mt-10 mb-10">
+              <h2 className="text-xl font-black text-gray-900 mb-6 text-center">하랑마케팅 걸어온 길</h2>
+              <div className="relative">
+                <div className="absolute left-[19px] top-2 bottom-2 w-[2px] bg-gray-100" />
+                <div className="space-y-6">
+                  {[
+                    { year: "2014", event: "해병대 장교 전역 후 카페 창업 도전", note: "마케팅 몰라서 6개월 만에 폐업 — 이게 출발점이 됨" },
+                    { year: "2015", event: "소상공인 마케팅 독학 시작", note: "플레이스 SEO, 블로그, 체험단 직접 실험" },
+                    { year: "2017", event: "하랑마케팅 공식 설립", note: "처음 10개 매장 무료로 진행하며 성과 데이터 축적" },
+                    { year: "2019", event: "누적 클라이언트 100곳 돌파", note: "카페·음식점 중심 → 병원·뷰티·학원으로 업종 확장" },
+                    { year: "2022", event: "배달 플랫폼·SNS 마케팅 서비스 추가", note: "배민·쿠팡이츠·인스타그램 전문 라인업 구축" },
+                    { year: "2024", event: "누적 클라이언트 500곳+, 재계약률 95%", note: "대표 직접 담당 원칙 유지 중" },
+                  ].map((item, i) => (
+                    <div key={item.year} className="flex gap-5 relative pl-10">
+                      <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-white border-2 border-blue-500 flex items-center justify-center shrink-0 z-10">
+                        <span className="text-[10px] font-black text-blue-600">{item.year.slice(2)}</span>
+                      </div>
+                      <div className="flex-1 bg-gray-50 border border-gray-100 rounded-2xl p-4">
+                        <div className="text-[11px] font-bold text-blue-600 mb-1">{item.year}</div>
+                        <div className="font-black text-gray-900 text-sm mb-1">{item.event}</div>
+                        <div className="text-xs text-gray-500">{item.note}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             <div className="mt-8 bg-blue-50 border border-blue-100 rounded-2xl p-6 text-center">
               <p className="text-sm font-black text-gray-900 mb-1">더 궁금한 것이 있으신가요?</p>
               <p className="text-xs text-gray-500 mb-4">24시간 이내 대표가 직접 답변드립니다</p>
