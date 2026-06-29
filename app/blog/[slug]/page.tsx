@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import ScrollProgressBar from "../../components/ScrollProgressBar";
 import { ArrowLeft, Clock, TrendingUp, CheckCircle2, ArrowRight, MessageCircle, BookOpen } from "lucide-react";
 
 const POSTS: Record<string, {
@@ -597,6 +598,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <ScrollProgressBar />
       <Header />
       <main className="pt-[104px] md:pt-[108px]">
         {/* Hero */}

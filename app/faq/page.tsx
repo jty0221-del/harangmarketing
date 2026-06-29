@@ -8,6 +8,8 @@ import {
   MapPin, HelpCircle, ShieldCheck, Calculator,
 } from "lucide-react";
 
+// FAQ JSON-LD will be injected in the component for rich results
+
 export const metadata: Metadata = {
   title: "자주 묻는 질문 (FAQ) — 하랑마케팅 | 소상공인 마케팅 대행사",
   description: "하랑마케팅 상담 전 가장 많이 물어보시는 질문들을 모았습니다. 비용, 계약 기간, 효과, 지역, 업종 등 궁금한 것을 미리 확인하세요.",
