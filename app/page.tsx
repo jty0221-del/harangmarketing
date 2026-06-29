@@ -2073,6 +2073,50 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ══ 무료 가이드 리드 마그넷 ══ */}
+        <section className="py-14 md:py-20 bg-white">
+          <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+            <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-6 md:p-10 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+              <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+                <div>
+                  <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-3 py-1 mb-4">
+                    <FileText size={12} className="text-white" />
+                    <span className="text-white text-xs font-bold">무료 가이드</span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-black text-white mb-3 leading-tight">
+                    플레이스 순위를 올리는<br />7가지 체크리스트
+                  </h2>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-6">
+                    10년간 500개 매장 데이터에서 추출한 플레이스 SEO 핵심 포인트.
+                    지금 무료 상담 신청하면 PDF로 바로 보내드립니다.
+                  </p>
+                  <div className="space-y-2">
+                    {[
+                      "리뷰 수·답글률·사진 수 최적 기준표",
+                      "경쟁사 분석 방법 3단계",
+                      "한 달 만에 순위 오르는 우선순위 액션 7가지",
+                    ].map(item => (
+                      <div key={item} className="flex items-center gap-2">
+                        <CheckCircle2 size={14} className="text-blue-200 shrink-0" strokeWidth={2.5} />
+                        <span className="text-blue-100 text-sm">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3 lg:w-52">
+                  <Link href="/contact"
+                    className="inline-flex items-center justify-center gap-2 bg-white text-blue-700 font-black px-6 py-3.5 rounded-xl hover:bg-blue-50 transition-colors text-sm text-center">
+                    무료 가이드 받기 <ArrowRight size={15} />
+                  </Link>
+                  <p className="text-blue-200 text-xs text-center">상담 신청 후 카카오톡으로 전송</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ══ 최종 CTA ══ */}
         <section className="py-20 md:py-32 bg-gray-950 relative overflow-hidden">
           {/* Background elements */}
