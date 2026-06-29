@@ -352,6 +352,71 @@ function PromoSection() {
   );
 }
 
+const HOME_FAQS = [
+  {
+    q: "상담 비용이 있나요?",
+    a: "아니요, 완전 무료입니다. 초기 상담부터 경쟁사 분석 리포트까지 비용이 없습니다. 계약 여부와 관계없이 현황 분석 자료를 드립니다.",
+  },
+  {
+    q: "계약 최소 기간이 얼마나 되나요?",
+    a: "최소 3개월을 권장합니다. 플레이스 SEO는 2~4주부터 순위 변동이 시작되고, 블로그는 3개월부터 검색 유입이 안정됩니다. 1개월 단위 계약도 가능하지만 성과가 충분히 나오기 전에 종료될 수 있습니다.",
+  },
+  {
+    q: "성과가 보장되나요?",
+    a: "100% 보장은 드리기 어렵습니다. 다만 95%의 재계약률과 500곳 이상의 실제 성과가 증명합니다. 진행 전 업종·지역 경쟁 현황을 분석해 현실적인 예상 수치를 먼저 알려드립니다.",
+  },
+  {
+    q: "외주 작가가 아닌 대표가 직접 하는 건가요?",
+    a: "네, 하랑마케팅은 대표가 직접 전략을 수립하고 담당합니다. 외주 제작도 대표 감수 후 납품됩니다. 중간 관리자나 외주에 떠넘기는 방식은 사용하지 않습니다.",
+  },
+  {
+    q: "어떤 업종이든 가능한가요?",
+    a: "카페, 음식점, 미용, 병원·의원, 학원, 쇼핑몰 등 소상공인·1인 사업자라면 모두 가능합니다. 다만 일부 업종(성인 콘텐츠, 불법 사업자 등)은 진행이 어렵습니다.",
+  },
+  {
+    q: "지역 제한이 있나요?",
+    a: "전국 가능합니다. 서울·경기·인천 수도권뿐 아니라 부산, 대구, 대전, 광주 등 전국 어디든 온라인으로 진행할 수 있습니다. 현장 방문이 필요한 경우 협의합니다.",
+  },
+];
+
+function HomeFAQ() {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="py-14 md:py-20 bg-gray-50">
+      <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">FAQ</p>
+          <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">상담 전에 가장 많이 물어보시는 것들</h2>
+          <p className="text-gray-500 text-sm">더 궁금한 게 있으시면 카카오톡으로 바로 물어보세요</p>
+        </div>
+        <div className="space-y-2">
+          {HOME_FAQS.map((faq, i) => (
+            <div key={i} className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+              <button
+                onClick={() => setOpen(open === i ? null : i)}
+                className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-gray-50 transition-colors"
+              >
+                <span className="font-bold text-gray-900 text-sm">{faq.q}</span>
+                <ChevronDown size={16} className={`text-gray-400 shrink-0 transition-transform ${open === i ? "rotate-180" : ""}`} />
+              </button>
+              {open === i && (
+                <div className="px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link href="/faq" className="inline-flex items-center gap-1.5 text-blue-600 font-bold text-sm hover:underline">
+            전체 FAQ 보기 <ArrowRight size={14} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
@@ -2072,6 +2137,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ══ FAQ 섹션 ══ */}
+        <HomeFAQ />
 
         {/* ══ 무료 가이드 리드 마그넷 ══ */}
         <section className="py-14 md:py-20 bg-white">
