@@ -359,22 +359,22 @@ function PromoSection() {
 // ──────────────────────────────────────────
 const YOUTUBE_VIDEOS = [
   {
-    videoId: "PLACEHOLDER_1", // ← 실제 영상 ID로 교체
-    title: "네이버 플레이스 1위 만드는 법 — 소상공인 마케팅",
-    desc: "플레이스 SEO 핵심 전략 공개",
+    videoId: "LWjHEAujJr0",
+    title: "리뷰 마케팅 실전 전략 — 소상공인이 꼭 알아야 할 리뷰 관리법",
+    desc: "리뷰 수집부터 답글·활용까지, 매출로 연결되는 리뷰 마케팅 전 과정",
+    badge: "리뷰 마케팅",
+  },
+  {
+    videoId: "owgcIulD8xk",
+    title: "네이버 플레이스 예약·쿠폰·마케팅 메시지 100% 활용법",
+    desc: "예약 시스템·쿠폰 설정·마케팅 메시지로 재방문율 높이는 실전 가이드",
+    badge: "플레이스 활용",
+  },
+  {
+    videoId: "1oiqvVTtF_w",
+    title: "네이버 플레이스 등록부터 SEO 최적화 세팅까지 한 번에",
+    desc: "플레이스 신규 등록 방법과 상위 노출을 위한 SEO 세팅 완전 정복",
     badge: "플레이스 SEO",
-  },
-  {
-    videoId: "PLACEHOLDER_2", // ← 실제 영상 ID로 교체
-    title: "배달 매출 2배 만든 리뷰 마케팅 공식",
-    desc: "배민·쿠팡이츠 상위 노출 전략",
-    badge: "배달 마케팅",
-  },
-  {
-    videoId: "PLACEHOLDER_3", // ← 실제 영상 ID로 교체
-    title: "인스타그램으로 예약 마감하는 미용실 전략",
-    desc: "릴스·비포애프터 실전 전략",
-    badge: "SNS 마케팅",
   },
 ];
 
