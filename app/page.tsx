@@ -853,13 +853,19 @@ export default function HomePage() {
         </section>
 
         {/* ══ 고민 해결 ══ */}
-        <section className="py-16 md:py-20 bg-gray-50">
+        <section className="py-16 md:py-20" style={{ background: "var(--h-bg)" }}>
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <RevealOnScroll>
             <div className="text-center mb-12">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">왜 하랑인가</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">이런 고민, 해결된 증거 있습니다</h2>
-              <p className="text-gray-400 text-sm">마케팅 대행사와 일해본 사장님들이 가장 많이 하는 말 — 하랑이 어떻게 바꿨는지</p>
+              <div className="flex items-center gap-3 justify-center mb-4">
+                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>왜 하랑인가</span>
+                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black mb-4" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>이런 고민, 해결된 증거 있습니다</h2>
+              <p className="text-sm" style={{ color: "var(--h-muted)" }}>마케팅 대행사와 일해본 사장님들이 가장 많이 하는 말 — 하랑이 어떻게 바꿨는지</p>
             </div>
+            </RevealOnScroll>
             <div className="space-y-4">
               {[
                 {
@@ -906,26 +912,28 @@ export default function HomePage() {
                   badgeBg: "bg-blue-50",
                   badgeText: "text-blue-700",
                 },
-              ].map((item) => {
+              ].map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.q} className="bg-white rounded-2xl border border-gray-100 p-5 md:p-7 hover:shadow-lg transition-all group">
+                  <RevealOnScroll key={item.q} delay={idx * 60}>
+                  <div className="bg-white rounded-2xl border p-5 md:p-7 hover:shadow-lg transition-all group" style={{ borderColor: "var(--h-border)" }}>
                     <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
                       {/* content */}
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-black text-gray-300 uppercase tracking-widest mb-2">고객 고민</p>
-                        <h3 className="font-black text-gray-900 text-base md:text-lg leading-snug mb-2">"{item.q}"</h3>
-                        <p className="text-sm text-gray-500 leading-relaxed border-l-2 border-blue-200 pl-3">{item.a}</p>
+                        <p className="text-[10px] font-black uppercase tracking-widest mb-2" style={{ color: "var(--h-muted)" }}>고객 고민</p>
+                        <h3 className="font-black text-base md:text-lg leading-snug mb-2" style={{ color: "var(--h-dark)" }}>"{item.q}"</h3>
+                        <p className="text-sm leading-relaxed pl-3" style={{ borderLeft: "2px solid var(--h-amber)", color: "#4B5563" }}>{item.a}</p>
                       </div>
-                      {/* result badge */}
+                      {/* result badge — amber */}
                       <div className="shrink-0">
-                        <div className={`inline-flex flex-col items-center gap-0.5 px-5 py-4 rounded-2xl ${item.badgeBg} border border-gray-100 min-w-[100px] text-center`}>
-                          <span className={`text-lg md:text-xl font-black ${item.badgeText}`}>{item.result}</span>
-                          <span className="text-[10px] text-gray-400 font-medium">{item.period}</span>
+                        <div className="inline-flex flex-col items-center gap-0.5 px-5 py-4 rounded-2xl min-w-[100px] text-center" style={{ background: "var(--h-surface)", border: "1px solid var(--h-border)" }}>
+                          <span className="text-lg md:text-xl font-black tabular-nums" style={{ color: "var(--h-amber)" }}>{item.result}</span>
+                          <span className="text-[10px] font-medium" style={{ color: "var(--h-muted)" }}>{item.period}</span>
                         </div>
                       </div>
                     </div>
                   </div>
+                  </RevealOnScroll>
                 );
               })}
             </div>
@@ -1111,15 +1119,21 @@ export default function HomePage() {
         </section>
 
         {/* ══ 진행 프로세스 ══ */}
-        <section className="py-16 md:py-24 bg-gray-50">
+        <section className="py-16 md:py-24 bg-white">
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+            <RevealOnScroll>
             <div className="text-center mb-12">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">프로세스</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">
+              <div className="flex items-center gap-3 justify-center mb-4">
+                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>프로세스</span>
+                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black mb-4" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                 어떻게 진행되나요?
               </h2>
-              <p className="text-gray-500 text-base">상담 신청부터 성과 확인까지 4단계면 됩니다</p>
+              <p className="text-base" style={{ color: "var(--h-muted)" }}>상담 신청부터 성과 확인까지 4단계면 됩니다</p>
             </div>
+            </RevealOnScroll>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
               {/* Connector line (desktop) */}
@@ -1312,13 +1326,19 @@ export default function HomePage() {
         </section>
 
         {/* ══ 서비스 ══ */}
-        <section className="py-16 md:py-24 bg-gray-50">
+        <section className="py-16 md:py-24" style={{ background: "var(--h-surface)" }}>
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <RevealOnScroll>
             <div className="text-center mb-12">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">서비스</p>
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-4">카페·병원·학원, 업종마다<br className="md:hidden" /> 전략이 다릅니다</h2>
-              <p className="text-gray-500 text-sm md:text-base max-w-xl mx-auto">일괄 패키지 없이 업종별 데이터 기반으로 가장 효과적인 서비스를 추천해드립니다. 어떤 걸 선택할지 몰라도 됩니다.</p>
+              <div className="flex items-center gap-3 justify-center mb-4">
+                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>서비스</span>
+                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black mb-4" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>카페·병원·학원, 업종마다<br className="md:hidden" /> 전략이 다릅니다</h2>
+              <p className="text-sm md:text-base max-w-xl mx-auto" style={{ color: "var(--h-muted)" }}>일괄 패키지 없이 업종별 데이터 기반으로 가장 효과적인 서비스를 추천해드립니다. 어떤 걸 선택할지 몰라도 됩니다.</p>
             </div>
+            </RevealOnScroll>
 
             {/* 인기 3대 서비스 */}
             <div className="mb-5">
@@ -1542,9 +1562,9 @@ export default function HomePage() {
                   <div className="text-white font-black text-sm tracking-wide">하랑마케팅</div>
                   <div className="text-blue-200 text-[11px] mt-0.5">10년 경력 · 데이터 기반</div>
                 </div>
-                <div className="bg-gray-800 p-5 text-center">
-                  <div className="text-gray-300 font-bold text-sm">일반 대행사</div>
-                  <div className="text-gray-500 text-[11px] mt-0.5">일반적인 경우</div>
+                <div className="p-5 text-center" style={{ background: "var(--h-surface)" }}>
+                  <div className="font-bold text-sm" style={{ color: "#374151" }}>일반 대행사</div>
+                  <div className="text-[11px] mt-0.5" style={{ color: "var(--h-muted)" }}>일반적인 경우</div>
                 </div>
               </div>
               {COMPARE_ITEMS.map((item, i) => (
@@ -1575,7 +1595,7 @@ export default function HomePage() {
                     무료 상담 신청 <ArrowRight size={11} />
                   </Link>
                 </div>
-                <div className="bg-gray-800 p-4" />
+                <div className="p-4" style={{ background: "var(--h-surface)" }} />
               </div>
             </div>
 
