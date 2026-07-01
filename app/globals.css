@@ -3,6 +3,16 @@
 :root {
   --background: #ffffff;
   --foreground: #111827;
+
+  /* 하랑마케팅 디자인 토큰 */
+  --h-dark: #0F1923;
+  --h-navy: #1D3461;
+  --h-blue: #2563EB;
+  --h-amber: #D97706;
+  --h-bg: #F8F8F6;
+  --h-surface: #EFEFEB;
+  --h-border: #E2DDD6;
+  --h-muted: #9CA3AF;
 }
 
 * {
@@ -125,6 +135,27 @@ body {
 /* Tabular numbers for countdown */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* ── Scroll Reveal ── */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── Editorial dot grid ── */
+.dot-grid {
+  background-image: radial-gradient(circle, #C8C0B0 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 /* Slide up animation for notifications */

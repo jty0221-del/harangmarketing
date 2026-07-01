@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 import AnimatedCounter from "./components/AnimatedCounter";
 import YouTubeCard from "./components/YouTubeCard";
 import PhotoPlaceholder from "./components/PhotoPlaceholder";
+import RevealOnScroll from "./components/RevealOnScroll";
 
 /* ─── Data ─────────────────────────────────────── */
 
@@ -522,124 +523,133 @@ export default function HomePage() {
       <main>
 
         {/* ══ Hero ══ */}
-        <section className="relative min-h-screen flex items-center bg-gradient-to-br from-white via-blue-50 to-indigo-50 overflow-hidden pt-[104px] md:pt-[108px]">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-indigo-400/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-1/2 w-[500px] h-[300px] bg-blue-300/8 rounded-full blur-3xl" />
-            <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: "linear-gradient(#e0e7ff 1px,transparent 1px),linear-gradient(90deg,#e0e7ff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
-          </div>
+        <section
+          className="relative min-h-screen flex items-center overflow-hidden pt-[104px] md:pt-[108px]"
+          style={{ background: "var(--h-bg)" }}
+        >
+          {/* Warm dot grid — editorial texture */}
+          <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" />
 
-          <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-24 md:py-32 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-center">
-            <div className="max-w-2xl lg:max-w-none">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                  지금 상담 가능
-                </div>
-                <div className="h-3 w-px bg-gray-200" />
-                <span className="text-xs text-gray-500 font-medium">2014년 설립 · 10년 경력 · 500+ 대표님</span>
-              </div>
+          <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-28 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 lg:gap-20 items-center">
 
-              <h1 className="text-[42px] md:text-[54px] lg:text-[62px] font-black text-gray-900 leading-[1.1] tracking-tight mb-6">
-                매출이 오르는<br />
-                <span className="text-blue-600">마케팅만</span> 합니다
-              </h1>
-
-              <p className="text-base md:text-[17px] text-gray-600 leading-relaxed mb-3 max-w-lg">
-                카페 창업 실패를 경험한 대표가 직접 운영합니다.
-                <span className="text-gray-900 font-semibold"> 대표님의 돈을 제 돈처럼 </span>무겁게 생각하며,
-                <span className="text-gray-900 font-semibold"> 업종별 맞춤 전략</span>으로 실제 매출을 올려드립니다.
-              </p>
-              <p className="text-sm text-gray-500 mb-10 flex flex-wrap gap-x-4 gap-y-1">
-                {["대표 직접 담당", "외주 없음", "속이면 10배 보상", "24시간 소통"].map(t => (
-                  <span key={t} className="flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-blue-500" />{t}
+              {/* Left: editorial text column */}
+              <div>
+                {/* Amber eyebrow rule — distinctive opener */}
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-[2px] shrink-0" style={{ background: "var(--h-amber)" }} />
+                  <span className="text-[11px] font-black tracking-[0.22em] uppercase" style={{ color: "var(--h-amber)" }}>
+                    창업 실패에서 시작한 10년의 마케팅
                   </span>
-                ))}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/free-check" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-base transition-all shadow-xl shadow-blue-600/25 hover:-translate-y-0.5">
-                  무료 플레이스 진단 받기 <ArrowRight size={17} />
-                </Link>
-                <Link href="/estimate" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-semibold text-base transition-all shadow-sm">
-                  패키지 견적 계산기 <ChevronRight size={16} />
-                </Link>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-8 text-xs text-gray-500">
-                {["상담 비용 0원", "계약 강요 없음", "24시간 내 연락"].map((t) => (
-                  <span key={t} className="flex items-center gap-1.5">
-                    <CheckCircle2 size={12} className="text-blue-500" /> {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* Social proof strip */}
-              <div className="mt-10 p-4 rounded-2xl bg-white border border-gray-100 shadow-md flex items-center gap-4">
-                <div className="flex -space-x-2 shrink-0">
-                  {[
-                    { name: "김", g: "from-blue-400 to-blue-600" },
-                    { name: "박", g: "from-blue-500 to-blue-700" },
-                    { name: "이", g: "from-blue-600 to-indigo-700" },
-                    { name: "최", g: "from-indigo-500 to-blue-700" },
-                    { name: "전", g: "from-blue-700 to-blue-900" },
-                  ].map((p, i) => (
-                    <div key={i} className={`w-9 h-9 rounded-full border-2 border-white bg-gradient-to-br ${p.g} flex items-center justify-center text-white text-[11px] font-black shadow-sm`}>
-                      {p.name}
-                    </div>
-                  ))}
                 </div>
-                <div className="min-w-0">
-                  <div className="flex gap-0.5 mb-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={11} className="text-amber-400 fill-amber-400" />
-                    ))}
-                    <span className="text-amber-500 text-xs font-bold ml-1">5.0</span>
-                  </div>
-                  <p className="text-xs text-gray-500 leading-snug">
-                    <span className="text-gray-900 font-black">이번 달 12팀</span>이 무료 진단을 신청했습니다
-                    <span className="ml-2 text-[10px] text-red-500 font-bold bg-red-50 border border-red-100 px-1.5 py-0.5 rounded">잔여 2자리</span>
+
+                {/* H1 — large editorial Korean type */}
+                <h1
+                  className="font-black leading-[1.0] mb-8"
+                  style={{
+                    fontSize: "clamp(46px, 7.5vw, 88px)",
+                    letterSpacing: "-0.04em",
+                    color: "var(--h-dark)",
+                  }}
+                >
+                  매출이 오르지 않으면<br />
+                  <span style={{ color: "var(--h-blue)" }}>마케팅이 아닙니다</span>
+                </h1>
+
+                {/* Confession card — SIGNATURE ELEMENT */}
+                <div
+                  className="mb-10 pl-5 max-w-[500px]"
+                  style={{ borderLeft: "3px solid var(--h-amber)" }}
+                >
+                  <p
+                    className="text-base md:text-[17px] leading-[1.8]"
+                    style={{ color: "#4B5563" }}
+                  >
+                    카페 창업에 실패하고, 마케팅 대행사에게 사기도 당했습니다.<br />
+                    그 절박함을 직접 경험했기 때문에<br />
+                    <strong style={{ color: "var(--h-dark)" }}>대표님의 광고비를 제 돈처럼 씁니다.</strong>
+                  </p>
+                  <p className="text-xs mt-3 font-semibold" style={{ color: "var(--h-muted)" }}>
+                    — 하랑마케팅 대표
                   </p>
                 </div>
-              </div>
-            </div>
 
-            {/* Hero photo placeholder */}
-            <div className="hidden lg:block">
-              <PhotoPlaceholder
-                label="대표님 실제 작업 현장 사진"
-                hint="노트북·화면 보며 분석 중인 모습 / 또는 클라이언트와 미팅 장면 / 가로:세로 = 3:4 비율 권장"
-                width="w-full"
-                height="h-[480px]"
-                className="shadow-2xl shadow-blue-100/50 rounded-2xl"
-              />
-            </div>
-            </div>
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-3 mb-12">
+                  <Link
+                    href="/free-check"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-black text-base text-white transition-all hover:opacity-90 shadow-lg hover:-translate-y-0.5"
+                    style={{ background: "var(--h-dark)" }}
+                  >
+                    무료 플레이스 진단 받기 <ArrowRight size={17} />
+                  </Link>
+                  <Link
+                    href="/estimate"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-semibold text-base bg-white hover:bg-gray-50 transition-all"
+                    style={{ border: "2px solid var(--h-border)", color: "#4B5563" }}
+                  >
+                    3분 견적 계산기 <ChevronRight size={16} />
+                  </Link>
+                </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-16 md:mt-20">
-              {[
-                { value: "500+", label: "완료 프로젝트", sub: "10년간 8개 업종", proof: "누적 고객사 수", icon: Users, color: "from-blue-500 to-blue-700" },
-                { value: "95%", label: "재계약률", sub: "업계 평균 65% 대비", proof: "2024년 기준", icon: Handshake, color: "from-blue-600 to-blue-800" },
-                { value: "+300%", label: "신규 예약 최대 증가", sub: "피부과·한의원 사례", proof: "실측 예약 기준", icon: TrendingUp, color: "from-blue-600 to-indigo-700" },
-                { value: "24h", label: "상담 연락 보장", sub: "신청 후 24시간 이내", proof: "대표 직접 응답", icon: ShieldCheck, color: "from-blue-700 to-indigo-800" },
-              ].map((s) => {
-                const Icon = s.icon;
-                return (
-                  <div key={s.label} className="bg-white border border-gray-100 rounded-2xl p-4 md:p-5 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 group shadow-sm">
-                    <div className={`w-8 h-8 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-3 shadow-sm group-hover:scale-105 transition-transform`}>
-                      <Icon size={15} className="text-white" strokeWidth={2} />
-                    </div>
-                    <div className="text-2xl md:text-3xl font-black text-gray-900 mb-0.5">{s.value}</div>
-                    <div className="text-xs md:text-sm text-gray-700 font-semibold mb-0.5">{s.label}</div>
-                    <div className="text-[11px] text-gray-400">{s.sub}</div>
-                    <div className="text-[10px] text-gray-300 mt-1.5 pt-1.5 border-t border-gray-100">{s.proof}</div>
+                {/* Stats — clean horizontal rule format with amber numbers */}
+                <div className="border-t pt-8" style={{ borderColor: "var(--h-border)" }}>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {[
+                      { value: "500+", label: "완료 프로젝트", sub: "10년간 8개 업종" },
+                      { value: "95%", label: "재계약률", sub: "업계 평균 65% 대비" },
+                      { value: "+300%", label: "최대 매출 상승", sub: "실측 달성 수치" },
+                      { value: "24h", label: "상담 연락 보장", sub: "대표 직접 응답" },
+                    ].map((s) => (
+                      <div key={s.label}>
+                        <div
+                          className="text-2xl md:text-[28px] font-black tabular-nums mb-0.5"
+                          style={{ color: "var(--h-amber)" }}
+                        >
+                          {s.value}
+                        </div>
+                        <div className="text-sm font-bold mb-0.5" style={{ color: "var(--h-dark)" }}>
+                          {s.label}
+                        </div>
+                        <div className="text-xs" style={{ color: "var(--h-muted)" }}>
+                          {s.sub}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                );
-              })}
+                </div>
+              </div>
+
+              {/* Right: photo */}
+              <div className="hidden lg:block">
+                <PhotoPlaceholder
+                  label="대표님 실제 작업 현장 사진"
+                  hint="노트북 화면 분석 중인 모습 / 클라이언트 미팅 장면 / 3:4 비율 권장"
+                  width="w-full"
+                  height="h-[500px]"
+                  className="rounded-2xl shadow-xl"
+                />
+                {/* Social proof below photo */}
+                <div className="mt-4 flex items-center gap-3 bg-white rounded-xl px-4 py-3 border shadow-sm" style={{ borderColor: "var(--h-border)" }}>
+                  <div className="flex -space-x-2 shrink-0">
+                    {["김","박","이","최","전"].map((n, i) => (
+                      <div key={i} className={`w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-white text-[10px] font-black bg-gradient-to-br ${["from-blue-400 to-blue-600","from-blue-500 to-blue-700","from-blue-600 to-indigo-700","from-indigo-500 to-blue-700","from-blue-700 to-blue-900"][i]}`}>
+                        {n}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex gap-0.5 mb-0.5">
+                      {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={10} className="text-amber-400 fill-amber-400" />)}
+                    </div>
+                    <p className="text-[11px]" style={{ color: "var(--h-muted)" }}>
+                      <span className="font-black" style={{ color: "var(--h-dark)" }}>이번 달 12팀</span>이 진단 신청
+                      <span className="ml-1.5 text-[10px] font-bold text-red-500">잔여 2자리</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
@@ -746,18 +756,23 @@ export default function HomePage() {
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="mb-12">
+              <RevealOnScroll>
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">실제 성과 데이터</p>
-                  <h2 className="text-2xl md:text-4xl font-black text-gray-900 leading-tight">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>실제 성과 데이터</p>
+                  </div>
+                  <h2 className="text-2xl md:text-4xl font-black leading-tight" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                     내 업종에도<br />효과가 있을까요?
                   </h2>
                 </div>
-                <p className="text-gray-500 text-sm max-w-xs leading-relaxed">
+                <p className="text-sm max-w-xs leading-relaxed" style={{ color: "var(--h-muted)" }}>
                   같은 업종 실제 클라이언트의 before·after 수치입니다.<br />
                   카드를 클릭하면 해당 업종 무료 진단을 신청할 수 있습니다.
                 </p>
               </div>
+              </RevealOnScroll>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -929,13 +944,12 @@ export default function HomePage() {
                 </h2>
 
                 {/* Quote highlight */}
-                <div className="relative bg-gray-950 rounded-2xl p-6 mb-7">
-                  <div className="absolute top-4 left-5 text-5xl font-black text-blue-600/20 leading-none select-none">"</div>
-                  <p className="relative text-gray-300 text-base md:text-[17px] leading-relaxed pl-4">
+                <div className="relative rounded-2xl p-6 mb-7" style={{ background: "var(--h-surface)", borderLeft: "3px solid var(--h-amber)" }}>
+                  <p className="text-base md:text-[17px] leading-relaxed" style={{ color: "#374151" }}>
                     대표님은 사업의 본질에만 집중하십시오.<br />
                     골치 아픈 홍보와 전략은 하랑이<br className="hidden sm:block" /> 대신 고민하고 실행하겠습니다.
                   </p>
-                  <p className="text-xs text-gray-600 mt-4 pl-4">— 하랑마케팅 대표</p>
+                  <p className="text-xs mt-4 font-semibold" style={{ color: "var(--h-muted)" }}>— 하랑마케팅 대표</p>
                 </div>
 
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
@@ -998,38 +1012,47 @@ export default function HomePage() {
         <ChecklistSection />
 
         {/* ══ 신뢰 지표 (카운터) ══ */}
-        <section className="py-14 md:py-20 bg-gray-950 relative overflow-hidden">
-          {/* Background glow */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/4 w-96 h-32 bg-blue-600/8 blur-3xl rounded-full" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-32 bg-indigo-600/8 blur-3xl rounded-full" />
-          </div>
+        <section className="py-14 md:py-20 relative overflow-hidden" style={{ background: "var(--h-surface)" }}>
+          <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
           <div className="relative max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <p className="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-10">10년 운영 데이터</p>
+            <RevealOnScroll>
+              <div className="flex items-center gap-3 justify-center mb-10">
+                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                <p className="text-xs font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>10년 운영 데이터</p>
+                <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+              </div>
+            </RevealOnScroll>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {[
-                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "2014년~현재", color: "text-white" },
-                { to: 95, suffix: "%", label: "재계약률", sub: "업계 최고 수준", color: "text-white" },
-                { to: 10, suffix: "년+", label: "대표 경력", sub: "직접 담당", color: "text-white" },
-                { to: 300, suffix: "%", label: "최대 매출 상승", sub: "실제 달성 수치", color: "text-white" },
-              ].map((item) => (
-                <div key={item.label} className="text-center">
-                  <div className={`text-4xl md:text-5xl font-black mb-2 ${item.color}`}>
-                    <AnimatedCounter to={item.to} suffix={item.suffix} duration={1600} />
+                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "2014년~현재" },
+                { to: 95, suffix: "%", label: "재계약률", sub: "업계 최고 수준" },
+                { to: 10, suffix: "년+", label: "대표 경력", sub: "직접 담당" },
+                { to: 300, suffix: "%", label: "최대 매출 상승", sub: "실제 달성 수치" },
+              ].map((item, i) => (
+                <RevealOnScroll key={item.label} delay={i * 80}>
+                  <div className="text-center">
+                    <div className="text-4xl md:text-5xl font-black mb-2 tabular-nums" style={{ color: "var(--h-amber)" }}>
+                      <AnimatedCounter to={item.to} suffix={item.suffix} duration={1600} />
+                    </div>
+                    <div className="text-sm md:text-base font-bold mb-0.5" style={{ color: "var(--h-dark)" }}>{item.label}</div>
+                    <div className="text-xs" style={{ color: "var(--h-muted)" }}>{item.sub}</div>
                   </div>
-                  <div className="text-sm md:text-base font-bold text-white mb-0.5">{item.label}</div>
-                  <div className="text-xs text-gray-500">{item.sub}</div>
-                </div>
+                </RevealOnScroll>
               ))}
             </div>
-            <div className="mt-10 pt-8 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              {TRUST_ITEMS.map((item) => (
-                <div key={item.title} className="flex flex-col items-center gap-1.5">
-                  <CheckCircle2 size={15} className="text-blue-400" strokeWidth={2} />
-                  <p className="text-xs font-bold text-white">{item.title}</p>
-                  <p className="text-[10px] text-gray-500">{item.desc}</p>
-                </div>
-              ))}
+            <div className="mt-10 pt-8 border-t grid grid-cols-2 md:grid-cols-4 gap-4 text-center" style={{ borderColor: "var(--h-border)" }}>
+              {TRUST_ITEMS.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className="flex flex-col items-center gap-1.5">
+                    <div className="w-8 h-8 rounded-lg bg-white border flex items-center justify-center shadow-sm" style={{ borderColor: "var(--h-border)" }}>
+                      <Icon size={14} strokeWidth={2} style={{ color: "var(--h-blue)" }} />
+                    </div>
+                    <p className="text-xs font-bold" style={{ color: "var(--h-dark)" }}>{item.title}</p>
+                    <p className="text-[10px]" style={{ color: "var(--h-muted)" }}>{item.desc}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -1206,13 +1229,14 @@ export default function HomePage() {
               })}
               {/* 더보기 카드 */}
               <Link href="/blog"
-                className="group bg-gradient-to-br from-gray-900 to-blue-950 rounded-2xl border border-white/5 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col items-center justify-center p-8 text-center min-h-[220px]">
-                <div className="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-4 group-hover:bg-white/20 transition-colors">
-                  <BookOpen size={18} className="text-white" strokeWidth={1.5} />
+                className="group rounded-2xl border overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col items-center justify-center p-8 text-center min-h-[220px]"
+                style={{ background: "var(--h-surface)", borderColor: "var(--h-border)" }}>
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform" style={{ background: "var(--h-border)" }}>
+                  <BookOpen size={18} strokeWidth={1.5} style={{ color: "var(--h-dark)" }} />
                 </div>
-                <p className="text-white font-black text-sm mb-1">인사이트 더 보기</p>
-                <p className="text-gray-400 text-xs mb-4">10년 노하우 전략 · 업종별 성공 공식</p>
-                <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 border border-white/20 text-white text-xs font-bold group-hover:bg-white/20 transition-colors">
+                <p className="font-black text-sm mb-1" style={{ color: "var(--h-dark)" }}>인사이트 더 보기</p>
+                <p className="text-xs mb-4" style={{ color: "var(--h-muted)" }}>10년 노하우 전략 · 업종별 성공 공식</p>
+                <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-colors" style={{ background: "var(--h-dark)", color: "white" }}>
                   전체 글 보기 <ArrowRight size={11} />
                 </div>
               </Link>
@@ -1513,7 +1537,7 @@ export default function HomePage() {
             {/* Desktop table */}
             <div className="hidden md:block rounded-2xl overflow-hidden shadow-lg border border-gray-100">
               <div className="grid grid-cols-[160px_1fr_1fr]">
-                <div className="bg-gray-950 p-5 text-gray-500 text-xs font-bold uppercase tracking-wider flex items-end">구분</div>
+                <div className="p-5 text-xs font-bold uppercase tracking-wider flex items-end" style={{ background: "var(--h-dark)", color: "#6B7280" }}>구분</div>
                 <div className="bg-blue-600 p-5 text-center">
                   <div className="text-white font-black text-sm tracking-wide">하랑마케팅</div>
                   <div className="text-blue-200 text-[11px] mt-0.5">10년 경력 · 데이터 기반</div>
@@ -1559,7 +1583,7 @@ export default function HomePage() {
             <div className="md:hidden space-y-3">
               {COMPARE_ITEMS.map((item) => (
                 <div key={item.category} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-                  <div className="bg-gray-900 px-4 py-2.5 text-xs font-black text-gray-300">{item.category}</div>
+                  <div className="px-4 py-2.5 text-xs font-black" style={{ background: "var(--h-dark)", color: "#9CA3AF" }}>{item.category}</div>
                   <div className="divide-y divide-gray-100">
                     <div className="flex items-start gap-3 p-4 bg-blue-50/50">
                       <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center shrink-0 mt-0.5">
@@ -1698,120 +1722,133 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ══ 후기 ══ */}
-        <section className="py-16 md:py-28 bg-gray-950 relative overflow-hidden">
-          {/* subtle grid bg */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
-          <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        {/* ══ 후기 — editorial format ══ */}
+        <section style={{ background: "var(--h-surface)" }}>
+          {/* Section header */}
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 pt-16 md:pt-24 pb-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div>
-                <p className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-4">Client Testimonials</p>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                  <span className="text-[11px] font-black tracking-[0.22em] uppercase" style={{ color: "var(--h-amber)" }}>
+                    Client Testimonials
+                  </span>
+                </div>
+                <h2
+                  className="font-black leading-tight"
+                  style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-0.03em", color: "var(--h-dark)" }}
+                >
                   실제 사장님들의<br />성장 이야기
                 </h2>
               </div>
               <div className="flex items-center gap-8 shrink-0">
                 {[
-                  { val: "4.9", unit: "/5", label: "평균 만족도" },
-                  { val: "95", unit: "%", label: "재계약률" },
-                  { val: "500", unit: "+", label: "누적 고객사" },
+                  { val: "4.9/5", label: "평균 만족도" },
+                  { val: "95%", label: "재계약률" },
+                  { val: "500+", label: "누적 고객사" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
-                    <div className="text-2xl md:text-3xl font-black text-white">
-                      {s.val}<span className="text-blue-400 text-lg">{s.unit}</span>
+                    <div className="text-2xl md:text-3xl font-black tabular-nums" style={{ color: "var(--h-amber)" }}>
+                      {s.val}
                     </div>
-                    <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
+                    <div className="text-xs mt-0.5" style={{ color: "var(--h-muted)" }}>{s.label}</div>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-              {[
-                {
-                  name: "카페 사장님", location: "경기 일산", service: "플레이스 SEO", initial: "카",
-                  metric: "+167%", metricLabel: "방문객 증가", period: "3개월",
-                  accentColor: "from-blue-500 to-blue-700",
-                  text: "3개월 만에 '일산 카페' 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다. 처음엔 반신반의했는데 정말 효과가 있을 줄 몰랐어요.",
-                },
-                {
-                  name: "피부과 원장님", location: "서울 강서", service: "인스타그램 마케팅", initial: "피",
-                  metric: "+300%", metricLabel: "신규 예약 증가", period: "6개월",
-                  accentColor: "from-indigo-500 to-purple-600",
-                  text: "인스타그램 신규 예약이 6개월 만에 3배가 됐습니다. 보고서도 이해하기 쉬웠고, 대표님이 항상 직접 연락 주시는 게 신뢰가 갔어요.",
-                },
-                {
-                  name: "학원 원장님", location: "경기 고양", service: "맘카페 바이럴", initial: "학",
-                  metric: "+55%", metricLabel: "수강생 증가", period: "2개월",
-                  accentColor: "from-blue-600 to-indigo-700",
-                  text: "맘카페 바이럴 하나로 수강생이 50% 늘었습니다. 지역 엄마들 사이에서 입소문이 났어요. 이전 대행사랑 비교가 안 될 정도예요.",
-                },
-              ].map((t) => (
-                <div key={t.name} className="group relative bg-white/5 border border-white/8 rounded-3xl overflow-hidden hover:bg-white/8 hover:border-white/15 transition-all duration-300 flex flex-col">
-                  {/* Large quote mark */}
-                  <div className="absolute top-5 right-6 text-[80px] font-black text-white/[0.04] leading-none select-none pointer-events-none">"</div>
-
-                  {/* Accent top bar */}
-                  <div className={`h-1 bg-gradient-to-r ${t.accentColor}`} />
-
-                  <div className="p-7 flex flex-col flex-1">
-                    {/* Stars */}
-                    <div className="flex gap-0.5 mb-5">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} size={13} className="text-amber-400 fill-amber-400" />
+          {/* Editorial testimonials — full width stacked */}
+          {[
+            {
+              name: "카페 사장님", location: "경기 일산", service: "플레이스 SEO",
+              metric: "+167%", metricLabel: "방문객 · 3개월",
+              text: "3개월 만에 '일산 카페' 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다. 처음엔 반신반의했는데 정말 효과가 있을 줄 몰랐어요.",
+            },
+            {
+              name: "피부과 원장님", location: "서울 강서", service: "인스타그램 마케팅",
+              metric: "+300%", metricLabel: "신규 예약 · 6개월",
+              text: "인스타그램 신규 예약이 6개월 만에 3배가 됐습니다. 보고서도 이해하기 쉬웠고, 대표님이 항상 직접 연락 주시는 게 신뢰가 갔어요.",
+            },
+            {
+              name: "학원 원장님", location: "경기 고양", service: "맘카페 바이럴",
+              metric: "+55%", metricLabel: "수강생 · 2개월",
+              text: "맘카페 바이럴 하나로 수강생이 50% 늘었습니다. 지역 엄마들 사이에서 입소문이 났어요. 이전 대행사랑 비교가 안 될 정도예요.",
+            },
+          ].map((t) => (
+            <div key={t.name} className="border-t" style={{ borderColor: "var(--h-border)" }}>
+              <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-10 md:py-14">
+                <div className="grid grid-cols-1 md:grid-cols-[160px_1fr_120px] gap-6 md:gap-10 items-start">
+                  <div>
+                    <div className="flex gap-0.5 mb-2">
+                      {Array.from({ length: 5 }).map((_, j) => (
+                        <Star key={j} size={12} className="fill-amber-400 text-amber-400" />
                       ))}
                     </div>
-
-                    {/* Quote text */}
-                    <p className="text-gray-300 text-[15px] leading-relaxed flex-1 mb-7">
-                      "{t.text}"
-                    </p>
-
-                    {/* Bottom */}
-                    <div className="flex items-end justify-between pt-5 border-t border-white/8">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${t.accentColor} flex items-center justify-center shrink-0`}>
-                          <span className="text-white font-black text-sm">{t.initial}</span>
-                        </div>
-                        <div>
-                          <div className="font-bold text-white text-sm">{t.name}</div>
-                          <div className="text-xs text-gray-500">{t.location} · {t.service}</div>
-                        </div>
-                      </div>
-                      <div className="text-right shrink-0">
-                        <div className={`text-2xl font-black bg-gradient-to-r ${t.accentColor} bg-clip-text text-transparent`}>{t.metric}</div>
-                        <div className="text-[10px] text-gray-500">{t.metricLabel} · {t.period}</div>
-                      </div>
+                    <div className="text-sm font-black" style={{ color: "var(--h-dark)" }}>{t.name}</div>
+                    <div className="text-xs mt-0.5" style={{ color: "var(--h-muted)" }}>{t.location}</div>
+                    <div
+                      className="text-[11px] font-bold mt-2 px-2 py-1 rounded-lg inline-block"
+                      style={{ background: "var(--h-border)", color: "#4B5563" }}
+                    >
+                      {t.service}
                     </div>
                   </div>
+                  <p
+                    className="font-black leading-snug"
+                    style={{
+                      fontSize: "clamp(18px, 2.5vw, 28px)",
+                      letterSpacing: "-0.02em",
+                      color: "var(--h-dark)",
+                    }}
+                  >
+                    &ldquo;{t.text}&rdquo;
+                  </p>
+                  <div className="md:text-right">
+                    <div className="text-3xl md:text-4xl font-black tabular-nums" style={{ color: "var(--h-amber)" }}>
+                      {t.metric}
+                    </div>
+                    <div className="text-xs mt-1" style={{ color: "var(--h-muted)" }}>{t.metricLabel}</div>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
+          ))}
 
-            <div className="mt-10 text-center">
-              <Link href="/cases" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/15 text-gray-400 hover:text-white hover:border-white/30 font-semibold text-sm transition-all">
-                전체 사례 보기 <ArrowRight size={13} />
+          <div className="border-t" style={{ borderColor: "var(--h-border)" }}>
+            <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-8 text-center">
+              <Link
+                href="/cases"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-80"
+                style={{ border: "1.5px solid var(--h-border)", color: "var(--h-dark)", background: "white" }}
+              >
+                전체 성공 사례 보기 <ArrowRight size={13} />
               </Link>
             </div>
           </div>
         </section>
 
         {/* ══ 기간별 성과 타임라인 ══ */}
-        <section className="py-14 md:py-20 bg-gray-950">
+        <section className="py-14 md:py-20 bg-white border-t" style={{ borderColor: "var(--h-border)" }}>
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">성과 타임라인</p>
-              <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
-                언제부터 효과가 나타날까요?
-              </h2>
-              <p className="text-gray-400 text-sm max-w-md mx-auto">500+ 프로젝트 데이터 기반 평균 타임라인입니다. 업종·경쟁 강도에 따라 달라질 수 있습니다.</p>
-            </div>
+            <RevealOnScroll>
+              <div className="text-center mb-10">
+                <div className="flex items-center gap-3 justify-center mb-4">
+                  <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                  <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>성과 타임라인</span>
+                  <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black mb-3" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
+                  언제부터 효과가 나타날까요?
+                </h2>
+                <p className="text-sm max-w-md mx-auto" style={{ color: "var(--h-muted)" }}>500+ 프로젝트 데이터 기반 평균 타임라인입니다. 업종·경쟁 강도에 따라 달라질 수 있습니다.</p>
+              </div>
+            </RevealOnScroll>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 {
                   period: "1개월차",
                   color: "from-blue-500 to-blue-700",
-                  borderColor: "border-blue-500/30",
                   items: [
                     "플레이스 정보 최적화 완료",
                     "블로그 키워드 3~5건 게시",
@@ -1823,7 +1860,6 @@ export default function HomePage() {
                 {
                   period: "3개월차",
                   color: "from-blue-600 to-indigo-700",
-                  borderColor: "border-blue-600/30",
                   items: [
                     "플레이스 Top 5~10 진입",
                     "블로그 월 방문자 100명+",
@@ -1835,7 +1871,6 @@ export default function HomePage() {
                 {
                   period: "6개월차",
                   color: "from-blue-700 to-indigo-800",
-                  borderColor: "border-indigo-500/30",
                   items: [
                     "주요 키워드 1~3위 목표",
                     "브랜드 인지도 지역 내 정착",
@@ -1844,28 +1879,31 @@ export default function HomePage() {
                   ],
                   highlight: "매출 지속 우상향",
                 },
-              ].map((phase) => (
-                <div key={phase.period} className={`bg-white/5 border ${phase.borderColor} rounded-2xl overflow-hidden`}>
-                  <div className={`bg-gradient-to-br ${phase.color} px-5 py-4`}>
-                    <div className="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">목표</div>
-                    <div className="text-white font-black text-xl">{phase.period}</div>
-                    <div className="text-blue-100 text-xs font-semibold mt-1">{phase.highlight}</div>
+              ].map((phase, i) => (
+                <RevealOnScroll key={phase.period} delay={i * 100}>
+                  <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--h-border)" }}>
+                    <div className={`bg-gradient-to-br ${phase.color} px-5 py-4`}>
+                      <div className="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">목표</div>
+                      <div className="text-white font-black text-xl">{phase.period}</div>
+                      <div className="text-blue-100 text-xs font-semibold mt-1">{phase.highlight}</div>
+                    </div>
+                    <div className="p-5 space-y-2.5" style={{ background: "var(--h-bg)" }}>
+                      {phase.items.map((item) => (
+                        <div key={item} className="flex items-start gap-2.5">
+                          <CheckCircle2 size={13} className="shrink-0 mt-0.5" strokeWidth={2.5} style={{ color: "var(--h-blue)" }} />
+                          <span className="text-sm leading-snug" style={{ color: "#374151" }}>{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className="p-5 space-y-2.5">
-                    {phase.items.map((item) => (
-                      <div key={item} className="flex items-start gap-2.5">
-                        <CheckCircle2 size={13} className="text-blue-400 shrink-0 mt-0.5" strokeWidth={2.5} />
-                        <span className="text-sm text-gray-300 leading-snug">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                </RevealOnScroll>
               ))}
             </div>
             <div className="mt-6 text-center">
-              <p className="text-gray-500 text-xs mb-4">* 위 수치는 평균값이며 업종·예산·경쟁 강도에 따라 달라집니다.</p>
+              <p className="text-xs mb-4" style={{ color: "var(--h-muted)" }}>* 위 수치는 평균값이며 업종·예산·경쟁 강도에 따라 달라집니다.</p>
               <Link href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm transition-colors shadow-sm">
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-black text-sm transition-colors shadow-sm hover:opacity-90"
+                style={{ background: "var(--h-dark)" }}>
                 내 업종 예상 성과 상담받기 <ArrowRight size={14} />
               </Link>
             </div>
