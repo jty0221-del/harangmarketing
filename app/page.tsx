@@ -227,13 +227,13 @@ function ChecklistSection() {
   return (
     <section className="py-14 md:py-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-gray-950 to-blue-950 rounded-2xl p-6 md:p-10">
+        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-6 md:p-10 shadow-xl shadow-blue-200">
           <div className="text-center mb-8">
-            <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Self-Check</p>
+            <p className="text-xs font-bold text-blue-200 uppercase tracking-widest mb-3">Self-Check</p>
             <h2 className="text-xl md:text-2xl font-black text-white mb-2">
               지금 이 중 하나라도 해당되시나요?
             </h2>
-            <p className="text-gray-400 text-sm">해당 항목을 클릭하면 얼마나 시급한지 알 수 있습니다</p>
+            <p className="text-blue-100 text-sm">해당 항목을 클릭하면 얼마나 시급한지 알 수 있습니다</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
             {CHECKLIST_ITEMS.map((item, i) => (
@@ -242,16 +242,16 @@ function ChecklistSection() {
                 onClick={() => toggle(i)}
                 className={`flex items-start gap-3 rounded-xl px-4 py-3 border text-left transition-all ${
                   checked.has(i)
-                    ? "bg-blue-600/20 border-blue-500/50"
-                    : "bg-white/5 border-white/10 hover:bg-white/8 hover:border-white/20"
+                    ? "bg-white/25 border-white/50"
+                    : "bg-white/10 border-white/20 hover:bg-white/20 hover:border-white/40"
                 }`}
               >
                 <div className={`w-4 h-4 rounded border shrink-0 mt-0.5 flex items-center justify-center transition-colors ${
-                  checked.has(i) ? "border-blue-400 bg-blue-500" : "border-white/20 bg-white/10"
+                  checked.has(i) ? "border-white bg-white" : "border-white/40 bg-white/20"
                 }`}>
-                  {checked.has(i) && <CheckCircle2 size={10} className="text-white" strokeWidth={3} />}
+                  {checked.has(i) && <CheckCircle2 size={10} className="text-blue-600" strokeWidth={3} />}
                 </div>
-                <span className={`text-sm leading-relaxed transition-colors ${checked.has(i) ? "text-white font-semibold" : "text-gray-400"}`}>
+                <span className={`text-sm leading-relaxed transition-colors ${checked.has(i) ? "text-white font-semibold" : "text-blue-50"}`}>
                   {item}
                 </span>
               </button>
@@ -259,29 +259,29 @@ function ChecklistSection() {
           </div>
           {/* Counter */}
           <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-5 py-3">
-              <div className="text-2xl font-black text-white">{count}<span className="text-gray-500 text-base font-normal">/8</span></div>
-              <div className={`text-sm font-bold ${urgency.color}`}>{urgency.text}</div>
+            <div className="inline-flex items-center gap-3 bg-white/20 border border-white/30 rounded-xl px-5 py-3">
+              <div className="text-2xl font-black text-white">{count}<span className="text-blue-200 text-base font-normal">/8</span></div>
+              <div className="text-sm font-bold text-white">{urgency.text}</div>
             </div>
           </div>
 
           {/* 진단 결과 — 3개 이상 체크 시 */}
           {count >= 3 && (
-            <div className="mb-6 bg-white/5 border border-white/12 rounded-xl p-5">
-              <p className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">하랑마케팅 추천 솔루션</p>
+            <div className="mb-6 bg-white/15 border border-white/30 rounded-xl p-5">
+              <p className="text-xs font-bold text-blue-100 uppercase tracking-widest mb-3">하랑마케팅 추천 솔루션</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 {[
-                  { label: "플레이스 SEO", desc: "검색·지도 노출 상위 진입", color: "bg-blue-500/20 border-blue-500/30 text-blue-300" },
-                  { label: "블로그 마케팅", desc: "키워드 검색 유입 증대", color: "bg-blue-400/20 border-blue-400/30 text-blue-200" },
-                  { label: "리뷰 마케팅", desc: "신뢰도·재방문율 상승", color: "bg-indigo-500/20 border-indigo-500/30 text-indigo-300" },
+                  { label: "플레이스 SEO", desc: "검색·지도 노출 상위 진입" },
+                  { label: "블로그 마케팅", desc: "키워드 검색 유입 증대" },
+                  { label: "리뷰 마케팅", desc: "신뢰도·재방문율 상승" },
                 ].map((s) => (
-                  <div key={s.label} className={`rounded-xl border px-3 py-2.5 ${s.color}`}>
+                  <div key={s.label} className="rounded-xl border border-white/30 bg-white/20 px-3 py-2.5 text-white">
                     <div className="font-black text-sm mb-0.5">{s.label}</div>
-                    <div className="text-[11px] opacity-75">{s.desc}</div>
+                    <div className="text-[11px] text-blue-100">{s.desc}</div>
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-gray-500 mt-3">· 무료 상담에서 업종별 최적 조합을 안내해드립니다</p>
+              <p className="text-xs text-blue-200 mt-3">· 무료 상담에서 업종별 최적 조합을 안내해드립니다</p>
             </div>
           )}
 
@@ -381,23 +381,22 @@ const YOUTUBE_VIDEOS = [
 function YouTubeSection() {
   const hasRealVideos = YOUTUBE_VIDEOS.some(v => !v.videoId.startsWith("PLACEHOLDER"));
   return (
-    <section className="py-14 md:py-20 bg-gray-950">
+    <section className="py-14 md:py-20 bg-white border-t border-gray-100">
       <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              {/* YouTube 로고 색상 */}
-              <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center shadow-sm">
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                 </svg>
               </div>
-              <span className="text-xs font-bold text-red-400 uppercase tracking-widest">YouTube</span>
+              <span className="text-xs font-bold text-red-500 uppercase tracking-widest">YouTube</span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-1">
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-1">
               마케팅 노하우, 영상으로 공유합니다
             </h2>
-            <p className="text-gray-400 text-sm">실전 전략을 무료로 공개 — 구독하면 최신 영상을 받아볼 수 있습니다</p>
+            <p className="text-gray-500 text-sm">실전 전략을 무료로 공개 — 구독하면 최신 영상을 받아볼 수 있습니다</p>
           </div>
           <a
             href="https://www.youtube.com/@madaenam"
@@ -523,36 +522,37 @@ export default function HomePage() {
       <main>
 
         {/* ══ Hero ══ */}
-        <section className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 overflow-hidden pt-[104px] md:pt-[108px]">
+        <section className="relative min-h-screen flex items-center bg-gradient-to-br from-white via-blue-50 to-indigo-50 overflow-hidden pt-[104px] md:pt-[108px]">
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-blue-600/6 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-indigo-600/6 rounded-full blur-3xl" />
-            <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+            <div className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-indigo-400/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-1/2 w-[500px] h-[300px] bg-blue-300/8 rounded-full blur-3xl" />
+            <div className="absolute inset-0 opacity-[0.4]" style={{ backgroundImage: "linear-gradient(#e0e7ff 1px,transparent 1px),linear-gradient(90deg,#e0e7ff 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
           </div>
 
           <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-24 md:py-32 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10 lg:gap-16 items-center">
             <div className="max-w-2xl lg:max-w-none">
               <div className="flex items-center gap-3 mb-8">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/8 border border-white/12 text-gray-300 text-xs font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                   지금 상담 가능
                 </div>
-                <div className="h-3 w-px bg-white/10" />
+                <div className="h-3 w-px bg-gray-200" />
                 <span className="text-xs text-gray-500 font-medium">2014년 설립 · 10년 경력 · 500+ 대표님</span>
               </div>
 
-              <h1 className="text-[42px] md:text-[54px] lg:text-[62px] font-black text-white leading-[1.1] tracking-tight mb-6">
+              <h1 className="text-[42px] md:text-[54px] lg:text-[62px] font-black text-gray-900 leading-[1.1] tracking-tight mb-6">
                 매출이 오르는<br />
-                마케팅만 합니다
+                <span className="text-blue-600">마케팅만</span> 합니다
               </h1>
 
-              <p className="text-base md:text-[17px] text-gray-400 leading-relaxed mb-3 max-w-lg">
+              <p className="text-base md:text-[17px] text-gray-600 leading-relaxed mb-3 max-w-lg">
                 카페 창업 실패를 경험한 대표가 직접 운영합니다.
-                <span className="text-white font-semibold"> 대표님의 돈을 제 돈처럼 </span>무겁게 생각하며,
-                <span className="text-white font-semibold"> 업종별 맞춤 전략</span>으로 실제 매출을 올려드립니다.
+                <span className="text-gray-900 font-semibold"> 대표님의 돈을 제 돈처럼 </span>무겁게 생각하며,
+                <span className="text-gray-900 font-semibold"> 업종별 맞춤 전략</span>으로 실제 매출을 올려드립니다.
               </p>
-              <p className="text-sm text-gray-600 mb-10 flex flex-wrap gap-x-4 gap-y-1">
+              <p className="text-sm text-gray-500 mb-10 flex flex-wrap gap-x-4 gap-y-1">
                 {["대표 직접 담당", "외주 없음", "속이면 10배 보상", "24시간 소통"].map(t => (
                   <span key={t} className="flex items-center gap-1.5">
                     <span className="w-1 h-1 rounded-full bg-blue-500" />{t}
@@ -564,7 +564,7 @@ export default function HomePage() {
                 <Link href="/free-check" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-base transition-all shadow-xl shadow-blue-600/25 hover:-translate-y-0.5">
                   무료 플레이스 진단 받기 <ArrowRight size={17} />
                 </Link>
-                <Link href="/estimate" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/8 hover:bg-white/14 border border-white/15 text-white font-semibold text-base transition-all">
+                <Link href="/estimate" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-semibold text-base transition-all shadow-sm">
                   패키지 견적 계산기 <ChevronRight size={16} />
                 </Link>
               </div>
@@ -572,13 +572,13 @@ export default function HomePage() {
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-8 text-xs text-gray-500">
                 {["상담 비용 0원", "계약 강요 없음", "24시간 내 연락"].map((t) => (
                   <span key={t} className="flex items-center gap-1.5">
-                    <CheckCircle2 size={12} className="text-blue-400" /> {t}
+                    <CheckCircle2 size={12} className="text-blue-500" /> {t}
                   </span>
                 ))}
               </div>
 
               {/* Social proof strip */}
-              <div className="mt-10 p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4">
+              <div className="mt-10 p-4 rounded-2xl bg-white border border-gray-100 shadow-md flex items-center gap-4">
                 <div className="flex -space-x-2 shrink-0">
                   {[
                     { name: "김", g: "from-blue-400 to-blue-600" },
@@ -587,7 +587,7 @@ export default function HomePage() {
                     { name: "최", g: "from-indigo-500 to-blue-700" },
                     { name: "전", g: "from-blue-700 to-blue-900" },
                   ].map((p, i) => (
-                    <div key={i} className={`w-9 h-9 rounded-full border-2 border-gray-900 bg-gradient-to-br ${p.g} flex items-center justify-center text-white text-[11px] font-black`}>
+                    <div key={i} className={`w-9 h-9 rounded-full border-2 border-white bg-gradient-to-br ${p.g} flex items-center justify-center text-white text-[11px] font-black shadow-sm`}>
                       {p.name}
                     </div>
                   ))}
@@ -597,11 +597,11 @@ export default function HomePage() {
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star key={i} size={11} className="text-amber-400 fill-amber-400" />
                     ))}
-                    <span className="text-amber-300 text-xs font-bold ml-1">5.0</span>
+                    <span className="text-amber-500 text-xs font-bold ml-1">5.0</span>
                   </div>
-                  <p className="text-xs text-gray-400 leading-snug">
-                    <span className="text-white font-black">이번 달 12팀</span>이 무료 진단을 신청했습니다
-                    <span className="ml-2 text-[10px] text-red-400 font-bold bg-red-500/15 px-1.5 py-0.5 rounded">잔여 2자리</span>
+                  <p className="text-xs text-gray-500 leading-snug">
+                    <span className="text-gray-900 font-black">이번 달 12팀</span>이 무료 진단을 신청했습니다
+                    <span className="ml-2 text-[10px] text-red-500 font-bold bg-red-50 border border-red-100 px-1.5 py-0.5 rounded">잔여 2자리</span>
                   </p>
                 </div>
               </div>
@@ -614,8 +614,7 @@ export default function HomePage() {
                 hint="노트북·화면 보며 분석 중인 모습 / 또는 클라이언트와 미팅 장면 / 가로:세로 = 3:4 비율 권장"
                 width="w-full"
                 height="h-[480px]"
-                dark
-                className="shadow-2xl"
+                className="shadow-2xl shadow-blue-100/50 rounded-2xl"
               />
             </div>
             </div>
@@ -630,14 +629,14 @@ export default function HomePage() {
               ].map((s) => {
                 const Icon = s.icon;
                 return (
-                  <div key={s.label} className="bg-white/5 border border-white/8 rounded-2xl p-4 md:p-5 hover:bg-white/10 transition-colors group">
+                  <div key={s.label} className="bg-white border border-gray-100 rounded-2xl p-4 md:p-5 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 group shadow-sm">
                     <div className={`w-8 h-8 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-3 shadow-sm group-hover:scale-105 transition-transform`}>
                       <Icon size={15} className="text-white" strokeWidth={2} />
                     </div>
-                    <div className="text-2xl md:text-3xl font-black text-white mb-0.5">{s.value}</div>
-                    <div className="text-xs md:text-sm text-gray-300 font-semibold mb-0.5">{s.label}</div>
-                    <div className="text-[11px] text-gray-500">{s.sub}</div>
-                    <div className="text-[10px] text-gray-700 mt-1.5 pt-1.5 border-t border-white/5">{s.proof}</div>
+                    <div className="text-2xl md:text-3xl font-black text-gray-900 mb-0.5">{s.value}</div>
+                    <div className="text-xs md:text-sm text-gray-700 font-semibold mb-0.5">{s.label}</div>
+                    <div className="text-[11px] text-gray-400">{s.sub}</div>
+                    <div className="text-[10px] text-gray-300 mt-1.5 pt-1.5 border-t border-gray-100">{s.proof}</div>
                   </div>
                 );
               })}
