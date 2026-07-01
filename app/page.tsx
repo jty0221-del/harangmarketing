@@ -526,129 +526,162 @@ export default function HomePage() {
       <Header />
       <main>
 
-        {/* ══ Hero ══ */}
-        <section
-          className="relative min-h-screen flex items-center overflow-hidden pt-[104px] md:pt-[108px]"
-          style={{ background: "var(--h-bg)" }}
-        >
-          {/* Warm dot grid — editorial texture */}
-          <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" />
+        {/* ══ Hero — Dark 21st.dev style ══ */}
+        <section className="hero-dark relative min-h-screen flex items-center overflow-hidden pt-[72px] md:pt-[80px]">
+          {/* Animated gradient blobs */}
+          <div className="hero-blob hero-blob-1" />
+          <div className="hero-blob hero-blob-2" />
+          <div className="hero-blob hero-blob-3" />
 
-          <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-28 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 lg:gap-20 items-center">
+          {/* Dot grid overlay */}
+          <div className="absolute inset-0 dot-grid-dark opacity-30 pointer-events-none" />
 
-              {/* Left: editorial text column */}
+          {/* Grid lines texture */}
+          <div className="absolute inset-0 hero-grid-lines pointer-events-none" />
+
+          {/* Bottom gradient fade to next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+            style={{ background: "linear-gradient(to bottom, transparent, #0a0f1e)" }} />
+
+          <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-24 md:py-32 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 lg:gap-16 items-center">
+
+              {/* Left: text column */}
               <div>
-                {/* Amber eyebrow rule — distinctive opener */}
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-10 h-[2px] shrink-0" style={{ background: "var(--h-amber)" }} />
-                  <span className="text-[11px] font-black tracking-[0.22em] uppercase" style={{ color: "var(--h-amber)" }}>
-                    창업 실패에서 시작한 10년의 마케팅
+                {/* Badge pill */}
+                <div className="hero-anim-1 inline-flex items-center gap-2.5 hero-badge rounded-full px-4 py-2 mb-8">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 glow-dot flex-shrink-0" />
+                  <span className="text-[11px] font-bold tracking-[0.18em] uppercase">
+                    10년 경력 · 500+ 프로젝트 달성
                   </span>
                 </div>
 
-                {/* H1 — large editorial Korean type */}
+                {/* H1 */}
                 <h1
-                  className="font-black leading-[1.0] mb-8"
+                  className="hero-anim-2 font-black leading-[1.05] mb-8"
                   style={{
-                    fontSize: "clamp(46px, 7.5vw, 88px)",
+                    fontSize: "clamp(42px, 7vw, 84px)",
                     letterSpacing: "-0.04em",
-                    color: "var(--h-dark)",
+                    color: "rgba(255,255,255,0.95)",
                   }}
                 >
                   매출이 오르지 않으면<br />
-                  <span style={{ color: "var(--h-blue)" }}>마케팅이 아닙니다</span>
+                  <span className="hero-gradient-text">마케팅이 아닙니다</span>
                 </h1>
 
-                {/* Confession card — SIGNATURE ELEMENT */}
+                {/* Confession — amber accent border on dark */}
                 <div
-                  className="mb-10 pl-5 max-w-[500px]"
-                  style={{ borderLeft: "3px solid var(--h-amber)" }}
+                  className="hero-anim-3 mb-10 pl-5 max-w-[520px]"
+                  style={{ borderLeft: "3px solid #D97706" }}
                 >
                   <p
-                    className="text-base md:text-[17px] leading-[1.8]"
-                    style={{ color: "#4B5563" }}
+                    className="text-base md:text-[17px] leading-[1.85]"
+                    style={{ color: "rgba(255,255,255,0.65)" }}
                   >
                     카페 창업에 실패하고, 마케팅 대행사에게 사기도 당했습니다.<br />
                     그 절박함을 직접 경험했기 때문에<br />
-                    <strong style={{ color: "var(--h-dark)" }}>대표님의 광고비를 제 돈처럼 씁니다.</strong>
+                    <strong style={{ color: "rgba(255,255,255,0.9)" }}>대표님의 광고비를 제 돈처럼 씁니다.</strong>
                   </p>
-                  <p className="text-xs mt-3 font-semibold" style={{ color: "var(--h-muted)" }}>
+                  <p className="text-xs mt-3 font-semibold" style={{ color: "rgba(255,255,255,0.35)" }}>
                     — 하랑마케팅 대표
                   </p>
                 </div>
 
                 {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3 mb-12">
+                <div className="hero-anim-4 flex flex-col sm:flex-row gap-3 mb-14">
                   <Link
                     href="/free-check"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-black text-base text-white transition-all hover:opacity-90 shadow-lg hover:-translate-y-0.5"
-                    style={{ background: "var(--h-dark)" }}
+                    className="hero-cta-primary inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-black text-base text-white"
                   >
                     무료 플레이스 진단 받기 <ArrowRight size={17} />
                   </Link>
                   <Link
                     href="/estimate"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-semibold text-base bg-white hover:bg-gray-50 transition-all"
-                    style={{ border: "2px solid var(--h-border)", color: "#4B5563" }}
+                    className="hero-cta-secondary inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-semibold text-base"
                   >
                     3분 견적 계산기 <ChevronRight size={16} />
                   </Link>
                 </div>
 
-                {/* Stats — clean horizontal rule format with amber numbers */}
-                <div className="border-t pt-8" style={{ borderColor: "var(--h-border)" }}>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {[
-                      { value: "500+", label: "완료 프로젝트", sub: "10년간 8개 업종" },
-                      { value: "95%", label: "재계약률", sub: "업계 평균 65% 대비" },
-                      { value: "+300%", label: "최대 매출 상승", sub: "실측 달성 수치" },
-                      { value: "24h", label: "상담 연락 보장", sub: "대표 직접 응답" },
-                    ].map((s) => (
-                      <div key={s.label}>
-                        <div
-                          className="text-2xl md:text-[28px] font-black tabular-nums mb-0.5"
-                          style={{ color: "var(--h-amber)" }}
-                        >
-                          {s.value}
-                        </div>
-                        <div className="text-sm font-bold mb-0.5" style={{ color: "var(--h-dark)" }}>
-                          {s.label}
-                        </div>
-                        <div className="text-xs" style={{ color: "var(--h-muted)" }}>
-                          {s.sub}
-                        </div>
+                {/* Stats — glassmorphism cards */}
+                <div className="hero-anim-5 grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {[
+                    { value: "500+", label: "완료 프로젝트", sub: "10년간 8개 업종" },
+                    { value: "95%", label: "재계약률", sub: "업계 평균 65% 대비" },
+                    { value: "+300%", label: "최대 매출 상승", sub: "실측 달성 수치" },
+                    { value: "24h", label: "상담 응답 보장", sub: "대표 직접 응답" },
+                  ].map((s) => (
+                    <div key={s.label} className="hero-stat-card rounded-2xl p-4 md:p-5">
+                      <div
+                        className="text-xl md:text-2xl font-black tabular-nums mb-0.5"
+                        style={{ color: "#FCD34D" }}
+                      >
+                        {s.value}
                       </div>
-                    ))}
-                  </div>
+                      <div className="text-sm font-bold mb-0.5 text-white">{s.label}</div>
+                      <div className="text-[11px]" style={{ color: "rgba(255,255,255,0.4)" }}>{s.sub}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Right: photo */}
-              <div className="hidden lg:block">
-                <PhotoPlaceholder
-                  label="대표님 실제 작업 현장 사진"
-                  hint="노트북 화면 분석 중인 모습 / 클라이언트 미팅 장면 / 3:4 비율 권장"
-                  width="w-full"
-                  height="h-[500px]"
-                  className="rounded-2xl shadow-xl"
-                />
-                {/* Social proof below photo */}
-                <div className="mt-4 flex items-center gap-3 bg-white rounded-xl px-4 py-3 border shadow-sm" style={{ borderColor: "var(--h-border)" }}>
+              {/* Right: floating dark card panel */}
+              <div className="hidden lg:block hero-float-card">
+                <div className="hero-float-anim">
+                  <div className="hero-stat-card rounded-3xl p-7 space-y-4">
+                    {/* Card header */}
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-white/50 uppercase tracking-widest">최근 성과</span>
+                      <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 glow-dot" />
+                        LIVE
+                      </span>
+                    </div>
+                    {/* Result rows */}
+                    {[
+                      { name: "일산 카페", service: "플레이스 SEO", result: "+167% 방문객", time: "3개월" },
+                      { name: "성수 음식점", service: "블로그 마케팅", result: "+113% 매출", time: "4개월" },
+                      { name: "부평 네일샵", service: "리뷰 마케팅", result: "예약 100% 마감", time: "2개월" },
+                      { name: "강서 피부과", service: "인스타 마케팅", result: "+300% 예약", time: "6개월" },
+                    ].map((r, i) => (
+                      <div key={i} className="flex items-center justify-between py-3 border-b border-white/8 last:border-0">
+                        <div>
+                          <div className="text-white text-sm font-bold">{r.name}</div>
+                          <div className="text-white/40 text-xs">{r.service} · {r.time}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-emerald-400 text-sm font-black">{r.result}</div>
+                        </div>
+                      </div>
+                    ))}
+                    {/* Footer */}
+                    <div className="pt-2">
+                      <Link
+                        href="/free-check"
+                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm text-white hero-cta-primary"
+                      >
+                        내 매장도 진단받기 <ArrowRight size={14} />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Social proof bubble */}
+                <div className="mt-4 hero-stat-card rounded-2xl flex items-center gap-3 px-4 py-3">
                   <div className="flex -space-x-2 shrink-0">
                     {["김","박","이","최","전"].map((n, i) => (
-                      <div key={i} className={`w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-white text-[10px] font-black bg-gradient-to-br ${["from-blue-400 to-blue-600","from-blue-500 to-blue-700","from-blue-600 to-indigo-700","from-indigo-500 to-blue-700","from-blue-700 to-blue-900"][i]}`}>
+                      <div key={i} className={`w-8 h-8 rounded-full border-2 border-white/20 flex items-center justify-center text-white text-[10px] font-black bg-gradient-to-br ${["from-blue-400 to-blue-600","from-blue-500 to-blue-700","from-blue-600 to-indigo-700","from-indigo-500 to-blue-700","from-blue-700 to-blue-900"][i]}`}>
                         {n}
                       </div>
                     ))}
                   </div>
                   <div className="min-w-0">
                     <div className="flex gap-0.5 mb-0.5">
-                      {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={10} className="text-amber-400 fill-amber-400" />)}
+                      {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={9} className="text-amber-400 fill-amber-400" />)}
                     </div>
-                    <p className="text-[11px]" style={{ color: "var(--h-muted)" }}>
-                      <span className="font-black" style={{ color: "var(--h-dark)" }}>이번 달 12팀</span>이 진단 신청
-                      <span className="ml-1.5 text-[10px] font-bold text-red-500">잔여 2자리</span>
+                    <p className="text-[11px] text-white/50">
+                      <span className="font-black text-white/80">이번 달 12팀</span> 진단 신청
+                      <span className="ml-1.5 text-[10px] font-bold text-red-400">잔여 2자리</span>
                     </p>
                   </div>
                 </div>
