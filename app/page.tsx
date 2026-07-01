@@ -481,25 +481,29 @@ const HOME_FAQS = [
 function HomeFAQ() {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section className="py-14 md:py-20 bg-gray-50">
+    <section className="py-14 md:py-20" style={{ background: "var(--h-bg)" }}>
       <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">FAQ</p>
-          <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">상담 전에 가장 많이 물어보시는 것들</h2>
-          <p className="text-gray-500 text-sm">더 궁금한 게 있으시면 카카오톡으로 바로 물어보세요</p>
+          <div className="flex items-center gap-3 justify-center mb-4">
+            <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+            <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>FAQ</span>
+            <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+          </div>
+          <h2 className="text-2xl md:text-3xl font-black mb-2" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>상담 전에 가장 많이 물어보시는 것들</h2>
+          <p className="text-sm" style={{ color: "var(--h-muted)" }}>더 궁금한 게 있으시면 카카오톡으로 바로 물어보세요</p>
         </div>
         <div className="space-y-2">
           {HOME_FAQS.map((faq, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            <div key={i} className="bg-white rounded-2xl overflow-hidden border" style={{ borderColor: "var(--h-border)" }}>
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-gray-50"
               >
-                <span className="font-bold text-gray-900 text-sm">{faq.q}</span>
-                <ChevronDown size={16} className={`text-gray-400 shrink-0 transition-transform ${open === i ? "rotate-180" : ""}`} />
+                <span className="font-bold text-sm" style={{ color: "var(--h-dark)" }}>{faq.q}</span>
+                <ChevronDown size={16} className={`shrink-0 transition-transform ${open === i ? "rotate-180" : ""}`} style={{ color: "var(--h-muted)" }} />
               </button>
               {open === i && (
-                <div className="px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                <div className="px-5 pb-4 text-sm leading-relaxed pt-3 border-t" style={{ color: "#4B5563", borderColor: "var(--h-border)" }}>
                   {faq.a}
                 </div>
               )}
@@ -507,7 +511,7 @@ function HomeFAQ() {
           ))}
         </div>
         <div className="text-center mt-8">
-          <Link href="/faq" className="inline-flex items-center gap-1.5 text-blue-600 font-bold text-sm hover:underline">
+          <Link href="/faq" className="inline-flex items-center gap-1.5 font-bold text-sm hover:underline" style={{ color: "var(--h-blue)" }}>
             전체 FAQ 보기 <ArrowRight size={14} />
           </Link>
         </div>
@@ -1168,23 +1172,27 @@ export default function HomePage() {
         </section>
 
         {/* ══ 무료 마케팅 인사이트 ══ */}
-        <section className="py-14 md:py-20 bg-gray-50">
+        <section className="py-14 md:py-20" style={{ background: "var(--h-surface)" }}>
           <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
+            <RevealOnScroll>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
               <div>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-100 px-3 py-1.5 rounded-full mb-4">
-                  <BookOpen size={10} strokeWidth={2.5} /> 무료 마케팅 인사이트
-                </span>
-                <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
+                  <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>무료 마케팅 인사이트</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black mb-2" style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}>
                   10년 노하우, 무료로 읽어보세요
                 </h2>
-                <p className="text-gray-400 text-sm">실전에서 검증된 소상공인 마케팅 전략을 공개합니다</p>
+                <p className="text-sm" style={{ color: "var(--h-muted)" }}>실전에서 검증된 소상공인 마케팅 전략을 공개합니다</p>
               </div>
               <Link href="/blog"
-                className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors shadow-sm">
+                className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-white text-sm font-bold transition-colors shadow-sm hover:opacity-90"
+                style={{ background: "var(--h-dark)" }}>
                 인사이트 전체보기 <ArrowRight size={13} />
               </Link>
             </div>
+            </RevealOnScroll>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 {
