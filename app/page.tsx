@@ -527,40 +527,41 @@ export default function HomePage() {
       <main>
 
         {/* ══ Hero — Dark 21st.dev style ══ */}
-        <section className="hero-dark relative min-h-screen flex items-center overflow-hidden pt-[72px] md:pt-[80px]">
-          {/* Animated gradient blobs */}
+        <section className="hero-dark relative min-h-[100dvh] flex items-center overflow-hidden">
+          {/* Animated gradient blobs — scaled down on mobile */}
           <div className="hero-blob hero-blob-1" />
           <div className="hero-blob hero-blob-2" />
           <div className="hero-blob hero-blob-3" />
 
           {/* Dot grid overlay */}
-          <div className="absolute inset-0 dot-grid-dark opacity-30 pointer-events-none" />
+          <div className="absolute inset-0 dot-grid-dark opacity-25 pointer-events-none" />
 
           {/* Grid lines texture */}
           <div className="absolute inset-0 hero-grid-lines pointer-events-none" />
 
-          {/* Bottom gradient fade to next section */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-            style={{ background: "linear-gradient(to bottom, transparent, #0a0f1e)" }} />
+          {/* Bottom gradient fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 pointer-events-none"
+            style={{ background: "linear-gradient(to bottom, transparent, #080E1D)" }} />
 
-          <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-24 md:py-32 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-12 lg:gap-16 items-center">
+          {/* pt: announcement bar(~44px) + nav(~68px) = ~112px, but on mobile announcement hidden sometimes, use safe value */}
+          <div className="relative max-w-6xl mx-auto px-4 md:px-6 lg:px-8 pt-28 pb-16 md:pt-36 md:pb-24 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_380px] gap-10 lg:gap-14 items-center">
 
               {/* Left: text column */}
               <div>
                 {/* Badge pill */}
-                <div className="hero-anim-1 inline-flex items-center gap-2.5 hero-badge rounded-full px-4 py-2 mb-8">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 glow-dot flex-shrink-0" />
-                  <span className="text-[11px] font-bold tracking-[0.18em] uppercase">
+                <div className="hero-anim-1 inline-flex items-center gap-2 hero-badge rounded-full px-3.5 py-1.5 mb-6 md:mb-8">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 glow-dot flex-shrink-0" />
+                  <span className="text-[10px] md:text-[11px] font-bold tracking-[0.15em] uppercase">
                     10년 경력 · 500+ 프로젝트 달성
                   </span>
                 </div>
 
-                {/* H1 */}
+                {/* H1 — fluid size, comfortable on 375px */}
                 <h1
-                  className="hero-anim-2 font-black leading-[1.05] mb-8"
+                  className="hero-anim-2 font-black leading-[1.05] mb-6 md:mb-8"
                   style={{
-                    fontSize: "clamp(42px, 7vw, 84px)",
+                    fontSize: "clamp(34px, 6.5vw, 84px)",
                     letterSpacing: "-0.04em",
                     color: "rgba(255,255,255,0.95)",
                   }}
@@ -569,13 +570,13 @@ export default function HomePage() {
                   <span className="hero-gradient-text">마케팅이 아닙니다</span>
                 </h1>
 
-                {/* Confession — amber accent border on dark */}
+                {/* Confession — amber left border */}
                 <div
-                  className="hero-anim-3 mb-10 pl-5 max-w-[520px]"
+                  className="hero-anim-3 mb-8 md:mb-10 pl-4 md:pl-5 max-w-[520px]"
                   style={{ borderLeft: "3px solid #D97706" }}
                 >
                   <p
-                    className="text-base md:text-[17px] leading-[1.85]"
+                    className="text-sm md:text-[17px] leading-[1.85]"
                     style={{ color: "rgba(255,255,255,0.65)" }}
                   >
                     카페 창업에 실패하고, 마케팅 대행사에게 사기도 당했습니다.<br />
@@ -587,51 +588,51 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                {/* CTAs */}
-                <div className="hero-anim-4 flex flex-col sm:flex-row gap-3 mb-14">
+                {/* CTAs — stacked on mobile, row on sm+ */}
+                <div className="hero-anim-4 flex flex-col sm:flex-row gap-3 mb-10 md:mb-14">
                   <Link
                     href="/free-check"
-                    className="hero-cta-primary inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-black text-base text-white"
+                    className="hero-cta-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 md:px-7 md:py-4 rounded-xl font-black text-sm md:text-base text-white"
                   >
-                    무료 플레이스 진단 받기 <ArrowRight size={17} />
+                    무료 플레이스 진단 받기 <ArrowRight size={16} />
                   </Link>
                   <Link
                     href="/estimate"
-                    className="hero-cta-secondary inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-semibold text-base"
+                    className="hero-cta-secondary inline-flex items-center justify-center gap-2 px-6 py-3.5 md:px-7 md:py-4 rounded-xl font-semibold text-sm md:text-base"
                   >
-                    3분 견적 계산기 <ChevronRight size={16} />
+                    3분 견적 계산기 <ChevronRight size={15} />
                   </Link>
                 </div>
 
-                {/* Stats — glassmorphism cards */}
-                <div className="hero-anim-5 grid grid-cols-2 md:grid-cols-4 gap-3">
+                {/* Stats — 2×2 on mobile, 4-col on md+ */}
+                <div className="hero-anim-5 grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-3">
                   {[
                     { value: "500+", label: "완료 프로젝트", sub: "10년간 8개 업종" },
                     { value: "95%", label: "재계약률", sub: "업계 평균 65% 대비" },
                     { value: "+300%", label: "최대 매출 상승", sub: "실측 달성 수치" },
                     { value: "24h", label: "상담 응답 보장", sub: "대표 직접 응답" },
                   ].map((s) => (
-                    <div key={s.label} className="hero-stat-card rounded-2xl p-4 md:p-5">
+                    <div key={s.label} className="hero-stat-card rounded-xl md:rounded-2xl p-3.5 md:p-5">
                       <div
-                        className="text-xl md:text-2xl font-black tabular-nums mb-0.5"
+                        className="text-lg md:text-2xl font-black tabular-nums mb-0.5"
                         style={{ color: "#FCD34D" }}
                       >
                         {s.value}
                       </div>
-                      <div className="text-sm font-bold mb-0.5 text-white">{s.label}</div>
-                      <div className="text-[11px]" style={{ color: "rgba(255,255,255,0.4)" }}>{s.sub}</div>
+                      <div className="text-xs md:text-sm font-bold mb-0.5 text-white">{s.label}</div>
+                      <div className="text-[10px] md:text-[11px]" style={{ color: "rgba(255,255,255,0.4)" }}>{s.sub}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Right: floating dark card panel */}
+              {/* Right: floating card — lg+ only */}
               <div className="hidden lg:block hero-float-card">
                 <div className="hero-float-anim">
-                  <div className="hero-stat-card rounded-3xl p-7 space-y-4">
+                  <div className="hero-stat-card rounded-3xl p-6 xl:p-7">
                     {/* Card header */}
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-bold text-white/50 uppercase tracking-widest">최근 성과</span>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.45)" }}>최근 성과</span>
                       <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-400">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 glow-dot" />
                         LIVE
@@ -644,18 +645,22 @@ export default function HomePage() {
                       { name: "부평 네일샵", service: "리뷰 마케팅", result: "예약 100% 마감", time: "2개월" },
                       { name: "강서 피부과", service: "인스타 마케팅", result: "+300% 예약", time: "6개월" },
                     ].map((r, i) => (
-                      <div key={i} className="flex items-center justify-between py-3 border-b border-white/8 last:border-0">
+                      <div
+                        key={i}
+                        className="flex items-center justify-between py-3 last:border-0"
+                        style={{ borderBottom: i < 3 ? "1px solid rgba(255,255,255,0.07)" : "none" }}
+                      >
                         <div>
                           <div className="text-white text-sm font-bold">{r.name}</div>
-                          <div className="text-white/40 text-xs">{r.service} · {r.time}</div>
+                          <div className="text-xs" style={{ color: "rgba(255,255,255,0.38)" }}>{r.service} · {r.time}</div>
                         </div>
                         <div className="text-right">
                           <div className="text-emerald-400 text-sm font-black">{r.result}</div>
                         </div>
                       </div>
                     ))}
-                    {/* Footer */}
-                    <div className="pt-2">
+                    {/* Footer CTA */}
+                    <div className="mt-4">
                       <Link
                         href="/free-check"
                         className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm text-white hero-cta-primary"
@@ -667,10 +672,10 @@ export default function HomePage() {
                 </div>
 
                 {/* Social proof bubble */}
-                <div className="mt-4 hero-stat-card rounded-2xl flex items-center gap-3 px-4 py-3">
+                <div className="mt-3 hero-stat-card rounded-2xl flex items-center gap-3 px-4 py-3">
                   <div className="flex -space-x-2 shrink-0">
                     {["김","박","이","최","전"].map((n, i) => (
-                      <div key={i} className={`w-8 h-8 rounded-full border-2 border-white/20 flex items-center justify-center text-white text-[10px] font-black bg-gradient-to-br ${["from-blue-400 to-blue-600","from-blue-500 to-blue-700","from-blue-600 to-indigo-700","from-indigo-500 to-blue-700","from-blue-700 to-blue-900"][i]}`}>
+                      <div key={i} className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-white text-[10px] font-black bg-gradient-to-br ${["from-blue-400 to-blue-600","from-blue-500 to-blue-700","from-blue-600 to-indigo-700","from-indigo-500 to-blue-700","from-blue-700 to-blue-900"][i]}`} style={{ borderColor: "rgba(255,255,255,0.15)" }}>
                         {n}
                       </div>
                     ))}
@@ -679,12 +684,35 @@ export default function HomePage() {
                     <div className="flex gap-0.5 mb-0.5">
                       {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={9} className="text-amber-400 fill-amber-400" />)}
                     </div>
-                    <p className="text-[11px] text-white/50">
-                      <span className="font-black text-white/80">이번 달 12팀</span> 진단 신청
+                    <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.45)" }}>
+                      <span className="font-black" style={{ color: "rgba(255,255,255,0.8)" }}>이번 달 12팀</span> 진단 신청
                       <span className="ml-1.5 text-[10px] font-bold text-red-400">잔여 2자리</span>
                     </p>
                   </div>
                 </div>
+              </div>
+
+              {/* Mobile-only: compact social proof strip */}
+              <div className="lg:hidden hero-anim-5 hero-stat-card rounded-2xl flex items-center gap-3 px-4 py-3">
+                <div className="flex -space-x-2 shrink-0">
+                  {["김","박","이"].map((n, i) => (
+                    <div key={i} className={`w-7 h-7 rounded-full border-2 flex items-center justify-center text-white text-[9px] font-black bg-gradient-to-br ${["from-blue-400 to-blue-600","from-blue-500 to-blue-700","from-blue-600 to-indigo-700"][i]}`} style={{ borderColor: "rgba(255,255,255,0.15)" }}>
+                      {n}
+                    </div>
+                  ))}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex gap-0.5 mb-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={8} className="text-amber-400 fill-amber-400" />)}
+                  </div>
+                  <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    <span className="font-black" style={{ color: "rgba(255,255,255,0.85)" }}>이번 달 12팀</span> 무료 진단 신청 완료
+                    <span className="ml-1.5 font-bold text-red-400">잔여 2자리</span>
+                  </p>
+                </div>
+                <Link href="/free-check" className="shrink-0 text-[11px] font-black text-white bg-blue-600 hover:bg-blue-500 px-3 py-2 rounded-lg transition-colors">
+                  신청
+                </Link>
               </div>
 
             </div>

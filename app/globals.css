@@ -1,4 +1,3 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
 @import "tailwindcss";
 
 :root {
@@ -83,32 +82,44 @@ body { overflow-x: hidden; }
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(80px);
+  filter: blur(60px);
   will-change: transform;
 }
+@media (min-width: 768px) {
+  .hero-blob { filter: blur(80px); }
+}
 .hero-blob-1 {
-  width: 780px;
-  height: 780px;
-  background: radial-gradient(circle, var(--hero-blob-1) 0%, transparent 65%);
-  top: -220px;
-  left: -180px;
-  animation: blob-drift-1 14s ease-in-out infinite alternate;
-}
-.hero-blob-2 {
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, var(--hero-blob-2) 0%, transparent 65%);
-  bottom: -120px;
-  right: -80px;
-  animation: blob-drift-2 17s ease-in-out infinite alternate;
-}
-.hero-blob-3 {
   width: 420px;
   height: 420px;
+  background: radial-gradient(circle, var(--hero-blob-1) 0%, transparent 65%);
+  top: -100px;
+  left: -120px;
+  animation: blob-drift-1 14s ease-in-out infinite alternate;
+}
+@media (min-width: 768px) {
+  .hero-blob-1 { width: 780px; height: 780px; top: -220px; left: -180px; }
+}
+.hero-blob-2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--hero-blob-2) 0%, transparent 65%);
+  bottom: -60px;
+  right: -60px;
+  animation: blob-drift-2 17s ease-in-out infinite alternate;
+}
+@media (min-width: 768px) {
+  .hero-blob-2 { width: 650px; height: 650px; bottom: -120px; right: -80px; }
+}
+.hero-blob-3 {
+  width: 240px;
+  height: 240px;
   background: radial-gradient(circle, var(--hero-blob-3) 0%, transparent 65%);
-  top: 45%;
-  left: 48%;
+  top: 50%;
+  left: 50%;
   animation: blob-drift-3 11s ease-in-out 1s infinite alternate;
+}
+@media (min-width: 768px) {
+  .hero-blob-3 { width: 420px; height: 420px; top: 45%; left: 48%; }
 }
 
 @keyframes blob-drift-1 {
