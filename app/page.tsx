@@ -17,6 +17,8 @@ import AnimatedCounter from "./components/AnimatedCounter";
 import YouTubeCard from "./components/YouTubeCard";
 import PhotoPlaceholder from "./components/PhotoPlaceholder";
 import RevealOnScroll from "./components/RevealOnScroll";
+import ReviewsSection from "./components/ReviewsSection";
+import ClientLogosSection from "./components/ClientLogosSection";
 
 /* ─── Data ─────────────────────────────────────── */
 
@@ -815,6 +817,12 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ══ 고객 후기 ══ */}
+        <ReviewsSection />
+
+        {/* ══ 파트너 로고 슬라이더 ══ */}
+        <ClientLogosSection />
 
         {/* ══ 대표 소개 ══ */}
         <section className="py-16 md:py-24 bg-white">
