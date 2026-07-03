@@ -20,6 +20,7 @@ import RevealOnScroll from "./components/RevealOnScroll";
 import ReviewsSection from "./components/ReviewsSection";
 import ClientLogosSection from "./components/ClientLogosSection";
 import DifferenceSection from "./components/DifferenceSection";
+import EntryPopup from "./components/EntryPopup";
 
 /* ─── Data ─────────────────────────────────────── */
 
@@ -527,6 +528,7 @@ function HomeFAQ() {
 export default function HomePage() {
   return (
     <>
+      <EntryPopup />
       <Header />
       <main>
 
