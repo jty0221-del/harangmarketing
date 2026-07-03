@@ -220,11 +220,11 @@ export default function HeroSection({
               fontWeight: 600,
               lineHeight: 1.45,
               letterSpacing: "-0.015em",
-              fontSize: "clamp(13px,1.9vw,30px)",
+              fontSize: "clamp(13px,1.9vw,28px)",
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .44s both",
             }}
           >
-            영업 전화 한 통 없이, 이번 달에만 대표님 같은 분{" "}
+            영업 전화 한 통 없이, 이번 달에만{" "}
             <span
               style={{
                 color: "#fff",
@@ -235,22 +235,22 @@ export default function HeroSection({
             >
               12명
             </span>
-            이 찾아왔습니다.
+            이 먼저 찾아왔습니다.
           </p>
 
           {/* 서브 2 */}
           <p
             style={{
               margin: "clamp(8px,1.4vh,16px) 0 0",
-              color: "rgba(255,255,255,0.86)",
+              color: "rgba(255,255,255,0.82)",
               fontWeight: 400,
-              lineHeight: 1.5,
+              lineHeight: 1.55,
               letterSpacing: "-0.01em",
-              fontSize: "clamp(12px,1.45vw,22px)",
+              fontSize: "clamp(12px,1.3vw,20px)",
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .58s both",
             }}
           >
-            말 보단 결과! 지금 저희를 알게 되셨다면 절반은 성공입니다.
+            재계약률 95% · 500+ 프로젝트 · 상담 비용 0원 · 외주 없음
           </p>
 
           {/* CTA 버튼 */}
@@ -282,7 +282,7 @@ export default function HeroSection({
                   whiteSpace: "nowrap",
                 }}
               >
-                무료 마케팅 진단 받기
+                무료 마케팅 진단 (비용 0원)
                 <span style={{ fontSize: "1.1em", lineHeight: 1 }}>→</span>
               </Link>
               <Link
