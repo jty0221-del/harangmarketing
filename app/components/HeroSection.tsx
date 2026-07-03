@@ -157,9 +157,9 @@ export default function HeroSection({
         <div
           style={{
             position: "absolute",
-            left: "clamp(20px,5vw,72px)",
-            right: "clamp(20px,5vw,72px)",
-            bottom: "clamp(80px,10vh,120px)",
+            left: "clamp(24px,4vw,72px)",
+            right: "clamp(24px,4vw,72px)",
+            bottom: "clamp(40px,7vh,86px)",
             zIndex: 5,
           }}
         >
@@ -204,7 +204,7 @@ export default function HeroSection({
               fontWeight: 800,
               lineHeight: 1.08,
               letterSpacing: "-0.03em",
-              fontSize: "clamp(24px,4.7vw,74px)",
+              fontSize: "clamp(28px,4.7vw,74px)",
               textShadow: "0 2px 30px rgba(5,12,32,0.4)",
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .28s both",
             }}
@@ -215,16 +215,17 @@ export default function HeroSection({
           {/* 서브 1 */}
           <p
             style={{
-              margin: "clamp(14px,2.2vh,26px) 0 0",
+              margin: "clamp(16px,2.2vh,26px) 0 0",
               color: "#fff",
               fontWeight: 600,
               lineHeight: 1.45,
               letterSpacing: "-0.015em",
-              fontSize: "clamp(13px,1.9vw,28px)",
+              fontSize: "clamp(15px,1.9vw,30px)",
+              whiteSpace: "nowrap",
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .44s both",
             }}
           >
-            영업 전화 한 통 없이, 이번 달에만{" "}
+            영업 전화 한 통 없이, 이번 달에만 대표님 같은 분{" "}
             <span
               style={{
                 color: "#fff",
@@ -235,22 +236,23 @@ export default function HeroSection({
             >
               12명
             </span>
-            이 먼저 찾아왔습니다.
+            이 찾아왔습니다.
           </p>
 
           {/* 서브 2 */}
           <p
             style={{
-              margin: "clamp(8px,1.4vh,16px) 0 0",
-              color: "rgba(255,255,255,0.82)",
+              margin: "clamp(10px,1.4vh,16px) 0 0",
+              color: "rgba(255,255,255,0.86)",
               fontWeight: 400,
-              lineHeight: 1.55,
+              lineHeight: 1.5,
               letterSpacing: "-0.01em",
-              fontSize: "clamp(12px,1.3vw,20px)",
+              fontSize: "clamp(13px,1.45vw,22px)",
+              whiteSpace: "nowrap",
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .58s both",
             }}
           >
-            재계약률 95% · 500+ 프로젝트 · 상담 비용 0원 · 외주 없음
+            말 보단 결과! 지금 저희를 알게 되셨다면 절반은 성공입니다.
           </p>
 
           {/* CTA 버튼 */}
@@ -261,7 +263,7 @@ export default function HeroSection({
                 flexWrap: "wrap",
                 alignItems: "center",
                 gap: 14,
-                marginTop: "clamp(22px,3.2vh,40px)",
+                marginTop: "clamp(24px,3.2vh,40px)",
                 animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .7s both",
               }}
             >
@@ -282,7 +284,7 @@ export default function HeroSection({
                   whiteSpace: "nowrap",
                 }}
               >
-                무료 마케팅 진단 (비용 0원)
+                무료 마케팅 진단 받기
                 <span style={{ fontSize: "1.1em", lineHeight: 1 }}>→</span>
               </Link>
               <Link
