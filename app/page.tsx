@@ -21,6 +21,7 @@ import ReviewsSection from "./components/ReviewsSection";
 import ClientLogosSection from "./components/ClientLogosSection";
 import DifferenceSection from "./components/DifferenceSection";
 import EntryPopup from "./components/EntryPopup";
+import RegionalSection from "./components/RegionalSection";
 
 /* ─── Data ─────────────────────────────────────── */
 
@@ -31,7 +32,7 @@ const INDUSTRIES = [
     color: "from-blue-500 to-blue-700",
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
-    points: ["플레이스 상위 노출", "포토리뷰 전략", "인스타 비주얼"],
+    points: ["플레이스 상위 3위 진입", "포토리뷰 전략", "인스타 비주얼"],
     result: "+167%",
     resultLabel: "월 방문객",
     before: "일 방문 28명",
@@ -45,13 +46,13 @@ const INDUSTRIES = [
     color: "from-blue-600 to-indigo-700",
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
-    points: ["배달앱 리뷰 쌓기", "맘카페 바이럴", "블로그 맛집 등록"],
+    points: ["배달앱 리뷰 전략", "맘카페 바이럴", "블로그 맛집 등록"],
     result: "+113%",
-    resultLabel: "월 매출",
+    resultLabel: "월 배달 매출",
     before: "월 매출 480만",
     after: "월 매출 1,022만",
     duration: "4개월",
-    location: "서울 성수",
+    location: "경기 고양",
   },
   {
     icon: Scissors,
@@ -61,11 +62,11 @@ const INDUSTRIES = [
     borderLight: "border-blue-100",
     points: ["인스타 포트폴리오", "체험단 모집", "예약 전환 최적화"],
     result: "예약 완전 마감",
-    resultLabel: "진행 2주 후",
-    before: "예약 가동률 41%",
+    resultLabel: "진행 6주 후",
+    before: "예약 가동률 40%",
     after: "예약 100% 마감",
     duration: "2개월",
-    location: "인천 부평",
+    location: "경기 파주",
   },
   {
     icon: Stethoscope,
@@ -74,12 +75,12 @@ const INDUSTRIES = [
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
     points: ["블로그 신뢰도 강화", "체험단 후기", "플레이스 SEO"],
-    result: "+300%",
-    resultLabel: "신규 예약",
+    result: "+175%",
+    resultLabel: "월 신규 예약",
     before: "월 신규 12건",
-    after: "월 신규 48건",
-    duration: "5개월",
-    location: "경기 분당",
+    after: "월 신규 33건",
+    duration: "4개월",
+    location: "경기 안양",
   },
   {
     icon: GraduationCap,
@@ -87,13 +88,13 @@ const INDUSTRIES = [
     color: "from-blue-700 to-indigo-800",
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
-    points: ["맘카페 입소문", "홈페이지형 블로그", "블로그 관리"],
+    points: ["맘카페 입소문", "홈페이지형 블로그", "블로그 지역 키워드"],
     result: "+55%",
     resultLabel: "수강생",
     before: "수강생 62명",
     after: "수강생 96명",
     duration: "3개월",
-    location: "서울 목동",
+    location: "경기 고양",
   },
   {
     icon: ShoppingBag,
@@ -101,7 +102,7 @@ const INDUSTRIES = [
     color: "from-blue-500 to-indigo-600",
     bgLight: "bg-blue-50",
     borderLight: "border-blue-100",
-    points: ["블로그 SEO", "체험단 후기", "콘텐츠 마케팅"],
+    points: ["블로그 SEO 최적화", "체험단 후기 확보", "콘텐츠 마케팅"],
     result: "+64%",
     resultLabel: "월 매출",
     before: "월 매출 230만",
@@ -539,42 +540,42 @@ export default function HomePage() {
         <div className="bg-blue-600 py-3 overflow-hidden">
           <div className="flex animate-marquee whitespace-nowrap">
             {([
-              { text: "플레이스 Top 5 진입 · 평균 4주 만에", dot: "bg-white/60" },
+              { text: "플레이스 Top 5 진입 · 평균 6주 만에", dot: "bg-white/60" },
               { text: "재계약률 95% · 500+ 프로젝트", dot: "bg-blue-200" },
-              { text: "신규 예약 +300% · 서울 강서 피부과", dot: "bg-white/60" },
+              { text: "월 신규 예약 +175% · 경기 안양 한의원", dot: "bg-white/60" },
               { text: "대표 직접 담당 · 외주 없음", dot: "bg-blue-200" },
               { text: "방문객 +167% · 경기 일산 카페", dot: "bg-white/60" },
-              { text: "배달 매출 +113% · 서울 마포 음식점", dot: "bg-blue-200" },
+              { text: "배달 매출 +113% · 경기 고양 음식점", dot: "bg-blue-200" },
               { text: "수강생 +55% · 경기 고양 학원", dot: "bg-white/60" },
-              { text: "예약 완전 마감 · 수원 네일샵", dot: "bg-blue-200" },
+              { text: "예약 완전 마감 · 경기 파주 네일샵", dot: "bg-blue-200" },
               { text: "상담 비용 0원 · 계약 강요 없음", dot: "bg-white/60" },
               { text: "10년+ 경력 · 업종별 맞춤 전략", dot: "bg-blue-200" },
               { text: "24시간 내 연락 보장", dot: "bg-white/60" },
               { text: "이번 달 신규 상담 잔여 2자리", dot: "bg-blue-200" },
-              { text: "ROI 평균 2.4배 · 3개월 실측치", dot: "bg-white/60" },
-              { text: "블로그 지역 키워드 3주 만에 상위권", dot: "bg-blue-200" },
-              { text: "한의원 초진 예약 +200% · 경기 안양", dot: "bg-white/60" },
-              { text: "카카오맵 리뷰 0 → 95개 · 2개월", dot: "bg-blue-200" },
-              { text: "리뷰 127개 달성 · 3개월 로드맵", dot: "bg-white/60" },
+              { text: "ROI 평균 1.8배 · 3개월 실측치", dot: "bg-white/60" },
+              { text: "블로그 지역 키워드 4주 만에 상위권", dot: "bg-blue-200" },
+              { text: "카카오맵 리뷰 0 → 78개 · 2개월", dot: "bg-white/60" },
+              { text: "매출 월평균 +89% · 3개월 계약 기준", dot: "bg-blue-200" },
+              { text: "플레이스 일산 지역 음식점 1위 달성", dot: "bg-white/60" },
             ] as { text: string; dot: string }[])
               .concat(([
-                { text: "플레이스 Top 5 진입 · 평균 4주 만에", dot: "bg-white/60" },
+                { text: "플레이스 Top 5 진입 · 평균 6주 만에", dot: "bg-white/60" },
                 { text: "재계약률 95% · 500+ 프로젝트", dot: "bg-blue-200" },
-                { text: "신규 예약 +300% · 서울 강서 피부과", dot: "bg-white/60" },
+                { text: "월 신규 예약 +175% · 경기 안양 한의원", dot: "bg-white/60" },
                 { text: "대표 직접 담당 · 외주 없음", dot: "bg-blue-200" },
                 { text: "방문객 +167% · 경기 일산 카페", dot: "bg-white/60" },
-                { text: "배달 매출 +113% · 서울 마포 음식점", dot: "bg-blue-200" },
+                { text: "배달 매출 +113% · 경기 고양 음식점", dot: "bg-blue-200" },
                 { text: "수강생 +55% · 경기 고양 학원", dot: "bg-white/60" },
-                { text: "예약 완전 마감 · 수원 네일샵", dot: "bg-blue-200" },
+                { text: "예약 완전 마감 · 경기 파주 네일샵", dot: "bg-blue-200" },
                 { text: "상담 비용 0원 · 계약 강요 없음", dot: "bg-white/60" },
                 { text: "10년+ 경력 · 업종별 맞춤 전략", dot: "bg-blue-200" },
                 { text: "24시간 내 연락 보장", dot: "bg-white/60" },
                 { text: "이번 달 신규 상담 잔여 2자리", dot: "bg-blue-200" },
-                { text: "ROI 평균 2.4배 · 3개월 실측치", dot: "bg-white/60" },
-                { text: "블로그 지역 키워드 3주 만에 상위권", dot: "bg-blue-200" },
-                { text: "한의원 초진 예약 +200% · 경기 안양", dot: "bg-white/60" },
-                { text: "카카오맵 리뷰 0 → 95개 · 2개월", dot: "bg-blue-200" },
-                { text: "리뷰 127개 달성 · 3개월 로드맵", dot: "bg-white/60" },
+                { text: "ROI 평균 1.8배 · 3개월 실측치", dot: "bg-white/60" },
+                { text: "블로그 지역 키워드 4주 만에 상위권", dot: "bg-blue-200" },
+                { text: "카카오맵 리뷰 0 → 78개 · 2개월", dot: "bg-white/60" },
+                { text: "매출 월평균 +89% · 3개월 계약 기준", dot: "bg-blue-200" },
+                { text: "플레이스 일산 지역 음식점 1위 달성", dot: "bg-white/60" },
               ] as { text: string; dot: string }[]))
               .map((item, i) => (
                 <span key={i} className="flex items-center gap-3 px-6 text-xs text-white font-semibold">
@@ -851,19 +852,19 @@ export default function HomePage() {
                 </div>
 
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                  해병대 장교로 전역 후 전 재산을 털어 카페를 창업했다가 실패했습니다. 그때 마케팅 대행사에게 사기도 당했습니다.
+                  해병대 장교로 전역 후 전 재산을 털어 일산에서 카페를 창업했다가 실패했습니다. 그때 마케팅 대행사에게 사기도 당했습니다.
                   그 절박함을 직접 겪었기 때문에 <strong className="text-gray-800">대표님의 돈을 제 돈처럼 무겁게 생각합니다.</strong>
-                  이후 10년간 현장을 직접 뛰어 500곳 이상의 매장과 함께 성장해왔습니다.
+                  이후 10년간 경기 북부 현장을 직접 뛰어 소상공인 500곳 이상과 함께 성장해왔습니다.
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-7">
                   {[
-                    { label: "해병대 장교 출신", sub: "리더십·책임감" },
+                    { label: "해병대 장교 출신", sub: "책임감·원칙" },
                     { label: "카페 창업 실패", sub: "현장 공감" },
-                    { label: "10년+ 경력", sub: "직접 담당" },
+                    { label: "경기 북부 10년", sub: "지역 전문가" },
                     { label: "500+ 클라이언트", sub: "검증된 성과" },
-                    { label: "속이면 10배 보상", sub: "신뢰 보장" },
-                    { label: "외주 없음", sub: "대표가 전담" },
+                    { label: "결과 미달 시 조정", sub: "성과 보장" },
+                    { label: "외주 없음", sub: "대표 직접 전담" },
                   ].map((b) => (
                     <div key={b.label} className="bg-gray-50 border border-gray-100 rounded-xl px-3 py-2.5">
                       <div className="text-xs font-black text-gray-900 mb-0.5">{b.label}</div>
@@ -906,6 +907,9 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ══ 지역 밀착 마케팅 ══ */}
+        <RegionalSection />
+
         {/* ══ 체크리스트 공감 ══ */}
         <ChecklistSection />
 
@@ -922,10 +926,10 @@ export default function HomePage() {
             </RevealOnScroll>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {[
-                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "2014년~현재" },
-                { to: 95, suffix: "%", label: "재계약률", sub: "업계 최고 수준" },
-                { to: 10, suffix: "년+", label: "대표 경력", sub: "직접 담당" },
-                { to: 300, suffix: "%", label: "최대 매출 상승", sub: "실제 달성 수치" },
+                { to: 500, suffix: "+", label: "완료 프로젝트", sub: "2015년~현재" },
+                { to: 95, suffix: "%", label: "재계약률", sub: "6개월 이상 계약 기준" },
+                { to: 10, suffix: "년+", label: "대표 경력", sub: "직접 담당 전담" },
+                { to: 89, suffix: "%", label: "평균 매출 상승", sub: "3개월 계약 실측치" },
               ].map((item, i) => (
                 <RevealOnScroll key={item.label} delay={i * 80}>
                   <div className="text-center">
@@ -1911,12 +1915,12 @@ export default function HomePage() {
             </div>
             <div className="space-y-2">
               {[
-                { q: "상담만 해도 되나요? 계약 강요가 있지 않나요?", a: "상담 비용은 0원이며 계약 강요는 절대 없습니다. 분석 결과를 공유해드리고, 진행 여부는 전적으로 사장님 결정입니다." },
-                { q: "효과가 없으면 어떻게 되나요?", a: "매월 성과를 함께 검토합니다. 목표에 미달하면 전략을 즉시 수정합니다. 95% 재계약률이 증거입니다." },
-                { q: "소규모 매장도 가능한가요?", a: "네, 소규모 1인 매장부터 가능합니다. 예산에 맞는 우선순위를 함께 정하고, 가장 효과적인 채널부터 시작합니다." },
-                { q: "얼마나 기다리면 효과가 나오나요?", a: "서비스마다 다르지만, 플레이스 SEO는 3~4주, 블로그는 2~3개월, SNS는 1~2개월이 일반적입니다. 첫 상담 때 현실적인 기간을 안내드립니다." },
-                { q: "이미 다른 대행사를 쓰고 있는데 바꿔도 되나요?", a: "네, 기존 계약 종료 후 자연스럽게 전환하시면 됩니다. 이전 대행사의 작업 내역을 분석해서 개선점을 함께 찾아드립니다. 이미 대행사를 바꾸신 분들이 전체 클라이언트의 약 40%입니다." },
-                { q: "전화·카카오 상담과 홈페이지 상담 신청 중 어떤 게 더 좋나요?", a: "급하시면 전화나 카카오가 빠릅니다. 업종·매장 상황을 미리 적어서 신청 폼으로 남겨주시면 사전 분석 후 연락드려 더 알찬 상담이 됩니다. 둘 다 24시간 내 응대합니다." },
+                { q: "상담 비용이 있나요? 계약을 강요하진 않나요?", a: "상담 비용은 완전 무료입니다. 분석 결과를 공유해드리고, 진행 여부는 전적으로 사장님 결정입니다. 상담 후 '지금은 아니다'고 하셔도 전혀 괜찮습니다." },
+                { q: "효과가 없으면 어떻게 되나요?", a: "3개월 기준으로 협의한 목표에 미달하면 다음 달 비용을 조정합니다. 단, 계약 전에 현실적으로 달성 가능한 목표를 먼저 솔직하게 말씀드립니다. 어렵다고 판단하면 계약을 권하지 않습니다." },
+                { q: "매달 비용이 얼마나 드나요?", a: "기본 플레이스 SEO 단독은 월 30~50만원대, 블로그+플레이스 패키지는 월 60~90만원대가 일반적입니다. 업종·경쟁 강도에 따라 달라지며, 상담 후 매장 상황에 맞는 견적을 드립니다. 불필요한 서비스를 끼워팔지 않습니다." },
+                { q: "얼마나 기다려야 효과가 나오나요?", a: "플레이스 SEO는 빠르면 3~4주 안에 순위 변동이 시작됩니다. 블로그 검색 유입은 2~3개월, SNS는 1~2개월이 현실적입니다. 업종과 경쟁 강도마다 다르므로 첫 상담에서 정확한 기간을 안내드립니다." },
+                { q: "이미 다른 대행사를 쓰고 있는데 바꿔도 되나요?", a: "네, 전체 클라이언트의 약 40%가 대행사를 교체하고 오신 분들입니다. 기존 작업 내역을 분석해서 어디서 막혔는지 파악하고 이어서 진행합니다. 계약 잔여기간이 있다면 종료 후 시작하셔도 됩니다." },
+                { q: "경기 북부 지역이 아니어도 되나요?", a: "서울·수도권 전 지역 대응 가능합니다. 다만 10년 현장 경험이 경기 일산·고양·파주·김포 지역에 집중되어 있어서, 해당 지역 매장이라면 경쟁 상권을 더 정밀하게 분석할 수 있습니다." },
               ].map((faq, i) => (
                 <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors">
                   <summary className="flex items-center gap-3 p-5 cursor-pointer list-none select-none hover:bg-blue-50/30 transition-colors">
