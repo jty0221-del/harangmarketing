@@ -19,6 +19,7 @@ import PhotoPlaceholder from "./components/PhotoPlaceholder";
 import RevealOnScroll from "./components/RevealOnScroll";
 import ReviewsSection from "./components/ReviewsSection";
 import ClientLogosSection from "./components/ClientLogosSection";
+import DifferenceSection from "./components/DifferenceSection";
 
 /* ─── Data ─────────────────────────────────────── */
 
@@ -608,6 +609,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ══ 차별화 비교표 ══ */}
+        <DifferenceSection />
 
         {/* ══ 견적 계산기 배너 ══ */}
         <section className="py-8 bg-gradient-to-r from-indigo-50 via-blue-50 to-indigo-50 border-b border-blue-100">
