@@ -63,6 +63,7 @@ function NaverPostCard({ post }: { post: NaverPost }) {
         <img
           src={post.thumbnail}
           alt={post.title}
+          referrerPolicy="no-referrer"
           className="w-full h-40 object-cover bg-gray-100 group-hover:scale-[1.02] transition-transform duration-300"
           loading="lazy"
         />

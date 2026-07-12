@@ -80,13 +80,11 @@ export async function getNaverBlogPosts(limit = 30): Promise<NaverBlogPost[]> {
       const excerpt = stripHtml(item.description ?? item.content ?? "").slice(0, 120).trimEnd();
 
       // rss2json provides thumbnail; fallback: extract from content
-      let rawThumb: string | null = item.thumbnail && item.thumbnail.startsWith("http") ? item.thumbnail : null;
-      if (!rawThumb && item.content) {
+      let thumbnail: string | null = item.thumbnail && item.thumbnail.startsWith("http") ? item.thumbnail : null;
+      if (!thumbnail && item.content) {
         const m = item.content.match(/<img[^>]+src=["']([^"']+)["']/i);
-        if (m) rawThumb = m[1];
+        if (m) thumbnail = m[1];
       }
-      // Proxy through our API to bypass Naver CDN Referer blocking
-      const thumbnail = rawThumb ? `/api/img-proxy?url=${encodeURIComponent(rawThumb)}` : null;
 
       return {
         title,
@@ -137,16 +135,15 @@ async function fallbackDirectFetch(limit: number): Promise<NaverBlogPost[]> {
       const category = extractCDATA("category");
 
       // thumbnail: try enclosure, media:thumbnail, media:content, then first img in description
-      let rawThumb: string | null =
+      let thumbnail: string | null =
         extractAttr("enclosure", "url") ||
         extractAttr("media:thumbnail", "url") ||
         extractAttr("media:content", "url") ||
         null;
-      if (!rawThumb) {
+      if (!thumbnail) {
         const m = description.match(/<img[^>]+src=["']([^"']+)["']/i);
-        if (m) rawThumb = m[1];
+        if (m) thumbnail = m[1];
       }
-      const thumbnail = rawThumb ? `/api/img-proxy?url=${encodeURIComponent(rawThumb)}` : null;
 
       const text = stripHtml(description);
       const excerpt = text.length > 120 ? text.slice(0, 120).trimEnd() + "..." : text;
