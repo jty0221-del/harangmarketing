@@ -1,11 +1,10 @@
-"use client";
-
-import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, BookOpen, TrendingUp, MapPin, Star, MessageCircle, Filter } from "lucide-react";
+import { ArrowRight, ExternalLink, BookOpen, TrendingUp, MapPin, Star, MessageCircle } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
+import BlogListClient from "./BlogListClient";
+import { getAllPosts } from "../lib/blog-posts";
 
 const BLOG_POSTS = [
   {
@@ -175,11 +174,8 @@ const BLOG_POSTS = [
   },
 ];
 
-const CATEGORIES = ["전체", "플레이스 SEO", "블로그 마케팅", "체험단·리뷰", "SNS 마케팅", "업종별 전략", "마케팅 비용", "리뷰 마케팅", "카카오맵"];
-
 export default function BlogPage() {
-  const [activeTab, setActiveTab] = useState("전체");
-  const filtered = activeTab === "전체" ? BLOG_POSTS : BLOG_POSTS.filter((p) => p.tag === activeTab);
+  const dynamicPosts = getAllPosts().map((p) => ({ slug: p.slug, title: p.title, excerpt: p.excerpt, date: p.date }));
 
   return (
     <>
@@ -240,77 +236,7 @@ export default function BlogPage() {
         {/* Blog Posts */}
         <section className="py-12 md:py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            {/* Category scrollable tabs */}
-            <div className="flex items-center gap-2 mb-6">
-              <Filter size={13} className="text-gray-400 shrink-0" strokeWidth={2.5} />
-              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-                {CATEGORIES.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveTab(cat)}
-                    className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap border shrink-0 transition-colors ${
-                      cat === activeTab
-                        ? "bg-blue-600 text-white border-blue-600"
-                        : "bg-white text-gray-500 border-gray-200 hover:border-blue-200 hover:text-blue-600"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {filtered.length === 0 && (
-              <div className="text-center py-16 text-gray-400 text-sm">
-                해당 카테고리의 글이 없습니다.
-              </div>
-            )}
-
-            <div className="space-y-4">
-              {filtered.map((post, i) => {
-                const inner = (
-                  <div className="flex items-start gap-4">
-                    {/* Thumbnail placeholder */}
-                    <PhotoPlaceholder
-                      label="썸네일"
-                      width="w-24 md:w-32"
-                      height="h-24 md:h-28"
-                      className="shrink-0 rounded-xl"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2 flex-wrap">
-                        <span className={`inline-block px-2.5 py-0.5 rounded-lg border text-[11px] font-black ${post.tagColor}`}>
-                          {post.tag}
-                        </span>
-                        <span className="text-[11px] text-gray-400">{post.readTime} 읽기</span>
-                        {(post as { internal?: boolean }).internal && (
-                          <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-1.5 py-0.5 rounded">전문 읽기</span>
-                        )}
-                      </div>
-                      <h2 className="font-black text-gray-900 text-sm md:text-base leading-snug mb-1.5 group-hover:text-blue-600 transition-colors line-clamp-2">
-                        {post.title}
-                      </h2>
-                      <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-2 hidden sm:block">
-                        {post.preview}
-                      </p>
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-blue-600">
-                        <TrendingUp size={11} strokeWidth={2.5} />
-                        {post.result}
-                      </div>
-                    </div>
-                    <div className="shrink-0 flex flex-col items-center justify-center w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-blue-600 transition-colors self-start mt-1">
-                      <ExternalLink size={13} className="text-gray-400 group-hover:text-white transition-colors" />
-                    </div>
-                  </div>
-                );
-                const cls = `block bg-white rounded-2xl border-l-4 ${post.accentColor} border border-gray-100 p-5 md:p-6 hover:shadow-md transition-all group`;
-                return (post as { internal?: boolean }).internal ? (
-                  <Link key={i} href={post.href} className={cls}>{inner}</Link>
-                ) : (
-                  <a key={i} href={post.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
-                );
-              })}
-            </div>
+            <BlogListClient staticPosts={BLOG_POSTS} dynamicPosts={dynamicPosts} />
 
             {/* Load more — links to Naver blog */}
             <div className="text-center mt-8">

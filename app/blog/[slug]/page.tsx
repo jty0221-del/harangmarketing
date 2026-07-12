@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ScrollProgressBar from "../../components/ScrollProgressBar";
 import { ArrowLeft, Clock, TrendingUp, CheckCircle2, ArrowRight, MessageCircle, BookOpen } from "lucide-react";
+import { getAllPosts, getPostBySlug } from "../../lib/blog-posts";
 
 const POSTS: Record<string, {
   title: string;
@@ -741,13 +742,29 @@ const POSTS: Record<string, {
 };
 
 export async function generateStaticParams() {
-  return Object.keys(POSTS).map((slug) => ({ slug }));
+  const dynamicSlugs = getAllPosts().map((p) => ({ slug: p.slug }));
+  const staticSlugs = Object.keys(POSTS).map((slug) => ({ slug }));
+  return [...dynamicSlugs, ...staticSlugs];
 }
 
 export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
   const { slug } = await params;
+  const dynamicPost = getPostBySlug(slug);
+  if (dynamicPost) {
+    return {
+      title: `${dynamicPost.title} — 하랑마케팅 블로그`,
+      description: dynamicPost.excerpt,
+      openGraph: {
+        title: dynamicPost.title,
+        description: dynamicPost.excerpt,
+        url: `https://harangmarketing.com/blog/${slug}`,
+        type: "article",
+        images: [{ url: "/og-image.png", width: 1200, height: 630, alt: dynamicPost.title }],
+      },
+    };
+  }
   const post = POSTS[slug];
   if (!post) return { title: "포스트를 찾을 수 없습니다" };
   return {
@@ -765,6 +782,83 @@ export async function generateMetadata(
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+
+  // dynamic post (admin-written) takes priority
+  const dynamicPost = getPostBySlug(slug);
+  if (dynamicPost) {
+    return (
+      <>
+        <ScrollProgressBar />
+        <Header />
+        <main className="pt-[104px] md:pt-[108px]">
+          <section className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 py-12 md:py-20">
+            <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
+              <Link href="/blog" className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white text-xs mb-6 transition-colors">
+                <ArrowLeft size={13} /> 블로그 목록으로
+              </Link>
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border mb-4 bg-blue-50 text-blue-700 border-blue-200">
+                <BookOpen size={10} strokeWidth={2.5} /> 마케팅 인사이트
+              </span>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight mb-5">
+                {dynamicPost.title}
+              </h1>
+              <div className="flex items-center gap-4 text-xs text-gray-400 mb-6">
+                <span className="flex items-center gap-1.5">
+                  <Clock size={12} strokeWidth={2} /> {dynamicPost.date}
+                </span>
+              </div>
+              {dynamicPost.excerpt && (
+                <p className="text-gray-300 text-base leading-relaxed">{dynamicPost.excerpt}</p>
+              )}
+            </div>
+          </section>
+          <article className="py-12 md:py-16 bg-white">
+            <div className="max-w-3xl mx-auto px-4 md:px-6 lg:px-8">
+              <div
+                className="prose prose-gray max-w-none prose-headings:font-black prose-a:text-blue-600"
+                dangerouslySetInnerHTML={{ __html: dynamicPost.body }}
+              />
+              <div className="mt-12 bg-gray-50 border border-gray-100 rounded-2xl p-6 flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center shrink-0 shadow-sm">
+                  <span className="text-white font-black text-xl">전</span>
+                </div>
+                <div>
+                  <p className="font-black text-gray-900 text-sm mb-0.5">전태영 · 하랑마케팅 대표</p>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    2014년부터 소상공인 전문 마케팅 대행. 500+ 프로젝트 경험으로 업종별 실전 데이터를 공유합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+          <section className="py-12 bg-gradient-to-r from-blue-600 to-indigo-700">
+            <div className="max-w-2xl mx-auto px-4 text-center">
+              <h2 className="text-xl md:text-2xl font-black text-white mb-3">글을 읽고 직접 적용이 어려우신가요?</h2>
+              <p className="text-blue-100 text-sm mb-7">상담 비용 0원 · 업종 분석 무료 · 24시간 내 연락</p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white text-blue-700 font-black text-sm hover:bg-blue-50 transition-colors shadow-sm"
+                >
+                  무료 상담 신청 <ArrowRight size={14} />
+                </Link>
+                <a
+                  href="https://pf.kakao.com/_MuUkG/chat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-yellow-400 text-gray-900 font-black text-sm hover:bg-yellow-300 transition-colors"
+                >
+                  <MessageCircle size={15} /> 카카오 문의
+                </a>
+              </div>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
   const post = POSTS[slug];
   if (!post) notFound();
 
