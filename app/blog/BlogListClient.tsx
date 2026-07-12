@@ -134,7 +134,7 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm">
             <Lightbulb size={14} className="text-white" strokeWidth={2.5} />
           </div>
-          <span className="text-xs font-black text-blue-600 uppercase tracking-widest">마케팅 꿀팁</span>
+          <span className="text-xs font-black text-blue-600 uppercase tracking-widest">마케팅 인사이트</span>
         </div>
         <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-1">
           {currentTab.label === "전체" ? "전체 인사이트" : `${currentTab.label} 마케팅`}

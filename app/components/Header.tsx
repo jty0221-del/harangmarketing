@@ -56,7 +56,7 @@ const NAV_ITEMS = [
       { label: "진행 과정", href: "/process" },
     ],
   },
-  { label: "마케팅 꿀팁", href: "/blog" },
+  { label: "마케팅 인사이트", href: "/blog" },
   { label: "진행사례", href: "/cases" },
   { label: "FAQ", href: "/faq" },
   { label: "상담신청", href: "/contact" },
