@@ -10,7 +10,29 @@ export interface NaverBlogPost {
   group: BlogGroup;
 }
 
+// ─── 상수 ────────────────────────────────────────────────────────────────────
+const BLOG_ID = "harangmarketing";
+const NAVER_BASE = "https://blog.naver.com";
+const RSS_URL = "https://rss.blog.naver.com/harangmarketing.xml";
+const RSS2JSON = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}&count=40`;
+const PER_PAGE = 30;
+
+const NAVER_HEADERS = {
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+  Referer: `${NAVER_BASE}/${BLOG_ID}`,
+  Accept: "application/json, text/javascript, */*; q=0.01",
+  "Accept-Language": "ko-KR,ko;q=0.9",
+  "X-Requested-With": "XMLHttpRequest",
+};
+
+// ─── 날짜 포맷 ───────────────────────────────────────────────────────────────
 function formatDate(raw: string): string {
+  // addDate: YYYYMMDDHHmmss 또는 YYYYMMDD 또는 ISO
+  const s = String(raw).replace(/\D/g, "");
+  if (s.length >= 8) {
+    return `${s.slice(0, 4)}.${s.slice(4, 6)}.${s.slice(6, 8)}`;
+  }
   try {
     const d = new Date(raw);
     return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
@@ -19,148 +41,194 @@ function formatDate(raw: string): string {
   }
 }
 
+// ─── 카테고리 → 탭 그룹 매핑 ────────────────────────────────────────────────
+function resolveGroup(categoryName: string, title: string): BlogGroup {
+  const c = categoryName.toLowerCase();
+  const t = title.toLowerCase();
+  if (c.includes("칼럼")) return "칼럼";
+  if (c.includes("플레이스") || t.includes("플레이스") || t.includes("스마트플레이스")) return "플레이스";
+  if (c.includes("블로그") || t.includes("블로그")) return "블로그";
+  if (
+    c.includes("인스타") || c.includes("sns") || c.includes("릴스") ||
+    t.includes("인스타") || t.includes("릴스") || t.includes("reels")
+  ) return "인스타";
+  if (t.includes("플레이스") || t.includes("스마트플레이스")) return "플레이스";
+  if (t.includes("블로그")) return "블로그";
+  return "그외";
+}
+
+// ─── HTML 텍스트 추출 ────────────────────────────────────────────────────────
 function stripHtml(html: string): string {
   return html
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
     .replace(/<[^>]+>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/\s+/g, " ")
-    .trim();
+    .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"')
+    .replace(/\s+/g, " ").trim();
 }
 
-function resolveGroup(categories: string[], title: string): BlogGroup {
-  const cat = categories.join(" ").toLowerCase();
-  const t = title.toLowerCase();
-  if (cat.includes("칼럼")) return "칼럼";
-  if (cat.includes("플레이스") || t.includes("플레이스")) return "플레이스";
-  if (cat.includes("블로그") || t.includes("블로그")) return "블로그";
-  if (
-    cat.includes("인스타") ||
-    cat.includes("릴스") ||
-    cat.includes("instagram") ||
-    t.includes("인스타") ||
-    t.includes("릴스") ||
-    t.includes("sns")
-  )
-    return "인스타";
-  if (t.includes("블로그")) return "블로그";
-  if (t.includes("플레이스")) return "플레이스";
-  return "그외";
+// ─── 1단계: PostTitleListAsync로 전체 글 목록 수집 ──────────────────────────
+interface RawPost {
+  logNo: string | number;
+  title: string;
+  addDate?: string;
+  categoryNo?: string | number;
+  categoryName?: string;
+  thumbnailUrl?: string;
 }
 
-// rss2json.com — reliable Naver RSS proxy with thumbnail extraction
-const RSS_URL = "https://rss.blog.naver.com/harangmarketing.xml";
-const RSS2JSON = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}&count=40`;
+async function fetchAllPostList(): Promise<RawPost[]> {
+  const posts: RawPost[] = [];
+  let page = 1;
+  let total = Infinity;
 
-export async function getNaverBlogPosts(limit = 30): Promise<NaverBlogPost[]> {
+  while (posts.length < Math.min(total, 1000)) {
+    const url =
+      `${NAVER_BASE}/PostTitleListAsync.naver` +
+      `?blogId=${BLOG_ID}&viewdate=&currentPage=${page}` +
+      `&categoryNo=0&parentCategoryNo=0&countPerPage=${PER_PAGE}`;
+
+    try {
+      const res = await fetch(url, {
+        headers: NAVER_HEADERS,
+        next: { revalidate: 3600 },
+      });
+      if (!res.ok) break;
+
+      const text = await res.text();
+      // Naver sometimes returns euc-kr encoded JSON as utf-8 — parse carefully
+      let data: { totalCount?: number; postList?: RawPost[] };
+      try { data = JSON.parse(text); } catch { break; }
+
+      if (page === 1) total = data.totalCount ?? 0;
+      if (!data.postList?.length) break;
+
+      posts.push(...data.postList);
+      if (data.postList.length < PER_PAGE) break;
+      page++;
+    } catch {
+      break;
+    }
+  }
+
+  return posts;
+}
+
+// ─── 2단계: RSS2JSON으로 최신 글 썸네일 + excerpt 맵 구축 ───────────────────
+interface RssInfo {
+  thumbnail: string | null;
+  excerpt: string;
+  category: string;
+}
+
+async function fetchRssInfoMap(): Promise<Map<string, RssInfo>> {
+  const map = new Map<string, RssInfo>();
   try {
     const res = await fetch(RSS2JSON, { next: { revalidate: 3600 } });
-    if (!res.ok) return await fallbackDirectFetch(limit);
-
+    if (!res.ok) return map;
     const data = await res.json();
-    if (data.status !== "ok" || !Array.isArray(data.items)) {
-      return await fallbackDirectFetch(limit);
-    }
+    if (data.status !== "ok") return map;
 
-    return data.items.slice(0, limit).map((item: {
-      title?: string;
-      link?: string;
-      thumbnail?: string;
-      pubDate?: string;
-      categories?: string[];
-      description?: string;
-      content?: string;
-    }) => {
+    for (const item of (data.items ?? []) as {
+      link?: string; thumbnail?: string; description?: string;
+      content?: string; categories?: string[];
+    }[]) {
+      // logNo = 마지막 숫자 경로
+      const m = String(item.link ?? "").match(/\/(\d{10,})(?:\?|$)/);
+      if (!m) continue;
+      const logNo = m[1];
+
+      let thumb: string | null = item.thumbnail?.startsWith("http") ? item.thumbnail : null;
+      if (!thumb && item.content) {
+        const im = item.content.match(/<img[^>]+src=["']([^"']+)["']/i);
+        if (im) thumb = im[1];
+      }
+
+      const rawText = stripHtml(item.description ?? item.content ?? "");
+      const excerpt = rawText.length > 120 ? rawText.slice(0, 120).trimEnd() + "..." : rawText;
+
+      map.set(logNo, {
+        thumbnail: thumb,
+        excerpt,
+        category: (item.categories ?? [])[0] ?? "",
+      });
+    }
+  } catch { /* ignore */ }
+  return map;
+}
+
+// ─── 메인 export ─────────────────────────────────────────────────────────────
+export async function getNaverBlogPosts(limit = 500): Promise<NaverBlogPost[]> {
+  try {
+    // 병렬로 전체 목록 + RSS 썸네일 수집
+    const [rawPosts, rssMap] = await Promise.all([
+      fetchAllPostList(),
+      fetchRssInfoMap(),
+    ]);
+
+    if (rawPosts.length === 0) return await rssFallback(limit);
+
+    return rawPosts.slice(0, limit).map((p) => {
+      const logNo = String(p.logNo);
+      const rss = rssMap.get(logNo);
+
+      const categoryName = p.categoryName ?? rss?.category ?? "";
+      const title = p.title ?? "";
+
+      // 썸네일: PostTitleListAsync → RSS → null
+      const thumbnail =
+        (p.thumbnailUrl?.startsWith("http") ? p.thumbnailUrl : null) ??
+        rss?.thumbnail ??
+        null;
+
+      return {
+        title,
+        link: `${NAVER_BASE}/${BLOG_ID}/${logNo}`,
+        thumbnail,
+        pubDate: formatDate(p.addDate ?? ""),
+        category: categoryName,
+        excerpt: rss?.excerpt ?? "",
+        group: resolveGroup(categoryName, title),
+      };
+    });
+  } catch {
+    return rssFallback(limit);
+  }
+}
+
+// ─── RSS 폴백 (PostTitleListAsync 실패 시) ───────────────────────────────────
+async function rssFallback(limit: number): Promise<NaverBlogPost[]> {
+  try {
+    const res = await fetch(RSS2JSON, { next: { revalidate: 3600 } });
+    if (!res.ok) return [];
+    const data = await res.json();
+    if (data.status !== "ok" || !Array.isArray(data.items)) return [];
+
+    return (data.items as {
+      title?: string; link?: string; thumbnail?: string;
+      pubDate?: string; categories?: string[]; description?: string; content?: string;
+    }[]).slice(0, limit).map((item) => {
       const categories: string[] = item.categories ?? [];
       const title = item.title ?? "";
-      const excerpt = stripHtml(item.description ?? item.content ?? "").slice(0, 120).trimEnd();
+      const cat = categories[0] ?? "";
 
-      // rss2json provides thumbnail; fallback: extract from content
-      let thumbnail: string | null = item.thumbnail && item.thumbnail.startsWith("http") ? item.thumbnail : null;
+      let thumbnail: string | null = item.thumbnail?.startsWith("http") ? item.thumbnail : null;
       if (!thumbnail && item.content) {
         const m = item.content.match(/<img[^>]+src=["']([^"']+)["']/i);
         if (m) thumbnail = m[1];
       }
+
+      const rawText = stripHtml(item.description ?? item.content ?? "");
+      const excerpt = rawText.length > 120 ? rawText.slice(0, 120).trimEnd() + "..." : rawText;
 
       return {
         title,
         link: item.link ?? "",
         thumbnail,
         pubDate: formatDate(item.pubDate ?? ""),
-        category: categories[0] ?? "",
-        excerpt: excerpt.length < (item.description?.replace(/<[^>]+>/g, "").trim().length ?? 0) ? excerpt + "..." : excerpt,
-        group: resolveGroup(categories, title),
-      };
-    });
-  } catch {
-    return fallbackDirectFetch(limit);
-  }
-}
-
-// Direct RSS fetch as fallback (for environments where rss2json is unavailable)
-async function fallbackDirectFetch(limit: number): Promise<NaverBlogPost[]> {
-  try {
-    const res = await fetch(RSS_URL, {
-      next: { revalidate: 3600 },
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        Accept: "application/rss+xml, application/xml, text/xml, */*",
-        "Accept-Language": "ko-KR,ko;q=0.9",
-        Referer: "https://blog.naver.com/",
-      },
-    });
-    if (!res.ok) return [];
-    const xml = await res.text();
-
-    const items = xml.split("<item>").slice(1);
-    return items.slice(0, limit).map((raw) => {
-      const block = raw.split("</item>")[0];
-
-      const extractCDATA = (tag: string): string => {
-        const m = block.match(new RegExp(`<${tag}[^>]*>\\s*(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?\\s*</${tag}>`));
-        return m?.[1]?.trim() ?? "";
-      };
-      const extractAttr = (tag: string, attr: string): string => {
-        const m = block.match(new RegExp(`<${tag}[^>]+${attr}=["']([^"']+)["']`));
-        return m?.[1] ?? "";
-      };
-
-      const description = extractCDATA("description");
-      const title = extractCDATA("title");
-      const category = extractCDATA("category");
-
-      // thumbnail: try enclosure, media:thumbnail, media:content, then first img in description
-      let thumbnail: string | null =
-        extractAttr("enclosure", "url") ||
-        extractAttr("media:thumbnail", "url") ||
-        extractAttr("media:content", "url") ||
-        null;
-      if (!thumbnail) {
-        const m = description.match(/<img[^>]+src=["']([^"']+)["']/i);
-        if (m) thumbnail = m[1];
-      }
-
-      const text = stripHtml(description);
-      const excerpt = text.length > 120 ? text.slice(0, 120).trimEnd() + "..." : text;
-
-      // link: try plain <link>URL</link> (no CDATA in standard RSS)
-      const linkPlain = block.match(/<link>\s*([^\s<]+)\s*<\/link>/)?.[1] ?? "";
-      const linkCdata = extractCDATA("link");
-      const link = (linkPlain || linkCdata).replace(/\?fromRss=true.*$/, "");
-
-      return {
-        title,
-        link,
-        thumbnail,
-        pubDate: formatDate(extractCDATA("pubDate")),
-        category,
+        category: cat,
         excerpt,
-        group: resolveGroup([category], title),
+        group: resolveGroup(cat, title),
       };
     });
   } catch {
