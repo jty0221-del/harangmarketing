@@ -226,19 +226,6 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
         </div>
       </div>
 
-      {/* 네이버 블로그 더보기 링크 */}
-      <div className="text-center mt-2 mb-8">
-        <a
-          href="https://blog.naver.com/harangmarketing"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 font-bold text-sm hover:border-green-300 hover:text-green-700 transition-colors shadow-sm"
-        >
-          <span className="w-5 h-5 rounded bg-green-600 text-white text-[10px] font-black flex items-center justify-center">N</span>
-          네이버 블로그에서 더 보기
-          <ExternalLink size={12} />
-        </a>
-      </div>
     </>
   );
 }
