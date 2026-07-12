@@ -213,49 +213,6 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
             </div>
           )}
 
-          {/* 정적 하드코딩 포스트 — 전체/그외 탭 */}
-          {visibleStatic.length > 0 && (
-            <div className="space-y-3">
-              {activeTab === "전체" && (
-                <p className="text-xs font-black text-gray-400 uppercase tracking-wider">전문 가이드</p>
-              )}
-              {visibleStatic.map((post, i) => {
-                const inner = (
-                  <div className="flex items-start gap-3">
-                    <PhotoPlaceholder
-                      label="썸네일"
-                      width="w-16 md:w-20"
-                      height="h-16 md:h-20"
-                      className="shrink-0 rounded-xl"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5 mb-1 flex-wrap">
-                        <span className={`inline-block px-2 py-0.5 rounded-md border text-[10px] font-black ${post.tagColor}`}>
-                          {post.tag}
-                        </span>
-                        <span className="text-[10px] text-gray-400">{post.readTime} 읽기</span>
-                      </div>
-                      <h3 className="font-black text-gray-900 text-sm leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
-                        {post.title}
-                      </h3>
-                      <div className="flex items-center gap-1 mt-1 text-[11px] font-bold text-blue-600">
-                        <TrendingUp size={10} strokeWidth={2.5} />
-                        {post.result}
-                      </div>
-                    </div>
-                    <ExternalLink size={12} className="text-gray-300 group-hover:text-blue-400 transition-colors shrink-0 mt-1" />
-                  </div>
-                );
-                const cls = "flex items-start gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/20 transition-all group";
-                return post.internal ? (
-                  <Link key={i} href={post.href} className={cls}>{inner}</Link>
-                ) : (
-                  <a key={i} href={post.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
-                );
-              })}
-            </div>
-          )}
-
           {/* 빈 상태 */}
           {filteredNaver.length === 0 && visibleDynamic.length === 0 && visibleStatic.length === 0 && (
             <div className="text-center py-12">
