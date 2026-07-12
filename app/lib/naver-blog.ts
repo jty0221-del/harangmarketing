@@ -1,5 +1,7 @@
 const RSS_URL = "https://rss.blog.naver.com/harangmarketing.xml";
 
+export type BlogGroup = "칼럼" | "블로그" | "플레이스" | "인스타" | "그외";
+
 export interface NaverBlogPost {
   title: string;
   link: string;
@@ -7,6 +9,7 @@ export interface NaverBlogPost {
   pubDate: string;
   category: string;
   excerpt: string;
+  group: BlogGroup;
 }
 
 function extractTag(xml: string, tag: string): string {
@@ -20,14 +23,12 @@ function extractThumbnail(description: string): string | null {
 }
 
 function extractExcerpt(description: string): string {
-  // description에서 HTML 태그 제거 후 앞 120자
-  return description
+  const text = description
     .replace(/<img[^>]*>/g, "")
     .replace(/<[^>]*>/g, "")
-    .trim()
-    .slice(0, 120)
-    .replace(/\.{3,}$/, "")
-    .trimEnd() + "...";
+    .trim();
+  const sliced = text.slice(0, 110).trimEnd();
+  return sliced.length < text.length ? sliced + "..." : sliced;
 }
 
 function formatDate(pubDate: string): string {
@@ -39,7 +40,25 @@ function formatDate(pubDate: string): string {
   }
 }
 
-export async function getNaverBlogPosts(limit = 20): Promise<NaverBlogPost[]> {
+function resolveGroup(category: string, title: string, tags: string): BlogGroup {
+  const t = (tags + " " + title).toLowerCase();
+  if (category === "칼럼") return "칼럼";
+  if (category === "블로그") return "블로그";
+  if (category === "플레이스") return "플레이스";
+  if (
+    t.includes("인스타") ||
+    t.includes("릴스") ||
+    t.includes("instagram") ||
+    t.includes("reels") ||
+    t.includes("sns")
+  )
+    return "인스타";
+  if (t.includes("플레이스")) return "플레이스";
+  if (t.includes("블로그")) return "블로그";
+  return "그외";
+}
+
+export async function getNaverBlogPosts(limit = 30): Promise<NaverBlogPost[]> {
   try {
     const res = await fetch(RSS_URL, { next: { revalidate: 3600 } });
     if (!res.ok) return [];
@@ -49,13 +68,17 @@ export async function getNaverBlogPosts(limit = 20): Promise<NaverBlogPost[]> {
     return items.slice(0, limit).map((raw) => {
       const itemXml = raw.split("</item>")[0];
       const description = extractTag(itemXml, "description");
+      const category = extractTag(itemXml, "category");
+      const title = extractTag(itemXml, "title");
+      const tags = extractTag(itemXml, "tag");
       return {
-        title: extractTag(itemXml, "title"),
+        title,
         link: extractTag(itemXml, "link").replace(/\?fromRss=true&trackingCode=rss$/, ""),
         thumbnail: extractThumbnail(description),
         pubDate: formatDate(extractTag(itemXml, "pubDate")),
-        category: extractTag(itemXml, "category") || "마케팅",
+        category,
         excerpt: extractExcerpt(description),
+        group: resolveGroup(category, title, tags),
       };
     });
   } catch {

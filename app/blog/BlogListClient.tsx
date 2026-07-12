@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, TrendingUp, Filter, BookOpen } from "lucide-react";
+import { ExternalLink, TrendingUp, BookOpen, ArrowRight, Lightbulb, FileText, MapPin, Camera, LayoutGrid } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
 
 interface StaticPost {
@@ -31,6 +31,7 @@ interface NaverPost {
   pubDate: string;
   category: string;
   excerpt: string;
+  group: string;
 }
 
 interface Props {
@@ -39,189 +40,246 @@ interface Props {
   naverPosts: NaverPost[];
 }
 
-const NAVER_TAG = "네이버 블로그";
-const DYNAMIC_TAG = "관리자 작성";
+type Tab = "전체" | "칼럼" | "블로그" | "플레이스" | "인스타" | "그외";
+
+const TABS: { key: Tab; label: string; icon: React.ReactNode; desc: string }[] = [
+  { key: "전체",   label: "전체",   icon: <LayoutGrid  size={14} strokeWidth={2.5} />, desc: "모든 마케팅 인사이트" },
+  { key: "칼럼",   label: "칼럼",   icon: <Lightbulb   size={14} strokeWidth={2.5} />, desc: "마케팅 전략 & 트렌드 분석" },
+  { key: "블로그", label: "블로그", icon: <FileText    size={14} strokeWidth={2.5} />, desc: "블로그 SEO & 콘텐츠 운영" },
+  { key: "플레이스",label:"플레이스",icon: <MapPin     size={14} strokeWidth={2.5} />, desc: "네이버 플레이스 상위노출 전략" },
+  { key: "인스타", label: "인스타", icon: <Camera     size={14} strokeWidth={2.5} />, desc: "인스타그램 & SNS 마케팅" },
+  { key: "그외",   label: "그외",   icon: <BookOpen    size={14} strokeWidth={2.5} />, desc: "업종별 마케팅 사례 모음" },
+];
+
+function NaverPostCard({ post }: { post: NaverPost }) {
+  return (
+    <a
+      href={post.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-col bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-md hover:border-blue-100 transition-all"
+    >
+      {post.thumbnail ? (
+        <img
+          src={post.thumbnail}
+          alt={post.title}
+          className="w-full h-40 object-cover bg-gray-100 group-hover:scale-[1.02] transition-transform duration-300"
+          loading="lazy"
+        />
+      ) : (
+        <div className="w-full h-40 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+          <BookOpen size={32} className="text-blue-200" />
+        </div>
+      )}
+      <div className="p-4 flex flex-col gap-2 flex-1">
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full bg-green-50 text-green-700 border border-green-100">
+            <span className="w-3 h-3 rounded bg-green-600 text-white text-[7px] font-black flex items-center justify-center leading-none">N</span>
+            네이버 블로그
+          </span>
+          {post.category && (
+            <span className="text-[10px] text-gray-400">{post.category}</span>
+          )}
+        </div>
+        <h3 className="font-black text-gray-900 text-sm leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
+          {post.title}
+        </h3>
+        <p className="text-[12px] text-gray-500 leading-relaxed line-clamp-2 flex-1">
+          {post.excerpt}
+        </p>
+        <div className="flex items-center justify-between mt-auto pt-2 border-t border-gray-50">
+          <span className="text-[11px] text-gray-400">{post.pubDate}</span>
+          <ExternalLink size={11} className="text-gray-300 group-hover:text-blue-400 transition-colors" />
+        </div>
+      </div>
+    </a>
+  );
+}
 
 export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }: Props) {
-  const staticTags = Array.from(new Set(staticPosts.map((p) => p.tag)));
-  const allTags = [
-    "전체",
-    ...(naverPosts.length > 0 ? [NAVER_TAG] : []),
-    ...(dynamicPosts.length > 0 ? [DYNAMIC_TAG] : []),
-    ...staticTags,
-  ];
+  const [activeTab, setActiveTab] = useState<Tab>("전체");
 
-  const [activeTab, setActiveTab] = useState("전체");
+  // 네이버 포스트 필터
+  const filteredNaver = activeTab === "전체"
+    ? naverPosts
+    : naverPosts.filter((p) => p.group === activeTab);
 
-  const showNaver = activeTab === "전체" || activeTab === NAVER_TAG;
-  const showDynamic = activeTab === "전체" || activeTab === DYNAMIC_TAG;
-  const showStatic = activeTab !== NAVER_TAG && activeTab !== DYNAMIC_TAG;
+  // 정적 포스트 (칼럼/블로그/플레이스/인스타 탭에선 숨김, 전체/그외에서만 노출)
+  const showStatic = activeTab === "전체" || activeTab === "그외";
   const visibleStatic = showStatic
-    ? activeTab === "전체" ? staticPosts : staticPosts.filter((p) => p.tag === activeTab)
+    ? (activeTab === "전체" ? staticPosts : staticPosts.filter((_, i) => i < 6))
     : [];
 
-  const isEmpty =
-    (showNaver ? naverPosts.length : 0) +
-    (showDynamic ? dynamicPosts.length : 0) +
-    visibleStatic.length === 0;
+  // 관리자 작성 (전체에서만)
+  const visibleDynamic = activeTab === "전체" ? dynamicPosts : [];
+
+  // 현재 탭 정보
+  const currentTab = TABS.find((t) => t.key === activeTab)!;
+
+  // 탭별 카운트
+  const countMap: Record<Tab, number> = {
+    전체: naverPosts.length + dynamicPosts.length + staticPosts.length,
+    칼럼: naverPosts.filter((p) => p.group === "칼럼").length,
+    블로그: naverPosts.filter((p) => p.group === "블로그").length,
+    플레이스: naverPosts.filter((p) => p.group === "플레이스").length,
+    인스타: naverPosts.filter((p) => p.group === "인스타").length,
+    그외: naverPosts.filter((p) => p.group === "그외").length + staticPosts.length,
+  };
 
   return (
     <>
-      {/* Category tabs */}
-      <div className="flex items-center gap-2 mb-6">
-        <Filter size={13} className="text-gray-400 shrink-0" strokeWidth={2.5} />
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-          {allTags.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap border shrink-0 transition-colors ${
-                cat === activeTab
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white text-gray-500 border-gray-200 hover:border-blue-200 hover:text-blue-600"
-              }`}
-            >
-              {cat}
-              {cat === NAVER_TAG && naverPosts.length > 0 && (
-                <span className="ml-1.5 text-[10px] font-black opacity-70">{naverPosts.length}</span>
+      {/* ── 마케팅 꿀팁 배너 ── */}
+      <div className="mb-8">
+        <div className="flex items-center gap-2 mb-1">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-sm">
+            <Lightbulb size={14} className="text-white" strokeWidth={2.5} />
+          </div>
+          <span className="text-xs font-black text-blue-600 uppercase tracking-widest">마케팅 꿀팁</span>
+        </div>
+        <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-1">
+          {currentTab.label === "전체" ? "전체 인사이트" : `${currentTab.label} 마케팅`}
+        </h2>
+        <p className="text-sm text-gray-500">{currentTab.desc}</p>
+      </div>
+
+      {/* ── 폴더형 카테고리 탭 ── */}
+      <div className="mb-8">
+        {/* 탭 헤더 — 폴더 느낌 */}
+        <div className="flex gap-0 overflow-x-auto scrollbar-hide border-b border-gray-200">
+          {TABS.map((tab) => {
+            const isActive = tab.key === activeTab;
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`group relative shrink-0 flex items-center gap-1.5 px-4 md:px-5 py-3 text-sm font-bold transition-all border-t border-l border-r rounded-t-xl -mb-px ${
+                  isActive
+                    ? "bg-white text-blue-600 border-gray-200 z-10 border-b-white"
+                    : "bg-gray-50 text-gray-500 border-transparent hover:text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                <span className={isActive ? "text-blue-600" : "text-gray-400 group-hover:text-gray-600"}>
+                  {tab.icon}
+                </span>
+                <span className="whitespace-nowrap">{tab.label}</span>
+                {countMap[tab.key] > 0 && (
+                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded-full ml-0.5 ${
+                    isActive ? "bg-blue-100 text-blue-600" : "bg-gray-200 text-gray-500"
+                  }`}>
+                    {countMap[tab.key]}
+                  </span>
+                )}
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-px bg-white" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* 탭 컨텐츠 박스 */}
+        <div className="border border-t-0 border-gray-200 rounded-b-2xl rounded-tr-2xl bg-white p-5 md:p-6">
+
+          {/* 네이버 RSS 포스트 — 카드 그리드 */}
+          {filteredNaver.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+              {filteredNaver.map((post, i) => (
+                <NaverPostCard key={i} post={post} />
+              ))}
+            </div>
+          )}
+
+          {/* 관리자 작성 포스트 */}
+          {visibleDynamic.length > 0 && (
+            <div className="space-y-3 mb-6">
+              <p className="text-xs font-black text-gray-400 uppercase tracking-wider">직접 작성 인사이트</p>
+              {visibleDynamic.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all group"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shrink-0">
+                    <FileText size={13} className="text-white" strokeWidth={2.5} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-bold text-gray-900 text-sm group-hover:text-blue-600 transition-colors truncate">{post.title}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">{post.date}</p>
+                  </div>
+                  <ArrowRight size={13} className="text-gray-300 group-hover:text-blue-500 transition-colors shrink-0" />
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {/* 정적 하드코딩 포스트 — 전체/그외 탭 */}
+          {visibleStatic.length > 0 && (
+            <div className="space-y-3">
+              {activeTab === "전체" && (
+                <p className="text-xs font-black text-gray-400 uppercase tracking-wider">전문 가이드</p>
               )}
-            </button>
-          ))}
+              {visibleStatic.map((post, i) => {
+                const inner = (
+                  <div className="flex items-start gap-3">
+                    <PhotoPlaceholder
+                      label="썸네일"
+                      width="w-16 md:w-20"
+                      height="h-16 md:h-20"
+                      className="shrink-0 rounded-xl"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5 mb-1 flex-wrap">
+                        <span className={`inline-block px-2 py-0.5 rounded-md border text-[10px] font-black ${post.tagColor}`}>
+                          {post.tag}
+                        </span>
+                        <span className="text-[10px] text-gray-400">{post.readTime} 읽기</span>
+                      </div>
+                      <h3 className="font-black text-gray-900 text-sm leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
+                        {post.title}
+                      </h3>
+                      <div className="flex items-center gap-1 mt-1 text-[11px] font-bold text-blue-600">
+                        <TrendingUp size={10} strokeWidth={2.5} />
+                        {post.result}
+                      </div>
+                    </div>
+                    <ExternalLink size={12} className="text-gray-300 group-hover:text-blue-400 transition-colors shrink-0 mt-1" />
+                  </div>
+                );
+                const cls = "flex items-start gap-3 p-4 rounded-xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/20 transition-all group";
+                return post.internal ? (
+                  <Link key={i} href={post.href} className={cls}>{inner}</Link>
+                ) : (
+                  <a key={i} href={post.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+                );
+              })}
+            </div>
+          )}
+
+          {/* 빈 상태 */}
+          {filteredNaver.length === 0 && visibleDynamic.length === 0 && visibleStatic.length === 0 && (
+            <div className="text-center py-12">
+              <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center mx-auto mb-3">
+                <BookOpen size={20} className="text-gray-300" />
+              </div>
+              <p className="text-sm text-gray-400">아직 작성된 글이 없습니다.</p>
+              <p className="text-xs text-gray-300 mt-1">곧 업데이트될 예정입니다.</p>
+            </div>
+          )}
         </div>
       </div>
 
-      {isEmpty && (
-        <div className="text-center py-16 text-gray-400 text-sm">
-          해당 카테고리의 글이 없습니다.
-        </div>
-      )}
-
-      <div className="space-y-4">
-        {/* 네이버 블로그 RSS 포스트 */}
-        {showNaver && naverPosts.map((post, i) => (
-          <a
-            key={i}
-            href={post.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block bg-white rounded-2xl border-l-4 border-l-green-500 border border-gray-100 p-5 md:p-6 hover:shadow-md transition-all group"
-          >
-            <div className="flex items-start gap-4">
-              {/* 썸네일 */}
-              {post.thumbnail ? (
-                <img
-                  src={post.thumbnail}
-                  alt={post.title}
-                  className="shrink-0 w-24 md:w-32 h-24 md:h-28 rounded-xl object-cover bg-gray-100"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="shrink-0 w-24 md:w-32 h-24 md:h-28 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center">
-                  <BookOpen size={28} className="text-green-300" />
-                </div>
-              )}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-2 flex-wrap">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg border text-[11px] font-black bg-green-50 text-green-700 border-green-100">
-                    <span className="w-3 h-3 rounded bg-green-600 text-white text-[8px] font-black flex items-center justify-center leading-none">N</span>
-                    네이버 블로그
-                  </span>
-                  {post.category && (
-                    <span className="text-[11px] text-gray-400 border border-gray-100 rounded-md px-1.5 py-0.5">{post.category}</span>
-                  )}
-                  <span className="text-[11px] text-gray-400">{post.pubDate}</span>
-                </div>
-                <h2 className="font-black text-gray-900 text-sm md:text-base leading-snug mb-1.5 group-hover:text-green-700 transition-colors line-clamp-2">
-                  {post.title}
-                </h2>
-                <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 hidden sm:block">
-                  {post.excerpt}
-                </p>
-              </div>
-              <div className="shrink-0 flex flex-col items-center justify-center w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-green-600 transition-colors self-start mt-1">
-                <ExternalLink size={13} className="text-gray-400 group-hover:text-white transition-colors" />
-              </div>
-            </div>
-          </a>
-        ))}
-
-        {/* 관리자 작성 포스트 (admin panel) */}
-        {showDynamic && dynamicPosts.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="block bg-white rounded-2xl border-l-4 border-l-blue-600 border border-gray-100 p-5 md:p-6 hover:shadow-md transition-all group"
-          >
-            <div className="flex items-start gap-4">
-              <div className="shrink-0 w-24 md:w-32 h-24 md:h-28 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
-                <BookOpen size={28} className="text-blue-300" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-2 flex-wrap">
-                  <span className="inline-block px-2.5 py-0.5 rounded-lg border text-[11px] font-black bg-blue-50 text-blue-700 border-blue-100">
-                    마케팅 인사이트
-                  </span>
-                  <span className="text-[11px] text-gray-400">{post.date}</span>
-                </div>
-                <h2 className="font-black text-gray-900 text-sm md:text-base leading-snug mb-1.5 group-hover:text-blue-600 transition-colors line-clamp-2">
-                  {post.title}
-                </h2>
-                {post.excerpt && (
-                  <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 hidden sm:block">
-                    {post.excerpt}
-                  </p>
-                )}
-              </div>
-              <div className="shrink-0 flex flex-col items-center justify-center w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-blue-600 transition-colors self-start mt-1">
-                <ArrowRight size={13} className="text-gray-400 group-hover:text-white transition-colors" />
-              </div>
-            </div>
-          </Link>
-        ))}
-
-        {/* 하드코딩 정적 포스트 */}
-        {visibleStatic.map((post, i) => {
-          const inner = (
-            <div className="flex items-start gap-4">
-              <PhotoPlaceholder
-                label="썸네일"
-                width="w-24 md:w-32"
-                height="h-24 md:h-28"
-                className="shrink-0 rounded-xl"
-              />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-2 flex-wrap">
-                  <span className={`inline-block px-2.5 py-0.5 rounded-lg border text-[11px] font-black ${post.tagColor}`}>
-                    {post.tag}
-                  </span>
-                  <span className="text-[11px] text-gray-400">{post.readTime} 읽기</span>
-                  {post.internal && (
-                    <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-1.5 py-0.5 rounded">전문 읽기</span>
-                  )}
-                </div>
-                <h2 className="font-black text-gray-900 text-sm md:text-base leading-snug mb-1.5 group-hover:text-blue-600 transition-colors line-clamp-2">
-                  {post.title}
-                </h2>
-                <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-2 hidden sm:block">
-                  {post.preview}
-                </p>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-blue-600">
-                  <TrendingUp size={11} strokeWidth={2.5} />
-                  {post.result}
-                </div>
-              </div>
-              <div className="shrink-0 flex flex-col items-center justify-center w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-blue-600 transition-colors self-start mt-1">
-                <ExternalLink size={13} className="text-gray-400 group-hover:text-white transition-colors" />
-              </div>
-            </div>
-          );
-          const cls = `block bg-white rounded-2xl border-l-4 ${post.accentColor} border border-gray-100 p-5 md:p-6 hover:shadow-md transition-all group`;
-          return post.internal ? (
-            <Link key={i} href={post.href} className={cls}>{inner}</Link>
-          ) : (
-            <a key={i} href={post.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
-          );
-        })}
+      {/* 네이버 블로그 더보기 링크 */}
+      <div className="text-center mt-2 mb-8">
+        <a
+          href="https://blog.naver.com/harangmarketing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-600 font-bold text-sm hover:border-green-300 hover:text-green-700 transition-colors shadow-sm"
+        >
+          <span className="w-5 h-5 rounded bg-green-600 text-white text-[10px] font-black flex items-center justify-center">N</span>
+          네이버 블로그에서 더 보기
+          <ExternalLink size={12} />
+        </a>
       </div>
     </>
   );
