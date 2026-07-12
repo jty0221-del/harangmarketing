@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ExternalLink, TrendingUp, BookOpen, ArrowRight, Lightbulb, FileText, MapPin, Camera, LayoutGrid } from "lucide-react";
 import PhotoPlaceholder from "../components/PhotoPlaceholder";
@@ -99,11 +99,41 @@ function NaverPostCard({ post }: { post: NaverPost }) {
 
 export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }: Props) {
   const [activeTab, setActiveTab] = useState<Tab>("전체");
+  const [extraPosts, setExtraPosts] = useState<NaverPost[]>([]);
+  const fetched = useRef(false);
+
+  // SSR posts의 logNo 집합 — 중복 제거용
+  const sseLogNos = new Set(
+    naverPosts.map((p) => {
+      const m = p.link.match(/\/(\d{8,})(?:\?|$)/);
+      return m?.[1] ?? "";
+    })
+  );
+
+  // Edge API로 추가 포스트 lazy-load (Cloudflare 네트워크 → Naver 차단 우회)
+  useEffect(() => {
+    if (fetched.current) return;
+    fetched.current = true;
+    fetch("/api/naver-posts")
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (!data?.posts?.length) return;
+        const fresh = (data.posts as NaverPost[]).filter((p) => {
+          const m = p.link.match(/\/(\d{8,})(?:\?|$)/);
+          return m?.[1] ? !sseLogNos.has(m[1]) : true;
+        });
+        setExtraPosts(fresh);
+      })
+      .catch(() => {});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const allNaverPosts = [...naverPosts, ...extraPosts];
 
   // 네이버 포스트 필터
   const filteredNaver = activeTab === "전체"
-    ? naverPosts
-    : naverPosts.filter((p) => p.group === activeTab);
+    ? allNaverPosts
+    : allNaverPosts.filter((p) => p.group === activeTab);
 
   // 정적 포스트 (칼럼/블로그/플레이스/인스타 탭에선 숨김, 전체/그외에서만 노출)
   const showStatic = activeTab === "전체" || activeTab === "그외";
@@ -119,12 +149,12 @@ export default function BlogListClient({ staticPosts, dynamicPosts, naverPosts }
 
   // 탭별 카운트
   const countMap: Record<Tab, number> = {
-    전체: naverPosts.length + dynamicPosts.length + staticPosts.length,
-    칼럼: naverPosts.filter((p) => p.group === "칼럼").length,
-    블로그: naverPosts.filter((p) => p.group === "블로그").length,
-    플레이스: naverPosts.filter((p) => p.group === "플레이스").length,
-    인스타: naverPosts.filter((p) => p.group === "인스타").length,
-    그외: naverPosts.filter((p) => p.group === "그외").length + staticPosts.length,
+    전체: allNaverPosts.length + dynamicPosts.length + staticPosts.length,
+    칼럼: allNaverPosts.filter((p) => p.group === "칼럼").length,
+    블로그: allNaverPosts.filter((p) => p.group === "블로그").length,
+    플레이스: allNaverPosts.filter((p) => p.group === "플레이스").length,
+    인스타: allNaverPosts.filter((p) => p.group === "인스타").length,
+    그외: allNaverPosts.filter((p) => p.group === "그외").length + staticPosts.length,
   };
 
   return (
