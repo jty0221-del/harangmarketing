@@ -177,7 +177,7 @@ const BLOG_POSTS = [
 
 export default async function BlogPage() {
   const dynamicPosts = getAllPosts().map((p) => ({ slug: p.slug, title: p.title, excerpt: p.excerpt, date: p.date }));
-  const naverPosts = await getNaverBlogPosts(20);
+  const naverPosts = await getNaverBlogPosts();
 
   return (
     <>
@@ -238,7 +238,7 @@ export default async function BlogPage() {
         {/* Blog Posts */}
         <section className="py-12 md:py-20 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
-            <BlogListClient staticPosts={BLOG_POSTS} dynamicPosts={dynamicPosts} naverPosts={naverPosts} />
+            <BlogListClient staticPosts={[]} dynamicPosts={dynamicPosts} naverPosts={naverPosts} />
 
             {/* Load more — links to Naver blog */}
             <div className="text-center mt-8">
