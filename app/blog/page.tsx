@@ -1,3 +1,5 @@
+export const maxDuration = 60; // Vercel 함수 타임아웃 60초
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
