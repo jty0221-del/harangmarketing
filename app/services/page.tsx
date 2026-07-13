@@ -621,7 +621,7 @@ export default function ServicesPage() {
                   <span className="w-5 h-5 rounded bg-green-600 text-white text-[10px] font-black flex items-center justify-center">N</span>
                   네이버 블로그
                 </a>
-                <a href="https://www.instagram.com/harangmarketing" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.instagram.com/jty0221/" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-50 border border-purple-100 text-purple-700 text-xs font-bold hover:bg-purple-100 transition-colors">
                   <span className="w-5 h-5 rounded bg-gradient-to-br from-purple-500 to-pink-500 text-white text-[10px] font-black flex items-center justify-center">I</span>
                   인스타그램

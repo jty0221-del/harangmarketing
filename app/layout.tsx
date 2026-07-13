@@ -166,7 +166,7 @@ export default function RootLayout({
               "openingHours": "Mo-Fr 09:00-18:00",
               "sameAs": [
                 "https://blog.naver.com/harangmarketing",
-                "https://www.instagram.com/harangmarketing/",
+                "https://www.instagram.com/jty0221/",
                 "https://pf.kakao.com/_MuUkG",
               ],
             }),

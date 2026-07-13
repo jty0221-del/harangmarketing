@@ -54,7 +54,7 @@ export default function Footer() {
                 {[
                   { label: "Blog", href: "https://blog.naver.com/harangmarketing", bg: "bg-green-600", letter: "N" },
                   { label: "Kakao", href: "https://pf.kakao.com/_MuUkG/chat", bg: "bg-yellow-400", letter: "K", dark: true },
-                  { label: "Insta", href: "https://www.instagram.com/harangmarketing/", bg: "bg-gradient-to-br from-purple-600 to-pink-500", letter: "I" },
+                  { label: "Insta", href: "https://www.instagram.com/jty0221/", bg: "bg-gradient-to-br from-purple-600 to-pink-500", letter: "I" },
                   { label: "YouTube", href: "https://www.youtube.com/@madaenam", bg: "bg-red-600", letter: "Y" },
                 ].map((s) => (
                   <a

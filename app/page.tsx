@@ -1192,7 +1192,7 @@ export default function HomePage() {
                   sub: "작업 포트폴리오",
                   desc: "진행 현장·성공 사례·최신 소식",
                   preview: "팔로우하면 매주 마케팅 팁 무료 제공",
-                  href: "https://www.instagram.com/harangmarketing/",
+                  href: "https://www.instagram.com/jty0221/",
                   bg: "bg-gradient-to-br from-purple-500 to-pink-500",
                   ring: "ring-purple-100",
                   textColor: "text-purple-600",
