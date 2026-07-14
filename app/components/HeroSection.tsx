@@ -20,10 +20,19 @@ export default function HeroSection({
     const v = vidRef.current;
     if (!v) return;
     v.muted = true;
+    v.playsInline = true;
     const r = isFinite(videoSpeed) && videoSpeed > 0 ? videoSpeed : 1;
     v.playbackRate = r;
-    const p = v.play();
-    if (p && p.catch) p.catch(() => {});
+    const tryPlay = () => {
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+    if (v.readyState >= 2) {
+      tryPlay();
+    } else {
+      v.addEventListener("canplay", tryPlay, { once: true });
+    }
+    return () => v.removeEventListener("canplay", tryPlay);
   }, [videoSpeed]);
 
   return (

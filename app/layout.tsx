@@ -97,8 +97,8 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
-        {/* 네이버 서치어드바이저 소유권 확인 — searchadvisor.naver.com에서 발급 후 교체 */}
-        <meta name="naver-site-verification" content="NAVER_SEARCH_ADVISOR_CODE" />
+        {/* 네이버 서치어드바이저 소유권 확인 */}
+        <meta name="naver-site-verification" content="5e058632e3ac9891ac91638c144b083a4d694d0b" />
         {/* Bing Webmaster Tools */}
         <meta name="msvalidate.01" content="BING_VERIFICATION_CODE" />
         {/* Google Analytics GA4 */}
