@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://harangmarketing.com"),
   title: {
     default: "하랑마케팅 — 소상공인 마케팅 대행사 | 재계약률 95% · 10년 경력 · 플레이스·블로그·체험단",
-    template: "%s — 하랑마케팅",
+    template: "%s | 하랑마케팅",
   },
   description:
     "마케팅비 쓰는데 매출이 안 오르시나요? 10년 경력 대표가 직접 담당합니다. 네이버 플레이스 SEO, 블로그, 체험단, 인스타그램으로 실제 방문객·예약·매출을 올려드립니다. 재계약률 95% · 상담 비용 0원 · 500+ 프로젝트 완료.",
@@ -21,27 +21,30 @@ export const metadata: Metadata = {
     "학원마케팅", "미용실마케팅", "피부과마케팅",
     "경기도마케팅", "일산마케팅", "고양시마케팅",
     "카카오맵마케팅", "지역마케팅", "소상공인광고",
+    "네이버플레이스순위올리기", "플레이스마케팅", "소상공인블로그",
+    "카페플레이스상위노출", "미용실플레이스", "학원블로그마케팅",
   ],
-  authors: [{ name: "하랑마케팅", url: "https://harangmarketing.com" }],
+  authors: [{ name: "하랑마케팅 대표 전태영", url: "https://harangmarketing.com/about" }],
   creator: "하랑마케팅",
   publisher: "하랑마케팅",
   alternates: {
     canonical: "https://harangmarketing.com",
+    languages: { "ko-KR": "https://harangmarketing.com" },
   },
   openGraph: {
     type: "website",
     locale: "ko_KR",
     url: "https://harangmarketing.com",
     siteName: "하랑마케팅",
-    title: "하랑마케팅 — 소상공인 전문 마케팅 대행사",
+    title: "하랑마케팅 — 소상공인 전문 마케팅 대행사 | 재계약률 95%",
     description:
-      "10년 경력 대표가 직접 담당. 플레이스 SEO·블로그·체험단·인스타그램 마케팅으로 매출 최대 +300%. 재계약률 95% · 상담 비용 0원.",
+      "10년 경력 대표가 직접 담당. 네이버 플레이스 SEO·블로그·체험단·인스타그램 마케팅으로 매출 최대 +300%. 재계약률 95% · 상담 비용 0원 · 경기·서울·인천 전 지역.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "하랑마케팅 — 소상공인 전문 마케팅 대행사",
+        alt: "하랑마케팅 — 소상공인 전문 마케팅 대행사 | 재계약률 95% · 10년 경력",
       },
     ],
   },
@@ -54,17 +57,21 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
   },
   verification: {
-    google: "harangmarketing-verification",
+    google: "GOOGLE_SEARCH_CONSOLE_CODE",
+    // 네이버 서치어드바이저 코드는 head에 직접 삽입
   },
+  category: "마케팅",
 };
 
 export const viewport: Viewport = {
@@ -89,6 +96,11 @@ export default function RootLayout({
         />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+        {/* 네이버 서치어드바이저 소유권 확인 — searchadvisor.naver.com에서 발급 후 교체 */}
+        <meta name="naver-site-verification" content="NAVER_SEARCH_ADVISOR_CODE" />
+        {/* Bing Webmaster Tools */}
+        <meta name="msvalidate.01" content="BING_VERIFICATION_CODE" />
         {/* Google Analytics GA4 */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
         <script
@@ -103,6 +115,145 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
+        {/* ── WebSite + SearchAction (GEO/SEO: 사이트 엔티티 명확화) ── */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://harangmarketing.com/#website",
+              "name": "하랑마케팅",
+              "alternateName": ["하랑 마케팅", "Harang Marketing"],
+              "url": "https://harangmarketing.com",
+              "description": "소상공인·자영업자 전문 마케팅 대행사. 네이버 플레이스 SEO, 블로그 마케팅, 체험단, 인스타그램 마케팅. 10년 경력 대표 직접 담당.",
+              "inLanguage": "ko-KR",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": { "@type": "EntryPoint", "urlTemplate": "https://harangmarketing.com/blog?q={search_term_string}" },
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+        {/* ── Organization (GEO: AI 검색 엔티티 신뢰도 강화) ── */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "@id": "https://harangmarketing.com/#organization",
+              "name": "하랑마케팅",
+              "alternateName": "Harang Marketing",
+              "legalName": "하랑마케팅",
+              "url": "https://harangmarketing.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://harangmarketing.com/favicon.svg",
+                "width": 400,
+                "height": 400,
+              },
+              "image": "https://harangmarketing.com/og-image.png",
+              "description": "10년 경력의 마케팅 전문가 전태영 대표가 직접 운영하는 소상공인·자영업자 전문 마케팅 대행사입니다. 네이버 플레이스 SEO, 블로그 마케팅, 체험단 모집, 인스타그램 마케팅 서비스를 제공합니다. 재계약률 95%, 500건 이상 프로젝트 완료.",
+              "foundingDate": "2015",
+              "founder": {
+                "@type": "Person",
+                "name": "전태영",
+                "jobTitle": "대표",
+                "description": "해병대 장교 출신. 카페 창업 실패 후 마케팅 전문가로 전향. 10년 경력.",
+              },
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "장백로19 더루벤투스카운티 501호",
+                "addressLocality": "고양시 일산동구",
+                "addressRegion": "경기도",
+                "postalCode": "10402",
+                "addressCountry": "KR",
+              },
+              "telephone": "+82-10-7541-9054",
+              "email": "harangmarketing@naver.com",
+              "areaServed": ["서울", "경기도", "인천", "대한민국"],
+              "knowsAbout": [
+                "네이버 플레이스 SEO", "블로그 마케팅", "체험단 마케팅",
+                "인스타그램 마케팅", "소상공인 마케팅", "리뷰 마케팅",
+                "카카오맵 마케팅", "맘카페 바이럴", "SNS 마케팅",
+              ],
+              "sameAs": [
+                "https://blog.naver.com/harangmarketing",
+                "https://www.instagram.com/jty0221/",
+                "https://pf.kakao.com/_MuUkG",
+              ],
+              "numberOfEmployees": { "@type": "QuantitativeValue", "value": 5 },
+            }),
+          }}
+        />
+        {/* ── LocalBusiness (네이버·구글 지도 연동 + 로컬 SEO) ── */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": ["LocalBusiness", "ProfessionalService", "MarketingAgency"],
+              "@id": "https://harangmarketing.com/#localbusiness",
+              "name": "하랑마케팅",
+              "image": "https://harangmarketing.com/og-image.png",
+              "url": "https://harangmarketing.com",
+              "telephone": "010-7541-9054",
+              "email": "harangmarketing@naver.com",
+              "priceRange": "월 30만원~",
+              "currenciesAccepted": "KRW",
+              "paymentAccepted": "계좌이체, 카드",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "장백로19 더루벤투스카운티 501호",
+                "addressLocality": "고양시 일산동구",
+                "addressRegion": "경기도",
+                "postalCode": "10402",
+                "addressCountry": "KR",
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 37.6630,
+                "longitude": 126.7750,
+              },
+              "openingHoursSpecification": [
+                { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" },
+              ],
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "bestRating": "5",
+                "worstRating": "1",
+                "ratingCount": "127",
+                "reviewCount": "127",
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "하랑마케팅 서비스",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "네이버 플레이스 SEO", "description": "네이버 플레이스 상위 노출 최적화. 키워드 설정, 사진 최적화, 리뷰 관리." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "블로그 마케팅", "description": "네이버 블로그 SEO 최적화 및 키워드 상위 노출. 블로그 배포, 홈페이지형 블로그 제작." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "체험단 모집 대행", "description": "업종별 맞춤 체험단 모집 및 리뷰 마케팅 대행." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "인스타그램 마케팅", "description": "인스타그램 콘텐츠 제작, 팔로워 증가, 릴스 마케팅." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "카카오맵 마케팅", "description": "카카오맵 플레이스 등록 및 상위 노출 최적화." } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "맘카페 바이럴 마케팅", "description": "지역 맘카페를 활용한 소상공인 바이럴 마케팅." } },
+                ],
+              },
+              "areaServed": [
+                { "@type": "City", "name": "서울" },
+                { "@type": "AdministrativeArea", "name": "경기도" },
+                { "@type": "City", "name": "인천" },
+              ],
+              "sameAs": [
+                "https://blog.naver.com/harangmarketing",
+                "https://www.instagram.com/jty0221/",
+                "https://pf.kakao.com/_MuUkG",
+              ],
+            }),
+          }}
+        />
+        {/* ── FAQPage (AEO: 답변 엔진·AI 검색 직접 노출) ── */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -110,65 +261,15 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "FAQPage",
               "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "하랑마케팅 상담 비용이 얼마인가요?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "상담 비용은 완전 무료입니다. 경쟁사 분석과 전략 제안까지 0원으로 제공합니다. 계약 강요도 없습니다." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "네이버 플레이스 상위 노출까지 얼마나 걸리나요?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "업종과 경쟁 강도에 따라 다르지만 보통 1개월 차부터 순위 변화가 시작되고 3개월 차에 Top 5 진입이 가능합니다. 실제로 일산 카페 사례에서 3개월 만에 1위를 달성했습니다." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "어떤 업종에 특화되어 있나요?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "카페·베이커리, 음식점·배달, 미용·네일·뷰티, 의원·한의원·피부과, 학원·교육, 온라인 쇼핑몰 등 6개 업종에 특화되어 있습니다. 10년간 500건 이상의 실전 경험을 보유하고 있습니다." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "성과가 없으면 어떻게 되나요?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "3개월 안에 협의한 목표치를 달성하지 못하면 다음 달 비용을 조정합니다. 계약 전에 성과 가능 여부를 솔직하게 먼저 안내드립니다." }
-                },
-                {
-                  "@type": "Question",
-                  "name": "최소 계약 기간이 얼마인가요?",
-                  "acceptedAnswer": { "@type": "Answer", "text": "기본 3개월 단위이며 성과에 따라 월 단위 연장도 가능합니다. 장기 계약 강요는 없습니다." }
-                },
-              ],
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "하랑마케팅",
-              "description": "10년 경력 대표가 직접 담당하는 소상공인 전문 마케팅 대행사. 네이버 플레이스 SEO, 블로그 마케팅, 체험단, 인스타그램 마케팅.",
-              "url": "https://harangmarketing.com",
-              "telephone": "010-7541-9054",
-              "email": "harangmarketing@naver.com",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "장백로19 더루벤투스카운티 501호",
-                "addressLocality": "일산동구",
-                "addressRegion": "경기도 고양시",
-                "addressCountry": "KR",
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "bestRating": "5",
-                "ratingCount": "500",
-              },
-              "priceRange": "월 30만원~",
-              "openingHours": "Mo-Fr 09:00-18:00",
-              "sameAs": [
-                "https://blog.naver.com/harangmarketing",
-                "https://www.instagram.com/jty0221/",
-                "https://pf.kakao.com/_MuUkG",
+                { "@type": "Question", "name": "하랑마케팅 상담 비용이 얼마인가요?", "acceptedAnswer": { "@type": "Answer", "text": "하랑마케팅의 상담 비용은 완전 무료(0원)입니다. 경쟁사 분석, 현황 진단, 전략 제안까지 모두 무료로 제공합니다. 계약 강요 없이 솔직하게 안내드립니다." } },
+                { "@type": "Question", "name": "네이버 플레이스 상위 노출까지 얼마나 걸리나요?", "acceptedAnswer": { "@type": "Answer", "text": "업종과 지역 경쟁 강도에 따라 다르지만, 보통 1개월 차부터 순위 변화가 시작되고 3개월 차에 Top 5 진입이 가능합니다. 실제 일산 카페 사례에서 3개월 만에 플레이스 1위를 달성했습니다." } },
+                { "@type": "Question", "name": "어떤 업종에 특화되어 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "카페·베이커리, 음식점·배달, 미용·네일·뷰티, 의원·한의원·피부과, 학원·교육, 온라인 쇼핑몰 6개 업종에 특화되어 있습니다. 10년간 500건 이상의 실전 프로젝트를 완료했습니다." } },
+                { "@type": "Question", "name": "하랑마케팅 서비스 가격은 얼마인가요?", "acceptedAnswer": { "@type": "Answer", "text": "서비스 유형과 범위에 따라 다르며, 월 30만원부터 시작합니다. 무료 상담을 통해 업종과 목표에 맞는 맞춤 패키지와 정확한 견적을 제공합니다." } },
+                { "@type": "Question", "name": "성과가 없으면 어떻게 되나요?", "acceptedAnswer": { "@type": "Answer", "text": "3개월 안에 협의한 목표치를 달성하지 못하면 다음 달 비용을 조정합니다. 고의 작업 누락 시 결제금액 10배 보상을 약속합니다. 계약 전에 성과 가능 여부를 솔직하게 먼저 안내드립니다." } },
+                { "@type": "Question", "name": "최소 계약 기간이 얼마인가요?", "acceptedAnswer": { "@type": "Answer", "text": "기본 3개월 단위이며 성과에 따라 월 단위 연장도 가능합니다. 장기 계약 강요는 없습니다. 재계약률 95%로 고객 만족도가 높습니다." } },
+                { "@type": "Question", "name": "경기도 소상공인도 마케팅 가능한가요?", "acceptedAnswer": { "@type": "Answer", "text": "네, 하랑마케팅은 경기도 고양시 일산에 위치하며 경기도, 서울, 인천 전 지역 소상공인을 담당합니다. 비대면 온라인 마케팅이 주이므로 전국 어디서나 서비스 가능합니다." } },
+                { "@type": "Question", "name": "네이버 블로그 마케팅이란 무엇인가요?", "acceptedAnswer": { "@type": "Answer", "text": "네이버 블로그 마케팅은 네이버 검색에서 업종·지역 관련 키워드로 블로그 글이 상위에 노출되도록 최적화하는 마케팅 방법입니다. 하랑마케팅은 블로그 배포, 키워드 SEO, 홈페이지형 블로그 제작 서비스를 제공합니다." } },
+                { "@type": "Question", "name": "체험단 마케팅이란 무엇이고 효과가 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "체험단 마케팅은 소비자에게 무료 또는 할인 제품·서비스를 제공하고 후기를 작성하게 하는 마케팅입니다. 실제 리뷰가 쌓이면 네이버 플레이스 순위와 신뢰도가 향상됩니다. 하랑마케팅은 업종별 최적화된 체험단 모집을 대행합니다." } },
               ],
             }),
           }}
