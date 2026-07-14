@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "GOOGLE_SEARCH_CONSOLE_CODE",
+    google: "AfYtoB_S-yaWlWRU11EAKsuhCduXfThm2IEi4ZNeYKQ",
     // 네이버 서치어드바이저 코드는 head에 직접 삽입
   },
   category: "마케팅",
