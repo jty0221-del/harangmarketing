@@ -4,7 +4,7 @@ import FloatingCTA from "./components/FloatingCTA";
 import SocialProofToast from "./components/SocialProofToast";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://harangmarketing.com"),
+  metadataBase: new URL("https://www.harangmarketing.com"),
   title: {
     default: "하랑마케팅 | 소상공인 마케팅 대행사",
     template: "%s | 하랑마케팅",
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   creator: "하랑마케팅",
   publisher: "하랑마케팅",
   alternates: {
-    canonical: "https://harangmarketing.com",
-    languages: { "ko-KR": "https://harangmarketing.com" },
+    canonical: "https://www.harangmarketing.com",
+    languages: { "ko-KR": "https://www.harangmarketing.com" },
   },
   openGraph: {
     type: "website",
@@ -90,6 +90,12 @@ export default function RootLayout({
     <html lang="ko" className="h-full">
       <head>
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        <link
+          rel="preload"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+          as="style"
+        />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
@@ -270,6 +276,23 @@ export default function RootLayout({
                 { "@type": "Question", "name": "경기도 소상공인도 마케팅 가능한가요?", "acceptedAnswer": { "@type": "Answer", "text": "네, 하랑마케팅은 경기도 고양시 일산에 위치하며 경기도, 서울, 인천 전 지역 소상공인을 담당합니다. 비대면 온라인 마케팅이 주이므로 전국 어디서나 서비스 가능합니다." } },
                 { "@type": "Question", "name": "네이버 블로그 마케팅이란 무엇인가요?", "acceptedAnswer": { "@type": "Answer", "text": "네이버 블로그 마케팅은 네이버 검색에서 업종·지역 관련 키워드로 블로그 글이 상위에 노출되도록 최적화하는 마케팅 방법입니다. 하랑마케팅은 블로그 배포, 키워드 SEO, 홈페이지형 블로그 제작 서비스를 제공합니다." } },
                 { "@type": "Question", "name": "체험단 마케팅이란 무엇이고 효과가 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "체험단 마케팅은 소비자에게 무료 또는 할인 제품·서비스를 제공하고 후기를 작성하게 하는 마케팅입니다. 실제 리뷰가 쌓이면 네이버 플레이스 순위와 신뢰도가 향상됩니다. 하랑마케팅은 업종별 최적화된 체험단 모집을 대행합니다." } },
+              ],
+            }),
+          }}
+        />
+        {/* ── BreadcrumbList (네이버·구글 경로 탐색 구조화 데이터) ── */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://www.harangmarketing.com" },
+                { "@type": "ListItem", "position": 2, "name": "서비스", "item": "https://www.harangmarketing.com/services" },
+                { "@type": "ListItem", "position": 3, "name": "진행사례", "item": "https://www.harangmarketing.com/cases" },
+                { "@type": "ListItem", "position": 4, "name": "마케팅 인사이트", "item": "https://www.harangmarketing.com/blog" },
+                { "@type": "ListItem", "position": 5, "name": "무료 상담", "item": "https://www.harangmarketing.com/contact" },
               ],
             }),
           }}

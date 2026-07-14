@@ -244,7 +244,8 @@ export default function HeroSection({
               lineHeight: 1.45,
               letterSpacing: "-0.015em",
               fontSize: "clamp(15px,1.9vw,30px)",
-              whiteSpace: "nowrap",
+              wordBreak: "keep-all",
+              overflowWrap: "break-word",
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .44s both",
             }}
           >
@@ -271,7 +272,8 @@ export default function HeroSection({
               lineHeight: 1.5,
               letterSpacing: "-0.01em",
               fontSize: "clamp(13px,1.45vw,22px)",
-              whiteSpace: "nowrap",
+              wordBreak: "keep-all",
+              overflowWrap: "break-word",
               animation: "haFadeUp .9s cubic-bezier(.2,.7,.2,1) .58s both",
             }}
           >
