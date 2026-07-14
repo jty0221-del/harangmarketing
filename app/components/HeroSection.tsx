@@ -23,16 +23,30 @@ export default function HeroSection({
     v.playsInline = true;
     const r = isFinite(videoSpeed) && videoSpeed > 0 ? videoSpeed : 1;
     v.playbackRate = r;
-    const tryPlay = () => {
-      const p = v.play();
-      if (p && p.catch) p.catch(() => {});
-    };
-    if (v.readyState >= 2) {
+
+    const tryPlay = () => v.play().catch(() => {});
+
+    // 1차: 즉시 시도
+    tryPlay();
+
+    // 2차: 사용자 첫 상호작용(스크롤·클릭·터치) 시 재시도 — Chrome MEI 정책 우회
+    const onInteract = () => {
       tryPlay();
-    } else {
-      v.addEventListener("canplay", tryPlay, { once: true });
-    }
-    return () => v.removeEventListener("canplay", tryPlay);
+    };
+    const EVENTS = ["pointerdown", "touchstart", "scroll", "keydown"] as const;
+    EVENTS.forEach(e => document.addEventListener(e, onInteract, { once: true, passive: true }));
+
+    // 3차: IntersectionObserver — 히어로 섹션이 뷰포트에 진입할 때 재시도
+    const io = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) tryPlay(); },
+      { threshold: 0.1 }
+    );
+    io.observe(v);
+
+    return () => {
+      EVENTS.forEach(e => document.removeEventListener(e, onInteract));
+      io.disconnect();
+    };
   }, [videoSpeed]);
 
   return (
