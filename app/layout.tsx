@@ -6,11 +6,11 @@ import SocialProofToast from "./components/SocialProofToast";
 export const metadata: Metadata = {
   metadataBase: new URL("https://harangmarketing.com"),
   title: {
-    default: "하랑마케팅 — 소상공인 마케팅 대행사 | 재계약률 95% · 10년 경력 · 플레이스·블로그·체험단",
+    default: "하랑마케팅 | 소상공인 마케팅 대행사",
     template: "%s | 하랑마케팅",
   },
   description:
-    "마케팅비 쓰는데 매출이 안 오르시나요? 10년 경력 대표가 직접 담당합니다. 네이버 플레이스 SEO, 블로그, 체험단, 인스타그램으로 실제 방문객·예약·매출을 올려드립니다. 재계약률 95% · 상담 비용 0원 · 500+ 프로젝트 완료.",
+    "10년 경력 대표 직접 담당. 네이버 플레이스·블로그·체험단·인스타그램으로 매출 상승. 상담 무료, 재계약률 95%.",
   keywords: [
     "마케팅대행사", "소상공인마케팅", "자영업자마케팅",
     "네이버플레이스", "플레이스SEO", "플레이스상위노출",
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     url: "https://harangmarketing.com",
     siteName: "하랑마케팅",
-    title: "하랑마케팅 — 소상공인 전문 마케팅 대행사 | 재계약률 95%",
+    title: "하랑마케팅 | 소상공인 전문 마케팅 대행사",
     description:
-      "10년 경력 대표가 직접 담당. 네이버 플레이스 SEO·블로그·체험단·인스타그램 마케팅으로 매출 최대 +300%. 재계약률 95% · 상담 비용 0원 · 경기·서울·인천 전 지역.",
+      "플레이스·블로그·체험단·인스타그램 마케팅으로 매출 최대 +300%. 상담 무료, 재계약률 95%, 경기·서울·인천 전 지역.",
     images: [
       {
         url: "/og-image.png",
