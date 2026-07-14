@@ -24,15 +24,24 @@ export default function HeroSection({
     const r = isFinite(videoSpeed) && videoSpeed > 0 ? videoSpeed : 1;
     v.playbackRate = r;
 
-    const tryPlay = () => v.play().catch(() => {});
+    // Chrome MEI 차단 시 비디오 데이터 다운로드도 막힘 → 명시적 load() 호출
+    v.load();
+
+    const tryPlay = () => {
+      // 데이터 미로드 상태면 load() 재호출 후 canplay 이벤트에서 재시도
+      if (v.readyState === 0) {
+        v.load();
+        v.addEventListener("canplay", () => v.play().catch(() => {}), { once: true });
+      } else {
+        v.play().catch(() => {});
+      }
+    };
 
     // 1차: 즉시 시도
     tryPlay();
 
     // 2차: 사용자 첫 상호작용(스크롤·클릭·터치) 시 재시도 — Chrome MEI 정책 우회
-    const onInteract = () => {
-      tryPlay();
-    };
+    const onInteract = () => tryPlay();
     const EVENTS = ["pointerdown", "touchstart", "scroll", "keydown"] as const;
     EVENTS.forEach(e => document.addEventListener(e, onInteract, { once: true, passive: true }));
 
