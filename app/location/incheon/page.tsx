@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "인천 소상공인 마케팅 대행사 — 하랑마케팅",
     description: "인천 부평·송도·부천·검단 지역 실제 성과. 10년 경력 대표 직접 담당.",
     url: "https://harangmarketing.com/location/incheon",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "인천 마케팅 대행사 하랑마케팅" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "인천 마케팅 대행사 하랑마케팅" }],
   },
 };
 

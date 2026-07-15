@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "경기도 소상공인 마케팅 대행사 — 하랑마케팅",
     description: "경기도 지역 특화 마케팅. 일산·분당·수원·고양 실제 성과 보유.",
     url: "https://harangmarketing.com/location/gyeonggi",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "경기도 마케팅 대행사 하랑마케팅" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "경기도 마케팅 대행사 하랑마케팅" }],
   },
 };
 

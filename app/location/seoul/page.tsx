@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "서울 소상공인 마케팅 대행사 — 하랑마케팅",
     description: "서울 강남·강서·마포·성수·홍대 지역 실제 성과 보유. 10년 경력 대표 직접 담당.",
     url: "https://harangmarketing.com/location/seoul",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "서울 마케팅 대행사 하랑마케팅" }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "서울 마케팅 대행사 하랑마케팅" }],
   },
 };
 

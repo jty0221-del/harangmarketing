@@ -761,7 +761,7 @@ export async function generateMetadata(
         description: dynamicPost.excerpt,
         url: `https://harangmarketing.com/blog/${slug}`,
         type: "article",
-        images: [{ url: "/og-image.png", width: 1200, height: 630, alt: dynamicPost.title }],
+        images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: dynamicPost.title }],
       },
     };
   }
@@ -775,7 +775,7 @@ export async function generateMetadata(
       description: post.summary,
       url: `https://harangmarketing.com/blog/${slug}`,
       type: "article",
-      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: post.title }],
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: post.title }],
     },
   };
 }
@@ -878,12 +878,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       url: "https://harangmarketing.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://harangmarketing.com/og-image.png",
+        url: "https://harangmarketing.com/opengraph-image",
       },
     },
     url: `https://harangmarketing.com/blog/${slug}`,
     mainEntityOfPage: `https://harangmarketing.com/blog/${slug}`,
-    image: "https://harangmarketing.com/og-image.png",
+    image: "https://harangmarketing.com/opengraph-image",
   };
 
   return (

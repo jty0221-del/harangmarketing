@@ -15,7 +15,7 @@ interface ToastItem {
 }
 
 const POOL: Omit<ToastItem, "id">[] = [
-  { type: "kakao", location: "경기 일산", business: "카페 사장님", action: "카카오 채널 문의", ago: "방금 전" },
+  { type: "kakao", location: "경기 고양", business: "카페 사장님", action: "카카오 채널 문의", ago: "방금 전" },
   { type: "form", location: "서울 마포", business: "음식점 대표님", action: "무료 진단 신청", ago: "3분 전" },
   { type: "call", location: "경기 수원", business: "네일샵 원장님", action: "전화 상담 신청", ago: "8분 전" },
   { type: "kakao", location: "서울 강남", business: "피부과 원장님", action: "카카오 채널 문의", ago: "12분 전" },

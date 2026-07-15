@@ -17,8 +17,8 @@ const CHECKS = [
 ];
 
 const CASES = [
-  { category: "카페", loc: "경기 일산", result: "플레이스 1위", period: "3개월", metric: "+167% 방문객" },
-  { category: "네일샵", loc: "경기 수원", result: "예약 마감", period: "3개월", metric: "2주 치 마감" },
+  { category: "카페", loc: "경기 고양", result: "플레이스 1위", period: "3개월", metric: "+167% 방문객" },
+  { category: "네일샵", loc: "경기 파주", result: "예약 마감", period: "6주", metric: "예약 100% 마감" },
   { category: "음식점", loc: "서울 마포", result: "매출 2배", period: "4개월", metric: "+113% 매출" },
 ];
 

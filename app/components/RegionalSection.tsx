@@ -1,61 +1,67 @@
-import { MapPin, TrendingUp, Users, Star } from "lucide-react";
+import { MapPin, TrendingUp, Users, Star, Globe } from "lucide-react";
 import RevealOnScroll from "./RevealOnScroll";
 
 const REGIONS = [
   {
-    name: "고양시 일산",
-    tag: "주요 거점",
-    desc: "일산동구·서구 카페, 음식점, 학원 집중 운영 지역",
-    cases: 120,
+    name: "수도권",
+    cities: "서울 · 경기 · 인천",
+    desc: "카페, 음식점, 미용, 의원 등 전 업종 대응",
+    cases: 320,
     color: "border-blue-200 bg-blue-50",
     tagColor: "bg-blue-600 text-white",
+    tag: "주력 지역",
   },
   {
-    name: "고양시 화정·덕양",
-    tag: "성장 지역",
-    desc: "화정·원당·능곡 상권 소상공인 집중 케어",
-    cases: 68,
+    name: "충청권",
+    cities: "대전 · 세종 · 천안 · 청주",
+    desc: "신도시 상권 중심 플레이스·블로그 특화",
+    cases: 64,
     color: "border-indigo-200 bg-indigo-50",
     tagColor: "bg-indigo-600 text-white",
+    tag: "운영 중",
   },
   {
-    name: "파주시",
-    tag: "확장 지역",
-    desc: "금촌·운정신도시 신규 개업 매장 중심 마케팅",
-    cases: 54,
+    name: "영남권",
+    cities: "부산 · 대구 · 포항 · 울산",
+    desc: "지역 맘카페·커뮤니티 바이럴 강점",
+    cases: 58,
     color: "border-violet-200 bg-violet-50",
     tagColor: "bg-violet-600 text-white",
+    tag: "운영 중",
   },
   {
-    name: "김포시",
-    tag: "서부 지역",
-    desc: "김포한강신도시·풍무동 상권 플레이스 특화",
-    cases: 41,
+    name: "호남·제주",
+    cities: "광주 · 전주 · 여수 · 제주",
+    desc: "관광·로컬 상권 맞춤 마케팅 전략",
+    cases: 31,
     color: "border-sky-200 bg-sky-50",
     tagColor: "bg-sky-600 text-white",
+    tag: "운영 중",
   },
   {
-    name: "양주·동두천",
-    tag: "북부 지역",
-    desc: "회천신도시 신생 매장 초반 브랜딩 집중 지원",
-    cases: 28,
+    name: "강원·제주",
+    cities: "강릉 · 춘천 · 원주 · 제주",
+    desc: "관광 시즌 연계 마케팅·리뷰 관리",
+    cases: 24,
     color: "border-teal-200 bg-teal-50",
     tagColor: "bg-teal-600 text-white",
+    tag: "운영 중",
   },
   {
-    name: "서울·수도권",
-    tag: "광역 대응",
-    desc: "마포·은평·서대문 등 수도권 전 지역 대응 가능",
-    cases: 190,
+    name: "전국 비대면",
+    cities: "온라인 쇼핑몰 · SNS 전문",
+    desc: "지역 무관 블로그 SEO · 인스타 · 체험단",
+    cases: 95,
     color: "border-amber-200 bg-amber-50",
     tagColor: "bg-amber-600 text-white",
+    tag: "온라인 전용",
   },
 ];
 
 const STATS = [
-  { icon: MapPin, val: "경기 북부", sub: "주력 거점" },
+  { icon: Globe, val: "전국", sub: "서비스 지역" },
   { icon: Users, val: "500+", sub: "누적 클라이언트" },
-  { icon: TrendingUp, val: "10년+", sub: "경기 지역 현장 경력" },
+  { icon: TrendingUp, val: "10년+", sub: "마케팅 현장 경력" },
   { icon: Star, val: "95%", sub: "재계약률" },
 ];
 
@@ -68,17 +74,17 @@ export default function RegionalSection() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-6 h-[2px]" style={{ background: "var(--h-amber)" }} />
-                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>지역 밀착 마케팅</span>
+                <span className="text-[11px] font-black uppercase tracking-[0.22em]" style={{ color: "var(--h-amber)" }}>전국 서비스</span>
               </div>
               <h2
                 className="text-2xl md:text-3xl font-black leading-tight"
                 style={{ color: "var(--h-dark)", letterSpacing: "-0.03em" }}
               >
-                경기 북부 소상공인을<br className="md:hidden" /> 가장 잘 아는 대행사
+                전국 어디서나,<br className="md:hidden" /> 대표가 직접 담당합니다
               </h2>
               <p className="text-sm mt-3 leading-relaxed" style={{ color: "var(--h-muted)" }}>
-                일산에서 10년 동안 직접 발로 뛰었습니다.<br />
-                지역 상권, 경쟁 매장, 타겟 고객층을 누구보다 잘 알고 있습니다.
+                대부분의 마케팅은 비대면으로 진행되기 때문에 지역 제한이 없습니다.<br />
+                업종과 상권에 맞는 전략을 전국 어디서든 동일하게 제공합니다.
               </p>
             </div>
             {/* Stats */}
@@ -107,6 +113,7 @@ export default function RegionalSection() {
                   {r.tag}
                 </span>
                 <p className="font-black text-sm text-gray-900 leading-snug">{r.name}</p>
+                <p className="text-[11px] text-gray-400 font-semibold leading-snug">{r.cities}</p>
                 <p className="text-[11px] text-gray-500 leading-snug flex-1">{r.desc}</p>
                 <div className="flex items-center gap-1 mt-1">
                   <MapPin size={10} className="text-gray-400" />

@@ -15,9 +15,10 @@ export const metadata: Metadata = {
   description: "해병대 장교 출신 대표가 직접 운영. 카페 창업 실패를 딛고 500곳 이상의 소상공인과 함께 성장한 하랑마케팅의 진짜 이야기.",
   keywords: ["하랑마케팅 소개", "소상공인 마케팅 대행사", "마케팅 대행사 신뢰", "투명한 마케팅"],
   openGraph: {
-    title: "하랑마케팅 — 속이면 10배 보상, 대표 직접 담당",
-    description: "해병대 장교 → 카페 실패 → 마케팅 전문가. 실패를 경험한 대표가 대표님의 돈을 제 돈처럼 씁니다.",
+    title: "하랑마케팅 — 대표 직접 담당, 결과 없으면 솔직히 말씀드립니다",
+    description: "해병대 장교 출신, 카페 창업 실패 경험. 대표님의 돈이 어디에 쓰이는지 직접 챙기고 설명합니다.",
     url: "https://harangmarketing.com/about",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "하랑마케팅 소개" }],
   },
 };
 
