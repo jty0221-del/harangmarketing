@@ -1861,7 +1861,7 @@ export default function HomePage() {
                   tag: "업종별 전략",
                   tagColor: "bg-indigo-50 text-indigo-600 border-indigo-100",
                   title: "맘카페 바이럴 마케팅 완전 가이드 — 수강생 55% 늘린 전략",
-                  preview: "광고처럼 보이지 않으면서 효과를 내는 침투 전략, 업종별 콘텐츠 포인트를 공개합니다.",
+                  preview: "자연스럽게 입소문을 내면서 효과를 내는 방법, 업종별 콘텐츠 포인트를 공개합니다.",
                   readTime: "7분",
                   accent: "border-l-indigo-500",
                   href: "/blog/momcafe-viral-guide",

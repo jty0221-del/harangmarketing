@@ -1,4 +1,4 @@
-"use client";
+import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Link from "next/link";
@@ -6,6 +6,18 @@ import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
   Coffee, Users, MessageSquare, BarChart3, Clock,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "카페·베이커리 마케팅 — 하랑마케팅 | 플레이스 SEO · 리뷰 · 블로그",
+  description: "카페·베이커리 전문 마케팅. 네이버 플레이스 상위 노출, 포토리뷰 확보, 블로그·인스타 바이럴로 방문객을 늘립니다. 무료 상담 가능.",
+  keywords: ["카페 마케팅", "카페 플레이스 SEO", "카페 리뷰 마케팅", "베이커리 마케팅", "네이버 플레이스 카페"],
+  openGraph: {
+    title: "카페·베이커리 마케팅 — 하랑마케팅",
+    description: "플레이스 상위 노출부터 포토리뷰 확보까지. 카페 전문 마케팅 전략.",
+    url: "https://harangmarketing.com/services/cafe",
+    images: [{ url: "https://harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+  },
+};
 
 const RESULTS = [
   { label: "플레이스 순위", before: "27위", after: "3위", period: "2개월" },
@@ -66,7 +78,7 @@ export default function CafeLandingPage() {
             </h1>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-8">
               네이버 플레이스 상위 노출부터 포토리뷰 확보까지.<br />
-              경기·서울 카페 30곳 이상 실제 성과로 검증된 전략.
+              전국 카페 30곳 이상 실제 성과로 검증된 전략.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link

@@ -296,7 +296,7 @@ const POSTS: Record<string, {
     tagColor: "bg-indigo-50 text-indigo-700",
     readTime: "7분",
     result: "학원 수강생 3개월 +55%, 카페 방문객 +40%",
-    summary: "맘카페는 '구매 결정권을 가진 주부'가 모이는 최고의 로컬 마케팅 채널입니다. 광고처럼 보이지 않으면서 효과를 내는 침투 전략을 공개합니다.",
+    summary: "맘카페는 '구매 결정권을 가진 주부'가 모이는 최고의 로컬 마케팅 채널입니다. 자연스럽게 입소문을 내면서 효과를 내는 방법을 공개합니다.",
     sections: [
       {
         heading: "왜 맘카페인가요?",

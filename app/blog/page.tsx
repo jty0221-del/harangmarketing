@@ -1,5 +1,6 @@
 export const maxDuration = 60; // Vercel 함수 타임아웃 60초
 
+import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
@@ -9,7 +10,20 @@ import BlogListClient from "./BlogListClient";
 import { getAllPosts } from "../lib/blog-posts";
 import { getNaverBlogPosts } from "../lib/naver-blog";
 
-const BLOG_POSTS = [
+export const metadata: Metadata = {
+  title: "마케팅 블로그 — 하랑마케팅 | 소상공인 실전 마케팅 노하우",
+  description: "10년 경력 대표가 직접 쓰는 소상공인 마케팅 노하우. 네이버 플레이스 SEO, 블로그 마케팅, 리뷰 관리, 맘카페 바이럴 등 실제 성과 기반 인사이트.",
+  keywords: ["소상공인 마케팅 블로그", "플레이스 SEO 방법", "카페 마케팅 노하우", "마케팅 대행사 블로그", "하랑마케팅 블로그"],
+  openGraph: {
+    title: "하랑마케팅 블로그 — 소상공인 실전 마케팅 인사이트",
+    description: "플레이스 SEO, 블로그, 리뷰 관리 등 실제 성과로 검증된 소상공인 마케팅 노하우를 무료로 공유합니다.",
+    url: "https://harangmarketing.com/blog",
+    images: [{ url: "https://harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+  },
+};
+
+// 아래는 BlogListClient에 staticPosts=[]로 전달되어 실제 사용되지 않는 상태입니다.
+// 네이버 블로그 및 CMS 글이 로드되면 이 배열을 채우거나 삭제하세요.
   {
     tag: "플레이스 SEO",
     tagColor: "bg-blue-50 text-blue-600 border-blue-100",
@@ -81,7 +95,7 @@ const BLOG_POSTS = [
     tagColor: "bg-indigo-50 text-indigo-700 border-indigo-100",
     accentColor: "border-l-indigo-600",
     title: "맘카페 바이럴 마케팅 완전 가이드 — 수강생 55% 늘린 실전 전략",
-    preview: "맘카페는 구매 결정권을 가진 주부가 모이는 최고의 로컬 채널입니다. 광고처럼 보이지 않으면서 효과를 내는 침투 전략, 업종별 콘텐츠 포인트, 실패 사례까지 공개합니다.",
+    preview: "맘카페는 구매 결정권을 가진 주부가 모이는 최고의 로컬 채널입니다. 자연스럽게 입소문을 내는 방법, 업종별 콘텐츠 포인트, 실패 사례까지 공개합니다.",
     readTime: "7분",
     result: "학원 수강생 3개월 +55%, 카페 방문객 +40%",
     href: "/blog/momcafe-viral-guide",

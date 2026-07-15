@@ -1,4 +1,4 @@
-"use client";
+import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Link from "next/link";
@@ -7,6 +7,18 @@ import {
   Stethoscope, Users, MessageSquare, BarChart3, Clock,
   ShieldCheck,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "의원·한의원·피부과 마케팅 — 하랑마케팅 | 신환 유입 · 플레이스 SEO · 블로그",
+  description: "의원·한의원·피부과 전문 마케팅. 의료법 준수 블로그, 플레이스 상위 노출, 리뷰 관리로 신환 예약을 늘립니다. 무료 상담 가능.",
+  keywords: ["의원 마케팅", "한의원 마케팅", "피부과 마케팅", "병원 플레이스 SEO", "신환 유입 마케팅"],
+  openGraph: {
+    title: "의원·한의원·피부과 마케팅 — 하랑마케팅",
+    description: "의료법을 준수하면서 신환이 늘어나는 병원 마케팅 전략.",
+    url: "https://harangmarketing.com/services/clinic",
+    images: [{ url: "https://harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+  },
+};
 
 const RESULTS = [
   { label: "플레이스 순위", before: "15위", after: "2위", period: "3개월" },

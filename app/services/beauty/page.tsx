@@ -1,4 +1,4 @@
-"use client";
+import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Link from "next/link";
@@ -6,6 +6,18 @@ import {
   CheckCircle2, ArrowRight, TrendingUp, Star, MapPin,
   Scissors, Users, MessageSquare, BarChart3, Clock, Camera,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "미용·네일·피부샵 마케팅 — 하랑마케팅 | 플레이스 SEO · 인스타그램 · 체험단",
+  description: "미용실·네일샵·피부샵 전문 마케팅. 인스타그램 팔로워 증가, 플레이스 상위 노출, 포토리뷰 확보로 예약을 꽉 채웁니다. 무료 상담 가능.",
+  keywords: ["미용실 마케팅", "네일샵 마케팅", "피부샵 마케팅", "뷰티샵 플레이스 SEO", "헤어샵 인스타그램"],
+  openGraph: {
+    title: "미용·네일·피부샵 마케팅 — 하랑마케팅",
+    description: "인스타그램·플레이스 동시 상승으로 예약을 꽉 채우는 뷰티샵 마케팅.",
+    url: "https://harangmarketing.com/services/beauty",
+    images: [{ url: "https://harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
+  },
+};
 
 const RESULTS = [
   { label: "플레이스 순위", before: "18위", after: "4위", period: "2개월" },

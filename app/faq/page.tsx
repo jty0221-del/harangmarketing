@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: "하랑마케팅 FAQ — 상담 전 미리 확인하세요",
     description: "비용, 계약, 효과, 업종별 질문 등 상담 전에 궁금한 것들을 정리했습니다.",
     url: "https://harangmarketing.com/faq",
+    images: [{ url: "https://harangmarketing.com/opengraph-image", width: 1200, height: 630 }],
   },
 };
 
@@ -130,7 +131,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: "지역 제한이 있나요?",
-        a: "전국 원격 서비스가 가능합니다. 오프라인 방문이 필요한 경우(촬영 등)는 경기·서울권은 무료, 타 지역은 별도 협의합니다.",
+        a: "전국 어디서나 비대면으로 진행합니다. 현장 촬영이 필요한 경우에는 사전에 안내드리고 별도 협의합니다.",
       },
       {
         q: "담당자가 자주 바뀌지 않나요?",
