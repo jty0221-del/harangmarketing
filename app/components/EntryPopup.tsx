@@ -67,8 +67,8 @@ export default function EntryPopup() {
           </h3>
 
           <p className="text-sm text-gray-500 mb-5 leading-relaxed">
-            대표가 직접 담당하기 때문에 월 신규 계약을 제한합니다.
-            지금 신청하시면 무료 경쟁사 분석 리포트를 함께 드립니다.
+            대표가 직접 챙기다 보니 한 달에 받을 수 있는 신규 상담이 한정되어 있어요.
+            지금 신청하시면 무료 경쟁사 분석 리포트도 함께 드립니다.
           </p>
 
           {/* Stats row */}

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       "플레이스·블로그·체험단·인스타그램 마케팅으로 매출 최대 +300%. 상담 무료, 재계약률 95%, 경기·서울·인천 전 지역.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "하랑마케팅 — 소상공인 전문 마케팅 대행사 | 재계약률 95% · 10년 경력",
@@ -52,7 +52,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "하랑마케팅 — 소상공인 전문 마케팅 대행사",
     description: "10년 경력 대표 직접 담당 · 플레이스 SEO · 블로그 · 체험단 · 인스타그램 · 재계약률 95%",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/favicon.svg",
   },
   robots: {
     index: true,
@@ -100,9 +107,6 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
         />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
         {/* 네이버 서치어드바이저 소유권 확인 */}
         <meta name="naver-site-verification" content="5e058632e3ac9891ac91638c144b083a4d694d0b" />
         {/* Bing Webmaster Tools */}

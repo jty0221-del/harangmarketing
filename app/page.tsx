@@ -113,16 +113,16 @@ const INDUSTRIES = [
 ];
 
 const SERVICES = [
-  { icon: Search, title: "플레이스 SEO 최적화", desc: "네이버 플레이스 알고리즘 분석으로 업종별 핵심 키워드 상위 노출을 달성합니다.", color: "from-blue-600 to-blue-700", popular: true },
-  { icon: Star, title: "리뷰 마케팅", desc: "긍정 리뷰를 전략적으로 쌓아 신규 고객의 첫 방문 결정을 이끌어냅니다.", color: "from-blue-500 to-blue-700", popular: true },
+  { icon: Search, title: "플레이스 SEO 최적화", desc: "업종별 주요 키워드를 분석해 네이버 플레이스 검색 상위에 올려드립니다.", color: "from-blue-600 to-blue-700", popular: true },
+  { icon: Star, title: "리뷰 마케팅", desc: "좋은 리뷰를 꾸준히 쌓아 처음 찾아오는 손님의 선택을 이끌어냅니다.", color: "from-blue-500 to-blue-700", popular: true },
   { icon: AtSign, title: "인스타그램 마케팅", desc: "콘텐츠 기획부터 릴스·광고 운영까지 인스타그램 채널 성장을 전담합니다.", color: "from-blue-600 to-indigo-700", popular: true },
-  { icon: FileText, title: "블로그 배포(기자단)", desc: "전문 작가가 브랜드 맞춤 기사를 작성하고 20개+ 채널에 동시 배포합니다.", color: "from-blue-500 to-blue-700" },
-  { icon: BookOpen, title: "홈페이지형 블로그 제작", desc: "네이버 블로그를 전문 홈페이지처럼 구성해 신뢰도와 검색 노출을 높입니다.", color: "from-blue-600 to-blue-800" },
-  { icon: MapPin, title: "카카오맵 마케팅", desc: "카카오맵 플레이스 최적화로 지역 검색 상위 노출 및 방문객을 늘립니다.", color: "from-blue-500 to-blue-700" },
-  { icon: Users, title: "체험단 모집 대행", desc: "타겟 인플루언서·일반 체험단을 모집해 신뢰도 높은 실후기를 만듭니다.", color: "from-blue-600 to-indigo-700" },
-  { icon: TrendingUp, title: "플레이스 순위상승", desc: "방문자·저장 수·블로그 리뷰 등 복합 지표를 관리해 순위를 끌어올립니다.", color: "from-blue-600 to-blue-800" },
-  { icon: BarChart3, title: "블로그 관리 대행", desc: "정기 포스팅과 SEO 최적화로 블로그 지수를 높이고 꾸준한 트래픽을 유지합니다.", color: "from-blue-500 to-blue-700" },
-  { icon: Megaphone, title: "맘카페 바이럴", desc: "지역 맘카페·육아 커뮤니티를 통해 핵심 타겟층에게 브랜드를 알립니다.", color: "from-blue-600 to-blue-800" },
+  { icon: FileText, title: "블로그 배포(기자단)", desc: "전문 작가가 매장 맞춤 글을 작성하고 20개 이상의 채널에 동시에 올립니다.", color: "from-blue-500 to-blue-700" },
+  { icon: BookOpen, title: "홈페이지형 블로그 제작", desc: "네이버 블로그를 전문 홈페이지처럼 꾸며 신뢰도와 검색 노출을 높입니다.", color: "from-blue-600 to-blue-800" },
+  { icon: MapPin, title: "카카오맵 마케팅", desc: "카카오맵 플레이스를 최적화해 지역 검색 상위 노출과 방문객을 늘립니다.", color: "from-blue-500 to-blue-700" },
+  { icon: Users, title: "체험단 모집 대행", desc: "실제 방문 후기를 남길 체험단을 모집해 믿을 수 있는 리뷰를 만들어드립니다.", color: "from-blue-600 to-indigo-700" },
+  { icon: TrendingUp, title: "플레이스 순위상승", desc: "방문자·저장·리뷰 등 여러 항목을 함께 관리해 플레이스 순위를 올려드립니다.", color: "from-blue-600 to-blue-800" },
+  { icon: BarChart3, title: "블로그 관리 대행", desc: "꾸준한 글쓰기와 검색 최적화로 블로그 노출을 높이고 방문자를 유지합니다.", color: "from-blue-500 to-blue-700" },
+  { icon: Megaphone, title: "맘카페 바이럴", desc: "지역 맘카페·육아 커뮤니티를 통해 주요 고객층에 입소문을 만들어드립니다.", color: "from-blue-600 to-blue-800" },
 ];
 
 const COMPARE_ITEMS = [

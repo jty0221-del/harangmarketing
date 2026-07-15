@@ -26,16 +26,16 @@ const PROMISES = [
     num: "01",
     icon: Shield,
     color: "from-blue-500 to-blue-700",
-    title: "기술적 투명성 — 속이면 10배 보상",
-    desc: "말로만 '믿어달라' 하지 않습니다. 약속된 작업 물량은 100% 매체사에 전달하며 투명하게 공유합니다. 고의적 누락이 적발될 경우 결제 금액의 10배를 보상하는 강력한 정책을 운용 중입니다.",
+    title: "투명하게 작업합니다 — 속이면 10배 보상",
+    desc: "말로만 '믿어달라' 하지 않습니다. 약속한 작업을 100% 진행하고 결과를 투명하게 공유합니다. 고의로 빠뜨리거나 속인 사실이 확인되면 결제 금액의 10배를 보상해드립니다.",
     badge: "10배 보상 정책",
   },
   {
     num: "02",
     icon: Target,
     color: "from-blue-600 to-blue-800",
-    title: "패키지 팔이 NO — 맞춤형 ROI 전략",
-    desc: "음식점과 학원, 쇼핑몰은 성공 방정식이 전혀 다릅니다. 불필요한 서비스를 끼워 넣는 패키지 대신, 업종별 최적 조합만으로 최소 비용 최대 효과를 만들어 드립니다.",
+    title: "묶음 패키지 강요 없이, 꼭 필요한 것만",
+    desc: "음식점과 학원, 쇼핑몰은 필요한 마케팅이 전혀 다릅니다. 불필요한 서비스를 끼워 넣지 않고, 업종에 딱 맞는 것만 골라 적은 비용으로 최대 효과를 만들어 드립니다.",
     badge: "업종별 맞춤 설계",
   },
   {
@@ -66,8 +66,8 @@ const PROMISES = [
 
 const SERVICES_LIST = [
   { icon: MapPin, color: "from-blue-500 to-blue-700", title: "네이버 플레이스 SEO", items: ["SEO 최적화", "상위 노출", "순위 관리", "예약률 상승 세팅"] },
-  { icon: BookOpen, color: "from-blue-600 to-blue-800", title: "블로그 마케팅", items: ["브랜드 블로그 관리 대행", "블로그 상위 노출", "최블 배포", "기자단 배포"] },
-  { icon: Users, color: "from-blue-500 to-blue-700", title: "바이럴 마케팅", items: ["맘카페 침투 전략", "체험단 모집 (100% 실사용자)", "지역 커뮤니티 바이럴"] },
+  { icon: BookOpen, color: "from-blue-600 to-blue-800", title: "블로그 마케팅", items: ["브랜드 블로그 관리 대행", "블로그 상위 노출", "최상위 블로그 배포", "기자단 배포"] },
+  { icon: Users, color: "from-blue-500 to-blue-700", title: "바이럴 마케팅", items: ["맘카페 입소문 마케팅", "체험단 모집 (100% 실사용자)", "지역 커뮤니티 바이럴"] },
   { icon: AtSign, color: "from-blue-700 to-indigo-700", title: "SNS 마케팅", items: ["인스타그램 계정 육성", "인기 게시물 노출", "리그램", "하이라이트 세팅"] },
   { icon: MapPin, color: "from-blue-600 to-blue-800", title: "지도·리뷰 관리", items: ["카카오맵 매장 관리", "카카오맵 리뷰 (실유저)", "카카오맵 상위 노출"] },
   { icon: Coffee, color: "from-blue-500 to-indigo-600", title: "창업 지원", items: ["홈페이지형 블로그 제작", "로고·명함 디자인", "메뉴판 제작"] },

@@ -108,7 +108,7 @@ export default function DifferenceSection() {
             <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-50 border border-amber-100">
               <AlertCircle size={14} className="text-amber-600" strokeWidth={2} />
               <p className="text-xs text-amber-700 font-semibold">
-                이 약속을 지키지 못하면 속이면 10배 보상을 드립니다
+                이 약속을 지키지 못하면 결제 금액의 10배를 보상해드립니다
               </p>
             </div>
           </div>

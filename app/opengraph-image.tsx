@@ -12,111 +12,98 @@ export default function OgImage() {
         style={{
           width: "1200px",
           height: "630px",
-          background: "linear-gradient(135deg, #0a0f1e 0%, #0f1e3c 50%, #0a0f1e 100%)",
+          background: "linear-gradient(135deg, #0A1B3D 0%, #0050F2 70%, #1d4ed8 100%)",
           display: "flex",
           flexDirection: "column",
+          alignItems: "flex-start",
           justifyContent: "center",
-          padding: "72px 80px",
+          padding: "64px 80px",
           fontFamily: "sans-serif",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Grid overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-        {/* Glow */}
-        <div
-          style={{
-            position: "absolute",
-            top: "-100px",
-            left: "-100px",
-            width: "500px",
-            height: "500px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%)",
-          }}
-        />
+        {/* 배경 원형 장식 */}
+        <div style={{ position: "absolute", top: -100, right: -100, width: 480, height: 480, borderRadius: "50%", background: "rgba(255,255,255,0.06)" }} />
+        <div style={{ position: "absolute", bottom: -140, right: 80, width: 340, height: 340, borderRadius: "50%", background: "rgba(255,255,255,0.04)" }} />
 
-        {/* Logo row */}
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", marginBottom: "36px" }}>
+        {/* 로고 */}
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 36 }}>
           <div
             style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "14px",
-              background: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
+              width: 52,
+              height: 52,
+              borderRadius: 14,
+              background: "rgba(255,255,255,0.18)",
+              border: "2px solid rgba(255,255,255,0.35)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "22px",
+              fontSize: 26,
               fontWeight: 900,
               color: "white",
             }}
           >
             H
           </div>
-          <span style={{ fontSize: "24px", fontWeight: 900, color: "white" }}>하랑마케팅</span>
+          <span style={{ fontSize: 28, fontWeight: 900, color: "white", letterSpacing: "-0.02em" }}>하랑마케팅</span>
           <div
             style={{
-              marginLeft: "12px",
-              padding: "4px 14px",
-              borderRadius: "999px",
-              background: "rgba(59,130,246,0.2)",
-              border: "1px solid rgba(59,130,246,0.4)",
-              fontSize: "13px",
-              color: "#93c5fd",
+              marginLeft: 8,
+              padding: "5px 16px",
+              borderRadius: 999,
+              background: "rgba(255,255,255,0.15)",
+              border: "1px solid rgba(255,255,255,0.25)",
+              fontSize: 14,
+              color: "rgba(255,255,255,0.85)",
               fontWeight: 700,
             }}
           >
-            10년 경력 · 소상공인 전문
+            소상공인 전문 마케팅 대행사
           </div>
         </div>
 
-        {/* Headline */}
-        <div style={{ fontSize: "52px", fontWeight: 900, color: "white", lineHeight: 1.2, marginBottom: "20px" }}>
-          마케팅비를 쓰는데
+        {/* 헤드라인 */}
+        <div style={{ fontSize: 56, fontWeight: 900, color: "white", lineHeight: 1.15, letterSpacing: "-0.03em", marginBottom: 20 }}>
+          광고비가 아깝다면,
           <br />
-          <span style={{ color: "#60a5fa" }}>매출이 안 오르나요?</span>
+          <span style={{ color: "#bfdbfe" }}>하랑마케팅과 상담하세요.</span>
         </div>
 
-        {/* Sub */}
-        <div style={{ fontSize: "22px", color: "#94a3b8", lineHeight: 1.5, marginBottom: "40px", maxWidth: "700px" }}>
-          업종별 맞춤 전략 · 대표 직접 담당 · 상담 비용 0원
+        {/* 서브 */}
+        <div style={{ fontSize: 22, color: "rgba(255,255,255,0.7)", marginBottom: 44, letterSpacing: "-0.01em" }}>
+          대표 직접 담당 · 재계약률 95% · 상담 비용 0원
         </div>
 
-        {/* Stats row */}
-        <div style={{ display: "flex", gap: "32px" }}>
+        {/* 통계 배지 */}
+        <div style={{ display: "flex", gap: 14 }}>
           {[
+            { val: "10년+", label: "마케팅 경력" },
             { val: "500+", label: "완료 프로젝트" },
             { val: "95%", label: "재계약률" },
-            { val: "+300%", label: "최대 매출 상승" },
             { val: "0원", label: "상담 비용" },
           ].map((s) => (
-            <div key={s.label} style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontSize: "32px", fontWeight: 900, color: "#3b82f6" }}>{s.val}</span>
-              <span style={{ fontSize: "14px", color: "#64748b", marginTop: "2px" }}>{s.label}</span>
+            <div
+              key={s.label}
+              style={{
+                background: "rgba(255,255,255,0.14)",
+                border: "1px solid rgba(255,255,255,0.22)",
+                borderRadius: 16,
+                padding: "14px 22px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 4,
+              }}
+            >
+              <span style={{ fontSize: 28, fontWeight: 900, color: "white", letterSpacing: "-0.02em" }}>{s.val}</span>
+              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", fontWeight: 500 }}>{s.label}</span>
             </div>
           ))}
         </div>
 
         {/* URL */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "40px",
-            right: "80px",
-            fontSize: "16px",
-            color: "#334155",
-            fontWeight: 600,
-          }}
-        >
+        <div style={{ position: "absolute", bottom: 40, right: 80, fontSize: 17, color: "rgba(255,255,255,0.35)", fontWeight: 600, letterSpacing: "0.03em" }}>
           harangmarketing.com
         </div>
       </div>
