@@ -12,7 +12,7 @@ import {
 import { GA_EVENTS } from "../components/Analytics";
 
 const INDUSTRY_ICONS = [
-  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "+167% 방문객", case: "경기 일산 카페 · 3개월", color: "from-blue-500 to-blue-700" },
+  { id: "cafe", icon: Coffee, label: "카페·베이커리", rec: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"], result: "+167% 방문객", case: "경기 고양 카페 · 3개월", color: "from-blue-500 to-blue-700" },
   { id: "food", icon: UtensilsCrossed, label: "음식점·배달", rec: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"], result: "+113% 배달 매출", case: "서울 마포 음식점 · 4개월", color: "from-blue-600 to-indigo-700" },
   { id: "beauty", icon: Scissors, label: "미용·네일·뷰티", rec: ["인스타그램 마케팅", "체험단 모집", "카카오맵 마케팅"], result: "예약 완전 마감", case: "수원 네일샵 · 3개월", color: "from-blue-500 to-blue-700" },
   { id: "medical", icon: Stethoscope, label: "의원·한의원·피부과", rec: ["블로그 관리", "체험단 모집", "플레이스 SEO"], result: "+300% 신규 예약", case: "경기 분당 피부과 · 6개월", color: "from-blue-600 to-blue-800" },
@@ -445,7 +445,7 @@ function ContactPageInner() {
                   <h4 className="font-bold text-gray-900 text-sm mb-3">업종별 실제 성과</h4>
                   <div className="space-y-2.5">
                     {[
-                      { ind: "카페·베이커리", location: "경기 일산", result: "+167%", label: "방문객", color: "text-amber-600 bg-amber-50 border-amber-100" },
+                      { ind: "카페·베이커리", location: "경기 고양", result: "+167%", label: "방문객", color: "text-amber-600 bg-amber-50 border-amber-100" },
                       { ind: "음식점·배달", location: "서울 성수", result: "+113%", label: "매출", color: "text-green-600 bg-green-50 border-green-100" },
                       { ind: "미용·뷰티", location: "인천 부평", result: "완전 마감", label: "예약", color: "text-pink-600 bg-pink-50 border-pink-100" },
                       { ind: "의원·한의원", location: "경기 분당", result: "+300%", label: "신규예약", color: "text-blue-600 bg-blue-50 border-blue-100" },
@@ -479,7 +479,7 @@ function ContactPageInner() {
                       {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={11} className="text-yellow-300 fill-yellow-300" />)}
                     </div>
                     <p className="text-xs text-blue-200 italic">"상담만 받았는데도 뭘 해야 할지 명확해졌어요"</p>
-                    <p className="text-[11px] text-blue-300 mt-1">— 일산 카페 사장님</p>
+                    <p className="text-[11px] text-blue-300 mt-1">— 경기 카페 사장님</p>
                   </div>
                 </div>
 

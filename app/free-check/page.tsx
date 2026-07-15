@@ -201,7 +201,7 @@ export default function FreeCheckPage() {
                       type="text"
                       value={business}
                       onChange={(e) => setBusiness(e.target.value)}
-                      placeholder="예: 일산 하랑카페 / 카페"
+                      placeholder="예: 하랑카페 / 카페"
                       required
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-colors"
                     />

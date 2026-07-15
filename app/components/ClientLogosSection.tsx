@@ -4,7 +4,7 @@
 // 사장님이 실제 로고 이미지를 제공하면 Image 태그로 교체
 
 const LOGOS = [
-  { name: "일산 A카페", color: "bg-amber-100 text-amber-800" },
+  { name: "고양 A카페", color: "bg-amber-100 text-amber-800" },
   { name: "마포 B음식점", color: "bg-blue-100 text-blue-800" },
   { name: "강서 C피부과", color: "bg-purple-100 text-purple-700" },
   { name: "수원 D네일", color: "bg-pink-100 text-pink-700" },
@@ -13,7 +13,7 @@ const LOGOS = [
   { name: "분당 G카페", color: "bg-teal-100 text-teal-800" },
   { name: "홍대 H술집", color: "bg-red-100 text-red-700" },
   { name: "강남 I클리닉", color: "bg-indigo-100 text-indigo-800" },
-  { name: "일산 J쇼핑몰", color: "bg-yellow-100 text-yellow-800" },
+  { name: "서울 J쇼핑몰", color: "bg-yellow-100 text-yellow-800" },
   { name: "파주 K카페", color: "bg-cyan-100 text-cyan-800" },
   { name: "부천 L베이커리", color: "bg-rose-100 text-rose-700" },
   { name: "인천 M음식점", color: "bg-violet-100 text-violet-800" },

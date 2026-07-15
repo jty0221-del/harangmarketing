@@ -13,7 +13,7 @@ import {
 const INDUSTRIES = [
   { id: "cafe", icon: Coffee, label: "카페·베이커리", color: "from-blue-500 to-blue-700",
     topServices: ["플레이스 SEO", "인스타그램 마케팅", "리뷰 마케팅"],
-    avgResult: "방문객 +167%", caseLabel: "경기 일산 카페 3개월" },
+    avgResult: "방문객 +167%", caseLabel: "경기 고양 카페 3개월" },
   { id: "food", icon: UtensilsCrossed, label: "음식점·배달", color: "from-blue-600 to-indigo-700",
     topServices: ["리뷰 마케팅", "맘카페 바이럴", "블로그 배포"],
     avgResult: "매출 +113%", caseLabel: "서울 마포 음식점 4개월" },

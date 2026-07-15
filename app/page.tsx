@@ -38,7 +38,7 @@ const INDUSTRIES = [
     before: "일 방문 28명",
     after: "일 방문 75명",
     duration: "3개월",
-    location: "경기 일산",
+    location: "경기 고양",
   },
   {
     icon: UtensilsCrossed,
@@ -171,11 +171,6 @@ const PACKAGES = [
   },
 ];
 
-const TESTIMONIALS = [
-  { name: "카페 사장님", location: "경기 일산", text: "3개월 만에 '일산 카페' 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다.", service: "플레이스 SEO", stars: 5 },
-  { name: "피부과 원장님", location: "서울 강서", text: "인스타그램 신규 예약이 6개월 만에 3배가 됐습니다. 보고서도 이해하기 쉬웠어요.", service: "인스타그램 마케팅", stars: 5 },
-  { name: "학원 원장님", location: "경기 고양", text: "맘카페 바이럴 하나로 수강생이 50% 늘었습니다. 지역 엄마들 사이에서 입소문이 났어요.", service: "맘카페 바이럴", stars: 5 },
-];
 
 const TRUST_ITEMS = [
   { icon: ShieldCheck, title: "검증된 10년 경력", desc: "2014년부터 500개 이상 프로젝트 직접 진행", color: "from-blue-600 to-blue-800" },
@@ -544,7 +539,7 @@ export default function HomePage() {
               { text: "재계약률 95% · 500+ 프로젝트", dot: "bg-blue-200" },
               { text: "월 신규 예약 +175% · 경기 안양 한의원", dot: "bg-white/60" },
               { text: "대표 직접 담당 · 상담 비용 0원", dot: "bg-blue-200" },
-              { text: "방문객 +167% · 경기 일산 카페", dot: "bg-white/60" },
+              { text: "방문객 +167% · 경기 고양 카페", dot: "bg-white/60" },
               { text: "배달 매출 +113% · 경기 고양 음식점", dot: "bg-blue-200" },
               { text: "수강생 +55% · 경기 고양 학원", dot: "bg-white/60" },
               { text: "예약 완전 마감 · 경기 파주 네일샵", dot: "bg-blue-200" },
@@ -552,18 +547,18 @@ export default function HomePage() {
               { text: "10년+ 경력 · 업종별 맞춤 전략", dot: "bg-blue-200" },
               { text: "24시간 내 연락 보장", dot: "bg-white/60" },
               { text: "이번 달 신규 상담 잔여 2자리", dot: "bg-blue-200" },
-              { text: "ROI 평균 1.8배 · 3개월 실측치", dot: "bg-white/60" },
+              { text: "투자 대비 1.8배 효과 · 3개월 실측치", dot: "bg-white/60" },
               { text: "블로그 지역 키워드 4주 만에 상위권", dot: "bg-blue-200" },
               { text: "카카오맵 리뷰 0 → 78개 · 2개월", dot: "bg-white/60" },
               { text: "매출 월평균 +89% · 3개월 계약 기준", dot: "bg-blue-200" },
-              { text: "플레이스 일산 지역 음식점 1위 달성", dot: "bg-white/60" },
+              { text: "플레이스 지역 음식점 1위 달성", dot: "bg-white/60" },
             ] as { text: string; dot: string }[])
               .concat(([
                 { text: "플레이스 Top 5 진입 · 평균 6주 만에", dot: "bg-white/60" },
                 { text: "재계약률 95% · 500+ 프로젝트", dot: "bg-blue-200" },
                 { text: "월 신규 예약 +175% · 경기 안양 한의원", dot: "bg-white/60" },
                 { text: "대표 직접 담당 · 상담 비용 0원", dot: "bg-blue-200" },
-                { text: "방문객 +167% · 경기 일산 카페", dot: "bg-white/60" },
+                { text: "방문객 +167% · 경기 고양 카페", dot: "bg-white/60" },
                 { text: "배달 매출 +113% · 경기 고양 음식점", dot: "bg-blue-200" },
                 { text: "수강생 +55% · 경기 고양 학원", dot: "bg-white/60" },
                 { text: "예약 완전 마감 · 경기 파주 네일샵", dot: "bg-blue-200" },
@@ -571,11 +566,11 @@ export default function HomePage() {
                 { text: "10년+ 경력 · 업종별 맞춤 전략", dot: "bg-blue-200" },
                 { text: "24시간 내 연락 보장", dot: "bg-white/60" },
                 { text: "이번 달 신규 상담 잔여 2자리", dot: "bg-blue-200" },
-                { text: "ROI 평균 1.8배 · 3개월 실측치", dot: "bg-white/60" },
+                { text: "투자 대비 1.8배 효과 · 3개월 실측치", dot: "bg-white/60" },
                 { text: "블로그 지역 키워드 4주 만에 상위권", dot: "bg-blue-200" },
                 { text: "카카오맵 리뷰 0 → 78개 · 2개월", dot: "bg-white/60" },
                 { text: "매출 월평균 +89% · 3개월 계약 기준", dot: "bg-blue-200" },
-                { text: "플레이스 일산 지역 음식점 1위 달성", dot: "bg-white/60" },
+                { text: "플레이스 지역 음식점 1위 달성", dot: "bg-white/60" },
               ] as { text: string; dot: string }[]))
               .map((item, i) => (
                 <span key={i} className="flex items-center gap-3 px-6 text-xs text-white font-semibold">
@@ -1548,7 +1543,7 @@ export default function HomePage() {
               {[
                 {
                   industry: "카페",
-                  location: "경기 일산",
+                  location: "경기 고양",
                   service: "플레이스 SEO + 블로그",
                   before: { label: "플레이스 순위", value: "12위" },
                   after: { label: "플레이스 순위", value: "2위" },
@@ -1679,9 +1674,9 @@ export default function HomePage() {
           {/* Editorial testimonials — full width stacked */}
           {[
             {
-              name: "카페 사장님", location: "경기 일산", service: "플레이스 SEO",
+              name: "카페 사장님", location: "경기 고양", service: "플레이스 SEO",
               metric: "+167%", metricLabel: "방문객 · 3개월",
-              text: "3개월 만에 '일산 카페' 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다. 처음엔 반신반의했는데 정말 효과가 있을 줄 몰랐어요.",
+              text: "3개월 만에 주요 키워드 1위가 됐어요. 주말엔 대기줄이 생겼습니다. 처음엔 반신반의했는데 정말 효과가 있을 줄 몰랐어요.",
             },
             {
               name: "피부과 원장님", location: "서울 강서", service: "인스타그램 마케팅",
@@ -1920,7 +1915,7 @@ export default function HomePage() {
                 { q: "매달 비용이 얼마나 드나요?", a: "기본 플레이스 SEO 단독은 월 30~50만원대, 블로그+플레이스 패키지는 월 60~90만원대가 일반적입니다. 업종·경쟁 강도에 따라 달라지며, 상담 후 매장 상황에 맞는 견적을 드립니다. 불필요한 서비스를 끼워팔지 않습니다." },
                 { q: "얼마나 기다려야 효과가 나오나요?", a: "플레이스 SEO는 빠르면 3~4주 안에 순위 변동이 시작됩니다. 블로그 검색 유입은 2~3개월, SNS는 1~2개월이 현실적입니다. 업종과 경쟁 강도마다 다르므로 첫 상담에서 정확한 기간을 안내드립니다." },
                 { q: "이미 다른 대행사를 쓰고 있는데 바꿔도 되나요?", a: "네, 전체 클라이언트의 약 40%가 대행사를 교체하고 오신 분들입니다. 기존 작업 내역을 분석해서 어디서 막혔는지 파악하고 이어서 진행합니다. 계약 잔여기간이 있다면 종료 후 시작하셔도 됩니다." },
-                { q: "경기 북부 지역이 아니어도 되나요?", a: "서울·수도권 전 지역 대응 가능합니다. 다만 10년 현장 경험이 경기 일산·고양·파주·김포 지역에 집중되어 있어서, 해당 지역 매장이라면 경쟁 상권을 더 정밀하게 분석할 수 있습니다." },
+                { q: "서울이나 지방도 상담 가능한가요?", a: "네, 전국 어디서나 비대면으로 진행합니다. 서울·수도권은 물론 지방도 가능합니다. 자료는 온라인으로 공유하고, 보고도 카카오톡·전화·화상으로 드립니다." },
               ].map((faq, i) => (
                 <details key={i} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:border-blue-100 transition-colors">
                   <summary className="flex items-center gap-3 p-5 cursor-pointer list-none select-none hover:bg-blue-50/30 transition-colors">
