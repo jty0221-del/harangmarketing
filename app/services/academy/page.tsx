@@ -62,11 +62,35 @@ export default function AcademyPage() {
           </div>
         </section>
 
-        <section className="py-14 md:py-20 bg-gray-50">
+        {/* 체크리스트 */}
+        <section className="py-12 md:py-16 bg-gray-50">
+          <div className="max-w-3xl mx-auto px-4 md:px-6">
+            <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-2">
+              이 중 하나라도 해당되면 지금 바로 시작하세요
+            </h2>
+            <p className="text-gray-500 text-sm text-center mb-8">방치할수록 주변 경쟁 학원에 학부모를 뺏깁니다</p>
+            <div className="space-y-3">
+              {[
+                "네이버 플레이스 순위가 5위 밖인가요?",
+                "신규 수강 문의 전화가 월 10건 미만인가요?",
+                "주변에 같은 과목 학원이 3곳 이상인가요?",
+                "블로그·SNS 포스팅이 월 4개 미만인가요?",
+                "학부모가 온라인에서 내 학원을 찾기 어렵나요?",
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                  <CheckCircle2 size={18} className="text-green-500 flex-shrink-0" strokeWidth={2.5} />
+                  <span className="text-gray-800 text-sm font-medium">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-14 md:py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
             <h2 className="text-2xl font-black text-gray-900 mb-2 text-center">학원 마케팅 핵심 전략</h2>
             <p className="text-gray-500 text-sm text-center mb-10">학부모가 학원을 찾는 방식에 맞게 설계합니다</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-0">
               {[
                 { icon: TrendingUp, color: "from-green-500 to-emerald-600", title: "학부모 검색 키워드 공략", desc: "'지역명+학원', '지역명+과외' 등 학부모가 실제로 검색하는 키워드를 네이버 플레이스와 블로그에 집중 배치합니다." },
                 { icon: Users, color: "from-blue-500 to-blue-700", title: "맘카페·지역 커뮤니티 입소문", desc: "지역 맘카페와 학부모 커뮤니티에서 자연스럽게 회자되도록 합니다. 강요하지 않고 자연스럽게." },

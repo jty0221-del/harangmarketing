@@ -114,7 +114,7 @@ const SERVICES = [
       "피드·스토리·릴스 콘텐츠 제작",
       "인기 게시물 상위 노출 전략",
       "맘카페·지역 커뮤니티 자연스러운 입소문",
-      "리그램·하이라이트 세팅",
+      "콘텐츠 공유·하이라이트 세팅",
     ],
     rec: "비주얼 중심 업종(카페·미용·음식점)이나 주부 고객 타겟 매장",
     result: "3개월 내 팔로워 500~1,000명 목표",
@@ -759,7 +759,8 @@ export default function ServicesPage() {
               <p className="text-gray-500 text-sm">클라이언트가 바꾸고 나서 가장 많이 하는 말을 정리했습니다</p>
             </div>
 
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden min-w-[480px]">
               {/* Header row */}
               <div className="grid grid-cols-[1fr_1fr_1fr] border-b border-gray-100">
                 <div className="px-4 py-4 text-xs font-black text-gray-400 uppercase tracking-wider">비교 항목</div>
@@ -825,6 +826,8 @@ export default function ServicesPage() {
               ))}
             </div>
 
+            </div>
+            </div>
             <p className="text-center text-xs text-gray-400 mt-5">실제 대행사 전환 클라이언트 40% 경험 기반</p>
           </div>
         </section>

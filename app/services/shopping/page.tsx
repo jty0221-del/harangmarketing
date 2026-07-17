@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Link from "next/link";
-import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ShoppingBag, TrendingUp, Star, Package, CheckCircle2, Search, MessageSquare } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "쇼핑몰·소매점 마케팅 대행사 — 하랑마케팅 | 온·오프라인 매출 증대",
@@ -58,6 +58,30 @@ export default function ShoppingPage() {
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-white/15 hover:border-white/30 text-white font-medium text-sm transition-colors">
                 내 매장 무료 진단
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 체크리스트 */}
+        <section className="py-12 md:py-16 bg-gray-50">
+          <div className="max-w-3xl mx-auto px-4 md:px-6">
+            <h2 className="text-xl md:text-2xl font-black text-gray-900 text-center mb-2">
+              이 중 하나라도 해당되면 지금 바로 시작하세요
+            </h2>
+            <p className="text-gray-500 text-sm text-center mb-8">유입이 없으면 좋은 상품도 팔리지 않습니다</p>
+            <div className="space-y-3">
+              {[
+                "스마트스토어 일 방문자가 30명 미만인가요?",
+                "인스타그램 팔로워가 500명 미만인가요?",
+                "제품 사진은 있는데 구매 전환이 안 되나요?",
+                "오프라인 매장인데 온라인에서 아예 안 보이나요?",
+                "SNS 운영이 불규칙하거나 월 4개 미만인가요?",
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+                  <CheckCircle2 size={18} className="text-purple-500 flex-shrink-0" strokeWidth={2.5} />
+                  <span className="text-gray-800 text-sm font-medium">{item}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
