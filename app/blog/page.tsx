@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 
 // 아래는 BlogListClient에 staticPosts=[]로 전달되어 실제 사용되지 않는 상태입니다.
 // 네이버 블로그 및 CMS 글이 로드되면 이 배열을 채우거나 삭제하세요.
+const _SAMPLE_POSTS = [
   {
     tag: "플레이스 SEO",
     tagColor: "bg-blue-50 text-blue-600 border-blue-100",
