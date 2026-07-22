@@ -827,7 +827,6 @@ export default function ServicesPage() {
             </div>
 
             </div>
-            </div>
             <p className="text-center text-xs text-gray-400 mt-5">실제 대행사 전환 클라이언트 40% 경험 기반</p>
           </div>
         </section>
