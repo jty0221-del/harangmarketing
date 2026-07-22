@@ -6,9 +6,10 @@ interface RevealOnScrollProps {
   children: ReactNode;
   delay?: number;
   className?: string;
+  from?: "bottom" | "left" | "right" | "scale";
 }
 
-export default function RevealOnScroll({ children, delay = 0, className = "" }: RevealOnScrollProps) {
+export default function RevealOnScroll({ children, delay = 0, className = "", from = "bottom" }: RevealOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,8 +29,10 @@ export default function RevealOnScroll({ children, delay = 0, className = "" }: 
     return () => observer.disconnect();
   }, [delay]);
 
+  const fromClass = from === "left" ? "reveal-left" : from === "right" ? "reveal-right" : from === "scale" ? "reveal-scale" : "reveal-item";
+
   return (
-    <div ref={ref} className={`reveal-item ${className}`}>
+    <div ref={ref} className={`${fromClass} ${className}`}>
       {children}
     </div>
   );

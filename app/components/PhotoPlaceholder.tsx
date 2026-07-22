@@ -1,12 +1,12 @@
 import { ImageIcon } from "lucide-react";
 
 interface Props {
-  label: string;        // 어떤 사진인지
-  hint?: string;        // 촬영/수집 방법
-  width?: string;       // Tailwind width class
-  height?: string;      // Tailwind height class
+  label: string;
+  hint?: string;
+  width?: string;
+  height?: string;
   className?: string;
-  dark?: boolean;       // 어두운 배경 섹션용
+  dark?: boolean;
 }
 
 export default function PhotoPlaceholder({
@@ -22,26 +22,35 @@ export default function PhotoPlaceholder({
       className={`
         ${width} ${height} ${className}
         relative flex flex-col items-center justify-center gap-2
-        rounded-2xl border-2 border-dashed overflow-hidden
-        ${dark
-          ? "border-white/20 bg-white/5"
-          : "border-gray-300 bg-gray-50"
-        }
+        rounded-2xl overflow-hidden
+        ${dark ? "bg-white/5" : "bg-gradient-to-br from-gray-100 to-gray-50"}
       `}
     >
-      {/* 격자 패턴 */}
+      {/* shimmer sweep */}
       <div
-        className="absolute inset-0 rounded-2xl opacity-30"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: dark
-            ? "linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px)"
-            : "linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
+          background: dark
+            ? "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%)"
+            : "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.7) 50%, transparent 60%)",
+          backgroundSize: "200% 100%",
+          animation: "shimmer 2.4s linear infinite",
         }}
       />
 
-      <div className={`relative flex flex-col items-center gap-2 px-4 text-center`}>
-        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${dark ? "bg-white/10" : "bg-gray-200"}`}>
+      {/* subtle dot grid */}
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: dark
+            ? "radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)"
+            : "radial-gradient(circle, #C8C0B0 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+        }}
+      />
+
+      <div className="relative flex flex-col items-center gap-2 px-4 text-center">
+        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${dark ? "bg-white/10" : "bg-white shadow-sm border border-gray-200"}`}>
           <ImageIcon size={18} className={dark ? "text-white/50" : "text-gray-400"} strokeWidth={1.5} />
         </div>
         <p className={`text-xs font-bold ${dark ? "text-white/60" : "text-gray-500"}`}>
@@ -52,7 +61,7 @@ export default function PhotoPlaceholder({
             {hint}
           </p>
         )}
-        <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${dark ? "bg-white/10 text-white/40" : "bg-gray-200 text-gray-400"}`}>
+        <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${dark ? "bg-white/10 text-white/40" : "bg-blue-50 text-blue-400 border border-blue-100"}`}>
           사진 교체 예정
         </span>
       </div>

@@ -261,7 +261,7 @@ function ChecklistSection() {
           </div>
           {/* Counter */}
           <div className="flex items-center justify-center gap-4 mb-5">
-            <div className="inline-flex items-center gap-3 bg-white/20 border border-white/30 rounded-xl px-5 py-3">
+            <div className="inline-flex items-center gap-3 bg-white/20 border border-white/30 rounded-xl px-5 py-3 anim-float-slow">
               <div className="text-2xl font-black text-white">{count}<span className="text-blue-200 text-base font-normal">/8</span></div>
               <div className="text-sm font-bold text-white">{urgency.text}</div>
             </div>
@@ -655,11 +655,11 @@ export default function HomePage() {
               </RevealOnScroll>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
               {INDUSTRIES.map((ind) => {
                 const Icon = ind.icon;
                 return (
-                  <Link key={ind.name} href={`/contact?industry=${encodeURIComponent(ind.name)}`} className="group relative rounded-2xl border border-gray-100 bg-white overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-200 block">
+                  <Link key={ind.name} href={`/contact?industry=${encodeURIComponent(ind.name)}`} className="group relative rounded-2xl border border-gray-100 bg-white overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-200 block card-hover">
                     {/* Photo placeholder */}
                     <div className="relative">
                       <PhotoPlaceholder
@@ -772,7 +772,7 @@ export default function HomePage() {
                 },
                 {
                   q: "담당자가 계속 바뀌어서 지쳐요",
-                  a: "하랑은 계약부터 종료까지 대표가 직접 담당합니다. 경기 북부 10년 현장 경험을 가진 전문가가 처음부터 끝까지 함께합니다.",
+                  a: "하랑은 계약부터 종료까지 대표가 직접 담당합니다. 10년 현장 경험을 가진 전문가가 처음부터 끝까지 함께합니다.",
                   result: "담당자 교체 0회",
                   period: "10년 전 계약부터 현재까지",
                   icon: Handshake,
@@ -831,7 +831,7 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-center">
               {/* Content */}
-              <div>
+              <RevealOnScroll from="left"><div>
                 <p className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] mb-5">About CEO</p>
                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
                   실패해 본 대표가<br />성공하는 길을<br />가장 잘 압니다
@@ -849,14 +849,14 @@ export default function HomePage() {
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
                   해병대 장교로 전역 후 전 재산을 털어 일산에서 카페를 창업했다가 실패했습니다. 그때 마케팅 대행사에게 사기도 당했습니다.
                   그 절박함을 직접 겪었기 때문에 <strong className="text-gray-800">대표님의 돈을 제 돈처럼 무겁게 생각합니다.</strong>
-                  이후 10년간 경기 북부 현장을 직접 뛰어 소상공인 500곳 이상과 함께 성장해왔습니다.
+                  이후 10년간 수도권·전국 현장을 직접 뛰어 소상공인 500곳 이상과 함께 성장해왔습니다.
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-7">
                   {[
                     { label: "해병대 장교 출신", sub: "책임감·원칙" },
                     { label: "카페 창업 실패", sub: "현장 공감" },
-                    { label: "경기 북부 10년", sub: "지역 전문가" },
+                    { label: "수도권·전국 10년", sub: "현장 전문가" },
                     { label: "500+ 클라이언트", sub: "검증된 성과" },
                     { label: "결과 미달 시 조정", sub: "성과 보장" },
                     { label: "외주 없음", sub: "대표 직접 전담" },
@@ -874,10 +874,10 @@ export default function HomePage() {
                 >
                   대표와 직접 상담하기 <ArrowRight size={14} />
                 </Link>
-              </div>
+              </div></RevealOnScroll>
 
               {/* Photo */}
-              <div>
+              <RevealOnScroll from="right"><div>
                 <PhotoPlaceholder
                   label="대표 프로필 사진"
                   hint="실제 사진으로 교체 예정 · 세로 비율 (3:4) 권장"
@@ -897,7 +897,7 @@ export default function HomePage() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div></RevealOnScroll>
             </div>
           </div>
         </section>
@@ -967,7 +967,7 @@ export default function HomePage() {
                 계약 전에 성과 가능 여부를 먼저 솔직하게 말씀드립니다.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 stagger-children">
               {[
                 {
                   icon: ShieldCheck,
@@ -987,7 +987,7 @@ export default function HomePage() {
               ].map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.title} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-colors">
+                  <div key={item.title} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all hover:-translate-y-1 card-hover">
                     <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4 shadow-sm">
                       <Icon size={18} className="text-white" strokeWidth={2} />
                     </div>
@@ -1239,11 +1239,11 @@ export default function HomePage() {
                 <span className="text-[11px] font-black text-blue-600 uppercase tracking-widest">인기 서비스</span>
                 <div className="h-px flex-1 bg-blue-100" />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 stagger-children">
                 {SERVICES.filter((s) => s.popular).map((service) => {
                   const Icon = service.icon;
                   return (
-                    <Link key={service.title} href="/services" className="group bg-white rounded-2xl p-5 border border-blue-200 ring-1 ring-blue-100 hover:shadow-lg hover:-translate-y-1 transition-all relative block">
+                    <Link key={service.title} href="/services" className="group bg-white rounded-2xl p-5 border border-blue-200 ring-1 ring-blue-100 hover:shadow-lg hover:-translate-y-1 transition-all relative block card-hover">
                       <span className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-black">인기</span>
                       <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform`}>
                         <Icon size={18} className="text-white" strokeWidth={2} />
@@ -1396,9 +1396,9 @@ export default function HomePage() {
               <p className="text-xs text-gray-400 text-center mt-4">* 실제 수치는 업종·지역·시작 상태에 따라 다릅니다. 무료 상담에서 업종별 예상 ROI를 안내해드립니다.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 stagger-children">
               {PACKAGES.map((pkg) => (
-                <div key={pkg.name} className={`relative rounded-2xl border overflow-hidden ${pkg.popular ? "border-blue-300 shadow-xl shadow-blue-100" : "border-gray-200 shadow-sm"}`}>
+                <div key={pkg.name} className={`relative rounded-2xl border overflow-hidden card-hover ${pkg.popular ? "border-blue-300 shadow-xl shadow-blue-100" : "border-gray-200 shadow-sm"}`}>
                   {pkg.popular && (
                     <div className="bg-blue-600 text-white text-xs font-black text-center py-2 tracking-wider uppercase">
                       가장 많이 선택
